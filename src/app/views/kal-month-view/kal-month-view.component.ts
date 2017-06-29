@@ -17,4 +17,20 @@ export class KalMonthViewComponent implements OnInit {
     this.month = new Month(today.getMonth() + 1, today.getFullYear());
   }
 
+    goNext(event: String) {
+        if (event === "month") {
+            this.month.next();
+        } else if (event === "year") {
+            this.month.jump(this.month.month, this.month.year + 1);
+        }
+    }
+
+    goPrevious(event: String) {
+        if (event === "month") {
+            this.month.previous();
+        } else if (event === "year") {
+            this.month.jump(this.month.month, this.month.year - 1);
+        }
+    }
+
 }
