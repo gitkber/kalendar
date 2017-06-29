@@ -1,0 +1,54 @@
+.select-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 25px 0;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-shadow: inset 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+    border: 1px solid gray;
+    width: 100%
+}
+
+.select-date-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.select-date img {
+    padding: 3px;
+    margin: 3px;
+}
+.select-date img.navigation {
+    cursor: pointer;
+     border-radius: 25px;
+    box-shadow: 0 8px 16px -5px black;
+    background: rgb(214, 214, 194);
+}
+.select-date img.navigation:hover {
+    background: grey;
+}
+
+.select-date h4 {
+    cursor: pointer;
+    border-radius: 25px;
+    border: 1px solid gray;
+    padding: 2px 20px 2px 20px;
+    margin: 15px 10px 20px 10px;
+}
+.select-date h4.month {
+    width: 150px;
+    text-align: center;
+}
+.select-date h4:hover {
+    background: grey;
+}
+.select-date h4.nav-selected {
+    box-shadow: 0 8px 16px -5px black;
+    background: rgb(214, 214, 194);
+    cursor: default;
+}
+

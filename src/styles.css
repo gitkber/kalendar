@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+html, body{
+	width:100%;
+	height:100%;
+	margin:0px;
+	font-family: 'Work Sans', sans-serif;
+}
+
+body{
+	/*background-image:url('http://cdn.magdeleine.co/wp-content/uploads/2015/11/photo-1434064511983-18c6dae20ed5-1400x933.jpeg');*/
+    /*background-image: url('./assets/images/20170611_manege_elsa 2.jpg');*/
+    background-color: #555;
+    background: linear-gradient(#555, #999); /* Standard syntax (must be last) */
+	background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}

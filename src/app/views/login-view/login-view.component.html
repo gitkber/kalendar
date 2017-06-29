@@ -1,0 +1,18 @@
+<div class="login-content">
+  <div class="form-content">
+      <h2>Login</h2>
+      <div *ngIf="alert" class="info" [class.error]="alert.type === 'error'" [class.good]="alert.type === 'good'">
+        {{ alert.message }}
+      </div>
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button (click)="login()">Log in</button>
+  </div>
+</div>
+
+<!--
+<div *ngIf="userFounded; else loading">
+  userFounded...
+</div>
+<ng-template #loading>Loading...</ng-template>
+-->

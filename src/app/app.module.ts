@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.route';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
+import { ViewsModule } from './views/views.module';
+import { KalendarModule } from './kalendar/kalendar.module';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDY_s4Lx7hJHhRMbDUuiwTiGiw-BbEH644",
@@ -22,6 +26,9 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    ViewsModule,
+    KalendarModule,
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule

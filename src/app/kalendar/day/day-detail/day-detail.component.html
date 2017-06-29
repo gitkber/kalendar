@@ -1,0 +1,14 @@
+<div class="day-content">
+    <div class="day-title">
+        <img [src]="'../../../assets/calendar.svg'" height="25" width="25" />
+        <h4>
+            {{ day.date | date }}
+        </h4>
+    </div>
+    <div class="day-info" *ngIf="day.isWeekend">
+        Week-end
+    </div>
+    <div class="day-info" *ngIf="day.isToday">
+        Today
+    </div>
+</div>
