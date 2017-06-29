@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.route';
 
@@ -33,7 +33,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-BE' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
