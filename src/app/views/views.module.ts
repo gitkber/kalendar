@@ -9,9 +9,14 @@ import { PersonsViewComponent } from './persons-view/persons-view.component';
 import { KalYearViewComponent } from './kal-year-view/kal-year-view.component';
 import { KalMonthViewComponent } from './kal-month-view/kal-month-view.component';
 
+import { SheetOfPaperComponent } from "./login-view/sheet-of-paper/sheet-of-paper.component";
+import { LoginPanelComponent } from './login-view/login-panel/login-panel.component';
+import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
+
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule],
-    declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, PersonsViewComponent],
+    declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, PersonsViewComponent, 
+        SheetOfPaperComponent, LoginPanelComponent, PolaroidComponent],
     exports: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, PersonsViewComponent],
     providers: []
 })

@@ -1,143 +1,47 @@
-.view-content {
-    display: flex;
-	flex-direction:row;
-	justify-content:space-around;
-	align-items:center;
-    width: 100%;
-    height: 100%;
-}
-	
-.description-content {
-	display:flex;
-	flex-direction:column;
-	width:35%;
-	height: 80%;
-	background-color: #fff; 
-    background-image: 
-      linear-gradient(90deg, transparent 79px, #bf4040 79px, #bf4040 81px, transparent 81px),
-      linear-gradient(#eee .1em, transparent .1em);
-	background-size: 100% 1.2em;
-	box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.75);
-}
-.description-content .header {
-	display:flex;
-	flex-direction:column;
-	align-items: right;
-	margin-top: 15px;
-	margin-left: 85px;
-	margin-right: 10px;
-	letter-spacing: 1px;
-	
-}
-.description-content .header .title {
-	color: hsl(0, 100%, 27%);
-	letter-spacing: 2px;
-	width: 100%
+.view-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	border: 1px solid blue;
 }
 
-.description-content .body {
-	display:flex;
-	flex-direction:column;
-	align-items: left;
-	margin-left: 85px;
+.document-item {
+	border: 1px solid red;
+	margin: auto;
+	flex: auto;
+	height: 100%;
 }
 
-.right-content {
-	display:flex;
-	flex-direction:column;
-	justify-content: space-around;
+.right-item {
+	border: 1px solid red;
+	margin: auto;
+	flex: auto;
+	height: 100%;
 }
 
-.login-content {
-	display:flex;
-	flex-direction:column;
-	background-color: rgba(0, 0, 0, 0.5);
-	width:30%;
-	min-height:30%;
-    padding: 25px;
-	box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.75);
+.right-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid blue;
+	margin: auto;
+	height: 100%;
 }
 
-.login-content h2 {
-	color:#e0dada;
-	margin-left:auto;
-	margin-right:auto;
+.login-item {
+	border: 1px solid red;
+	margin: auto;
+	flex: auto;
+	width: 100%;
 }
 
-.info {
-	padding: 5px 5px;
-	margin: 10px 0px;
-	text-align:center;
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center;
-}
-.info.error{
-	border:1px solid #a90e00;
-	background-color: #ff3c41;
-	color:#a90e00;
-}
-.info.good {
-	border:1px solid #416d50;
-	background-color: #47cf73;
-	color:#416d50;
-}
-
-input{
-	height:30px;
-	padding: 5px 5px;
-	margin: 10px 0px;
-	background-color:#e0dada;
-	border:none;
-}
-
-button {
-	height:40px;
-	padding: 5px 5px;
-	margin: 10px 0px;
-	font-weight:bold;
-	background-color:#555;
-	border:1px solid white;
-	color:#e0dada;
-	cursor:pointer;
-	font-size:16px;
-}
-
-button:hover {
-	background-color:white;
-	border:1px solid #555;
-    color: #555;
-}
-
-.polaroid-images a
-{
-	background: white;
-	display: inline;
-	float: left;
-	margin: 0 15px 30px;
-	padding: 10px 10px 25px;
-	text-align: center;
-	text-decoration: none;
-	-webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-	-moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
-	box-shadow: 0 4px 6px rgba(0,0,0,.3);
-	-webkit-transition: all .15s linear;
-	-moz-transition: all .15s linear;
-	transition: all .15s linear;
-	z-index:0;
-        position:relative;
-}
-
-.polaroid-images a:after {
-	color: #333;
-	font-size: 20px;
-	content: attr(title);
-	position: relative;
-	top:15px;
-}
-
-.polaroid-images img { 
-	display: block; 
-	width: inherit; 
+.polaroid-item {
+	border: 1px solid red;
+	margin: auto;
+	flex: auto;
+	width: 100%;
 }
