@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-panel',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPanelComponent implements OnInit {
 
-  constructor() { }
+  userFounded = true;
+  //alert = {type:'error', message:'en cours de development'}
+  alert = {};
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.router.navigateByUrl('/home');
   }
 
 }

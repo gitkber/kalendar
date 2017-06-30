@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-view',
@@ -8,17 +7,9 @@ import { Router } from '@angular/router';
 })
 export class LoginViewComponent implements OnInit {
 
-  userFounded = true;
-  //alert = {type:'error', message:'en cours de development'}
-  alert = {};
-
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  login() {
-    this.router.navigateByUrl('/home');
   }
 
 }
