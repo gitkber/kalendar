@@ -1,5 +1,18 @@
-<div class="login-content">
-  <div class="form-content">
+<div class="view-content">
+
+  <div class="description-content">
+    <div class="header">
+      <h3>Bienvenue sur <span class="title">Kalendar</span></h3>
+    </div>
+    <div class="body">
+      <p>Ce site ... description</p>
+      <p>Visitez avec le user DEMO</p>
+      <p>Ou encore créez vous un compte</p>
+    </div>
+  </div>
+
+  <div class="right-content">
+    <div class="login-content">
       <h2>Login</h2>
       <div *ngIf="alert" class="info" [class.error]="alert.type === 'error'" [class.good]="alert.type === 'good'">
         {{ alert.message }}
@@ -7,6 +20,12 @@
       <input type="text" placeholder="Username" />
       <input type="password" placeholder="Password" />
       <button (click)="login()">Log in</button>
+    </div>
+    <div class="polaroid-images">
+      <a title="Zen Attitude">
+      <img height="150" src="../../../assets/images/trolltunga.jpg" alt="Zen" title="Zen"/>
+    </a>
+    </div>
   </div>
 </div>
 
