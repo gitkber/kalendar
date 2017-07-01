@@ -1,13 +1,8 @@
-<div class="home-view-content">
-  <div class="menu-content">
-    <div class="menu-option" (click)="navigateToKalYear()">Calendrier annuel</div>
-    <div class="menu-option" (click)="navigateToKalMonth()">Calendrier mensuel</div>
-    <div class="menu-option" (click)="navigateToPersons()">Liste de personnes</div>
+<div class="home-view-container">
+  <div class="menu-item">
+    <top-menu></top-menu>
   </div>
-  <div class="days-container">
-    <day-detail [day]="day1"></day-detail>
-    <day-detail [day]="day2"></day-detail>
-    <day-detail [day]="day3"></day-detail>
-    <day-detail [day]="day4"></day-detail>
+  <div class="four-days-item">
+    <four-days></four-days>
   </div>
 </div>

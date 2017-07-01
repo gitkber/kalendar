@@ -13,10 +13,14 @@ import { SheetOfPaperComponent } from "./login-view/sheet-of-paper/sheet-of-pape
 import { LoginPanelComponent } from './login-view/login-panel/login-panel.component';
 import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
 
+import { TopMenuComponent } from './home-view/top-menu/top-menu.component';
+import { FourDaysComponent } from './home-view/four-days/four-days.component';
+
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, PersonsViewComponent, 
-        SheetOfPaperComponent, LoginPanelComponent, PolaroidComponent],
+        SheetOfPaperComponent, LoginPanelComponent, PolaroidComponent,
+        TopMenuComponent, FourDaysComponent],
     exports: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, PersonsViewComponent],
     providers: []
 })

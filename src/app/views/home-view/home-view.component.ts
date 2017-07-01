@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Day } from "../../kalendar/day/day";
 
 @Component({
@@ -14,7 +13,7 @@ export class HomeViewComponent implements OnInit {
   private day3: Day;  
   private day4: Day;  
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
     let today:Date = new Date();
@@ -28,14 +27,6 @@ export class HomeViewComponent implements OnInit {
     dayDate = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 1, 12, 0, 0);
   }
 
-  navigateToKalYear() {
-    this.router.navigateByUrl('/kalyear');
-  }
-  navigateToKalMonth() {
-    this.router.navigateByUrl('/kalmonth');
-  }
-  navigateToPersons() {
-    this.router.navigateByUrl('/persons');
-  }
+
 
 }
