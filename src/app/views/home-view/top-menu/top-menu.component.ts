@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
+
+  @Input() navigation: string; // year - month - day
+  @Output() nextClick: EventEmitter<any> = new EventEmitter();
+  @Output() previousClick: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router) { }
 
@@ -22,5 +26,12 @@ export class TopMenuComponent implements OnInit {
   navigateToPersons() {
     this.router.navigateByUrl('/persons');
   }
-  
+
+  goNext() {
+    this.nextClick.emit(this.navigation);
+  }
+
+  goPrevious() {
+    this.previousClick.emit(this.navigation);
+  }
 }

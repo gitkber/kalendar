@@ -23,3 +23,17 @@
 	border:1px solid #555;
     color: #555;
 }
+
+img {
+    padding: 3px;
+    margin: 3px;
+}
+img.navigation {
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 8px 16px -5px black;
+    background: rgb(214, 214, 194);
+}
+img.navigation:hover {
+    background: grey;
+}

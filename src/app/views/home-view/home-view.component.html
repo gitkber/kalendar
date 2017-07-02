@@ -1,6 +1,6 @@
 <div class="home-view-container">
   <div class="menu-item">
-    <top-menu></top-menu>
+    <top-menu [navigation]="day" (nextClick)="nextDay()" (previousClick)="previousDay()"></top-menu>
   </div>
   <div class="four-days-item">
     <four-days></four-days>
