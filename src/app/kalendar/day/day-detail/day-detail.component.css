@@ -1,33 +1,15 @@
-.day-content {
+.day-container {
     display: flex;
     flex-direction: column;
     align-items: left;
     width: 100%;
-    padding: 5px 10px 15px 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
 }
 
-.day-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.day-item-title {
     align-items: center;
-    margin: 10px 0 25px 0;
-    padding: 0 10px 0 10px;
-    border-radius: 5px;
-    background-color: whitesmoke;
-    box-shadow: inset 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
-    border: 1px solid gray;
-    width: 100%
 }
 
-.day-title img {
-    padding: 3px;
-    margin: 3px;
-}
-
-.day-title h4 {
+.day-item-title h4 {
     border-radius: 25px;
     border: 1px solid gray;
     padding: 2px 20px 2px 20px;
@@ -37,7 +19,7 @@
     cursor: default;
 }
 
-.day-info {
+.day-item-info {
   margin-top: 15px;
   width: 100%;
 }

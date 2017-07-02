@@ -20,5 +20,10 @@
     margin-bottom: 20px;
     height: 100%;
     width: 90%;
+    background-color: #fff; 
+    background-image: 
+      linear-gradient(90deg, transparent 79px, #bf4040 79px, #bf4040 81px, transparent 81px),
+      linear-gradient(#eee .1em, transparent .1em);
+	background-size: 100% 1.2em;
     box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.75);
 }
