@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FourDays } from "../../kalendar/four-days/four-days";
 
 @Component({
   selector: 'home-view',
@@ -7,15 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeViewComponent implements OnInit {
 
+  private fourDays: FourDays;
+
   constructor() { }
 
   ngOnInit() {
+    this.fourDays = new FourDays(new Date());
   }
 
-  nextDay() {
-
+  nextDay(event) {
+    // event.navigation === day
+    this.fourDays.next();
   }
-  previousDay() {
-
+  previousDay(event) {
+    // event.navigation === day
+    this.fourDays.previous();
   }
 }
