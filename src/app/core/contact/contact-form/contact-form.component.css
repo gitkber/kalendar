@@ -1,0 +1,20 @@
+.contact-content {
+    margin: 0 0 20px 0;
+    width: 100%;
+    border: 1px solid gray;
+    padding: 20px 25px 20px 25px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;;
+    width: 100%;
+}
+
+.contact-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 0 10px 0;
+}
