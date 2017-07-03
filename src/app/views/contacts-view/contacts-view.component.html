@@ -1,0 +1,6 @@
+<a routerLink="/home">Home</a>
+
+<contact-list [contacts]="contacts"></contact-list>
+<div id="details-container">
+  <p *ngFor="let item of items | async"><img src="../assets/images/pin.svg" height="20" width="20">{{item.message}}</p>
+</div>

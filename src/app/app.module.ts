@@ -10,6 +10,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppComponent } from './app.component';
 import { ViewsModule } from './views/views.module';
 import { KalendarModule } from './kalendar/kalendar.module';
+import { CoreModule } from './core/core.module';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDY_s4Lx7hJHhRMbDUuiwTiGiw-BbEH644",
@@ -28,6 +29,7 @@ export const firebaseConfig = {
     BrowserModule,
     ViewsModule,
     KalendarModule,
+    CoreModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

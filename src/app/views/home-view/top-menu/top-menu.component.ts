@@ -23,8 +23,8 @@ export class TopMenuComponent implements OnInit {
   navigateToKalMonth() {
     this.router.navigateByUrl('/kalmonth');
   }
-  navigateToPersons() {
-    this.router.navigateByUrl('/persons');
+  navigateToContacts() {
+    this.router.navigateByUrl('/contacts');
   }
 
   goNext() {

@@ -1,0 +1,16 @@
+.contact-list-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    background: white;
+    width: 100%;
+}
+
+.contact-list-item {
+    margin-top: 10px;
+    padding: 10px;
+    border-right: 1px solid black;
+    align-content: center;
+    width: 100%;
+}
