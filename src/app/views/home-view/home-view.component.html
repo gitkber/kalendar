@@ -1,8 +1,4 @@
 <div class="home-view-container">
-  <div class="menu-item">
-    <top-menu [navigation]="day" (nextClick)="nextDay($event)" (previousClick)="previousDay($event)"></top-menu>
-  </div>
-  <div class="four-days-item">
-    <four-days [fourDays]="fourDays"></four-days>
-  </div>
+  <top-menu class="top-menu-item" [navigation]="day" (nextClick)="nextDay($event)" (previousClick)="previousDay($event)"></top-menu>
+  <four-days class="four-days-item" [fourDays]="fourDays"></four-days>
 </div>

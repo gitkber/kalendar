@@ -7,14 +7,8 @@
 	height: 100%;
 }
 
-.contacts-item {
+.contact-list-item {
 	margin: 50px;
-	flex: auto;
-	height: 80%;
-}
-
-.right-item {
-	margin: 50px;;
 	flex: auto;
 	height: 80%;
 }
@@ -24,8 +18,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: auto;
-	height: 100%;
+	/* item */
+	margin-right: 50px;
+	flex: auto;
+	height: 80%;
 }
 
 .contact-form-item {

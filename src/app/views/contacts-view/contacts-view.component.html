@@ -1,16 +1,10 @@
 <div class="view-container">
-  <div class="contacts-item">
-    <contact-list [contacts]="contacts"></contact-list>
-  </div>
-  <div class="right-item">
-    <div class="right-container">
-      <div class="contact-form-item">
-        <contact-form></contact-form>
-      </div>
-      <div class="polaroid-item">
-        polaroid-item
-         <a routerLink="/home">Home</a>
-      </div>
+  <contact-list class="contact-list-item" [contacts]="contacts"></contact-list>
+  <div class="right-container">
+    <contact-form class="contact-form-item"></contact-form>
+    <div class="polaroid-item">
+      polaroid-item
+      <a routerLink="/home">Home</a>
     </div>
   </div>
 </div>
