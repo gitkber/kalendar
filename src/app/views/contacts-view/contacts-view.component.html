@@ -1,7 +1,7 @@
 <div class="view-container">
-  <contact-list class="contact-list-item" [contacts]="contacts"></contact-list>
+  <contact-list class="contact-list-item" [contacts]="contacts" (showContactClick)="showContact($event)"></contact-list>
   <div class="right-container">
-    <contact-form class="contact-form-item"></contact-form>
+    <contact-form class="contact-form-item" [contact]="contactSelected" (actionClick)="doActionOnContact($event)"></contact-form>
     <div class="polaroid-item">
       polaroid-item
       <a routerLink="/home">Home</a>

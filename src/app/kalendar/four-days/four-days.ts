@@ -3,39 +3,31 @@ import { Day } from "../day/day";
 export class FourDays {
 
     public days: Day[] = [];
-    public day1: Day;
-    public day2: Day;
-    public day3: Day;
-    public day4: Day;
-
     private dayDate: Date;
 
     constructor(
         public today: Date
     ) {
         this.dayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1, 12, 0, 0);
-        this.day1 = new Day(this.dayDate, today);
-        this.day2 = new Day(today, today);
-        this.dayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 12, 0, 0);
-        this.day3 = new Day(this.dayDate, today);
-        this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() + 1, 12, 0, 0);
-        this.day4 = new Day(this.dayDate, today);
+        this.days.push(new Day(this.dayDate, today));
+        this.pushNextDayDate();
+        this.pushNextDayDate();
+        this.pushNextDayDate();
     }
 
     next() {
-        this.day1 = this.day2;
-        this.day2 = this.day3;
-        this.day3 = this.day4;
-        this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() + 1, 12, 0, 0);
-        this.day4 = new Day(this.dayDate, new Date());
+        this.days.shift();
+        this.pushNextDayDate();
     }
 
     previous() {
-        this.day4 = this.day3;
-        this.day3 = this.day2;
-        this.day2 = this.day1;
+        this.days.pop();
         this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 1, 12, 0, 0);
-        this.day1 = new Day(new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 3, 12, 0, 0), new Date());
+        this.days.unshift(new Day(new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 3, 12, 0, 0), this.today));
+    }
 
+    private pushNextDayDate() {
+        this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() + 1, 12, 0, 0);
+        this.days.push(new Day(this.dayDate, this.today));
     }
 }

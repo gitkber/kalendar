@@ -6,6 +6,8 @@ import { ContactAction } from "./contact-action";
 import { Action } from "../action";
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { FourDays } from "../../kalendar/four-days/four-days";
+import { DayItem } from "../../kalendar/day-item";
 
 @Injectable()
 export class ContactService {
@@ -14,7 +16,7 @@ export class ContactService {
 
     getList(): FirebaseListObservable<Contact[]> { return null }
     doActionOnContact(event: ContactAction) { }
-
+    populateFourDays(fourDays: FourDays) { }
 }
 
 @Injectable()
@@ -44,6 +46,24 @@ export class MockContactService {
         } else if (event.action === Action.DELETE) {
             this.contactsObservable.remove(event.contactKey);
         }
+    }
+
+    populateFourDays(fourDays: FourDays) {
+        this.contactsObservable.forEach(obs => {
+            console.log("obs", obs);
+            obs.forEach(contact => {
+                //console.log("contact", contact);
+                //console.log("contact", contact.birthdate instanceof Date);
+                contact.birthdate = new Date(contact.birthdate);
+                fourDays.days.forEach(day => {
+                    if (contact.birthdate.getDate() === day.date.getDate()
+                        && contact.birthdate.getMonth() === day.date.getMonth()
+                        && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
+                        day.dayItems.push(new DayItem(contact.firstname));
+                    }
+                })
+            })
+        });
     }
 
 }

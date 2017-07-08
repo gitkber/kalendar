@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Contact } from "../contact";
 import { FirebaseListObservable } from 'angularfire2/database';
 
@@ -10,10 +10,15 @@ import { FirebaseListObservable } from 'angularfire2/database';
 export class ContactListComponent implements OnInit {
 
   @Input() contacts: FirebaseListObservable<Contact[]>;
+  @Output() showContactClick: EventEmitter<Contact> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showContact(contact: Contact) {
+    this.showContactClick.emit(contact);
   }
 
 }

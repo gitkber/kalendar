@@ -10,4 +10,7 @@
     <div class="day-item-info" *ngIf="day.isToday">
         Today
     </div>
+    <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
+        {{dayItem.item}}
+    </div>
 </div>

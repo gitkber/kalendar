@@ -1,14 +1,23 @@
-<div class="contact-content">
-    <form class="contact-form" (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
+<div class="contact-form-container">
+    <form class="form-container" (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
         <div class="contact-row">
-            <label for="inputFirstName">Firstname</label>
-            <input type="text" formControlName="firstname" name="firstname" id="inputFirstName" />
+            <label for="inputFirstname">Firstname</label>
+            <input type="text" formControlName="firstname" name="firstname" id="inputFirstname" />
         </div>
         <div class="contact-row">
-            <label for="inputSurname">Lastname</label>
-            <input type="text" formControlName="lastname" name="lastname" id="inputSurname" />
+            <label for="inputLastname">Lastname</label>
+            <input type="text" formControlName="lastname" name="lastname" id="inputLastname" />
         </div>
-        <button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
-        <button class="btn btn-primary"  (click)="deleteContact()">Delete</button>
+        <div class="contact-row">
+            <label for="inputBirthdate">Birthdate</label>
+            <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate" />
+        </div>
+
+        <div class="action-row">
+        <img class="menu" [src]="'../../../assets/images/save_white.svg'" height="30" width="30" (click)="addContact()" />
+        <img class="menu" [src]="'../../../assets/images/delete_white.svg'" height="30" width="30" (click)="deleteContact()" />
+        </div>
+        <!--<button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
+        <button class="btn btn-primary"  (click)="deleteContact()">Delete</button>-->
     </form>
 </div>

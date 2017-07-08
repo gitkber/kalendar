@@ -1,6 +1,3 @@
-  <div class="four-days-container">
-    <day-detail class="four-days-item" [day]="fourDays.day1"></day-detail>
-    <day-detail class="four-days-item" [day]="fourDays.day2"></day-detail>
-    <day-detail class="four-days-item" [day]="fourDays.day3"></day-detail>
-    <day-detail class="four-days-item" [day]="fourDays.day4"></day-detail>
-  </div>
+<div class="four-days-container">
+  <day-detail *ngFor="let day of fourDays.days" class="four-days-item" [day]="day"></day-detail>
+</div>

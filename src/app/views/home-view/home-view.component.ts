@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FourDays } from "../../kalendar/four-days/four-days";
+import { ContactService } from "../../core/contact/contact.service";
 
 @Component({
   selector: 'home-view',
@@ -10,10 +11,11 @@ export class HomeViewComponent implements OnInit {
 
   private fourDays: FourDays;
 
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit() {
     this.fourDays = new FourDays(new Date());
+    this.contactService.populateFourDays(this.fourDays);
   }
 
   nextDay(event) {
