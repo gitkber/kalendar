@@ -15,15 +15,17 @@ export class FourDays {
         this.pushNextDayDate();
     }
 
-    next() {
+    next(): Day {
         this.days.shift();
         this.pushNextDayDate();
+        return this.days[this.days.length - 1];
     }
 
-    previous() {
+    previous(): Day {
         this.days.pop();
         this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 1, 12, 0, 0);
         this.days.unshift(new Day(new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 3, 12, 0, 0), this.today));
+        return this.days[0];
     }
 
     private pushNextDayDate() {

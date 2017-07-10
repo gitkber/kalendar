@@ -8,6 +8,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import * as firebase from 'firebase/app';
 import { FourDays } from "../../kalendar/four-days/four-days";
 import { Month } from "../../kalendar/month/month";
+import { Day } from "../../kalendar/day/day";
 import { DayItem } from "../../kalendar/day-item";
 
 @Injectable()
@@ -17,16 +18,15 @@ export class ContactService {
 
     getList(): FirebaseListObservable<Contact[]> { return null }
     doActionOnContact(event: ContactAction) { }
-    setFourDays(fourDays: FourDays) { }
-    setMonth(month: Month) { }
+    populateFourDays(fourDays: FourDays) { }
+    populateDayInFourDays(day: Day) { }
+    populateMonth(month: Month) { }
 }
 
 @Injectable()
 export class MockContactService {
 
     private contactsObservable: FirebaseListObservable<Contact[]>;
-    private fourDays: FourDays;
-    private month: Month;
 
     constructor(public db: AngularFireDatabase) {
         //firebase.database().ref("persons").set({birthdate: firebase.database.ServerValue.TIMESTAMP});
@@ -35,41 +35,6 @@ export class MockContactService {
             query: {
                 limitToLast: 50
             }
-        });
-        this.subscribe();
-    }
-
-    subscribe() {
-        this.contactsObservable.forEach(items => {
-            console.log("contactsObservable subscribe", items);
-            console.log(this.fourDays);
-
-            items.forEach(contact => {
-                
-                //console.log("contact", contact);
-                //console.log("contact", contact.birthdate instanceof Date);
-                contact.birthdate = new Date(contact.birthdate);
-                if (this.fourDays !== undefined) {
-                    this.fourDays.days.forEach(day => {
-                        if (contact.birthdate.getDate() === day.date.getDate()
-                            && contact.birthdate.getMonth() === day.date.getMonth()
-                            && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
-                            day.dayItems.push(new DayItem(contact.firstname));
-                        }
-                    })
-
-                }
-                if (this.month !== undefined){
-                    this.month.days.forEach(day => {
-                        if (contact.birthdate.getDate() === day.date.getDate()
-                            && contact.birthdate.getMonth() === day.date.getMonth()
-                            && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
-                            day.dayItems.push(new DayItem(contact.firstname));
-                        }
-                    })
-
-                }
-            })
         });
 
     }
@@ -88,12 +53,46 @@ export class MockContactService {
         }
     }
 
-    setFourDays(fourDays: FourDays) {
-        this.fourDays = fourDays;
+    populateFourDays(fourDays: FourDays) {
+        this.contactsObservable.subscribe(items => {
+            console.log("contactsObservable subscribe fourDays", items);
+            items.forEach(contact => {
+                contact.birthdate = new Date(contact.birthdate);
+                fourDays.days.forEach(day => {
+                    this.pushContactInDay(day, contact);
+                })
+            })
+        });
     }
 
-    setMonth(month: Month) {
-        this.month = month;
+    populateDayInFourDays(day: Day) {
+        this.contactsObservable.subscribe(items => {
+            console.log("contactsObservable subscribe day in fourDays", items);
+            items.forEach(contact => {
+                contact.birthdate = new Date(contact.birthdate);
+                this.pushContactInDay(day, contact);
+            })
+        });
+    }
+
+    populateMonth(month: Month) {
+        this.contactsObservable.subscribe(items => {
+            console.log("contactsObservable subscribe month", items);
+            items.forEach(contact => {
+                contact.birthdate = new Date(contact.birthdate);
+                month.days.forEach(day => {
+                    this.pushContactInDay(day, contact);
+                })
+            })
+        });
+    }
+
+    private pushContactInDay(day: Day, contact: Contact) {
+        if (contact.birthdate.getDate() === day.date.getDate()
+            && contact.birthdate.getMonth() === day.date.getMonth()
+            && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
+            day.dayItems.push(new DayItem(contact.firstname + " " + contact.lastname));
+        }
     }
 
 }

@@ -15,15 +15,17 @@ export class HomeViewComponent implements OnInit {
 
   ngOnInit() {
     this.fourDays = new FourDays(new Date());
-    this.contactService.setFourDays(this.fourDays);
+    this.contactService.populateFourDays(this.fourDays);
   }
 
   nextDay(event) {
     // event.navigation === day
-    this.fourDays.next();
+    //this.fourDays.next();
+    this.contactService.populateDayInFourDays(this.fourDays.next());
   }
   previousDay(event) {
     // event.navigation === day
-    this.fourDays.previous();
+    //this.fourDays.previous();
+    this.contactService.populateDayInFourDays(this.fourDays.previous());
   }
 }

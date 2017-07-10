@@ -19,7 +19,7 @@ export class KalMonthViewComponent implements OnInit {
         let today: Date = new Date();
         this.month = new Month(today.getMonth() + 1, today.getFullYear());
         this.selectedDay = this.month.selectDate(today);
-        this.contactService.setMonth(this.month);
+        this.contactService.populateMonth(this.month);
     }
 
     goNext(event: String) {
@@ -28,6 +28,7 @@ export class KalMonthViewComponent implements OnInit {
         } else if (event === "year") {
             this.month.jump(this.month.month, this.month.year + 1);
         }
+        this.contactService.populateMonth(this.month);
     }
 
     goPrevious(event: String) {
@@ -36,6 +37,7 @@ export class KalMonthViewComponent implements OnInit {
         } else if (event === "year") {
             this.month.jump(this.month.month, this.month.year - 1);
         }
+        this.contactService.populateMonth(this.month);
     }
 
     showDayDetail(event: Day) {
