@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Month } from "../../kalendar/month/month";
 import { Day } from "../../kalendar/day/day";
+import { ContactService } from "../../core/contact/contact.service";
 
 @Component({
     selector: 'kal-month-view',
@@ -12,12 +13,13 @@ export class KalMonthViewComponent implements OnInit {
     private month: Month;
     private selectedDay: Day;
 
-    constructor() { }
+    constructor(private contactService: ContactService) { }
 
     ngOnInit() {
         let today: Date = new Date();
         this.month = new Month(today.getMonth() + 1, today.getFullYear());
         this.selectedDay = this.month.selectDate(today);
+        this.contactService.setMonth(this.month);
     }
 
     goNext(event: String) {

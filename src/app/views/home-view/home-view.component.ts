@@ -15,7 +15,7 @@ export class HomeViewComponent implements OnInit {
 
   ngOnInit() {
     this.fourDays = new FourDays(new Date());
-    this.contactService.populateFourDays(this.fourDays);
+    this.contactService.setFourDays(this.fourDays);
   }
 
   nextDay(event) {

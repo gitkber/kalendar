@@ -7,6 +7,7 @@ import { Action } from "../action";
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { FourDays } from "../../kalendar/four-days/four-days";
+import { Month } from "../../kalendar/month/month";
 import { DayItem } from "../../kalendar/day-item";
 
 @Injectable()
@@ -16,13 +17,16 @@ export class ContactService {
 
     getList(): FirebaseListObservable<Contact[]> { return null }
     doActionOnContact(event: ContactAction) { }
-    populateFourDays(fourDays: FourDays) { }
+    setFourDays(fourDays: FourDays) { }
+    setMonth(month: Month) { }
 }
 
 @Injectable()
 export class MockContactService {
 
     private contactsObservable: FirebaseListObservable<Contact[]>;
+    private fourDays: FourDays;
+    private month: Month;
 
     constructor(public db: AngularFireDatabase) {
         //firebase.database().ref("persons").set({birthdate: firebase.database.ServerValue.TIMESTAMP});
@@ -32,6 +36,42 @@ export class MockContactService {
                 limitToLast: 50
             }
         });
+        this.subscribe();
+    }
+
+    subscribe() {
+        this.contactsObservable.forEach(items => {
+            console.log("contactsObservable subscribe", items);
+            console.log(this.fourDays);
+
+            items.forEach(contact => {
+                
+                //console.log("contact", contact);
+                //console.log("contact", contact.birthdate instanceof Date);
+                contact.birthdate = new Date(contact.birthdate);
+                if (this.fourDays !== undefined) {
+                    this.fourDays.days.forEach(day => {
+                        if (contact.birthdate.getDate() === day.date.getDate()
+                            && contact.birthdate.getMonth() === day.date.getMonth()
+                            && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
+                            day.dayItems.push(new DayItem(contact.firstname));
+                        }
+                    })
+
+                }
+                if (this.month !== undefined){
+                    this.month.days.forEach(day => {
+                        if (contact.birthdate.getDate() === day.date.getDate()
+                            && contact.birthdate.getMonth() === day.date.getMonth()
+                            && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
+                            day.dayItems.push(new DayItem(contact.firstname));
+                        }
+                    })
+
+                }
+            })
+        });
+
     }
 
     getList(): FirebaseListObservable<Contact[]> { return this.contactsObservable }
@@ -48,22 +88,12 @@ export class MockContactService {
         }
     }
 
-    populateFourDays(fourDays: FourDays) {
-        this.contactsObservable.forEach(obs => {
-            console.log("obs", obs);
-            obs.forEach(contact => {
-                //console.log("contact", contact);
-                //console.log("contact", contact.birthdate instanceof Date);
-                contact.birthdate = new Date(contact.birthdate);
-                fourDays.days.forEach(day => {
-                    if (contact.birthdate.getDate() === day.date.getDate()
-                        && contact.birthdate.getMonth() === day.date.getMonth()
-                        && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
-                        day.dayItems.push(new DayItem(contact.firstname));
-                    }
-                })
-            })
-        });
+    setFourDays(fourDays: FourDays) {
+        this.fourDays = fourDays;
+    }
+
+    setMonth(month: Month) {
+        this.month = month;
     }
 
 }

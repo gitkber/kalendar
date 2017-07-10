@@ -2,4 +2,7 @@
     <div class="day" [class.weekend]="day.isWeekend" [class.today]="day.isToday">
         <h4><b>{{ day.day }}</b></h4>
     </div>
+    <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
+        {{dayItem.item}}
+    </div>
 </div>
