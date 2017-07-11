@@ -1,10 +1,10 @@
 .contact-form-container {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-content: flex-end;
-	background-color: rgba(0, 0, 0, 0.7);
-	box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
     padding: 25px;
 }
 
@@ -36,10 +36,10 @@
     flex: 1;
 }
 
-input{
-	height:30px;
-	background-color:#e0dada;
-	border:none;
+input {
+    height: 30px;
+    background-color: #e0dada;
+    border: none;
     margin-bottom: 10px;
     flex: 1;
     margin-left: 10px;
@@ -55,10 +55,11 @@ img.menu {
     margin: 10px;
     cursor: pointer;
     border-radius: 5px;
-    border:1px solid white;
+    border: 1px solid white;
     box-shadow: 0 8px 16px -5px black;
     background: grey;
 }
+
 img.menu:hover {
     background: black;
 }
