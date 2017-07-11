@@ -1,0 +1,25 @@
+<div class="line-form-container">
+    <form class="form-container" (ngSubmit)="addLine()" [formGroup]="lineFormGroup" #addLineForm="ngForm">
+        <div class="line-row">
+            <label for="inputFirstname">Firstname</label>
+            <input type="text" formControlName="firstname" name="firstname" id="inputFirstname"/>
+        </div>
+        <div class="line-row">
+            <label for="inputLastname">Lastname</label>
+            <input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>
+        </div>
+        <div class="line-row">
+            <label for="inputBirthdate">Birthdate</label>
+            <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
+        </div>
+
+        <div class="action-row">
+            <img class="menu" [src]="'../../../assets/images/save_white.svg'" height="30" width="30"
+                 (click)="addLine()"/>
+            <img class="menu" [src]="'../../../assets/images/delete_white.svg'" height="30" width="30"
+                 (click)="deleteLine()"/>
+        </div>
+        <!--<button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
+        <button class="btn btn-primary"  (click)="deleteLine()">Delete</button>-->
+    </form>
+</div>
