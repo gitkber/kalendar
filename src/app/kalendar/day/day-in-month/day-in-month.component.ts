@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { Day } from "../day";
+import { Component, Input, OnInit } from '@angular/core';
+import { Day } from '../day';
 
 @Component({
     selector: 'day-in-month',
@@ -12,8 +12,6 @@ export class DayInMonthComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
 
 }

@@ -1,6 +1,7 @@
 <div class="month">
     <div class="month-title">
-        <select-date [date]="month.lastDateOfMonth" [navigation]="'month'" (nextClick)="goNext($event)" (previousClick)="goPrevious($event)"></select-date>
+        <select-date [date]="month.lastDateOfMonth" [navigation]="'month'" (nextClick)="goNext($event)"
+                     (previousClick)="goPrevious($event)"></select-date>
     </div>
     <div class="month-content">
         <div class="month-item" *ngFor="let day of month.days">

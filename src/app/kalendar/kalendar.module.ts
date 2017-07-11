@@ -8,11 +8,11 @@ import { FourDaysComponent } from './four-days/four-days.component';
 import { SelectDateComponent } from './select-date/select-date.component';
 
 @NgModule({
-  imports: [BrowserModule, RouterModule],
-  declarations: [MonthComponent, DayInMonthComponent, DayInFourDaysComponent, FourDaysComponent,
-    SelectDateComponent],
-  exports: [MonthComponent, DayInMonthComponent, DayInFourDaysComponent, FourDaysComponent,
-    SelectDateComponent],
-  providers: []
+    imports: [BrowserModule, RouterModule],
+    declarations: [MonthComponent, DayInMonthComponent, DayInFourDaysComponent, FourDaysComponent,
+        SelectDateComponent],
+    exports: [MonthComponent, DayInMonthComponent, DayInFourDaysComponent, FourDaysComponent,
+        SelectDateComponent],
+    providers: []
 })
 export class KalendarModule { }

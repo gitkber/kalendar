@@ -1,4 +1,4 @@
-import { Day } from "../day/day";
+import { Day } from '../day/day';
 
 export class Month {
 
@@ -13,7 +13,7 @@ export class Month {
     }
 
     selectDate(date: Date): Day {
-        let day: Day;
+        let day: Day = null;
         this.days.forEach(d => {
             if (d.date !== undefined) {
                 if (d.date.getDate() === date.getDate()
@@ -54,7 +54,7 @@ export class Month {
     }
 
     private createDays() {
-        let today: Date = new Date();
+        const today: Date = new Date();
         this.lastDateOfMonth = new Date(this.year, this.month, 0);
 
         this.days = [];
@@ -62,7 +62,7 @@ export class Month {
         this.createDisabledPreviousDays();
         //
         for (let index = 1; index <= this.lastDateOfMonth.getDate(); index++) {
-            let dayDate = new Date(this.year, this.month - 1, index, 12, 0, 0);
+            const dayDate = new Date(this.year, this.month - 1, index, 12, 0, 0);
             this.days.push(new Day(dayDate, today));
         }
         //
@@ -71,7 +71,7 @@ export class Month {
 
     private createDisabledPreviousDays() {
         let currentDate = new Date(this.year, this.month - 1, 1, 12, 0, 0);
-        let countDay = currentDate.getDay() == 0 ? 6 : currentDate.getDay() - 1;
+        const countDay = currentDate.getDay() === 0 ? 6 : currentDate.getDay() - 1;
 
         currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - countDay, 12, 0, 0);
         for (let index = 1; index <= countDay; index++) {
@@ -82,7 +82,7 @@ export class Month {
 
     private createDisabledNextDays() {
         let currentDate = new Date(this.lastDateOfMonth.getFullYear(), this.lastDateOfMonth.getMonth(), this.lastDateOfMonth.getDate(), 12, 0, 0);
-        let countDay = this.lastDateOfMonth.getDay() == 0 ? 0 : 7 - this.lastDateOfMonth.getDay();
+        const countDay = this.lastDateOfMonth.getDay() === 0 ? 0 : 7 - this.lastDateOfMonth.getDay();
 
         for (let index = 1; index <= countDay; index++) {
             currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 12, 0, 0);

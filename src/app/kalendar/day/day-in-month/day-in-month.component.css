@@ -9,11 +9,11 @@
 }
 
 .weekend {
-  background: rgb(173, 173, 133);
+    background: rgb(173, 173, 133);
 }
 
 .today {
-  background: rgb(122, 122, 82);
+    background: rgb(122, 122, 82);
 }
 
 .day-content {
@@ -24,7 +24,7 @@
 }
 
 .day-content:hover {
-  background: #aaa;
+    background: #aaa;
 }
 
 .day-selected {
@@ -33,11 +33,11 @@
 }
 
 .day-disabled {
-  background-color: lightgray;
-  box-shadow: none;
+    background-color: lightgray;
+    box-shadow: none;
 }
 
 .day-disabled .day {
-  background-color: lightgray;
-  box-shadow: 0 8px 16px -5px black;
+    background-color: lightgray;
+    box-shadow: 0 8px 16px -5px black;
 }

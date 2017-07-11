@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { Month } from "./month";
-import { Day } from "../day/day";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Month } from './month';
+import { Day } from '../day/day';
 
 @Component({
     selector: 'month',
@@ -18,11 +18,11 @@ export class MonthComponent implements OnInit {
 
     ngOnInit() { }
 
-    goNext(event:String) {
+    goNext(event: String) {
         this.nextClick.emit(event);
     }
 
-    goPrevious(event:String) {
+    goPrevious(event: String) {
         this.previousClick.emit(event);
     }
 

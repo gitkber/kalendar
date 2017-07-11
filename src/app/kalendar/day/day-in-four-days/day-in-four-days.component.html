@@ -1,16 +1,16 @@
 <div class="day-container">
-  <div class="day-item-title">
-    <h4>
-      {{ day.date | date }}
-    </h4>
-  </div>
-  <div class="day-item-info" *ngIf="day.isWeekend">
-    Week-end
-  </div>
-  <div class="day-item-info" *ngIf="day.isToday">
-    Today
-  </div>
-  <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
-    {{dayItem.item}}
-  </div>
+    <div class="day-item-title">
+        <h4>
+            {{ day.date | date }}
+        </h4>
+    </div>
+    <div class="day-item-info" *ngIf="day.isWeekend">
+        Week-end
+    </div>
+    <div class="day-item-info" *ngIf="day.isToday">
+        Today
+    </div>
+    <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
+        {{dayItem.item}}
+    </div>
 </div>

@@ -1,10 +1,10 @@
-import { DayItem } from "../day-item";
+import { DayItem } from '../day-item';
 
 export class Day {
 
     public day: number;
-    public dayItems:DayItem[] = [];
-    
+    public dayItems: DayItem[] = [];
+
     public isDisabled: boolean;
     public isWeekend: boolean;
     public isToday: boolean;
