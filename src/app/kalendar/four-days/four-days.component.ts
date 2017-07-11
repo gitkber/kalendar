@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Day } from "../day/day";
-import { FourDays } from "./four-days";
+import { Component, Input, OnInit } from '@angular/core';
+import { FourDays } from './four-days';
 
 @Component({
   selector: 'four-days',
