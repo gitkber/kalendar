@@ -28,9 +28,8 @@ export class LineFormComponent implements OnChanges, OnInit {
     ngOnInit() {
 
         this.lineFormGroup = new FormGroup({
-            firstname: new FormControl('', Validators.required),
-            lastname: new FormControl('', Validators.required),
-            birthdate: new FormControl('', Validators.required)
+            description: new FormControl('', Validators.required),
+            kalendarDate: new FormControl('', Validators.required)
         });
         this.lineFormGroup.valueChanges.subscribe(data => {
             this.line = data
@@ -42,17 +41,16 @@ export class LineFormComponent implements OnChanges, OnInit {
             this.lineKey = changes.line.currentValue['$key']
             this.line = changes.line.currentValue;
             this.lineFormGroup.setValue({
-                'firstname': this.line.firstname,
-                'lastname': this.line.lastname,
-                'birthdate': this.datePipe.transform(this.line.birthdate, 'dd/MM/yyyy')
+                'description': this.line.description,
+                'kalendarDate': this.datePipe.transform(this.line.kalendarDate, 'dd/MM/yyyy')
             });
         }
     }
 
     addLine() {
-        const datestring: string = this.line.birthdate.toString();
+        const datestring: string = this.line.kalendarDate.toString();
         const dateItems = datestring.split('/');
-        this.line.birthdate = new Date(parseInt(dateItems[2]), parseInt(dateItems[1]) - 1, parseInt(dateItems[0]));
+        this.line.kalendarDate = new Date(parseInt(dateItems[2]), parseInt(dateItems[1]) - 1, parseInt(dateItems[0]));
 
         let lineAction: LineAction;
         if (this.lineKey === undefined) {

@@ -5,10 +5,10 @@
     <div class="line-item" *ngFor="let line of lines | async" (click)="showLine(line)">
         <div>
             <img src="../assets/images/user_male.svg" height="20" width="20">
-            {{line.firstname}} {{line.lastname}}
+            {{line.description}}
         </div>
         <div>
-            {{line.birthdate | date}}
+            {{line.kalendarDate | date}}
         </div>
     </div>
 </div>

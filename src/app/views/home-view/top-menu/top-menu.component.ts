@@ -26,6 +26,9 @@ export class TopMenuComponent implements OnInit {
   navigateToContacts() {
     this.router.navigateByUrl('/contacts');
   }
+  navigateToLines() {
+    this.router.navigateByUrl('/lines');
+  }
 
   goNext() {
     this.nextClick.emit(this.navigation);

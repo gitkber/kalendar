@@ -47,7 +47,7 @@ export class MockLineService {
         // this.personObservable.push(person).then(resp => console.log("insert person - key : ", resp.key));
 
         if (event.action === Action.INSERT) {
-            this.linesObservable.push(event.line).child('birthdate').set(event.line.birthdate.toJSON('yyyy-MM-dd'));
+            this.linesObservable.push(event.line).child('kalendarDate').set(event.line.kalendarDate.toJSON('yyyy-MM-dd'));
         } else if (event.action === Action.UPDATE) {
             this.linesObservable.update(event.lineKey, event.line);
         } else if (event.action === Action.DELETE) {
@@ -59,7 +59,7 @@ export class MockLineService {
         this.linesObservable.subscribe(items => {
             console.log('linesObservable subscribe fourDays', items);
             items.forEach(line => {
-                line.birthdate = new Date(line.birthdate);
+                line.kalendarDate = new Date(line.kalendarDate);
                 fourDays.days.forEach(day => {
                     this.pushLineInDay(day, line);
                 })
@@ -71,7 +71,7 @@ export class MockLineService {
         this.linesObservable.subscribe(items => {
             console.log('linesObservable subscribe day in fourDays', items);
             items.forEach(line => {
-                line.birthdate = new Date(line.birthdate);
+                line.kalendarDate = new Date(line.kalendarDate);
                 this.pushLineInDay(day, line);
             })
         });
@@ -81,7 +81,7 @@ export class MockLineService {
         this.linesObservable.subscribe(items => {
             console.log('linesObservable subscribe month', items);
             items.forEach(line => {
-                line.birthdate = new Date(line.birthdate);
+                line.kalendarDate = new Date(line.kalendarDate);
                 month.days.forEach(day => {
                     this.pushLineInDay(day, line);
                 })
@@ -90,10 +90,10 @@ export class MockLineService {
     }
 
     private pushLineInDay(day: Day, line: Line) {
-        if (line.birthdate.getDate() === day.date.getDate()
-            && line.birthdate.getMonth() === day.date.getMonth()
-            && line.birthdate.getFullYear() <= day.date.getFullYear()) {
-            day.dayItems.push(new DayItem(line.firstname + ' ' + line.lastname));
+        if (line.kalendarDate.getDate() === day.date.getDate()
+            && line.kalendarDate.getMonth() === day.date.getMonth()
+            && line.kalendarDate.getFullYear() <= day.date.getFullYear()) {
+            day.dayItems.push(new DayItem(line.description));
         }
     }
 
