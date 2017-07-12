@@ -10,9 +10,9 @@ export class FourDays {
     ) {
         this.dayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1, 12, 0, 0);
         this.days.push(new Day(this.dayDate, today));
-        this.pushNextDayDate();
-        this.pushNextDayDate();
-        this.pushNextDayDate();
+        for (let i = 0; i < 7; i++) {
+            this.pushNextDayDate();
+        }
     }
 
     next(): Day {
@@ -24,7 +24,7 @@ export class FourDays {
     previous(): Day {
         this.days.pop();
         this.dayDate = new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 1, 12, 0, 0);
-        this.days.unshift(new Day(new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 3, 12, 0, 0), this.today));
+        this.days.unshift(new Day(new Date(this.dayDate.getFullYear(), this.dayDate.getMonth(), this.dayDate.getDate() - 7, 12, 0, 0), this.today));
         return this.days[0];
     }
 
