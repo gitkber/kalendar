@@ -1,4 +1,4 @@
-.four-days-container {
+.one-week-container {
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
@@ -8,7 +8,7 @@
     height: 80%;
 }
 
-.four-days-item {
+.one-week-item {
     justify-content: space-between;
     width: 24%;
     height: 45%;

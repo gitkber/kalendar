@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { Line } from './line/line';
-import { FourDays } from '../kalendar/four-days/four-days';
+import { OneWeek } from '../kalendar/one-week/one-week';
 import { Month } from '../kalendar/month/month';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
@@ -14,9 +14,9 @@ export class CoreService {
 
     constructor(public contactService: ContactService, public lineService: LineService) { }
 
-    populateFourDays(fourDays: FourDays) {
+    populateFourDays(fourDays: OneWeek) {
         this.contactService.getList().subscribe(items => {
-            console.log('contactsObservable subscribe fourDays', items);
+            console.log('contactsObservable subscribe oneWeek', items);
             items.forEach(contact => {
                 contact.birthdate = new Date(contact.birthdate);
                 fourDays.days.forEach(day => {
@@ -25,7 +25,7 @@ export class CoreService {
             })
         });
         this.lineService.getList().subscribe(items => {
-            console.log('linesObservable subscribe fourDays', items);
+            console.log('linesObservable subscribe oneWeek', items);
             items.forEach(line => {
                 line.kalendarDate = new Date(line.kalendarDate);
                 fourDays.days.forEach(day => {
@@ -37,14 +37,14 @@ export class CoreService {
 
     populateDayInFourDays(day: Day) {
         this.contactService.getList().subscribe(items => {
-            console.log('contactsObservable subscribe day in fourDays', items);
+            console.log('contactsObservable subscribe day in oneWeek', items);
             items.forEach(contact => {
                 contact.birthdate = new Date(contact.birthdate);
                 this.pushContactInDay(day, contact);
             })
         });
         this.lineService.getList().subscribe(items => {
-            console.log('linesObservable subscribe day in fourDays', items);
+            console.log('linesObservable subscribe day in oneWeek', items);
             items.forEach(line => {
                 line.kalendarDate = new Date(line.kalendarDate);
                 this.pushLineInDay(day, line);

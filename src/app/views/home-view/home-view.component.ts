@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FourDays } from '../../kalendar/four-days/four-days';
+import { OneWeek } from '../../kalendar/one-week/one-week';
 import { CoreService } from '../../core/core.service';
 
 @Component({
@@ -9,22 +9,22 @@ import { CoreService } from '../../core/core.service';
 })
 export class HomeViewComponent implements OnInit {
 
-    private fourDays: FourDays;
+    public oneWeek: OneWeek;
 
     constructor(private coreService: CoreService) { }
 
     ngOnInit() {
-        this.fourDays = new FourDays(new Date());
-        this.coreService.populateFourDays(this.fourDays);
+        this.oneWeek = new OneWeek(new Date());
+        this.coreService.populateFourDays(this.oneWeek);
     }
 
     nextDay(event) {
         // event.navigation === day
-        this.coreService.populateDayInFourDays(this.fourDays.next());
+        this.coreService.populateDayInFourDays(this.oneWeek.next());
     }
 
     previousDay(event) {
         // event.navigation === day
-        this.coreService.populateDayInFourDays(this.fourDays.previous());
+        this.coreService.populateDayInFourDays(this.oneWeek.previous());
     }
 }
