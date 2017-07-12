@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Month } from "../../kalendar/month/month";
-import { Day } from "../../kalendar/day/day";
-import { ContactService } from "../../core/contact/contact.service";
+import { Month } from '../../kalendar/month/month';
+import { Day } from '../../kalendar/day/day';
+import { CoreService } from '../../core/core.service';
 
 @Component({
     selector: 'kal-month-view',
@@ -13,31 +13,31 @@ export class KalMonthViewComponent implements OnInit {
     private month: Month;
     private selectedDay: Day;
 
-    constructor(private contactService: ContactService) { }
+    constructor(private coreService: CoreService) { }
 
     ngOnInit() {
-        let today: Date = new Date();
+        const today: Date = new Date();
         this.month = new Month(today.getMonth() + 1, today.getFullYear());
         this.selectedDay = this.month.selectDate(today);
-        this.contactService.populateMonth(this.month);
+        this.coreService.populateMonth(this.month);
     }
 
     goNext(event: String) {
-        if (event === "month") {
+        if (event === 'month') {
             this.month.next();
-        } else if (event === "year") {
+        } else if (event === 'year') {
             this.month.jump(this.month.month, this.month.year + 1);
         }
-        this.contactService.populateMonth(this.month);
+        this.coreService.populateMonth(this.month);
     }
 
     goPrevious(event: String) {
-        if (event === "month") {
+        if (event === 'month') {
             this.month.previous();
-        } else if (event === "year") {
+        } else if (event === 'year') {
             this.month.jump(this.month.month, this.month.year - 1);
         }
-        this.contactService.populateMonth(this.month);
+        this.coreService.populateMonth(this.month);
     }
 
     showDayDetail(event: Day) {
