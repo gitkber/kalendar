@@ -1,5 +1,7 @@
 <div class="home-view-container">
     <top-menu class="top-menu-item" [navigation]="'day'" (nextClick)="nextDay($event)"
               (previousClick)="previousDay($event)"></top-menu>
-    <one-week class="one-week-item" [oneWeek]="oneWeek"></one-week>
+    <one-week class="one-week-item" [oneWeek]="oneWeek"
+              (navigateToMonthClick)="navigateToMonth($event)"
+              (navigateToYearClick)="navigateToYear($event)"></one-week>
 </div>

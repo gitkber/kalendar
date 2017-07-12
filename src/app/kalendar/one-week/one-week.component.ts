@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OneWeek } from './one-week';
 
 @Component({
@@ -6,12 +6,18 @@ import { OneWeek } from './one-week';
     templateUrl: './one-week.component.html',
     styleUrls: ['./one-week.component.css']
 })
-export class OneWeekComponent implements OnInit {
+export class OneWeekComponent {
 
     @Input() oneWeek: OneWeek;
+    @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
+    @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
 
-    constructor() { }
+    navigateToMonth(event: Date) {
+        this.navigateToMonthClick.emit(event);
+    }
 
-    ngOnInit() { }
+    navigateToYear(event: Date) {
+        this.navigateToYearClick.emit(event);
+    }
 
 }

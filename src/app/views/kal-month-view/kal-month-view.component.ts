@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
 import { CoreService } from '../../core/core.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'kal-month-view',
@@ -10,16 +11,18 @@ import { CoreService } from '../../core/core.service';
 })
 export class KalMonthViewComponent implements OnInit {
 
-    private month: Month;
+    public month: Month;
     private selectedDay: Day;
 
-    constructor(private coreService: CoreService) { }
+    constructor(private route: ActivatedRoute, private coreService: CoreService) { }
 
     ngOnInit() {
-        const today: Date = new Date();
-        this.month = new Month(today.getMonth() + 1, today.getFullYear());
-        this.selectedDay = this.month.selectDate(today);
-        this.coreService.populateMonth(this.month);
+        this.route.params.subscribe(params => {
+            const selectedDate: Date = new Date(params['date']);
+            this.month = new Month(selectedDate.getMonth() + 1, selectedDate.getFullYear());
+            this.selectedDay = this.month.selectDate(selectedDate);
+            this.coreService.populateMonth(this.month);
+        });
     }
 
     goNext(event: String) {

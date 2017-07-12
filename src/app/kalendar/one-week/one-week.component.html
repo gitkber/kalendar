@@ -1,3 +1,5 @@
 <div class="one-week-container">
-    <day-in-one-week *ngFor="let day of oneWeek.days" class="one-week-item" [day]="day"></day-in-one-week>
+    <day-in-one-week *ngFor="let day of oneWeek.days" class="one-week-item" [day]="day"
+                     (navigateToMonthClick)="navigateToMonth($event)"
+                     (navigateToYearClick)="navigateToYear($event)"></day-in-one-week>
 </div>

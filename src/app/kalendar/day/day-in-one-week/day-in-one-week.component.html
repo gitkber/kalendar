@@ -1,7 +1,11 @@
 <div class="day-container">
     <div class="day-item-title">
-        <h4>
-            {{ day.date | date }}
+        <div class="day-item-title-header">
+            <div>{{ day.date | date:'EEEE' }}</div>
+            <div (click)="navigateToYear()">{{ day.date | date:'yyyy' }}</div>
+        </div>
+        <h4 (click)="navigateToMonth()">
+            {{ day.date | date:'d MMMM' }}
         </h4>
     </div>
     <div class="day-item-info" *ngIf="day.isWeekend">

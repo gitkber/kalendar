@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../day';
 
 @Component({
@@ -9,5 +9,15 @@ import { Day } from '../day';
 export class DayInOneWeekComponent {
 
     @Input() day: Day;
+    @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
+    @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
+
+    navigateToMonth() {
+        this.navigateToMonthClick.emit(this.day.date);
+    }
+
+    navigateToYear() {
+        this.navigateToYearClick.emit(this.day.date);
+    }
 
 }

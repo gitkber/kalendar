@@ -12,7 +12,7 @@ export const routes: Route[] = [
     { path: 'home', component: HomeViewComponent },
     { path: 'contacts', component: ContactsViewComponent },
     { path: 'lines', component: LinesViewComponent },
-    { path: 'kalyear', component: KalYearViewComponent },
-    { path: 'kalmonth', component: KalMonthViewComponent },
+    { path: 'kalyear/:date', component: KalYearViewComponent },
+    { path: 'kalmonth/:date', component: KalMonthViewComponent },
     { path: '**', redirectTo: '' }
 ];
