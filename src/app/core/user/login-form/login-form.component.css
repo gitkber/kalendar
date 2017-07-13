@@ -1,0 +1,42 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    padding: 25px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container h2 {
+    color: #e0dada;
+}
+
+input {
+    height: 30px;
+    background-color: #e0dada;
+    border: none;
+    margin-bottom: 10px;
+}
+
+button {
+    height: 40px;
+    font-weight: bold;
+    background-color: #555;
+    border: 1px solid white;
+    color: #e0dada;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    border: 1px solid #555;
+    color: #555;
+}
+
+.error {
+    color: red;
+}
