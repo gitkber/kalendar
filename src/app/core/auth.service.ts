@@ -3,7 +3,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
-
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -96,6 +96,9 @@ export class AuthService {
 
     //// Email/Password Auth ////
 
+    public loginError:Error;
+    // public user: Observable<firebase.User>;
+
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
@@ -108,10 +111,15 @@ export class AuthService {
     emailLogin(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
-                this.authState = user
-                this.updateUserData()
+                this.loginError = undefined;
+                this.authState = user;
+                this.router.navigateByUrl('/home');
+                //this.updateUserData()
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                this.loginError = error;
+            });
     }
 
     // Sends email allowing user to reset password

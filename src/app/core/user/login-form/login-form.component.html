@@ -1,14 +1,10 @@
 <div class="login-container">
     <form class="form-container" (ngSubmit)="login()" [formGroup]="loginFormGroup" #loginForm="ngForm">
-
         <h2>Login</h2>
-        <div *ngIf="alert" class="info" [class.error]="alert['type'] === 'error'"
-             [class.good]="alert['type'] === 'good'">
-            {{ alert['message'] }}
-        </div>
-        <input type="text" placeholder="Email" formControlName="email"/>
-        <input type="password" placeholder="Password" formControlName="password"/>
-        <button (click)="login()">Log in</button>
+        <span class="error" *ngIf="loginError">{{ loginError }}</span>
+        <input type="text" placeholder="Email" formControlName="email" />
+        <input type="password" placeholder="Password" formControlName="password" />
+        <button>Log in</button>
     </form>
 
 </div>
