@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { KalendarModule } from '../kalendar/kalendar.module';
 import { CoreModule } from '../core/core.module';
+import { CommonModule } from '../common/common.module';
 
 import { HomeViewComponent } from './home-view/home-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
@@ -17,7 +18,7 @@ import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
 import { TopMenuComponent } from './home-view/top-menu/top-menu.component';
 
 @NgModule({
-    imports: [BrowserModule, RouterModule, KalendarModule, CoreModule],
+    imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, LinesViewComponent,
         SheetOfPaperComponent, PolaroidComponent,
         TopMenuComponent],
