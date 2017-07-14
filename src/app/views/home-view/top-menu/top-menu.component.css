@@ -7,6 +7,10 @@
     padding: 25px;
 }
 
+.action-container {
+    display: flex;
+}
+
 img {
     padding: 10px;
     margin: 10px;
@@ -23,16 +27,3 @@ img.navigation:hover {
     background: grey;
 }
 
-img.menu {
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid white;
-    box-shadow: 0 8px 16px -5px black;
-    background: grey;
-}
-
-img.menu:hover {
-    background: black;
-}

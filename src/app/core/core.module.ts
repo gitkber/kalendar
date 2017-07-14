@@ -10,9 +10,10 @@ import { LineService } from './line/line.service';
 import { CoreService } from './core.service';
 import { AuthService } from "./auth.service";
 import { LoginFormComponent } from './user/login-form/login-form.component';
+import { CommonModule } from '../common/common.module';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [ContactListComponent, ContactFormComponent, LineListComponent, LineFormComponent,
         LoginFormComponent],
     exports: [ContactListComponent, ContactFormComponent, LineListComponent, LineFormComponent,

@@ -14,10 +14,8 @@
         </div>
 
         <div class="action-row">
-            <img class="menu" [src]="'../../../assets/images/save_white.svg'" height="30" width="30"
-                 (click)="addContact()"/>
-            <img class="menu" [src]="'../../../assets/images/delete_white.svg'" height="30" width="30"
-                 (click)="deleteContact()"/>
+            <kal-button [image]="'../../../assets/images/save_white.svg'" (onClick)="addContact()"></kal-button>
+            <kal-button [image]="'../../../assets/images/delete_white.svg'" (onClick)="deleteContact()"></kal-button>
         </div>
         <!--<button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
         <button class="btn btn-primary"  (click)="deleteContact()">Delete</button>-->
