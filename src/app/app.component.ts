@@ -14,10 +14,7 @@ export class AppComponent {
 
   constructor(public authService: AuthService) { 
     this.user = this.authService.currentUserObservable;
-  }
-
-  logout() {
-    this.authService.signOut();
+    console.log(this.user);
   }
 
 }

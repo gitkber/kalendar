@@ -136,7 +136,7 @@ export class AuthService {
 
     signOut(): void {
         this.afAuth.auth.signOut();
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
     }
 
 
@@ -157,6 +157,22 @@ export class AuthService {
         this.db.object(path).update(data)
             .catch(error => console.log(error));
 
+    }
+
+    navigateToContacts() {
+        if (this.authenticated) {
+            this.router.navigateByUrl('/contacts');
+        } else {
+            this.router.navigate(['/'])
+        }
+    }
+
+    navigateToLines() {
+        if (this.authenticated) {
+            this.router.navigateByUrl('/lines');
+        } else {
+            this.router.navigate(['/'])
+        }
     }
 
 }
