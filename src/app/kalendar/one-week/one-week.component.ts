@@ -11,6 +11,9 @@ export class OneWeekComponent {
     @Input() oneWeek: OneWeek;
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
     @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
+    @Input() navigation: string; // year - month - day
+    @Output() nextClick: EventEmitter<any> = new EventEmitter();
+    @Output() previousClick: EventEmitter<any> = new EventEmitter();
 
     navigateToMonth(event: Date) {
         this.navigateToMonthClick.emit(event);
@@ -18,6 +21,14 @@ export class OneWeekComponent {
 
     navigateToYear(event: Date) {
         this.navigateToYearClick.emit(event);
+    }
+
+    goNext() {
+        this.nextClick.emit(this.navigation);
+    }
+
+    goPrevious() {
+        this.previousClick.emit(this.navigation);
     }
 
 }
