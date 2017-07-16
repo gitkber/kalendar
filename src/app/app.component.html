@@ -1,12 +1,15 @@
-<div class="kal-header" *ngIf="authService.authenticated">
-    <div class="kal-header-item">
-        <kal-button [image]="'../../../assets/images/users.svg'" (onClick)="authService.navigateToContacts()"></kal-button>
-        <kal-button [image]="'../../../assets/images/newspaper.svg'" (onClick)="authService.navigateToLines()"></kal-button>
+<div class="kal-app">
+    <div class="kal-header" *ngIf="authService.authenticated">
+        <div class="kal-header-item">
+            <kal-button [image]="'../../../assets/images/users.svg'" (onClick)="authService.navigateToContacts()"></kal-button>
+            <kal-button [image]="'../../../assets/images/newspaper.svg'" (onClick)="authService.navigateToLines()"></kal-button>
+        </div>
+        <div class="kal-header-item">
+            <div> {{ (user | async)?.uid }} </div>
+            <kal-button [image]="'../../../assets/images/logout_white.svg'" (onClick)="authService.signOut()"></kal-button>
+        </div>
     </div>
-    <div class="kal-header-item">
-        <div> {{ (user | async)?.uid }} </div>
-        <kal-button [image]="'../../../assets/images/logout_white.svg'" (onClick)="authService.signOut()"></kal-button>
+    <div class="kal-body">
+        <router-outlet></router-outlet>
     </div>
 </div>
-
-<router-outlet></router-outlet>
