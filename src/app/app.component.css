@@ -36,3 +36,15 @@
     border: 10px solid #555;
     */
 }
+
+.kal-body /deep/ router-outlet + * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+    height: 100%;
+    /*
+    border: 10px solid black;
+    */
+}

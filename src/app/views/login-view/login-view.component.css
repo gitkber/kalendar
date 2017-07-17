@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
+    height: 100%;
     /*
     border: 10px solid red;
-    height: 100%;
     */
 }
 
