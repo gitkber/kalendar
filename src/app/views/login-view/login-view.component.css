@@ -16,15 +16,16 @@
 .right-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 40%;
 }
 
 .login-panel-item {
-    /* width: 100%; */
+    width: 80%;
+    align-items: center;
 }
 
 .polaroid-item {
-    /*align-self: flex-end;*/
+    align-items: center;
 }
