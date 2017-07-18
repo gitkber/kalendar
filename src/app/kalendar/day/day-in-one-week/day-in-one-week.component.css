@@ -6,13 +6,23 @@
     align-items: left;
     width: 90%;
     height: 100%;
-    padding-left: 1em;
+    padding-left: 0.9em;
 }
 
 
 .today {
     width: 100%;
-    background: rgb(122, 122, 82);
+    background: #AD6B6B;
+    color: #FBFBD4;
+    text-align: center;
+    font-size: small;
+}
+.weekend {
+    width: 100%;
+    background: #4D5874;
+    color: #FBFBD4;
+    text-align: center;
+    font-size: small;
 }
 
 .day-item-title {
@@ -21,15 +31,18 @@
     justify-content: space-between;
     width: 100%;
     color: #4D5874;
+    padding-top: 0.9em;
+    font-weight: bold;
+    font-size: small;
 }
 
-.day-item-title h4 {
+.day-item-title .day-item-select {
     cursor: pointer;
     border-bottom: 1px solid #4D5874;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 10px 10px 10px;
 }
 
-.day-item-title h4:hover {
+.day-item-title .day-item-select:hover {
     background: #FBFBD4;
     border-top: 1px solid #4D5874;
     border-bottom: none;
@@ -40,10 +53,12 @@
 }
 
 .day-item-info-list {
+    margin-top: 10px;
     height: 100%;
+    width: 100%;
 }
 
 .day-item-info {
-    margin-top: 15px;
+    padding: 5px 0 5px 0;
     width: 100%;
 }
