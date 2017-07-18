@@ -1,20 +1,22 @@
 <div class="day-container">
     <div class="day-item-title">
+        <div>{{ day.date | date:'EEEE' }}</div>
         <div class="day-item-title-header">
-            <div>{{ day.date | date:'EEEE' }}</div>
-            <div (click)="navigateToYear()">{{ day.date | date:'yyyy' }}</div>
+            <h4 (click)="navigateToMonth()">
+                {{ day.date | date:'d MMMM' }}
+            </h4>
+            <h4 (click)="navigateToYear()">{{ day.date | date:'yyyy' }}</h4>
         </div>
-        <h4 (click)="navigateToMonth()">
-            {{ day.date | date:'d MMMM' }}
-        </h4>
     </div>
-    <div class="day-item-info" *ngIf="day.isWeekend">
-        Week-end
-    </div>
-    <div class="day-item-info" *ngIf="day.isToday">
-        Today
-    </div>
-    <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
-        {{dayItem.item}}
+    <div class="day-item-info-list">
+        <div class="day-item-info" *ngIf="day.isWeekend">
+            Week-end
+        </div>
+        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday" >
+            Today
+        </div>
+        <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
+            {{dayItem.item}}
+        </div>
     </div>
 </div>

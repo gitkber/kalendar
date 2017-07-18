@@ -1,6 +1,8 @@
 .one-week-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
     width: 100%;
     height: 100%;
     /*
@@ -15,6 +17,7 @@
 
 .one-week-item-container {
     display: flex;
+    width: 100%;
     flex-direction: row;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -24,9 +27,11 @@
 .one-week-item {
     justify-content: space-between;
     width: 24%;
-    height: 50%;
-    cursor: pointer;
-    border: 1px solid gray;
+    height: 45%;
+    background-color: #fff;
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
 }
 
 img {
