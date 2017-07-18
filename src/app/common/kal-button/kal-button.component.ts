@@ -9,6 +9,7 @@ export class KalButtonComponent {
 
     @Input() label: string;
     @Input() image: string;
+    @Input() selected: boolean;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
 
     doAction() {

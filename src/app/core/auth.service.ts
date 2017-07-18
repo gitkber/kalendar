@@ -123,4 +123,24 @@ export class AuthService {
         }
     }
 
+    navigateToHome() {
+        if (this.authenticated) {
+            this.router.navigateByUrl('/home');
+        } else {
+            this.router.navigate(['/'])
+        }
+    }
+
+    isContactsViewSelected(): boolean {
+        return this.router.isActive('/contacts', true);
+    }
+
+    isLinesViewSelected(): boolean {
+        return this.router.isActive('/lines', true);
+    }
+
+    isHomeViewSelected(): boolean {
+        return this.router.isActive('/home', true);
+    }
+
 }

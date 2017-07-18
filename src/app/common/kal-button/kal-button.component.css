@@ -19,3 +19,13 @@
     border-top: 1px solid #4D5874;
     border-bottom: none;
 }
+
+.kal-button-container.selected {
+    border-bottom: 1px solid #AD6B6B;
+}
+
+.kal-button-container.selected:hover {
+    background: none;
+    border-top: none;
+    cursor: default;
+}

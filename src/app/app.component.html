@@ -2,9 +2,11 @@
     <div class="kal-header" *ngIf="authService.authenticated">
         <kal-logo></kal-logo>
         <div class="kal-header-item">
-            <kal-button [image]="'../../../assets/images/users.svg'"
+            <kal-button [image]="'../../../assets/images/home.svg'" [selected]="authService.isHomeViewSelected()"
+                        (onClick)="authService.navigateToHome()"></kal-button>
+            <kal-button [image]="'../../../assets/images/users.svg'" [selected]="authService.isContactsViewSelected()"
                         (onClick)="authService.navigateToContacts()"></kal-button>
-            <kal-button [image]="'../../../assets/images/newspaper.svg'"
+            <kal-button [image]="'../../../assets/images/newspaper.svg'" [selected]="authService.isLinesViewSelected()"
                         (onClick)="authService.navigateToLines()"></kal-button>
             <kal-button [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
                         (onClick)="authService.signOut()"></kal-button>

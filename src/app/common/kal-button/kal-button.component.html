@@ -1,4 +1,4 @@
-<div class="kal-button-container" (click)="doAction()">
+<div class="kal-button-container" (click)="doAction()" [class.selected]="selected">
     <span>{{ label }}</span>
     <img *ngIf="image" [src]="image" height="30" width="30"/>
 </div>
