@@ -1,0 +1,23 @@
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FBFBD4;
+    font-weight: bolder;
+    border-bottom: 1px solid #FBFBD4;
+    margin: 0.5em 1em 0.5em 1em;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.logo-title {
+    padding: 0.8em;
+    letter-spacing: 0.8em;
+    font-size: large;
+
+}
+
+.logo-description {
+    letter-spacing: 0.5em;
+    font-size: small;
+}

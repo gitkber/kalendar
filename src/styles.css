@@ -9,21 +9,55 @@ html, body{
     font-family: Verdana;
 }
 body{
+/** https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/458169.jpg */
+    /** actions menu : https://codepen.io/fixcl/pen/ONeOdL */
+   /* background: linear-gradient(100deg, #53738c 15%, #fff 35%, #8c464a 90%) 0 0;
+   linear-gradient(100deg, #4e608c 0%, #f3aab6 15%, #faffee 30%, #4e608c 50%, #f3aab6 70%, #faffee 85%, #4e608c 100%) 0 0;
+   */
 
 background:
-radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 9%, hsla(0, 100%, 20%, 0) 9%) 0 0,
-radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 8%, hsla(0, 100%, 20%, 0) 10%) 50px 50px,
-radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 50px 0,
-radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 0 50px,
-radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 50px 0,
-radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 100px 50px,
-radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 0 0,
-radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 50px 50px,
-linear-gradient(45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0,
-linear-gradient(-45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0;
-background-color: #300;
-background-size: 100px 100px;
-
-    background-position: center;
+linear-gradient(150deg, #4D5874 0%, #AD6B6B 10%, #FBFBD4 40%, #4D5874 90%, #AD6B6B 100%) 0 0;
+background-color: #fff;
+background-position: center;
     overflow: hidden;
 }
+
+.color-primary-0 { color: #AD6B6B }	/* Main Primary color */
+.color-primary-1 { color: #FBD4D4 }
+.color-primary-2 { color: #D09898 }
+.color-primary-3 { color: #8A4A4A }
+.color-primary-4 { color: #722929 }
+
+.color-secondary-1-0 { color: #4D5874 }	/* Main Secondary color (1) */
+.color-secondary-1-1 { color: #9198A9 }
+.color-secondary-1-2 { color: #6A748C }
+.color-secondary-1-3 { color: #36415D }
+.color-secondary-1-4 { color: #212D4D }
+
+.color-secondary-2-0 { color: #ADAD6B }	/* Main Secondary color (2) */
+.color-secondary-2-1 { color: #FBFBD4 }
+.color-secondary-2-2 { color: #D0D098 }
+.color-secondary-2-3 { color: #8A8A4A }
+.color-secondary-2-4 { color: #727229 }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba(173,107,107,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(251,212,212,1) }
+.rgba-primary-2 { color: rgba(208,152,152,1) }
+.rgba-primary-3 { color: rgba(138, 74, 74,1) }
+.rgba-primary-4 { color: rgba(114, 41, 41,1) }
+
+.rgba-secondary-1-0 { color: rgba( 77, 88,116,1) }	/* Main Secondary color (1) */
+.rgba-secondary-1-1 { color: rgba(145,152,169,1) }
+.rgba-secondary-1-2 { color: rgba(106,116,140,1) }
+.rgba-secondary-1-3 { color: rgba( 54, 65, 93,1) }
+.rgba-secondary-1-4 { color: rgba( 33, 45, 77,1) }
+
+.rgba-secondary-2-0 { color: rgba(173,173,107,1) }	/* Main Secondary color (2) */
+.rgba-secondary-2-1 { color: rgba(251,251,212,1) }
+.rgba-secondary-2-2 { color: rgba(208,208,152,1) }
+.rgba-secondary-2-3 { color: rgba(138,138, 74,1) }
+.rgba-secondary-2-4 { color: rgba(114,114, 41,1) }

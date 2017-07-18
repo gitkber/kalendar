@@ -1,5 +1,6 @@
 <div class="kal-app" [class.kal-app-header]="authService.authenticated">
     <div class="kal-header" *ngIf="authService.authenticated">
+        <kal-logo></kal-logo>
         <div class="kal-header-item">
             <kal-button [image]="'../../../assets/images/users.svg'"
                         (onClick)="authService.navigateToContacts()"></kal-button>
