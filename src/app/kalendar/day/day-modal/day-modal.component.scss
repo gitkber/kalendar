@@ -21,7 +21,9 @@
 .modal {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
 
-  background-color: white;
+    background-color: #fff;
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
   left: calc(50% - 300px);
   max-height: calc(100% - 10em);
   overflow-y: auto;
@@ -32,7 +34,7 @@
   transition: all .5s ease;
 
   .title {
-    background-color: red;
+    background-color: #4D5874;
     text-align: center;
     color: white;
     line-height: 40px;
