@@ -12,13 +12,17 @@
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end
         </div>
-        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday" >
+        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
             Today
         </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
-            <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="20" width="20"/>
-            <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20"/>
+            <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="20" width="20" />
+            <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20" />
             <span>{{dayItem.item}}</span>
         </div>
+        <kal-button [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button>
     </div>
+    <kal-modal [modalTitle]="'Review your transfer'" [blocking]=false [modalId]="'modalId'">
+        <div>Text inside the modal</div>
+    </kal-modal>
 </div>
