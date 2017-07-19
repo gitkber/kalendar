@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
-import { DayModalService } from './day-modal.service';
 import { Day } from "../day";
 
 @Component({
@@ -9,7 +8,6 @@ import { Day } from "../day";
 })
 export class DayModalComponent implements OnInit {
 
-    @Input() modalId: string;
     @Input() blocking = false;
     isOpen = false;
     day: Day;
@@ -18,21 +16,25 @@ export class DayModalComponent implements OnInit {
         this.keyup(event);
     }
 
-    constructor(private modalService: DayModalService) {
-    }
+    constructor() { }
 
-    ngOnInit() {
-        console.log("oninit", this.modalId);
-        this.modalService.registerModal(this);
+    ngOnInit() { }
+
+    open(day: Day): void {
+        this.isOpen = true;
+        this.day = day;
     }
 
     close(checkBlocking = false): void {
-        this.modalService.close(this.modalId, checkBlocking);
+        if (checkBlocking && this.blocking) {
+            return;
+        }
+        this.isOpen = false;
     }
 
     private keyup(event: KeyboardEvent): void {
         if (event.keyCode === 27) {
-            this.modalService.close(this.modalId, true);
+            this.close(true);
         }
     }
 }

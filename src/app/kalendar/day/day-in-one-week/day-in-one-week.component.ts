@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { DayModalService } from '../day-modal/day-modal.service';
 import { DayModalComponent } from "../day-modal/day-modal.component";
 import { Day } from '../day';
 
@@ -16,7 +15,7 @@ export class DayInOneWeekComponent {
 
     @ViewChild(DayModalComponent) modal: DayModalComponent;
 
-    constructor(public dayModalService: DayModalService) { }
+    constructor() { }
 
     navigateToMonth() {
         this.navigateToMonthClick.emit(this.day.date);
@@ -27,8 +26,6 @@ export class DayInOneWeekComponent {
     }
 
     showModal() {
-        console.log('zzzz');
-        this.dayModalService.registerModal(this.modal);
-        this.dayModalService.open("modalId", this.day);
+        this.modal.open(this.day);
     }
 }

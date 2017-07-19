@@ -8,7 +8,6 @@ import { DayInOneWeekComponent } from './day/day-in-one-week/day-in-one-week.com
 import { OneWeekComponent } from './one-week/one-week.component';
 import { SelectDateComponent } from './select-date/select-date.component';
 import { DayModalComponent } from './day/day-modal/day-modal.component';
-import { DayModalService } from './day/day-modal/day-modal.service';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
@@ -16,6 +15,6 @@ import { DayModalService } from './day/day-modal/day-modal.service';
         SelectDateComponent, DayModalComponent],
     exports: [MonthComponent, DayInMonthComponent, DayInOneWeekComponent, OneWeekComponent,
         SelectDateComponent, DayModalComponent],
-    providers: [DayModalService]
+    providers: []
 })
 export class KalendarModule { }
