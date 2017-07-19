@@ -29,6 +29,6 @@ export class DayInOneWeekComponent {
     showModal() {
         console.log('zzzz');
         this.dayModalService.registerModal(this.modal);
-        this.dayModalService.open("modalId");
+        this.dayModalService.open("modalId", this.day);
     }
 }

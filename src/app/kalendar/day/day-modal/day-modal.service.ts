@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DayModalComponent } from './day-modal.component';
+import { Day } from "../day";
 
 @Injectable()
 export class DayModalService {
@@ -20,12 +21,13 @@ console.log("push", newModal);
     this.modals.push(newModal);
   }
 
-  open(modalId: string): void {
+  open(modalId: string, day: Day): void {
     const modal = this.findModal(modalId);
     console.log("open", modal);
     
     if (modal) {
       modal.isOpen = true;
+      modal.day = day;
     }
   }
 

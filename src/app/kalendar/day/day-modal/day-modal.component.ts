@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { DayModalService } from './day-modal.service';
+import { Day } from "../day";
 
 @Component({
     selector: 'day-modal',
@@ -9,9 +10,9 @@ import { DayModalService } from './day-modal.service';
 export class DayModalComponent implements OnInit {
 
     @Input() modalId: string;
-    @Input() modalTitle: string;
     @Input() blocking = false;
     isOpen = false;
+    day: Day;
 
     @HostListener('keyup') onMouseEnter(event) {
         this.keyup(event);
@@ -22,7 +23,6 @@ export class DayModalComponent implements OnInit {
 
     ngOnInit() {
         console.log("oninit", this.modalId);
-        console.log("oninit", this.modalTitle);
         this.modalService.registerModal(this);
     }
 

@@ -35,4 +35,19 @@ export class KalModalComponent implements OnInit {
             this.modalService.close(this.modalId, true);
         }
     }
+
+    /* ts appelant
+    @ViewChild(KalModalComponent) modal: KalModalComponent;
+    constructor(public kalModalService: KalModalService) { }
+    showModal() {
+        this.kalModalService.registerModal(this.modal);
+        this.kalModalService.open("modalId");
+    }
+    */
+    /* common.module
+        declarations: [..., KalModalComponent],
+        exports: [..., KalModalComponent],
+        providers: [KalModalService]
+    */
+
 }
