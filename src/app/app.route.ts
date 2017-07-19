@@ -7,7 +7,7 @@ import { LinesViewComponent } from './views/lines-view/lines-view.component';
 import { KalYearViewComponent } from './views/kal-year-view/kal-year-view.component';
 import { KalMonthViewComponent } from './views/kal-month-view/kal-month-view.component';
 
-import { AuthGuard } from "./core/auth.guard";
+import { AuthGuard } from './core/service/auth.guard';
 
 export const routes: Route[] = [
     { path: '', component: LoginViewComponent },

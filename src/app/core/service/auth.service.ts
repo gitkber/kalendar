@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { RouterService } from './router.service';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
     constructor(
         private afAuth: AngularFireAuth,
         private db: AngularFireDatabase,
-        private router: Router
+        private routerService: RouterService
     ) {
         this.afAuth.authState.subscribe((auth) => {
             this.authState = auth
@@ -63,7 +63,7 @@ export class AuthService {
             .then((user) => {
                 this.loginError = undefined;
                 this.authState = user;
-                this.router.navigateByUrl('/home');
+                this.routerService.navigateToHome();
                 // this.updateUserData()
             })
             .catch(error => {
@@ -85,7 +85,7 @@ export class AuthService {
 
     signOut(): void {
         this.afAuth.auth.signOut();
-        this.router.navigate(['/']);
+        this.routerService.navigateToRoot();
     }
 
     //// Helpers ////
@@ -105,42 +105,6 @@ export class AuthService {
         this.db.object(path).update(data)
             .catch(error => console.log(error));
 
-    }
-
-    navigateToContacts() {
-        if (this.authenticated) {
-            this.router.navigateByUrl('/contacts');
-        } else {
-            this.router.navigate(['/'])
-        }
-    }
-
-    navigateToLines() {
-        if (this.authenticated) {
-            this.router.navigateByUrl('/lines');
-        } else {
-            this.router.navigate(['/'])
-        }
-    }
-
-    navigateToHome() {
-        if (this.authenticated) {
-            this.router.navigateByUrl('/home');
-        } else {
-            this.router.navigate(['/'])
-        }
-    }
-
-    isContactsViewSelected(): boolean {
-        return this.router.isActive('/contacts', true);
-    }
-
-    isLinesViewSelected(): boolean {
-        return this.router.isActive('/lines', true);
-    }
-
-    isHomeViewSelected(): boolean {
-        return this.router.isActive('/home', true);
     }
 
 }

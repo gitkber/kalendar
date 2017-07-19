@@ -4,14 +4,14 @@ import { Line } from './line';
 import { LineAction } from './line-action';
 import { Action } from '../action';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AuthService } from "../auth.service";
+import { AuthService } from '../service/auth.service';
 
 @Injectable()
 export class LineService {
 
     private linesObservable: FirebaseListObservable<Line[]>;
 
-    constructor(public db: AngularFireDatabase, public authService:AuthService) {
+    constructor(public db: AngularFireDatabase, public authService: AuthService) {
         // firebase.database().ref("persons").set({birthdate: firebase.database.ServerValue.TIMESTAMP});
         // firebase.database().ref("persons").push( {birthdate: firebase.database.ServerValue.TIMESTAMP});
         this.linesObservable = this.db.list('/lines', {
