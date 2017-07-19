@@ -3,13 +3,13 @@
         <kal-logo></kal-logo>
         <div class="kal-header-item">
             <kal-button [image]="'../../../assets/images/home.svg'" [selected]="routerService.isHomeViewSelected()"
-                        (onClick)="routerService.navigateToHome()"></kal-button>
+                        (click)="routerService.navigateToHome()"></kal-button>
             <kal-button [image]="'../../../assets/images/users.svg'" [selected]="routerService.isContactsViewSelected()"
-                        (onClick)="routerService.navigateToContacts()"></kal-button>
+                        (click)="routerService.navigateToContacts()"></kal-button>
             <kal-button [image]="'../../../assets/images/newspaper.svg'" [selected]="routerService.isLinesViewSelected()"
-                        (onClick)="routerService.navigateToLines()"></kal-button>
+                        (click)="routerService.navigateToLines()"></kal-button>
             <kal-button [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
-                        (onClick)="authService.signOut()"></kal-button>
+                        (click)="authService.signOut()"></kal-button>
         </div>
     </div>
     <div class="kal-body">

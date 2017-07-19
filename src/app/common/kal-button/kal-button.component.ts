@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'kal-button',
@@ -10,10 +10,5 @@ export class KalButtonComponent {
     @Input() label: string;
     @Input() image: string;
     @Input() selected: boolean;
-    @Output() onClick: EventEmitter<any> = new EventEmitter();
-
-    doAction() {
-        this.onClick.emit();
-    }
 
 }
