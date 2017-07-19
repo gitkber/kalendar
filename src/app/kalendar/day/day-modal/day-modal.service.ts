@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { KalModalComponent } from './kal-modal.component';
+import { DayModalComponent } from './day-modal.component';
 
 @Injectable()
-export class KalModalService {
-  private modals: Array<KalModalComponent>;
+export class DayModalService {
+  private modals: Array<DayModalComponent>;
 
   constructor() {
     this.modals = [];
   }
 
-  registerModal(newModal: KalModalComponent): void {
+  registerModal(newModal: DayModalComponent): void {
     const modal = this.findModal(newModal.modalId);
 
     // Delete existing to replace the modal
@@ -41,7 +41,7 @@ console.log("push", newModal);
     }
   }
 
-  private findModal(modalId: string): KalModalComponent {
+  private findModal(modalId: string): DayModalComponent {
     for (const modal of this.modals) {
       if (modal.modalId === modalId) {
         return modal;

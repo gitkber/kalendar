@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { KalModalService } from '../../../common/kal-modal/kal-modal.service';
-import { KalModalComponent } from "../../../common/kal-modal/kal-modal.component";
+import { DayModalService } from '../day-modal/day-modal.service';
+import { DayModalComponent } from "../day-modal/day-modal.component";
 import { Day } from '../day';
 
 @Component({
@@ -14,9 +14,9 @@ export class DayInOneWeekComponent {
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
     @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
 
-    @ViewChild(KalModalComponent) modal: KalModalComponent;
+    @ViewChild(DayModalComponent) modal: DayModalComponent;
 
-    constructor(public kalModalService: KalModalService) { }
+    constructor(public dayModalService: DayModalService) { }
 
     navigateToMonth() {
         this.navigateToMonthClick.emit(this.day.date);
@@ -28,7 +28,7 @@ export class DayInOneWeekComponent {
 
     showModal() {
         console.log('zzzz');
-        this.kalModalService.registerModal(this.modal);
-        this.kalModalService.open("modalId");
+        this.dayModalService.registerModal(this.modal);
+        this.dayModalService.open("modalId");
     }
 }

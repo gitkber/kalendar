@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
-import { KalModalService } from './kal-modal.service';
+import { DayModalService } from './day-modal.service';
 
 @Component({
-    selector: 'kal-modal',
-    templateUrl: './kal-modal.component.html',
-    styleUrls: ['./kal-modal.component.scss']
+    selector: 'day-modal',
+    templateUrl: './day-modal.component.html',
+    styleUrls: ['./day-modal.component.scss']
 })
-export class KalModalComponent implements OnInit {
+export class DayModalComponent implements OnInit {
 
     @Input() modalId: string;
     @Input() modalTitle: string;
@@ -17,7 +17,7 @@ export class KalModalComponent implements OnInit {
         this.keyup(event);
     }
 
-    constructor(private modalService: KalModalService) {
+    constructor(private modalService: DayModalService) {
     }
 
     ngOnInit() {
