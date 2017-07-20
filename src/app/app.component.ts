@@ -12,9 +12,11 @@ export class AppComponent {
 
     title = 'Kalendar';
     user: Observable<firebase.User>;
+    currentDate: Date;
 
     constructor(public authService: AuthService, public routerService: RouterService) {
         this.user = this.authService.currentUserObservable;
+        this.currentDate = new Date();
         console.log(this.user);
     }
 

@@ -1,7 +1,7 @@
 <div class="kal-app" [class.kal-app-header]="authService.authenticated">
     <div class="kal-header" *ngIf="authService.authenticated">
         <kal-logo></kal-logo>
-        <div class="kal-header-item">
+        <div class="kal-header-item" *ngIf="!routerService.isChildView">
             <kal-button [image]="'../../../assets/images/home.svg'" [selected]="routerService.isHomeViewSelected()"
                         (click)="routerService.navigateToHome()"></kal-button>
             <kal-button [image]="'../../../assets/images/users.svg'" [selected]="routerService.isContactsViewSelected()"
@@ -10,6 +10,14 @@
                         (click)="routerService.navigateToLines()"></kal-button>
             <kal-button [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
                         (click)="authService.signOut()"></kal-button>
+        </div>
+        <div class="kal-header-item" *ngIf="routerService.isChildView">
+            <!--<select-dcurrentDatect-date" [date]="month.lastDateOfMonth" [navigation]="'month'"-->
+                         <!--(nextClick)="goNext($event)"-->
+                         <!--(previousClick)="goPrevious($event)"></select-date>-->
+            <select-date class="select-date" [date]="currentDate" [navigation]="'month'"></select-date>
+            <kal-button [label]="'TEST BACK'"
+                        (click)="routerService.back()"></kal-button>
         </div>
     </div>
     <div class="kal-body">
