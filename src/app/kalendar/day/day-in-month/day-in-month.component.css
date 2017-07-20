@@ -6,7 +6,23 @@
     align-items: left;
     width: 90%;
     height: 100%;
-    padding-left: 0.9em;
+    padding: 0.4em 0.7em 0 0.7em;
+    background-color: #fff;
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    font-size: small;
+}
+
+.day-disabled {
+    background-color: lightgray;
+    background-image: none;
+}
+
+.day-disabled .day-item-title {
+    background-color: lightgray;
+    color: #4D5874;
+    border: none;
 }
 
 .day-item-title.today {
@@ -20,13 +36,16 @@
 }
 
 .day-item-title {
+    border: 1px solid #9198A9;
+    background: white;
     align-items: center;
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: flex-end;
+    width: 90%;
     color: #4D5874;
     font-weight: bold;
-    font-size: small;
+    border-radius: 5px;
+    padding-right: 15px;
 }
 
 .day-item-detail {
