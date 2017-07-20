@@ -29,24 +29,6 @@ export class Month {
         return day;
     }
 
-    next() {
-        this.month++;
-        if (this.month === 13) {
-            this.month = 1;
-            this.year++;
-        }
-        this.createDays();
-    }
-
-    previous() {
-        this.month--;
-        if (this.month === 0) {
-            this.month = 12;
-            this.year--;
-        }
-        this.createDays();
-    }
-
     jump(month: number, year: number) {
         this.month = month;
         this.year = year;

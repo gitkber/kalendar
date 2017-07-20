@@ -1,11 +1,4 @@
-<div class="month-container">
-    <div class="navigation-item">
-        <select-date class="select-date" [date]="month.lastDateOfMonth" [navigation]="'month'"
-                     (nextClick)="goNext($event)"
-                     (previousClick)="goPrevious($event)"></select-date>
-    </div>
-    <div class="month-item-container">
-        <day-in-month *ngFor="let day of month.days" class="month-item" [day]="day"
-                      (click)="showDayDetail(day)"></day-in-month>
-    </div>
+<div class="month-item-container">
+    <day-in-month *ngFor="let day of month.days" class="month-item" [day]="day"
+                  (click)="showDayDetail(day)"></day-in-month>
 </div>
