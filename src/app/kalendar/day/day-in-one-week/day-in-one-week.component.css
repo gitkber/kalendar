@@ -31,7 +31,7 @@
     width: 100%;
     color: #4D5874;
     padding-top: 0.9em;
-    padding-bottom: 1.2em;
+    padding-bottom: 0.9em;
     font-weight: bold;
     font-size: small;
 }
@@ -52,13 +52,8 @@
     display: flex;
 }
 
-.day-item-info-list {
+.day-item-detail-list {
     height: 100%;
-    width: 100%;
-}
-
-.day-item-info {
-    padding: 5px 0 5px 0;
     width: 100%;
 }
 
@@ -68,10 +63,22 @@
     color: #4D5874;
     width: 100%;
 }
+
 .day-item-detail span {
     padding-top: 2px;
     padding-left: 10px;
 }
+
 .day-item-action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.day-item-info {
     padding: 5px 0 5px 0;
+    margin-bottom: 12px;
+    width: 100%;
 }
