@@ -1,12 +1,8 @@
 <div class="select-date-content">
-    <div (click)="changeNavigation('month')" class="label month" [class.nav-selected]="navigation === 'month'">
-        {{ date | date: 'MMMM' }}
-    </div>
-    <div (click)="changeNavigation('year')" class="label" [class.nav-selected]="navigation === 'year'">
-        {{ date | date: 'y' }}
-    </div>
-    <img class="navigation" [src]="'../../../assets/images/chevron-left.svg'" height="20" width="20"
-         (click)="goPrevious()"/>
-    <img class="navigation" [src]="'../../../assets/images/chevron-right.svg'" height="20" width="20"
-         (click)="goNext()"/>
+    <kal-button-menu [label]="date | date: 'MMMM'" (click)="changeNavigation('month')"
+        [selected]="navigation === 'month'"></kal-button-menu>
+    <kal-button-menu [label]="date | date: 'y'" (click)="changeNavigation('year')"
+        [selected]="navigation === 'year'"></kal-button-menu>
+    <kal-button-action [image]="'../../../assets/images/chevron-left.svg'" (click)="goPrevious()"></kal-button-action>
+    <kal-button-action [image]="'../../../assets/images/chevron-right.svg'" (click)="goNext()"></kal-button-action>
 </div>
