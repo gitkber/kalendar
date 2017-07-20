@@ -15,7 +15,9 @@
             <!--<select-dcurrentDatect-date" [date]="month.lastDateOfMonth" [navigation]="'month'"-->
                          <!--(nextClick)="goNext($event)"-->
                          <!--(previousClick)="goPrevious($event)"></select-date>-->
-            <select-date class="select-date" [date]="currentDate" [navigation]="'month'"></select-date>
+            <select-date class="select-date" [date]="appService.currentDate" [navigation]="'month'"
+                         (nextClick)="next($event)"
+                         (previousClick)="previous($event)"></select-date>
             <kal-button [label]="'TEST BACK'"
                         (click)="routerService.back()"></kal-button>
         </div>

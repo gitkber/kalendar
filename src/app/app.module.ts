@@ -3,6 +3,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.route';
 import { AuthGuard } from './core/service/auth.guard';
+import { AppService } from './app.service';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -38,7 +39,7 @@ export const firebaseConfig = {
         AngularFireDatabaseModule,
         AngularFireAuthModule
     ],
-    providers: [{provide: LOCALE_ID, useValue: 'fr-BE'}, AuthGuard],
+    providers: [{provide: LOCALE_ID, useValue: 'fr-BE'}, AuthGuard, AppService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

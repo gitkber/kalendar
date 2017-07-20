@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './core/service/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { RouterService } from './core/service/router.service';
+import { AppService } from './app.service';
 
 @Component({
     selector: 'app-root',
@@ -12,12 +13,26 @@ export class AppComponent {
 
     title = 'Kalendar';
     user: Observable<firebase.User>;
-    currentDate: Date;
 
-    constructor(public authService: AuthService, public routerService: RouterService) {
+    constructor(public authService: AuthService, public routerService: RouterService, public appService: AppService) {
         this.user = this.authService.currentUserObservable;
-        this.currentDate = new Date();
         console.log(this.user);
+    }
+
+    next(event: string) {
+        if (event === 'month') {
+            this.appService.nextMonth();
+        } else if (event === 'year') {
+            this.appService.nextYear();
+        }
+    }
+
+    previous(event: string) {
+        if (event === 'month') {
+            this.appService.previousMonth();
+        } else if (event === 'year') {
+            this.appService.previousYear();
+        }
     }
 
 }
