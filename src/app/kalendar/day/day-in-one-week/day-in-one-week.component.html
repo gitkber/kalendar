@@ -20,7 +20,7 @@
             <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20" />
             <span>{{dayItem.item}}</span>
         </div>
-        <kal-button [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button>
+        <kal-button-menu [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button-menu>
     </div>
     <day-modal [blocking]=false></day-modal>
 </div>
