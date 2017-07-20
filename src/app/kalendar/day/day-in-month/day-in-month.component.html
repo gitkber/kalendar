@@ -1,8 +1,12 @@
-<div class="day-content" [class.day-selected]="day.isSelected" [class.day-disabled]="day.isDisabled">
-    <div class="day" [class.weekend]="day.isWeekend" [class.today]="day.isToday">
-        <h4><b>{{ day.day }}</b></h4>
+<div class="day-container" [class.day-selected]="day.isSelected" [class.day-disabled]="day.isDisabled">
+    <div class="day-item-title" [class.weekend]="day.isWeekend" [class.today]="day.isToday">
+        <div>{{ day.day }}</div>
     </div>
-    <div class="day-item-info" *ngFor="let dayItem of day.dayItems">
-        {{dayItem.item}}
+    <div class="day-item-info-list">
+        <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
+            <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="20" width="20" />
+            <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20" />
+            <span>{{dayItem.item}}</span>
+        </div>
     </div>
 </div>

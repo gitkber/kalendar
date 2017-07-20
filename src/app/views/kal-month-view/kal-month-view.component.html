@@ -1,6 +1,4 @@
 <div class="kal-month-view-content">
-
-  <a routerLink="/home">Home</a>
-  <month class="month-content" [month]="month" (showDayDetailClick)="showDayDetail($event)" (nextClick)="goNext($event)" (previousClick)="goPrevious($event)"></month>
-
+    <month class="kal-month-item" [month]="month" (showDayDetailClick)="showDayDetail($event)"
+           (nextClick)="goNext($event)" (previousClick)="goPrevious($event)"></month>
 </div>
