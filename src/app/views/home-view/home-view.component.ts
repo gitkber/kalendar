@@ -16,17 +16,17 @@ export class HomeViewComponent implements OnInit {
 
     ngOnInit() {
         this.oneWeek = new OneWeek(new Date());
-        this.coreService.populateFourDays(this.oneWeek);
+        this.coreService.populateDays(this.oneWeek.days);
     }
 
     nextDay(event) {
         // event.navigation === day
-        this.coreService.populateDayInFourDays(this.oneWeek.next());
+        this.coreService.populateDays(this.oneWeek.next());
     }
 
     previousDay(event) {
         // event.navigation === day
-        this.coreService.populateDayInFourDays(this.oneWeek.previous());
+        this.coreService.populateDays(this.oneWeek.previous());
     }
 
 }

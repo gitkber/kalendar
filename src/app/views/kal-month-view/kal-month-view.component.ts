@@ -21,7 +21,7 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
         this.subscription = this.appService.date.subscribe(d => {
             console.log('KalMonthViewComponent constructor', d);
             this.month = new Month(d.getMonth() + 1, d.getFullYear());
-            this.coreService.populateMonth(this.month);
+            this.coreService.populateDays(this.month.days);
         })
     }
 
@@ -30,7 +30,7 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
             const selectedDate: Date = new Date(params['date']);
             this.month = new Month(selectedDate.getMonth() + 1, selectedDate.getFullYear());
             this.selectedDay = this.month.selectDate(selectedDate);
-            this.coreService.populateMonth(this.month);
+            this.coreService.populateDays(this.month.days);
         });
     }
 

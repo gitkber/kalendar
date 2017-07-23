@@ -15,30 +15,9 @@ export class CoreService {
 
     constructor(public contactService: ContactService, public lineService: LineService) { }
 
-    populateFourDays(fourDays: OneWeek) {
+    populateDays(days: Day[]) {
         this.contactService.getList().subscribe(items => {
-            console.log('contactsObservable subscribe oneWeek', items);
-            items.forEach(contact => {
-                contact.birthdate = new Date(contact.birthdate);
-                fourDays.days.forEach(day => {
-                    this.pushContactInDay(day, contact);
-                })
-            })
-        });
-        this.lineService.getList().subscribe(items => {
-            console.log('linesObservable subscribe oneWeek', items);
-            items.forEach(line => {
-                line.kalendarDate = new Date(line.kalendarDate);
-                fourDays.days.forEach(day => {
-                    this.pushLineInDay(day, line);
-                })
-            })
-        });
-    }
-
-    populateDayInFourDays(days: Day[]) {
-        this.contactService.getList().subscribe(items => {
-            console.log('contactsObservable subscribe day in oneWeek', items);
+            console.log('contactsObservable subscribe days', items);
             items.forEach(contact => {
                 contact.birthdate = new Date(contact.birthdate);
                 days.forEach(d => {
@@ -48,32 +27,11 @@ export class CoreService {
             })
         });
         this.lineService.getList().subscribe(items => {
-            console.log('linesObservable subscribe day in oneWeek', items);
+            console.log('linesObservable subscribe days', items);
             items.forEach(line => {
                 line.kalendarDate = new Date(line.kalendarDate);
                 days.forEach(d => {
                     this.pushLineInDay(d, line);
-                })
-            })
-        });
-    }
-
-    populateMonth(month: Month) {
-        this.contactService.getList().subscribe(items => {
-            console.log('contactsObservable subscribe month', items);
-            items.forEach(contact => {
-                contact.birthdate = new Date(contact.birthdate);
-                month.days.forEach(day => {
-                    this.pushContactInDay(day, contact);
-                })
-            })
-        });
-        this.lineService.getList().subscribe(items => {
-            console.log('linesObservable subscribe month', items);
-            items.forEach(line => {
-                line.kalendarDate = new Date(line.kalendarDate);
-                month.days.forEach(day => {
-                    this.pushLineInDay(day, line);
                 })
             })
         });
