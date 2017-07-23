@@ -14,7 +14,11 @@
 
 .kal-polaroid-container img {
     border: 1px solid #4D5874;
-    width: 100%;
+     height: auto; 
+    width: auto; 
+    max-width: 100%; 
+    max-height: 215px;
+    
 }
 
 .kal-polaroid-container .label {
