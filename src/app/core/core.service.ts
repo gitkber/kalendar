@@ -36,19 +36,24 @@ export class CoreService {
         });
     }
 
-    populateDayInFourDays(day: Day) {
+    populateDayInFourDays(days: Day[]) {
         this.contactService.getList().subscribe(items => {
             console.log('contactsObservable subscribe day in oneWeek', items);
             items.forEach(contact => {
                 contact.birthdate = new Date(contact.birthdate);
-                this.pushContactInDay(day, contact);
+                days.forEach(d => {
+                    this.pushContactInDay(d, contact);
+                })
+                
             })
         });
         this.lineService.getList().subscribe(items => {
             console.log('linesObservable subscribe day in oneWeek', items);
             items.forEach(line => {
                 line.kalendarDate = new Date(line.kalendarDate);
-                this.pushLineInDay(day, line);
+                days.forEach(d => {
+                    this.pushLineInDay(d, line);
+                })
             })
         });
     }

@@ -1,0 +1,24 @@
+.kal-polaroid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    background: white;
+	-webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
+	box-shadow: 0 4px 6px rgba(0,0,0,.3);
+	-webkit-transition: all .15s linear;
+	-moz-transition: all .15s linear;
+	transition: all .15s linear;
+}
+
+.kal-polaroid-container img {
+    border: 1px solid #4D5874;
+    width: 100%;
+}
+
+.kal-polaroid-container .label {
+    padding-top: 10px;
+    color: #4D5874;
+    font-size: 20px;
+}
