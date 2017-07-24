@@ -37,6 +37,8 @@ export class DayModalComponent implements OnInit {
     selectDayItem(dayItem: DayItem) {
         if (dayItem.isLine()) {
             this.lineSelected = new Line(null, dayItem.item, this.day.date);
+            this.lineSelected['$key'] = dayItem.key;
+            /*this.day.dayItems.splice(this.day.dayItems.indexOf(dayItem), 1);*/
         }
     }
 

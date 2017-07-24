@@ -14,6 +14,9 @@ export class CoreService {
     constructor(public contactService: ContactService, public lineService: LineService) { }
 
     populateDays(days: Day[]) {
+        // http://plnkr.co/edit/NCaX3xwE6PNSHyN2Cjn5?p=preview
+        // https://angular.io/api/core/IterableDiffer
+        // http://plnkr.co/edit/JV7xcMhAuupnSdwrd8XB?p=preview
         this.contactService.getList().subscribe(items => {
             console.log('contactsObservable subscribe days', items);
             items.forEach(contact => {
@@ -25,6 +28,7 @@ export class CoreService {
             })
         });
         this.lineService.getList().subscribe(items => {
+        console.log('days', days);
             console.log('linesObservable subscribe days', items);
             items.forEach(line => {
                 line.kalendarDate = new Date(line.kalendarDate);
