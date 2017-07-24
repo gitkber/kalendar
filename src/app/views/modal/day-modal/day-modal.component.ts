@@ -1,5 +1,9 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
+import { LineAction } from '../../../core/line/line-action';
+import { LineService } from '../../../core/line/line.service';
+import { DayItem } from '../../../kalendar/day-item';
+import { Line } from '../../../core/line/line';
 
 @Component({
     selector: 'day-modal',
@@ -9,14 +13,12 @@ import { Day } from '../../../kalendar/day/day';
 export class DayModalComponent implements OnInit {
 
     @Input() blocking = false;
-    isOpen = false;
-    day: Day;
 
-    @HostListener('keyup') onMouseEnter(event) {
-        this.keyup(event);
-    }
+    public isOpen = false;
+    public lineSelected: Line;
+    public day: Day;
 
-    constructor() { }
+    constructor(private lineService: LineService) { }
 
     ngOnInit() { }
 
@@ -32,9 +34,14 @@ export class DayModalComponent implements OnInit {
         this.isOpen = false;
     }
 
-    private keyup(event: KeyboardEvent): void {
-        if (event.keyCode === 27) {
-            this.close(true);
+    selectDayItem(dayItem: DayItem) {
+        if (dayItem.isLine()) {
+            this.lineSelected = new Line(null, dayItem.item, this.day.date);
         }
+    }
+
+    doActionOnLine(event: LineAction) {
+        console.log('doActionOnLine event', event);
+        this.lineService.doActionOnLine(event);
     }
 }

@@ -8,7 +8,7 @@
         </div>
 
         <div class="body">
-            <div *ngFor="let dayItem of day?.dayItems">
+            <div *ngFor="let dayItem of day?.dayItems" (click)="selectDayItem(dayItem)">
                 <img *ngIf="dayItem.isContact()" src="../../../../assets/images/birthday-cake-with-candle.svg"
                      height="20"
                      width="20"/>
@@ -16,5 +16,7 @@
                 <span>{{dayItem.item}}</span>
             </div>
         </div>
+        <line-form class="line-form-item" [line]="lineSelected" (actionClick)="doActionOnLine($event)"></line-form>
     </div>
+
 </div>

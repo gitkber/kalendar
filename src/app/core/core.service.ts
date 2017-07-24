@@ -39,7 +39,15 @@ export class CoreService {
         if (line.kalendarDate.getDate() === day.date.getDate()
             && line.kalendarDate.getMonth() === day.date.getMonth()
             && line.kalendarDate.getFullYear() <= day.date.getFullYear()) {
-            day.dayItems.push(new DayItem(Type.LINE, line['$key'], line.description));
+            let found: boolean;
+            day.dayItems.forEach(di => {
+                if (di.key === line['$key']) {
+                    found = true;
+                }
+            })
+            if (!found) {
+                day.dayItems.push(new DayItem(Type.LINE, line['$key'], line.description));
+            }
         }
     }
 
