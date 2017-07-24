@@ -4,5 +4,7 @@
               (navigateToYearClick)="routerService.navigateToKalYear($event)"
               [navigation]="'day'"
               (nextClick)="nextDay($event)"
-              (previousClick)="previousDay($event)"></one-week>
+              (previousClick)="previousDay($event)"
+              (showDayDetailClick)="showDayDetail($event)"></one-week>
 </div>
+<day-modal [blocking]=false></day-modal>

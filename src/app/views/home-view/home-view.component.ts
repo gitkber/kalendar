@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OneWeek } from '../../kalendar/one-week/one-week';
 import { CoreService } from '../../core/core.service';
 import { RouterService } from '../../core/service/router.service';
+import { DayModalComponent } from '../modal/day-modal/day-modal.component';
+import { Day } from '../../kalendar/day/day';
 
 @Component({
     selector: 'home-view',
@@ -9,6 +11,8 @@ import { RouterService } from '../../core/service/router.service';
     styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
+
+    @ViewChild(DayModalComponent) modal: DayModalComponent;
 
     public oneWeek: OneWeek;
 
@@ -27,6 +31,10 @@ export class HomeViewComponent implements OnInit {
     previousDay(event) {
         // event.navigation === day
         this.coreService.populateDays(this.oneWeek.previous());
+    }
+
+    showDayDetail(event: Day) {
+        this.modal.open(event);
     }
 
 }

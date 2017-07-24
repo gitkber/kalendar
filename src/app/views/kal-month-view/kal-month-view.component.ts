@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
 import { CoreService } from '../../core/core.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Subscription } from 'rxjs/Subscription';
+import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 
 @Component({
     selector: 'kal-month-view',
@@ -12,6 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['./kal-month-view.component.css']
 })
 export class KalMonthViewComponent implements OnInit, OnDestroy {
+
+    @ViewChild(DayModalComponent) modal: DayModalComponent;
 
     public month: Month;
     private selectedDay: Day;
@@ -49,6 +52,8 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
             }
             this.selectedDay = event;
             this.selectedDay.isSelected = true;
+
+            this.modal.open(this.selectedDay);
         }
     }
 

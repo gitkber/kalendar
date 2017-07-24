@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { DayModalComponent } from "../day-modal/day-modal.component";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../day';
 
 @Component({
@@ -12,8 +11,7 @@ export class DayInOneWeekComponent {
     @Input() day: Day;
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
     @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
-
-    @ViewChild(DayModalComponent) modal: DayModalComponent;
+    @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
 
     constructor() { }
 
@@ -26,6 +24,6 @@ export class DayInOneWeekComponent {
     }
 
     showModal() {
-        this.modal.open(this.day);
+        this.showDayDetailClick.emit(this.day);
     }
 }

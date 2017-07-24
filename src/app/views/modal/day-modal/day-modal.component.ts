@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
-import { Day } from "../day";
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Day } from '../../../kalendar/day/day';
 
 @Component({
     selector: 'day-modal',
