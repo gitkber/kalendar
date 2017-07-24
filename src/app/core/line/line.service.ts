@@ -23,7 +23,9 @@ export class LineService {
     }
 
     getList(): FirebaseListObservable<Line[]> { return this.linesObservable }
-
+    getRef():any {
+        return this.db.database.ref('/lines');
+    }
     doActionOnLine(event: LineAction) {
         // this.personObservable.push(person).then(resp => console.log("insert person - key : ", resp.key));
 

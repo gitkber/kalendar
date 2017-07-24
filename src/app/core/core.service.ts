@@ -27,6 +27,36 @@ export class CoreService {
 
             })
         });
+        this.lineService.getRef().on('child_added', data => {
+            let line: Line = data.val();
+            line.kalendarDate = new Date(line.kalendarDate);
+            days.forEach(d => {
+                if (line.kalendarDate.getDate() === d.date.getDate()
+                    && line.kalendarDate.getMonth() === d.date.getMonth()) {
+                    d.dayItems.push(new DayItem(Type.LINE, line['$key'], line.description));
+                }
+            })
+        });
+        this.lineService.getRef().on('child_removed', data => {
+            console.log('remove element');
+            
+            let line: Line = data.val();
+            line.kalendarDate = new Date(line.kalendarDate);
+            days.forEach(d => {
+
+                if (line.kalendarDate.getDate() === d.date.getDate()
+                    && line.kalendarDate.getMonth() === d.date.getMonth()) {
+                    d.dayItems.forEach(di => {
+                        if (di.key === line['$key']) {
+                            d.dayItems.slice(d.dayItems.indexOf(di), 1);
+                        }
+                    })
+                }
+
+
+            })
+        });
+        /*
         this.lineService.getList().subscribe(items => {
         console.log('days', days);
             console.log('linesObservable subscribe days', items);
@@ -37,23 +67,10 @@ export class CoreService {
                 })
             })
         });
+        */
     }
 
-    private pushLineInDay(day: Day, line: Line) {
-        if (line.kalendarDate.getDate() === day.date.getDate()
-            && line.kalendarDate.getMonth() === day.date.getMonth()
-            && line.kalendarDate.getFullYear() <= day.date.getFullYear()) {
-            let found: boolean;
-            day.dayItems.forEach(di => {
-                if (di.key === line['$key']) {
-                    found = true;
-                }
-            })
-            if (!found) {
-                day.dayItems.push(new DayItem(Type.LINE, line['$key'], line.description));
-            }
-        }
-    }
+
 
     private pushContactInDay(day: Day, contact: Contact) {
         if (contact.birthdate.getDate() === day.date.getDate()
