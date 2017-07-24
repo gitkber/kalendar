@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { Line } from './line/line';
-import { OneWeek } from '../kalendar/one-week/one-week';
-import { Month } from '../kalendar/month/month';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
 import { Type } from '../kalendar/type';
@@ -23,7 +21,7 @@ export class CoreService {
                 days.forEach(d => {
                     this.pushContactInDay(d, contact);
                 })
-                
+
             })
         });
         this.lineService.getList().subscribe(items => {
@@ -41,7 +39,7 @@ export class CoreService {
         if (line.kalendarDate.getDate() === day.date.getDate()
             && line.kalendarDate.getMonth() === day.date.getMonth()
             && line.kalendarDate.getFullYear() <= day.date.getFullYear()) {
-            day.dayItems.push(new DayItem(Type.LINE, line.description));
+            day.dayItems.push(new DayItem(Type.LINE, line['$key'], line.description));
         }
     }
 
@@ -49,7 +47,7 @@ export class CoreService {
         if (contact.birthdate.getDate() === day.date.getDate()
             && contact.birthdate.getMonth() === day.date.getMonth()
             && contact.birthdate.getFullYear() <= day.date.getFullYear()) {
-            day.dayItems.push(new DayItem(Type.CONTACT, contact.firstname + ' ' + contact.lastname));
+            day.dayItems.push(new DayItem(Type.CONTACT, contact['$key'], contact.firstname + ' ' + contact.lastname));
         }
     }
 

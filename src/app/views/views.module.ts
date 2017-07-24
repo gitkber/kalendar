@@ -19,7 +19,7 @@ import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, LinesViewComponent,
         SheetOfPaperComponent, PolaroidComponent],
-    exports: [HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, LinesViewComponent],
+    exports: [],
     providers: []
 })
 export class ViewsModule {

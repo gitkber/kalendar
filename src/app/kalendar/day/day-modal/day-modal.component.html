@@ -1,18 +1,19 @@
 <div [class.closed]="!isOpen">
-  <div class="modal-overlay" (click)="close(true)"></div>
+    <div class="modal-overlay" (click)="close(true)"></div>
 
-  <div class="modal">
-    <div class="title">
-      <span class="title-text">{{ day?.date | date:'EEEE d MMMM yyyy' }}</span>
-      <span class="right-align" (click)="close(true)">close</span>
-    </div>
+    <div class="modal">
+        <div class="title">
+            <span class="title-text">{{ day?.date | date:'EEEE d MMMM yyyy' }}</span>
+            <span class="right-align" (click)="close(true)">close</span>
+        </div>
 
-    <div class="body">
-      <div *ngFor="let dayItem of day?.dayItems">
-        <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="20" width="20" />
-        <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20" />
-        <span>{{dayItem.item}}</span>
-      </div>
+        <div class="body">
+            <div *ngFor="let dayItem of day?.dayItems">
+                <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="20"
+                     width="20"/>
+                <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="20" width="20"/>
+                <span>{{dayItem.item}}</span>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

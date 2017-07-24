@@ -1,17 +1,19 @@
-import { Type } from "./type";
+import { Type } from './type';
 
 export class DayItem {
 
     constructor(
         public type: Type,
+        public key: string,
         public item: string
     ) {
     }
 
-    isContact():boolean {
+    isContact(): boolean {
         return this.type === Type.CONTACT;
     }
-    isLine():boolean {
+
+    isLine(): boolean {
         return this.type === Type.LINE;
     }
 
