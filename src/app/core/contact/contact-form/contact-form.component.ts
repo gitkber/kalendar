@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../../contact/contact';
 import { ContactAction } from '../contact-action';
 import { Action } from '../../action';
+import { DateStringPipe } from '../../../common/pipe/date-string.pipe';
 
 @Component({
     selector: 'contact-form',
@@ -15,7 +16,7 @@ import { Action } from '../../action';
 })
 export class ContactFormComponent implements OnChanges, OnInit {
 
-    private datePipe: DatePipe = new DatePipe(this._locale);
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     @Output() actionClick = new EventEmitter<ContactAction>();
     public contactFormGroup: FormGroup;
@@ -44,15 +45,13 @@ export class ContactFormComponent implements OnChanges, OnInit {
             this.contactFormGroup.setValue({
                 'firstname': this.contact.firstname,
                 'lastname': this.contact.lastname,
-                'birthdate': this.datePipe.transform(this.contact.birthdate, 'dd/MM/yyyy')
+                'birthdate': this.dateStringPipe.transform(this.contact.birthdate)
             });
         }
     }
 
     addContact() {
-        const datestring: string = this.contact.birthdate.toString();
-        const dateItems = datestring.split('/');
-        this.contact.birthdate = new Date(parseInt(dateItems[2]), parseInt(dateItems[1]) - 1, parseInt(dateItems[0]));
+        this.contact.birthdate = this.dateStringPipe.transform(this.contact.birthdate, true);
 
         let contactAction: ContactAction;
         if (this.contactKey === undefined) {

@@ -12,10 +12,7 @@ export class ContactService {
     private contactsObservable: FirebaseListObservable<Contact[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-
-        // firebase.database().ref("persons").set({birthdate: firebase.database.ServerValue.TIMESTAMP});
-        // firebase.database().ref("persons").push( {birthdate: firebase.database.ServerValue.TIMESTAMP});
-        this.contactsObservable = this.db.list('/persons', {
+        this.contactsObservable = this.db.list('/contacts', {
             query: {
                 orderByChild: 'user',
                 equalTo: this.authService.currentUserId
@@ -25,12 +22,14 @@ export class ContactService {
 
     getList(): FirebaseListObservable<Contact[]> { return this.contactsObservable }
 
-    doActionOnContact(event: ContactAction) {
-        // this.personObservable.push(person).then(resp => console.log("insert person - key : ", resp.key));
+    getRef(): any {
+        return this.contactsObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
+    }
 
+    doActionOnContact(event: ContactAction) {
         if (event.action === Action.INSERT) {
             event.contact.user = this.authService.currentUserId;
-            this.contactsObservable.push(event.contact).child('birthdate').set(event.contact.birthdate.toJSON('yyyy-MM-dd'));
+            this.contactsObservable.push(event.contact);
         } else if (event.action === Action.UPDATE) {
             this.contactsObservable.update(event.contactKey, event.contact);
         } else if (event.action === Action.DELETE) {

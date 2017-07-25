@@ -5,7 +5,7 @@ export class Contact {
         public firstname: string,
         public lastname: string,
         public gender: string,
-        public birthdate: Date
+        public birthdate: string // yyyy-MM-dd
     ) { }
 
 }
