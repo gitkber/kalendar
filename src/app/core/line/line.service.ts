@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { Line } from './line';
 import { LineAction } from './line-action';
+import { LineCriteria } from './line-criteria';
 import { Action } from '../action';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../service/auth.service';
@@ -28,15 +29,13 @@ export class LineService {
         return this.linesObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
     }
 
-    doActionOnLine(event: LineAction) {
-        // this.personObservable.push(person).then(resp => console.log("insert person - key : ", resp.key));
+    doActionOnLine(event: LineCriteria) {
         if (event.action === Action.INSERT) {
             console.log('insert');
-            event.line.user = this.authService.currentUserId;
-            this.linesObservable.push(event.line);
+            this.linesObservable.push(new Line(this.authService.currentUserId, event.description, event.kalendarDate));
         } else if (event.action === Action.UPDATE) {
             console.log('update');
-            this.linesObservable.update(event.lineKey, event.line);
+            this.linesObservable.update(event.lineKey, new Line(this.authService.currentUserId, event.description, event.kalendarDate));
         } else if (event.action === Action.DELETE) {
             console.log('delete');
             this.linesObservable.remove(event.lineKey);

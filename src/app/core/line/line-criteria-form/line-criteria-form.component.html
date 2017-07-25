@@ -1,3 +1,19 @@
-<p>
-  line-criteria-form works!
-</p>
+<div class="line-form-container">
+    <form class="form-container" (ngSubmit)="saveLine()" [formGroup]="lineCriteriaFormGroup" #addLineForm="ngForm">
+        <div class="line-row">
+            <label for="inputDescription">Description</label>
+            <input type="text" formControlName="description" name="description" id="inputDescription"/>
+        </div>
+        <div class="line-row">
+            <label for="inputKalendarDate">KalendarDate</label>
+            <input type="text" formControlName="kalendarDate" name="kalendarDate" id="inputKalendarDate"/>
+        </div>
+
+        <div class="action-row">
+            <kal-button-menu [image]="'../../../assets/images/save_white.svg'" (click)="saveLine()"></kal-button-menu>
+            <kal-button-menu [image]="'../../../assets/images/delete_white.svg'" (click)="deleteLine()"></kal-button-menu>
+        </div>
+        <!--<button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
+        <button class="btn btn-primary"  (click)="deleteLine()">Delete</button>-->
+    </form>
+</div>

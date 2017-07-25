@@ -30,12 +30,15 @@ export class LineCriteriaFormComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('changes.lineCriteria.currentValue', changes.lineCriteria.currentValue)
     if (changes.lineCriteria.currentValue !== undefined) {
-      this.lineCriteria = changes.line.currentValue;
+      this.lineCriteria = changes.lineCriteria.currentValue;
+      console.log('lineCriteria before', this.lineCriteria);
       this.lineCriteriaFormGroup.setValue({
         'description': this.lineCriteria.description,
         'kalendarDate': this.dateStringPipe.transform(this.lineCriteria.kalendarDate)
       });
+      console.log('lineCriteria after', this.lineCriteria);
     }
   }
 
@@ -53,6 +56,7 @@ export class LineCriteriaFormComponent implements OnInit {
   }
 
   deleteLine() {
+    console.log('deleteline', this.lineCriteria)
     if (this.lineCriteria.lineKey !== undefined) {
       this.lineCriteria.action = Action.DELETE;
       this.actionClick.emit(this.lineCriteria);

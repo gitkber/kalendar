@@ -37,6 +37,6 @@ export class LinesViewComponent implements OnInit {
 
   doActionOnLine(event: LineAction) {
     console.log("doActionOnLine event", event);
-    this.lineService.doActionOnLine(event);
+    //this.lineService.doActionOnLine(event);
   }
 }

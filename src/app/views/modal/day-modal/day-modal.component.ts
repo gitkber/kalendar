@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
-import { LineAction } from '../../../core/line/line-action';
 import { LineService } from '../../../core/line/line.service';
 import { DayItem } from '../../../kalendar/day-item';
 import { Line } from '../../../core/line/line';
+import { LineCriteria } from '../../../core/line/line-criteria';
 
 @Component({
     selector: 'day-modal',
@@ -15,7 +15,7 @@ export class DayModalComponent implements OnInit {
     @Input() blocking = false;
 
     public isOpen = false;
-    public lineSelected: Line;
+    public lineCriteriaSelected: LineCriteria;
     public day: Day;
 
     constructor(private lineService: LineService) { }
@@ -36,13 +36,13 @@ export class DayModalComponent implements OnInit {
 
     selectDayItem(dayItem: DayItem) {
         if (dayItem.isLine()) {
-            this.lineSelected = new Line(null, dayItem.item, this.day.date.toJSON('yyyy-MM-dd'));
-            this.lineSelected['$key'] = dayItem.key;
+            this.lineCriteriaSelected = new LineCriteria(dayItem.item, this.day.date.toJSON('yyyy-MM-dd'), dayItem.key);
+            //this.lineSelected['$key'] = dayItem.key;
             /*this.day.dayItems.splice(this.day.dayItems.indexOf(dayItem), 1);*/
         }
     }
 
-    doActionOnLine(event: LineAction) {
+    doActionOnLine(event: LineCriteria) {
         console.log('doActionOnLine event', event);
         this.lineService.doActionOnLine(event);
     }
