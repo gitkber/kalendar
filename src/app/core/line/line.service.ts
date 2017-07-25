@@ -20,23 +20,12 @@ export class LineService {
                 equalTo: this.authService.currentUserId
             }
         });
-        /*
-        this.linesObservable.map(itemEntries => {
-            console.log('map', itemEntries);
-            itemEntries.map(itemEntry => {
-                itemEntry.key = itemEntry.$key;
-            })
-            return itemEntries;
-        })
-        */
     }
 
     getList(): FirebaseListObservable<Line[]> { return this.linesObservable }
 
     getRef(): any {
-        // this.linesObservable.$ref.ref.set({kalendarDate: firebase.database.ServerValue.TIMESTAMP});
-        return this.linesObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId).ref;
-
+        return this.linesObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
     }
 
     doActionOnLine(event: LineAction) {
@@ -44,7 +33,7 @@ export class LineService {
         if (event.action === Action.INSERT) {
             console.log('insert');
             event.line.user = this.authService.currentUserId;
-            this.linesObservable.push(event.line).child('kalendarDate').set(event.line.kalendarDate.toJSON('yyyy-MM-dd'));
+            this.linesObservable.push(event.line);
         } else if (event.action === Action.UPDATE) {
             console.log('update');
             this.linesObservable.update(event.lineKey, event.line);

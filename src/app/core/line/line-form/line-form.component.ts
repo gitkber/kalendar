@@ -2,11 +2,11 @@ import {
     Component, EventEmitter, Inject, Input, LOCALE_ID, OnChanges, OnInit, Output,
     SimpleChanges
 } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Line } from '../../line/line';
 import { LineAction } from '../line-action';
 import { Action } from '../../action';
+import { DateStringPipe } from '../../../common/pipe/date-string.pipe';
 
 @Component({
     selector: 'line-form',
@@ -15,7 +15,7 @@ import { Action } from '../../action';
 })
 export class LineFormComponent implements OnChanges, OnInit {
 
-    private datePipe: DatePipe = new DatePipe(this._locale);
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     @Output() actionClick = new EventEmitter<LineAction>();
     public lineFormGroup: FormGroup;
@@ -26,7 +26,6 @@ export class LineFormComponent implements OnChanges, OnInit {
     constructor(@Inject(LOCALE_ID) private _locale: string) { }
 
     ngOnInit() {
-
         this.lineFormGroup = new FormGroup({
             description: new FormControl('', Validators.required),
             kalendarDate: new FormControl('', Validators.required)
@@ -42,15 +41,13 @@ export class LineFormComponent implements OnChanges, OnInit {
             this.line = changes.line.currentValue;
             this.lineFormGroup.setValue({
                 'description': this.line.description,
-                'kalendarDate': this.datePipe.transform(this.line.kalendarDate, 'dd/MM/yyyy')
+                'kalendarDate': this.dateStringPipe.transform(this.line.kalendarDate)
             });
         }
     }
 
     addLine() {
-        const datestring: string = this.line.kalendarDate.toString();
-        const dateItems = datestring.split('/');
-        this.line.kalendarDate = new Date(parseInt(dateItems[2]), parseInt(dateItems[1]) - 1, parseInt(dateItems[0]));
+        this.line.kalendarDate = this.dateStringPipe.transform(this.line.kalendarDate, true);
 
         let lineAction: LineAction;
         if (this.lineKey === undefined) {

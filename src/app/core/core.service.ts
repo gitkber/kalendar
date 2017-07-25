@@ -31,11 +31,11 @@ export class CoreService {
 
         this.lineService.getRef().on('child_added', data => {
             const line: Line = data.val();
-            line.kalendarDate = new Date(line.kalendarDate);
+            const date: Date = new Date(line.kalendarDate);
             console.log('child_added line', line);
             days.forEach(d => {
-                if (line.kalendarDate.getDate() === d.date.getDate()
-                    && line.kalendarDate.getMonth() === d.date.getMonth()) {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.push(new DayItem(Type.LINE, data.key, line.description));
                 }
             })
@@ -43,11 +43,11 @@ export class CoreService {
 
         this.lineService.getRef().on('child_changed', data => {
             const line: Line = data.val();
-            line.kalendarDate = new Date(line.kalendarDate);
+            const date: Date = new Date(line.kalendarDate);
             console.log('child_changed line', line);
             days.forEach(d => {
-                if (line.kalendarDate.getDate() === d.date.getDate()
-                    && line.kalendarDate.getMonth() === d.date.getMonth()) {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
                             di.item = line.description;
@@ -59,11 +59,11 @@ export class CoreService {
 
         this.lineService.getRef().on('child_removed', data => {
             const line: Line = data.val();
-            line.kalendarDate = new Date(line.kalendarDate);
-            console.log('child_changed line', line);
+            const date: Date = new Date(line.kalendarDate);
+            console.log('child_removed line', line);
             days.forEach(d => {
-                if (line.kalendarDate.getDate() === d.date.getDate()
-                    && line.kalendarDate.getMonth() === d.date.getMonth()) {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
                             d.dayItems.splice(d.dayItems.indexOf(di), 1);
