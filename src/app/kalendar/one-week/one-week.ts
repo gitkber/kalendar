@@ -22,7 +22,7 @@ export class OneWeek {
         for (let i = 0; i < 7; i++) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i), today));
         }
-        if (currentDay === 1) {
+        if (dayDate.getDay() === 1) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 7)));
         } else {
             this.days.splice(3, 0, new Day(today));
