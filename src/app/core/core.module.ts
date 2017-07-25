@@ -12,13 +12,14 @@ import { ContactFormComponent } from './contact/contact-form/contact-form.compon
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { LineListComponent } from './line/line-list/line-list.component';
 import { LineFormComponent } from './line/line-form/line-form.component';
+import { LineCriteriaFormComponent } from './line/line-criteria-form/line-criteria-form.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [ContactListComponent, ContactFormComponent, LineListComponent, LineFormComponent,
-        LoginFormComponent],
+        LoginFormComponent, LineCriteriaFormComponent],
     exports: [ContactListComponent, ContactFormComponent, LineListComponent, LineFormComponent,
-        LoginFormComponent],
+        LoginFormComponent, LineCriteriaFormComponent],
     providers: [ContactService, LineService, CoreService, AuthService, RouterService]
 })
 export class CoreModule {
