@@ -12,7 +12,7 @@ export class LineService {
     private linesObservable: FirebaseListObservable<Line[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-        // firebase.database().ref("persons").set({birthdate: firebase.database.ServerValue.TIMESTAMP});
+        // firebase.database().ref('lines').set({kalendarDate: firebase.database.ServerValue.TIMESTAMP});
         // firebase.database().ref("persons").push( {birthdate: firebase.database.ServerValue.TIMESTAMP});
         this.linesObservable = this.db.list('/lines', {
             query: {
@@ -20,21 +20,36 @@ export class LineService {
                 equalTo: this.authService.currentUserId
             }
         });
+        /*
+        this.linesObservable.map(itemEntries => {
+            console.log('map', itemEntries);
+            itemEntries.map(itemEntry => {
+                itemEntry.key = itemEntry.$key;
+            })
+            return itemEntries;
+        })
+        */
     }
 
     getList(): FirebaseListObservable<Line[]> { return this.linesObservable }
-    getRef():any {
-        return this.db.database.ref('/lines');
+
+    getRef(): any {
+        // this.linesObservable.$ref.ref.set({kalendarDate: firebase.database.ServerValue.TIMESTAMP});
+        return this.linesObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId).ref;
+
     }
+
     doActionOnLine(event: LineAction) {
         // this.personObservable.push(person).then(resp => console.log("insert person - key : ", resp.key));
-
         if (event.action === Action.INSERT) {
+            console.log('insert');
             event.line.user = this.authService.currentUserId;
             this.linesObservable.push(event.line).child('kalendarDate').set(event.line.kalendarDate.toJSON('yyyy-MM-dd'));
         } else if (event.action === Action.UPDATE) {
+            console.log('update');
             this.linesObservable.update(event.lineKey, event.line);
         } else if (event.action === Action.DELETE) {
+            console.log('delete');
             this.linesObservable.remove(event.lineKey);
         }
     }
