@@ -7,6 +7,7 @@ import { RouterService } from './service/router.service';
 import { LineService } from './line/line.service';
 import { CoreService } from './core.service';
 import { AuthService } from './service/auth.service';
+import { DateUtilService } from './service/date-util.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
@@ -19,7 +20,7 @@ import { LineCriteriaFormComponent } from './line/line-criteria-form/line-criter
         LoginFormComponent],
     exports: [ContactListComponent, ContactFormComponent, LineListComponent, LineCriteriaFormComponent,
         LoginFormComponent],
-    providers: [ContactService, LineService, CoreService, AuthService, RouterService]
+    providers: [ContactService, LineService, CoreService, AuthService, RouterService, DateUtilService]
 })
 export class CoreModule {
 }

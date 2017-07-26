@@ -1,9 +1,9 @@
-import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
 import { LineService } from '../../../core/line/line.service';
 import { DayItem } from '../../../kalendar/day-item';
 import { LineCriteria } from '../../../core/line/line-criteria';
+import { DateUtilService } from '../../../core/service/date-util.service';
 
 @Component({
     selector: 'day-modal',
@@ -12,22 +12,20 @@ import { LineCriteria } from '../../../core/line/line-criteria';
 })
 export class DayModalComponent implements OnInit {
 
-    private datePipe: DatePipe = new DatePipe(this._locale);
-
     @Input() blocking = false;
 
     public isOpen = false;
     public lineCriteriaSelected: LineCriteria;
     public day: Day;
 
-    constructor(@Inject(LOCALE_ID) private _locale: string, private lineService: LineService) { }
+    constructor(private dateUtilService: DateUtilService, private lineService: LineService) { }
 
     ngOnInit() { }
 
     open(day: Day): void {
         this.isOpen = true;
         this.day = day;
-        this.lineCriteriaSelected = new LineCriteria(null, this.datePipe.transform(this.day.date, 'yyyy-MM-dd'), null);
+        this.lineCriteriaSelected = new LineCriteria(null, this.dateUtilService.toString(this.day.date), null);
     }
 
     close(checkBlocking = false): void {
@@ -39,7 +37,7 @@ export class DayModalComponent implements OnInit {
 
     selectDayItem(dayItem: DayItem) {
         if (dayItem.isLine()) {
-            this.lineCriteriaSelected = new LineCriteria(dayItem.item, this.datePipe.transform(this.day.date, 'yyyy-MM-dd'), dayItem.key);
+            this.lineCriteriaSelected = new LineCriteria(dayItem.item, this.dateUtilService.toString(this.day.date), dayItem.key);
         }
     }
 
