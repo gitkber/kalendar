@@ -14,14 +14,12 @@
     background: #AD6B6B;
     color: white;
     text-align: center;
-    font-size: small;
 }
 .weekend {
     width: 100%;
     background: #4D5874;
     color: white;
     text-align: center;
-    font-size: small;
 }
 
 .day-item-title {
@@ -33,7 +31,6 @@
     padding-top: 0.9em;
     padding-bottom: 0.9em;
     font-weight: bold;
-    font-size: small;
 }
 
 .day-item-title .day-item-select {
@@ -59,13 +56,13 @@
 
 .day-item-detail {
     display: flex;
-    padding: 5px 0 5px 0;
+    padding: 2px 0 2px 0;
     color: #4D5874;
     width: 100%;
 }
 
 .day-item-detail span {
-    padding-top: 2px;
+    padding-top: 3px;
     padding-left: 10px;
 }
 

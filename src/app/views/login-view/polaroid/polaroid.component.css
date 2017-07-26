@@ -18,7 +18,6 @@
 
 .polaroid-container a:after {
 	color: #333;
-	font-size: 20px;
 	content: attr(title);
 	position: relative;
 	top:15px;

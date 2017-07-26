@@ -3,22 +3,21 @@ html, body{
 	width:100%;
 	height:100%;
 	margin:0px;
-	font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 100%;
 }
-* {
-    font-family: Verdana;
-}
+
 body{
 /** https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/458169.jpg */
     /** actions menu : https://codepen.io/fixcl/pen/ONeOdL */
    /* background: linear-gradient(100deg, #53738c 15%, #fff 35%, #8c464a 90%) 0 0;
    linear-gradient(100deg, #4e608c 0%, #f3aab6 15%, #faffee 30%, #4e608c 50%, #f3aab6 70%, #faffee 85%, #4e608c 100%) 0 0;
    */
-
-background:
-linear-gradient(150deg, #4D5874 0%, #AD6B6B 10%, #FBFBD4 40%, #4D5874 90%, #AD6B6B 100%) 0 0;
-background-color: #fff;
-background-position: center;
+    font-size: 0.85em;
+    background:
+    linear-gradient(150deg, #4D5874 0%, #AD6B6B 10%, #FBFBD4 40%, #4D5874 90%, #AD6B6B 100%) 0 0;
+    background-color: #fff;
+    background-position: center;
     overflow: hidden;
 }
 

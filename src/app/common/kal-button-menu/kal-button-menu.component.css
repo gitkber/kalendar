@@ -4,14 +4,15 @@
     align-content: center;
     cursor: pointer;
     border-bottom: 1px solid #4D5874;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 15px 10px 15px;
     color: #4D5874;
     letter-spacing: 0.3em;
 }
 
 .kal-button-container span {
-    padding-top: 5px;
+    padding-top: 3px;
     padding-right: 5px;
+    font-size: 1.1em;
 }
 
 .kal-button-container:hover {
