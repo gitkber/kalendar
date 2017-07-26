@@ -27,6 +27,7 @@ export class DayModalComponent implements OnInit {
     open(day: Day): void {
         this.isOpen = true;
         this.day = day;
+        this.lineCriteriaSelected = new LineCriteria(null, this.datePipe.transform(this.day.date, 'yyyy-MM-dd'), null);
     }
 
     close(checkBlocking = false): void {

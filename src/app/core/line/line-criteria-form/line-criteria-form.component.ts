@@ -30,12 +30,16 @@ export class LineCriteriaFormComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.lineCriteria.currentValue !== undefined) {
             this.lineCriteria = changes.lineCriteria.currentValue;
-            this.lineCriteriaFormGroup.setValue({
-                'description': this.lineCriteria.description,
-                'kalendarDate': this.dateStringPipe.transform(this.lineCriteria.kalendarDate),
-                'lineKey': this.lineCriteria.lineKey
-            });
+            this.initFormGroup();
         }
+    }
+
+    private initFormGroup() {
+        this.lineCriteriaFormGroup.setValue({
+            'description': this.lineCriteria.description,
+            'kalendarDate': this.dateStringPipe.transform(this.lineCriteria.kalendarDate),
+            'lineKey': this.lineCriteria.lineKey
+        });
     }
 
     saveLine() {
@@ -46,18 +50,23 @@ export class LineCriteriaFormComponent implements OnInit, OnChanges {
         } else {
             this.lineCriteria.action = Action.UPDATE;
         }
-        this.actionClick.emit(this.lineCriteria);
-        this.lineCriteria = undefined;
-        this.lineCriteriaFormGroup.reset();
+        this.actionClickEmitAndResetFormGroup();
     }
 
     deleteLine() {
         if (this.lineCriteria.lineKey !== undefined) {
             this.lineCriteria.action = Action.DELETE;
-            this.actionClick.emit(this.lineCriteria);
-            this.lineCriteria = undefined;
-            this.lineCriteriaFormGroup.reset();
+            this.actionClickEmitAndResetFormGroup();
         }
+    }
+
+    private actionClickEmitAndResetFormGroup() {
+        this.actionClick.emit(this.lineCriteria);
+
+        const tempDate: string = this.lineCriteria.kalendarDate;
+        this.lineCriteriaFormGroup.reset();
+        this.lineCriteria = new LineCriteria(null, tempDate, null);
+        this.initFormGroup();
     }
 
 }

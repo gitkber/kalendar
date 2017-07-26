@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { Line } from './line';
-import { LineAction } from './line-action';
 import { LineCriteria } from './line-criteria';
 import { Action } from '../action';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';

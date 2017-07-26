@@ -1,10 +1,8 @@
 <div class="view-container">
-  <line-list class="line-list-item" [lines]="lines" (showLineClick)="showLine($event)"></line-list>
-  <div class="right-container">
-    <line-form class="line-form-item" [line]="lineSelected" (actionClick)="doActionOnLine($event)"></line-form>
-    <div class="polaroid-item">
-      polaroid-item
-      <a routerLink="/home">Home</a>
+    <line-list class="line-list-item" [lines]="lines" (showLineClick)="showLine($event)"></line-list>
+    <div class="right-container">
+        <div class="polaroid-item">
+            polaroid-item
+        </div>
     </div>
-  </div>
 </div>
