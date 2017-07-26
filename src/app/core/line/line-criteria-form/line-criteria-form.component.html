@@ -2,7 +2,14 @@
     <form class="form-container" (ngSubmit)="saveLine()" [formGroup]="lineCriteriaFormGroup" #addLineForm="ngForm">
         <div class="line-row">
             <label for="inputDescription">Description</label>
-            <input type="text" formControlName="description" name="description" id="inputDescription"/>
+            <input formControlName="description" name="description" id="inputDescription"/>
+        </div>
+        <div class="line-row">
+            <label for="inputDuplication">Dupliquer</label>
+            <input formControlName="duplication" name="duplication" id="inputDuplication"/>
+            <label for="inputIncludeWeekend">Week-end inclus : </label>
+            non<input type="radio" formControlName="includeWeekend" name="includeWeekend" id="inputIncludeWeekend" [value]="false"/>
+            oui<input type="radio" formControlName="includeWeekend" name="includeWeekend" [value]="true"/>
         </div>
         <!--
         <div class="line-row">

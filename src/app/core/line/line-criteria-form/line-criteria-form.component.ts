@@ -23,6 +23,8 @@ export class LineCriteriaFormComponent implements OnInit, OnChanges {
         this.lineCriteriaFormGroup = new FormGroup({
             description: new FormControl('', Validators.required),
             kalendarDate: new FormControl('', Validators.required),
+            duplication: new FormControl(),
+            includeWeekend: new FormControl(),
             lineKey: new FormControl()
         });
     }
@@ -38,6 +40,8 @@ export class LineCriteriaFormComponent implements OnInit, OnChanges {
         this.lineCriteriaFormGroup.setValue({
             'description': this.lineCriteria.description,
             'kalendarDate': this.dateStringPipe.transform(this.lineCriteria.kalendarDate),
+            'duplication': this.lineCriteria.duplication,
+            'includeWeekend': this.lineCriteria.includeWeekend,
             'lineKey': this.lineCriteria.lineKey
         });
     }
