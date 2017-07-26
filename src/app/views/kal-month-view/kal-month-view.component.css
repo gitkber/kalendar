@@ -1,15 +1,15 @@
 .kal-month-view-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 97.5%;
     height: 100%;
+    padding: 1em;
 }
 
 .kal-month-item {
     align-items: center;
-
-    height: 95%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
 }

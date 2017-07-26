@@ -11,7 +11,7 @@
 
 .closed {
   .modal{
-    top: -50%;
+    top: -80%;
   }
   .modal-overlay{
     display: none;
@@ -28,7 +28,7 @@
   max-height: calc(100% - 10em);
   overflow-y: auto;
   position: fixed;
-  top: 5em;
+  top: 10em;
   width: 600px;
   z-index: 1100;
   transition: all .5s ease;
