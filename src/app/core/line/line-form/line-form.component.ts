@@ -1,7 +1,4 @@
-import {
-    Component, EventEmitter, Inject, Input, LOCALE_ID, OnChanges, OnInit, Output,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Line } from '../../line/line';
 import { LineAction } from '../line-action';
@@ -23,7 +20,7 @@ export class LineFormComponent implements OnChanges, OnInit {
     @Input() line: Line;
     private lineKey: string;
 
-    constructor(@Inject(LOCALE_ID) private _locale: string) { }
+    constructor() { }
 
     ngOnInit() {
         this.lineFormGroup = new FormGroup({
