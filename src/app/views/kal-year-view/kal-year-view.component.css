@@ -1,0 +1,15 @@
+.kal-year-view-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 97.5%;
+    height: 100%;
+    padding: 1em;
+}
+
+.kal-year-item {
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

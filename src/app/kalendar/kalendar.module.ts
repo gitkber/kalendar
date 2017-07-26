@@ -7,13 +7,16 @@ import { DayInMonthComponent } from './day/day-in-month/day-in-month.component';
 import { DayInOneWeekComponent } from './day/day-in-one-week/day-in-one-week.component';
 import { OneWeekComponent } from './one-week/one-week.component';
 import { SelectDateComponent } from './select-date/select-date.component';
+import { YearComponent } from './year/year.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
     declarations: [MonthComponent, DayInMonthComponent, DayInOneWeekComponent, OneWeekComponent,
-        SelectDateComponent],
+        SelectDateComponent,
+        YearComponent],
     exports: [MonthComponent, DayInMonthComponent, DayInOneWeekComponent, OneWeekComponent,
-        SelectDateComponent],
+        SelectDateComponent,
+        YearComponent],
     providers: []
 })
 export class KalendarModule {
