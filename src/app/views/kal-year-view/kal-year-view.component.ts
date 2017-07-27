@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Year } from '../../kalendar/year/year';
 
 @Component({
     selector: 'kal-year-view',
@@ -8,13 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class KalYearViewComponent implements OnInit {
 
-    public selectedDate: Date;
+    public year: Year;
 
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-            this.selectedDate = new Date(params['date']);
+            const selectedDate: Date = new Date(params['date']);
+            this.year = new Year(selectedDate.getFullYear());
         });
     }
 

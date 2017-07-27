@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Month } from '../month';
 
 @Component({
     selector: 'month-in-year',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MonthInYearComponent implements OnInit {
 
-    @Input() labelMonth: string;
+    @Input() month: Month;
 
     constructor() { }
 

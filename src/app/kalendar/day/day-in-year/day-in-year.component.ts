@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Day } from '../day';
 
 @Component({
     selector: 'day-in-year',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DayInYearComponent implements OnInit {
 
-    @Input() labelDay: string;
+    @Input() day: Day;
 
     constructor() { }
 

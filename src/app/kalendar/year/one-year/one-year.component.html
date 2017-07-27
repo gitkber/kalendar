@@ -1,14 +1,3 @@
 <div class="year-item-container">
-    <month-in-year class="year-item" [labelMonth]="'janvier'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'fevrier'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'mars'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'avril'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'mai'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'juin'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'juillet'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'aout'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'septembre'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'octobre'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'novembre'"></month-in-year>
-    <month-in-year class="year-item" [labelMonth]="'decembre'"></month-in-year>
+    <month-in-year *ngFor="let month of year.months" class="year-item" [month]="month"></month-in-year>
 </div>

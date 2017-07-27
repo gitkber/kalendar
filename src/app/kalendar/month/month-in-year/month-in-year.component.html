@@ -1,6 +1,4 @@
-<div>
-    {{ labelMonth }}
-    <day-in-year [labelDay]="'1'"></day-in-year>
-    <day-in-year [labelDay]="'...'"></day-in-year>
-    <day-in-year [labelDay]="'31'"></day-in-year>
+<div>{{ month.lastDateOfMonth | date:'MMMM' }}</div>
+<div class="month-item-container">
+    <day-in-year *ngFor="let day of month.days" class="month-item" [day]="day"></day-in-year>
 </div>
