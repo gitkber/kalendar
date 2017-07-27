@@ -26,7 +26,7 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() <= d.date.getFullYear()) {
-                    console.log('child_added contact', contact);
+                    // console.log('child_added contact', contact);
                     d.dayItems.push(new DayItem(Type.CONTACT, data.key, contact.firstname + ' ' + contact.lastname));
                 }
             })
@@ -41,7 +41,7 @@ export class CoreService {
                     && date.getFullYear() <= d.date.getFullYear()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
-                            console.log('child_changed contact', contact);
+                            // console.log('child_changed contact', contact);
                             di.item = contact.firstname + ' ' + contact.lastname;
                         }
                     })
@@ -58,7 +58,7 @@ export class CoreService {
                     && date.getFullYear() <= d.date.getFullYear()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
-                            console.log('child_removed contact', contact);
+                            // console.log('child_removed contact', contact);
                             d.dayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })
@@ -74,7 +74,7 @@ export class CoreService {
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()) {
-                    console.log('child_added line', line);
+                    // console.log('child_added line', line);
                     d.dayItems.push(new DayItem(Type.LINE, data.key, line.description));
                 }
             })
@@ -87,7 +87,7 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
-                        console.log('child_changed line', line);
+                        // console.log('child_changed line', line);
                         if (di.key === data.key) {
                             di.item = line.description;
                         }
@@ -104,7 +104,7 @@ export class CoreService {
                     && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
-                            console.log('child_removed line', line);
+                            // console.log('child_removed line', line);
                             d.dayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })

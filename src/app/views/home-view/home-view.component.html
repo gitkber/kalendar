@@ -3,8 +3,8 @@
               (navigateToMonthClick)="routerService.navigateToKalMonth($event)"
               (navigateToYearClick)="routerService.navigateToKalYear($event)"
               [navigation]="'day'"
-              (nextClick)="nextDay($event)"
-              (previousClick)="previousDay($event)"
+              (nextClick)="next($event)"
+              (previousClick)="previous($event)"
               (showDayDetailClick)="showDayDetail($event)"></one-week>
 </div>
 <day-modal [blocking]=false></day-modal>

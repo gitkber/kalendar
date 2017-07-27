@@ -29,6 +29,23 @@ export class Week {
         }
     }
 
+    selectDate(date: Date): Day {
+        let day: Day = null;
+        this.days.forEach(d => {
+            if (d.date !== undefined) {
+                if (d.date.getDate() === date.getDate()
+                    && d.date.getMonth() === date.getMonth()
+                    && d.date.getFullYear() === date.getFullYear()) {
+                    d.isSelected = true;
+                    day = d;
+                } else {
+                    d.isSelected = false
+                }
+            }
+        });
+        return day;
+    }
+
     next(): Day[] {
         this.days = this.days.slice(4, 8);
         if (this.days[0].date.getDay() === 1) {

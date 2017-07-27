@@ -33,6 +33,12 @@
     color: white;
     text-align: center;
 }
+.day-selected {    
+    background-color: rgba(251,251,212,0.7);
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    box-shadow: inset 0 8px 16px -5px black;
+}
 
 .day-item-title {
     align-items: center;

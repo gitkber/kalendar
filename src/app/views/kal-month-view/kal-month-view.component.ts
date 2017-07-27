@@ -31,6 +31,7 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.route.params.subscribe(params => {
             const selectedDate: Date = new Date(params['date']);
+            console.log('KalMonthViewComponent ngOnInit', selectedDate);
             this.month = new Month(selectedDate.getMonth() + 1, selectedDate.getFullYear());
             this.selectedDay = this.month.selectDate(selectedDate);
             this.coreService.populateDays(this.month.days);
