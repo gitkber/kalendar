@@ -1,0 +1,32 @@
+.day-container {
+    cursor: pointer;
+    border: 1px solid #9198A9;
+    background: white;
+    display: flex;
+    justify-content: center;
+    width: 99%;
+    color: #4D5874;
+    border-radius: 25px;
+    padding: 0.2em 0 0.2em 0;
+}
+
+.day-container.day-disabled {
+    background: none;
+    border: none;
+}
+
+.day-container.day-container.weekend.day-disabled {
+    background: none;
+    border: none;
+    color: #4D5874;
+}
+
+.day-container.today {
+    background: #AD6B6B;
+    color: #FBFBD4;
+}
+
+.day-container.weekend {
+    background: #4D5874;
+    color: #FBFBD4;
+}
