@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { OneWeek } from './one-week';
-import { Day } from '../day/day';
+import { Week } from '../week';
+import { Day } from '../../day/day';
 
 @Component({
     selector: 'one-week',
@@ -9,7 +9,7 @@ import { Day } from '../day/day';
 })
 export class OneWeekComponent {
 
-    @Input() oneWeek: OneWeek;
+    @Input() week: Week;
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
     @Output() navigateToYearClick: EventEmitter<Date> = new EventEmitter();
     @Input() navigation: string; // year - month - day

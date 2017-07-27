@@ -1,8 +1,9 @@
 <div class="one-week-container">
     <div class="one-week-item-container">
-        <day-in-one-week *ngFor="let day of oneWeek.days" class="one-week-item" [day]="day"
+        <day-in-one-week *ngFor="let day of week.days" class="one-week-item" [day]="day"
                          (navigateToMonthClick)="navigateToMonth($event)"
-                         (navigateToYearClick)="navigateToYear($event)" (showDayDetailClick)="showDayDetail(day)"></day-in-one-week>
+                         (navigateToYearClick)="navigateToYear($event)"
+                         (showDayDetailClick)="showDayDetail(day)"></day-in-one-week>
     </div>
     <div class="navigation-item">
         <kal-button-action [image]="'../../../assets/images/chevron-up.svg'" (click)="goPrevious()"></kal-button-action>

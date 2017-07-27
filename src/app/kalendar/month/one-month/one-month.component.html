@@ -1,0 +1,4 @@
+<div class="month-item-container">
+    <day-in-month *ngFor="let day of month.days" class="month-item" [day]="day"
+                  (click)="showDayDetail(day)"></day-in-month>
+</div>

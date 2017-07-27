@@ -1,6 +1,6 @@
 import { Day } from '../day/day';
 
-export class OneWeek {
+export class Week {
 
     public days: Day[] = [];
 
