@@ -40,3 +40,10 @@ button:hover {
 .error {
     color: red;
 }
+
+.action-row-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}

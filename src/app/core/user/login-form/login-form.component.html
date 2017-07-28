@@ -4,7 +4,10 @@
         <span class="error" *ngIf="loginError">{{ loginError }}</span>
         <input type="text" placeholder="Email" formControlName="email" />
         <input type="password" placeholder="Password" formControlName="password" />
-        <button>Log in</button>
+        <div class="action-row-item">
+            <kal-button-action [image]="'../../../assets/images/login_white.svg'" (click)="login()"></kal-button-action>
+        </div>
+        
     </form>
 
 </div>
