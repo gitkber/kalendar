@@ -1,4 +1,4 @@
 <div class="kal-year-view-content">
-    <one-year class="kal-year-item" [year]="year"></one-year>
+    <one-year class="kal-year-item" [year]="year" (showDayDetailClick)="showDayDetail($event)"></one-year>
 </div>
-
+<day-modal [blocking]=false></day-modal>

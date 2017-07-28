@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Year } from '../../kalendar/year/year';
 import { AppService } from '../../app.service';
+import { DayModalComponent } from '../modal/day-modal/day-modal.component';
+import { Year } from '../../kalendar/year/year';
 import { Day } from '../../kalendar/day/day';
 
 @Component({
@@ -10,6 +11,8 @@ import { Day } from '../../kalendar/day/day';
     styleUrls: ['./kal-year-view.component.css']
 })
 export class KalYearViewComponent implements OnInit {
+
+    @ViewChild(DayModalComponent) modal: DayModalComponent;
 
     public year: Year;
     private selectedDay: Day;
@@ -23,6 +26,12 @@ export class KalYearViewComponent implements OnInit {
             this.year = new Year(selectedDate.getFullYear());
             this.selectedDay = this.year.selectDate(this.appService.currentDate);
         });
+    }
+
+    showDayDetail(event: Day) {
+        this.appService.selectDate(event.date);
+        this.selectedDay = this.year.selectDate(this.appService.currentDate);
+        this.modal.open(this.selectedDay);
     }
 
 }

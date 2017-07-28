@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Year } from '../year';
+import { Day } from '../../day/day';
 
 @Component({
     selector: 'one-year',
@@ -9,10 +10,14 @@ import { Year } from '../year';
 export class OneYearComponent implements OnInit {
 
     @Input() year: Year;
+    @Output() showDayDetailClick: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
+    showDayDetail(event: Day) {
+        this.showDayDetailClick.emit(event);
+    }
 }

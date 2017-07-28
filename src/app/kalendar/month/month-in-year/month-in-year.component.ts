@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Month } from '../month';
+import { Day } from '../../day/day';
 
 @Component({
     selector: 'month-in-year',
@@ -9,10 +10,14 @@ import { Month } from '../month';
 export class MonthInYearComponent implements OnInit {
 
     @Input() month: Month;
+    @Output() showDayDetailClick: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
+    showDayDetail(event: Day) {
+        this.showDayDetailClick.emit(event);
+    }
 }
