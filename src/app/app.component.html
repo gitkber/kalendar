@@ -2,14 +2,21 @@
     <div class="kal-header" *ngIf="authService.authenticated">
         <kal-logo></kal-logo>
         <div class="kal-header-item" *ngIf="!routerService.isChildView">
-            <kal-button-menu [image]="'../../../assets/images/home.svg'" [selected]="routerService.isHomeViewSelected()" (click)="routerService.navigateToHome()"></kal-button-menu>
-            <kal-button-menu [image]="'../../../assets/images/users.svg'" [selected]="routerService.isContactsViewSelected()" (click)="routerService.navigateToContacts()"></kal-button-menu>
-            <kal-button-menu [image]="'../../../assets/images/newspaper.svg'" [selected]="routerService.isLinesViewSelected()" (click)="routerService.navigateToLines()"></kal-button-menu>
-            <kal-button-menu [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'" (click)="authService.signOut()"></kal-button-menu>
+            <kal-button-menu [image]="'../../../assets/images/home.svg'" [selected]="routerService.isHomeViewSelected()"
+                             (click)="routerService.navigateToHome()"></kal-button-menu>
+            <kal-button-menu [image]="'../../../assets/images/users.svg'"
+                             [selected]="routerService.isContactsViewSelected()"
+                             (click)="routerService.navigateToContacts()"></kal-button-menu>
+            <kal-button-menu [image]="'../../../assets/images/newspaper.svg'"
+                             [selected]="routerService.isLinesViewSelected()"
+                             (click)="routerService.navigateToLines()"></kal-button-menu>
+            <kal-button-menu [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
+                             (click)="authService.signOut()"></kal-button-menu>
         </div>
         <div class="kal-header-item" *ngIf="routerService.isChildView">
-            <select-date class="select-date" [date]="appService.currentDate" [navigation]="'month'" (nextClick)="next($event)" (previousClick)="previous($event)"></select-date>
-            <kal-button-action [label]="'BACK'" (click)="routerService.back()"></kal-button-action>
+            <select-date class="select-date" [date]="appService.currentDate" [navigation]="'month'"
+                         (navigateClick)="navigate($event)"></select-date>
+            <kal-button-action [label]="'CLOSE'" (click)="routerService.back()"></kal-button-action>
         </div>
     </div>
     <div class="kal-body">

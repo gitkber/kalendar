@@ -4,5 +4,6 @@
     <kal-button-menu [label]="date | date: 'y'" (click)="changeNavigation('year')"
         [selected]="navigation === 'year'"></kal-button-menu>
     <kal-button-action [image]="'../../../assets/images/chevron-left.svg'" (click)="goPrevious()"></kal-button-action>
+    <kal-button-action [label]="'.'" (click)="goToday()"></kal-button-action>
     <kal-button-action [image]="'../../../assets/images/chevron-right.svg'" (click)="goNext()"></kal-button-action>
 </div>

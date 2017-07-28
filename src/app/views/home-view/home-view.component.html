@@ -1,10 +1,7 @@
 <div class="home-view-container">
     <one-week class="one-week-item" [week]="week"
-              (navigateToMonthClick)="routerService.navigateToKalMonth($event)"
-              (navigateToYearClick)="routerService.navigateToKalYear($event)"
               [navigation]="'day'"
-              (nextClick)="next($event)"
-              (previousClick)="previous($event)"
+              (navigateClick)="navigate($event)"
               (showDayDetailClick)="showDayDetail($event)"></one-week>
 </div>
 <day-modal [blocking]=false></day-modal>

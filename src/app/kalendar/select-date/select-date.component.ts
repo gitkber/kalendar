@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Navigation } from '../navigation';
 
 @Component({
     selector: 'select-date',
@@ -9,19 +10,28 @@ export class SelectDateComponent implements OnInit {
 
     @Input() date: Date;
     @Input() navigation: string; // year - month - day
-    @Output() nextClick: EventEmitter<any> = new EventEmitter();
-    @Output() previousClick: EventEmitter<any> = new EventEmitter();
+    @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() { }
 
+    goToday() {
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isToday = true;
+        this.navigateClick.emit(navigation);
+    }
+
     goNext() {
-        this.nextClick.emit(this.navigation);
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isNext = true;
+        this.navigateClick.emit(navigation);
     }
 
     goPrevious() {
-        this.previousClick.emit(this.navigation);
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isPrevious = true;
+        this.navigateClick.emit(navigation);
     }
 
     changeNavigation(navigation: string) {
