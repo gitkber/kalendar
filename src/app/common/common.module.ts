@@ -6,11 +6,13 @@ import { KalButtonMenuComponent } from './kal-button-menu/kal-button-menu.compon
 import { KalLogoComponent } from './kal-logo/kal-logo.component';
 import { KalPolaroidComponent } from './kal-polaroid/kal-polaroid.component';
 import { DateStringPipe } from './pipe/date-string.pipe';
-
+import { SvgLoginComponent } from "./svg/svg-login.component";
 @NgModule({
     imports: [BrowserModule, RouterModule],
-    declarations: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe],
-    exports: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe],
+    declarations: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe,
+        SvgLoginComponent],
+    exports: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe,
+        SvgLoginComponent],
     providers: []
 })
 export class CommonModule {

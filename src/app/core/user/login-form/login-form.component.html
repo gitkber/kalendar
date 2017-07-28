@@ -1,15 +1,13 @@
 <div class="login-container">
     <form class="form-container" (ngSubmit)="login()" [formGroup]="loginFormGroup" #loginForm="ngForm">
-        <h2>Login</h2>
+        <div class="title-form">Login</div>
         <span class="error" *ngIf="loginError">{{ loginError }}</span>
         <input type="text" placeholder="Email" formControlName="email" />
         <input type="password" placeholder="Password" formControlName="password" />
-        <div class="action-row-item">
-            <kal-button-action [image]="'../../../assets/images/login_white.svg'" (click)="login()"></kal-button-action>
-        </div>
-        
     </form>
-
+    <div class="action-row-item">
+        <svg-login (click)="login()"></svg-login>
+    </div>
 </div>
 
 <!--
