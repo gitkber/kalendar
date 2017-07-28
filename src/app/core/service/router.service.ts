@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { DateUtilService } from './date-util.service';
 
 @Injectable()
 export class RouterService {
 
     public isChildView: boolean;
 
-    constructor(private router: Router, public location: Location) { }
+    constructor(private router: Router, public location: Location, public dateUtilService: DateUtilService) { }
 
     back() {
         this.isChildView = false;
@@ -36,12 +37,12 @@ export class RouterService {
 
     navigateToKalYear(date: Date) {
         this.isChildView = true;
-        this.router.navigate(['/kalyear', date.toISOString().substring(0, 10)]);
+        this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }
 
     navigateToKalMonth(date: Date) {
         this.isChildView = true;
-        this.router.navigate(['/kalmonth', date.toISOString().substring(0, 10)]);
+        this.router.navigate(['/kalmonth', this.dateUtilService.toString(date)]);
     }
 
     isHomeViewSelected(): boolean {

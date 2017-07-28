@@ -33,8 +33,8 @@
     color: white;
     text-align: center;
 }
-.day-selected {    
-    background-color: rgba(251,251,212,0.7);
+.day-selected {
+    background-color: rgba(251,251,212,1);
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
     box-shadow: inset 0 8px 16px -5px black;

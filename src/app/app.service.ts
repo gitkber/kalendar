@@ -10,8 +10,8 @@ export class AppService {
     public currentDate: Date;
 
     constructor() {
-        //this.currentDate = new Date();
-        //this.subject.next(this.currentDate);
+        this.currentDate = new Date();
+        this.subject.next(this.currentDate);
     }
 
     get date(): Observable<Date> {

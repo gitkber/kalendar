@@ -18,13 +18,9 @@ export class HomeViewComponent implements OnInit {
     public week: Week;
     private selectedDay: Day;
 
-    constructor(public routerService: RouterService, private coreService: CoreService, private appService: AppService) { 
-        console.log('HomeViewComponent constructor', this.appService.currentDate);
-    }
+    constructor(public routerService: RouterService, private coreService: CoreService, private appService: AppService) { }
 
     ngOnInit() {
-        this.appService.selectDate(new Date());
-        console.log('HomeViewComponent ngOnInit', this.appService.currentDate);
         this.week = new Week(this.appService.currentDate);
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
         this.coreService.populateDays(this.week.days);

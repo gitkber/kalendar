@@ -1,3 +1,5 @@
-<div class="day-container" [class.day-disabled]="day.isDisabled" [class.today]="day.isToday" [class.weekend]="day.isWeekend"  >
+<div class="day-container"
+     [class.day-disabled]="day.isDisabled" [class.today]="day.isToday"
+     [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected">
     {{ day.date | date:'d' }}
 </div>
