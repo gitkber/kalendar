@@ -9,10 +9,10 @@ http://codepen.io/berdejitendra/pen/KxmvD 	    - Login layout black background
 */
 
 svg {
-    margin: 0;
+    margin: 0.5em;
     padding: 1em 0.5em 0.5em 1em;
-    height: 3em;
-    width: 3em;
+    height: 2em;
+    width: 2em;
     background: rgba(253, 95, 0, 1);
     border: 0.5em solid #222526;
     border-radius: 50%;
@@ -21,6 +21,9 @@ svg {
 }
 
 svg path {
+    fill: white;
+}
+svg rect {
     fill: white;
 }
 
@@ -35,5 +38,9 @@ svg:hover {
 }
 
 svg:hover path {
+    fill: rgba(253, 95, 0, 1);
+}
+
+svg:hover rect {
     fill: rgba(253, 95, 0, 1);
 }

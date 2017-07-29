@@ -18,9 +18,8 @@
         </div>
         -->
         <div class="action-row">
-            <kal-button-action [image]="'../../../assets/images/save_white.svg'" (click)="saveLine()"></kal-button-action>
-            <kal-button-action [image]="'../../../assets/images/delete_white.svg'"
-                             (click)="deleteLine()"></kal-button-action>
+            <svg-save (click)="saveLine()"></svg-save>
+            <svg-delete (click)="deleteLine()"></svg-delete>
         </div>
         <!--
         <button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>

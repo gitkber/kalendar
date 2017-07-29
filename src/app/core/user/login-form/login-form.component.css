@@ -22,14 +22,6 @@
     line-height: 1.5;
 }
 
-input {
-    height: 30px;
-    background-color: #e0dada;
-    border: none;
-    margin-bottom: 10px;
-}
-
-
 .error {
     color: red;
 }
@@ -41,29 +33,3 @@ input {
     width: 100%;
 }
 
-input
-{
-border-radius:5px;
-background: #333333;
-width:85%;
-padding:0.5em 2em 0.5em 2em;
-font-size: medium;
-border:none;
-color:#929999;                       
-box-shadow:inset 0px 1px 5px #272727;
--webkit-transition:0.5s ease;
--moz-transition:0.5s ease;
--o-transition:0.5s ease;
--ms-transition:0.5s ease;
-transition:0.5s ease; 
-}
-
-input:focus
-{
--webkit-transition:0.5s ease;
--moz-transition:0.5s ease;
--o-transition:0.5s ease;
--ms-transition:0.5s ease;
-transition:0.5s ease;  
-box-shadow: 0px 0px 5px 1px #161718;
-}

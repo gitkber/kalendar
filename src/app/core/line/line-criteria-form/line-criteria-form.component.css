@@ -1,19 +1,15 @@
 .line-form-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-content: flex-end;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #555555;
     box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
-    padding: 25px;
+    padding: 2em 2em 1em 2em;
+    border-radius: 0.3em;
 }
 
 .form-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-content: center;
-    width: 100%;
 }
 
 .line-row {
@@ -36,11 +32,3 @@
     flex: 1;
 }
 
-input {
-    height: 30px;
-    background-color: #e0dada;
-    border: none;
-    margin-bottom: 10px;
-    flex: 1;
-    margin-left: 10px;
-}

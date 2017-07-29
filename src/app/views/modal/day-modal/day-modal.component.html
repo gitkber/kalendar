@@ -15,8 +15,9 @@
                 <img *ngIf="dayItem.isLine()" src="../../../../assets/images/newspaper.svg" height="20" width="20"/>
                 <span>{{dayItem.item}}</span>
             </div>
+            <line-criteria-form class="line-form-item" [lineCriteria]="lineCriteriaSelected" (actionClick)="doActionOnLine($event)"></line-criteria-form>
         </div>
-        <line-criteria-form class="line-form-item" [lineCriteria]="lineCriteriaSelected" (actionClick)="doActionOnLine($event)"></line-criteria-form>
+        
     </div>
 
 </div>
