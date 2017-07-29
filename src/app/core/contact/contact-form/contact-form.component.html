@@ -1,15 +1,15 @@
 <div class="contact-form-container">
     <form class="form-container" (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
         <div class="contact-row">
-            <label for="inputFirstname">Firstname</label>
+            <label class="labelFor" for="inputFirstname">Firstname</label>
             <input type="text" formControlName="firstname" name="firstname" id="inputFirstname"/>
         </div>
         <div class="contact-row">
-            <label for="inputLastname">Lastname</label>
+            <label class="labelFor" for="inputLastname">Lastname</label>
             <input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>
         </div>
         <div class="contact-row">
-            <label for="inputBirthdate">Birthdate</label>
+            <label class="labelFor" for="inputBirthdate">Birthdate</label>
             <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
         </div>
 
