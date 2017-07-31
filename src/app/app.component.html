@@ -8,8 +8,8 @@
                              [selected]="routerService.isContactsViewSelected()"
                              (click)="routerService.navigateToContacts()"></kal-button-menu>
             <kal-button-menu [image]="'../../../assets/images/newspaper.svg'"
-                             [selected]="routerService.isLinesViewSelected()"
-                             (click)="routerService.navigateToLines()"></kal-button-menu>
+                             [selected]="routerService.isMemosViewSelected()"
+                             (click)="routerService.navigateToMemos()"></kal-button-menu>
             <kal-button-menu [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
                              (click)="authService.signOut()"></kal-button-menu>
         </div>

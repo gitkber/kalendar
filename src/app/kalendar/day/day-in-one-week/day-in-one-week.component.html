@@ -12,7 +12,7 @@
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
             <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="18"
                  width="18"/>
-            <img *ngIf="dayItem.isLine()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
+            <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
             <span>{{dayItem.item}}</span>
         </div>
     </div>

@@ -13,8 +13,8 @@ export class DayItem {
         return this.type === Type.CONTACT;
     }
 
-    isLine(): boolean {
-        return this.type === Type.LINE;
+    isMemo(): boolean {
+        return this.type === Type.MEMO;
     }
 
 }

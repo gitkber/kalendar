@@ -8,7 +8,7 @@ import { CommonModule } from '../common/common.module';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
-import { LinesViewComponent } from './lines-view/lines-view.component';
+import { MemosViewComponent } from './memos-view/memos-view.component';
 import { KalYearViewComponent } from './kal-year-view/kal-year-view.component';
 import { KalMonthViewComponent } from './kal-month-view/kal-month-view.component';
 
@@ -18,7 +18,7 @@ import { DayModalComponent } from './modal/day-modal/day-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
-    declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, LinesViewComponent,
+    declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, MemosViewComponent,
         SheetOfPaperComponent, PolaroidComponent,
         DayModalComponent],
     exports: [],

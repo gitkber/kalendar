@@ -1,4 +1,4 @@
-export class Line {
+export class Memo {
 
     constructor(
         public user: string,

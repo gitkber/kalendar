@@ -30,9 +30,9 @@ export class RouterService {
         this.router.navigateByUrl('/contacts');
     }
 
-    navigateToLines() {
+    navigateToMemos() {
         this.isChildView = false;
-        this.router.navigate(['/lines'])
+        this.router.navigate(['/memos'])
     }
 
     navigateToKalYear(date: Date) {
@@ -53,8 +53,8 @@ export class RouterService {
         return this.router.isActive('/contacts', true);
     }
 
-    isLinesViewSelected(): boolean {
-        return this.router.isActive('/lines', true);
+    isMemosViewSelected(): boolean {
+        return this.router.isActive('/memos', true);
     }
 
 }

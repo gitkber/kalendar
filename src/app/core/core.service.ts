@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
-import { Line } from './line/line';
+import { Memo } from './memo/memo';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
 import { Type } from '../kalendar/type';
 import { ContactService } from './contact/contact.service';
-import { LineService } from './line/line.service';
+import { MemoService } from './memo/memo.service';
 import { Contact } from './contact/contact';
 
 @Injectable()
 export class CoreService {
 
-    constructor(public contactService: ContactService, public lineService: LineService) { }
+    constructor(public contactService: ContactService, public memoService: MemoService) { }
 
     populateDays(days: Day[]) {
         this.populateContactsWithDays(days);
-        this.populateLinesWithDays(days);
+        this.populateMemosWithDays(days);
     }
 
     private populateContactsWithDays(days: Day[]) {
@@ -67,44 +67,44 @@ export class CoreService {
         });
     }
 
-    private populateLinesWithDays(days: Day[]) {
-        this.lineService.getRef().on('child_added', data => {
-            const line: Line = data.val();
-            const date: Date = new Date(line.kalendarDate);
+    private populateMemosWithDays(days: Day[]) {
+        this.memoService.getRef().on('child_added', data => {
+            const memo: Memo = data.val();
+            const date: Date = new Date(memo.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()) {
-                    // console.log('child_added line', line);
-                    d.dayItems.push(new DayItem(Type.LINE, data.key, line.description));
+                    // console.log('child_added memo', memo);
+                    d.dayItems.push(new DayItem(Type.MEMO, data.key, memo.description));
                 }
             })
         });
 
-        this.lineService.getRef().on('child_changed', data => {
-            const line: Line = data.val();
-            const date: Date = new Date(line.kalendarDate);
+        this.memoService.getRef().on('child_changed', data => {
+            const memo: Memo = data.val();
+            const date: Date = new Date(memo.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
-                        // console.log('child_changed line', line);
+                        // console.log('child_changed memo', memo);
                         if (di.key === data.key) {
-                            di.item = line.description;
+                            di.item = memo.description;
                         }
                     })
                 }
             })
         });
 
-        this.lineService.getRef().on('child_removed', data => {
-            const line: Line = data.val();
-            const date: Date = new Date(line.kalendarDate);
+        this.memoService.getRef().on('child_removed', data => {
+            const memo: Memo = data.val();
+            const date: Date = new Date(memo.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
-                            // console.log('child_removed line', line);
+                            // console.log('child_removed memo', memo);
                             d.dayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })

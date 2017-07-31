@@ -8,7 +8,7 @@
     padding: 1em;
 }
 
-.line-list-item {
+.memo-list-item {
 	height: 100%;
 	width: 50%;
 }
@@ -23,7 +23,7 @@
 	width: 50%;
 }
 
-.line-form-item {
+.memo-form-item {
 	/*width: 80%;*/
 }
 

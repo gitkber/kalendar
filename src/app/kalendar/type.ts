@@ -1,3 +1,3 @@
 export enum Type {
-    CONTACT, LINE, USER
+    CONTACT, MEMO, USER
 }

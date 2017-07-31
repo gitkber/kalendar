@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
-import { LineService } from '../../../core/line/line.service';
+import { MemoService } from '../../../core/memo/memo.service';
 import { DayItem } from '../../../kalendar/day-item';
-import { LineCriteria } from '../../../core/line/line-criteria';
+import { MemoCriteria } from '../../../core/memo/memo-criteria';
 import { DateUtilService } from '../../../core/service/date-util.service';
 
 @Component({
@@ -15,17 +15,17 @@ export class DayModalComponent implements OnInit {
     @Input() blocking = false;
 
     public isOpen = false;
-    public lineCriteriaSelected: LineCriteria;
+    public memoCriteriaSelected: MemoCriteria;
     public day: Day;
 
-    constructor(private dateUtilService: DateUtilService, private lineService: LineService) { }
+    constructor(private dateUtilService: DateUtilService, private memoService: MemoService) { }
 
     ngOnInit() { }
 
     open(day: Day): void {
         this.isOpen = true;
         this.day = day;
-        this.lineCriteriaSelected = new LineCriteria(null, this.dateUtilService.toString(this.day.date), null);
+        this.memoCriteriaSelected = new MemoCriteria(null, this.dateUtilService.toString(this.day.date), null);
     }
 
     close(checkBlocking = false): void {
@@ -36,13 +36,13 @@ export class DayModalComponent implements OnInit {
     }
 
     selectDayItem(dayItem: DayItem) {
-        if (dayItem.isLine()) {
-            this.lineCriteriaSelected = new LineCriteria(dayItem.item, this.dateUtilService.toString(this.day.date), dayItem.key);
+        if (dayItem.isMemo()) {
+            this.memoCriteriaSelected = new MemoCriteria(dayItem.item, this.dateUtilService.toString(this.day.date), dayItem.key);
         }
     }
 
-    doActionOnLine(event: LineCriteria) {
-        console.log('doActionOnLine event', event);
-        this.lineService.doActionOnLine(event);
+    doActionOnMemo(event: MemoCriteria) {
+        console.log('doActionOnMemo event', event);
+        this.memoService.doActionOnMemo(event);
     }
 }
