@@ -9,9 +9,14 @@
             <input formControlName="duplication" name="duplication" id="inputDuplication"/>
         </div>
         <div class="memo-row">
-            <label class="labelFor" for="inputIncludeWeekend">Week-end inclus : </label>
-            non<input type="radio" formControlName="includeWeekend" name="includeWeekend" id="inputIncludeWeekend" [value]="false"/>
-            oui<input type="radio" formControlName="includeWeekend" name="includeWeekend" [value]="true"/>
+            <label class="labelFor" for="inputIncludeWeekend">Week-end inclus</label>
+            <div class="switch switch-yellow">
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend" [value]="false" id="inputIncludeWeekend" checked>
+                <label for="inputIncludeWeekend" class="switch-label switch-label-off">NON</label>
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend" [value]="true" id="month3">
+                <label for="month3" class="switch-label switch-label-on">OUI</label>
+                <span class="switch-selection"></span>
+            </div>
         </div>
     </form>
     <div class="panel-action">
