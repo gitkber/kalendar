@@ -1,0 +1,10 @@
+<div class="panel">
+    <div class="title">{{ title}}</div>
+    <div class="body">
+        <div class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <ng-content></ng-content>
+    </div>
+    <div class="action">
+        <ng-content select=".panel-action"></ng-content>
+    </div>
+</div>

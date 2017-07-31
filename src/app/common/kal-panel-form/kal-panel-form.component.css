@@ -1,0 +1,29 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #555555;
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    padding: 2em 2em 1em 2em;
+    border-radius: 0.3em;
+}
+
+.title {
+    font-size: 3em;
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(253, 95, 0, 0.8);
+    text-shadow: 1px 4px 6px #555555, 0 0 0 #000, 1px 4px 6px #555555;
+    line-height: 1.5;
+}
+
+.errorMessage {
+    color: rgba(253, 95, 0, 1);
+}
+
+.action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}

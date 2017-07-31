@@ -1,4 +1,4 @@
-<div class="contact-form-container">
+<kal-panel-form>
     <form class="form-container" (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
         <div class="contact-row">
             <label class="labelFor" for="inputFirstname">Firstname</label>
@@ -12,12 +12,11 @@
             <label class="labelFor" for="inputBirthdate">Birthdate</label>
             <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
         </div>
-
-        <div class="action-row">
-            <svg-save (click)="addContact()"></svg-save>
-            <svg-delete (click)="deleteContact()"></svg-delete>
-        </div>
-        <!--<button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
-        <button class="btn btn-primary"  (click)="deleteContact()">Delete</button>-->
     </form>
-</div>
+    <div class="panel-action">
+        <svg-save (click)="addContact()"></svg-save>
+        <svg-delete (click)="deleteContact()"></svg-delete>
+    </div>
+</kal-panel-form>
+
+

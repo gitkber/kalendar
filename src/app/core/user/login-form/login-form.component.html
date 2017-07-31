@@ -1,18 +1,10 @@
-<div class="login-container">
+<kal-panel-form [title]="'Login'" [errorMessage]="loginError">
     <form class="form-container" (ngSubmit)="login()" [formGroup]="loginFormGroup" #loginForm="ngForm">
-        <div class="title-form">Login</div>
-        <span class="error" *ngIf="loginError">{{ loginError }}</span>
-        <input type="text" placeholder="Email" formControlName="email" />
-        <input type="password" placeholder="Password" formControlName="password" />
+        <input placeholder="Email" formControlName="email"/>
+        <input type="password" placeholder="Password" formControlName="password"/>
     </form>
-    <div class="action-row-item">
+    <div class="panel-action">
         <svg-login (click)="login()"></svg-login>
     </div>
-</div>
+</kal-panel-form>
 
-<!--
-<div *ngIf="userFounded; else loading">
-  userFounded...
-</div>
-<ng-template #loading>Loading...</ng-template>
--->

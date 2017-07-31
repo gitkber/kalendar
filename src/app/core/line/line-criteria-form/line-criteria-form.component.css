@@ -1,12 +1,3 @@
-.line-form-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #555555;
-    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
-    padding: 2em 2em 1em 2em;
-    border-radius: 0.3em;
-}
-
 .form-container {
     display: flex;
     flex-direction: column;
@@ -23,12 +14,4 @@
     flex: 1;
 }
 
-.action-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    color: white;
-    margin: 0;
-    flex: 1;
-}
 

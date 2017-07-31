@@ -1,4 +1,4 @@
-<div class="line-form-container">
+<kal-panel-form>
     <form class="form-container" (ngSubmit)="saveLine()" [formGroup]="lineCriteriaFormGroup" #addLineForm="ngForm">
         <div class="line-row">
             <label class="labelFor" for="inputDescription">Description</label>
@@ -13,19 +13,9 @@
             non<input type="radio" formControlName="includeWeekend" name="includeWeekend" id="inputIncludeWeekend" [value]="false"/>
             oui<input type="radio" formControlName="includeWeekend" name="includeWeekend" [value]="true"/>
         </div>
-        <!--
-        <div class="line-row">
-            <label for="inputKalendarDate">KalendarDate</label>
-            <input type="text" formControlName="kalendarDate" name="kalendarDate" id="inputKalendarDate"/>
-        </div>
-        -->
-        <div class="action-row">
-            <svg-save (click)="saveLine()"></svg-save>
-            <svg-delete (click)="deleteLine()"></svg-delete>
-        </div>
-        <!--
-        <button class="btn btn-primary"  name="submmitButton" id="submmitButton">Save</button>
-        <button class="btn btn-primary"  (click)="deleteLine()">Delete</button>
-        -->
     </form>
-</div>
+    <div class="panel-action">
+        <svg-save (click)="saveLine()"></svg-save>
+        <svg-delete (click)="deleteLine()"></svg-delete>
+    </div>
+</kal-panel-form>
