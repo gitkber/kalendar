@@ -1,7 +1,7 @@
 <div class="view-container">
-  <sheet-of-paper class="sheet-of-paper-item"></sheet-of-paper>
+  <sheet-of-paper class="sheet-of-paper-item" (setDemoLoginClick)="setDemoLogin()"></sheet-of-paper>
   <div class="right-container">
-    <login-form class="login-panel-item"></login-form>
+    <login-form class="login-panel-item" [user]="user"></login-form>
     <kal-polaroid [label]="'Zen Attitude'" [image]="'../../../assets/images/photo/IMG_yoga.jpg'" class="polaroid-item"></kal-polaroid>
   </div>
 </div>
