@@ -6,9 +6,14 @@ export class Week {
     private today: Date;
 
     constructor(
-        public date: Date
+        private date: Date
     ) {
         this.today = new Date();
+        this.createDays(this.date);
+    }
+
+    private createDays(date: Date) {
+        this.days = [];
         const currentDay: number = date.getDay();
         let count: number;
         if (currentDay === 1 || currentDay === 5) {
@@ -46,6 +51,11 @@ export class Week {
             }
         });
         return day;
+    }
+
+    goToday(): Day[] {
+        this.createDays(new Date());
+        return this.days;
     }
 
     next(): Day[] {

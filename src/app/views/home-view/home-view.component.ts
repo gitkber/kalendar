@@ -29,7 +29,8 @@ export class HomeViewComponent implements OnInit {
 
     navigate(event: Navigation) {
         if (event.isToday) {
-            console.warn('TODO navigation to today')
+            this.coreService.populateDays(this.week.goToday());
+            this.selectedDay = this.week.selectDate(this.appService.currentDate);
         } else if (event.isNext) {
             this.coreService.populateDays(this.week.next());
             this.selectedDay = this.week.selectDate(this.appService.currentDate);
