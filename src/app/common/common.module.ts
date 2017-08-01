@@ -10,13 +10,14 @@ import { SvgLoginComponent } from './svg/svg-login.component';
 import { SvgSaveComponent } from './svg/svg-save.component';
 import { SvgDeleteComponent } from './svg/svg-delete.component';
 import { KalPanelFormComponent } from './kal-panel-form/kal-panel-form.component';
+import { KalModalComponent } from './kal-modal/kal-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule],
     schemas:      [ NO_ERRORS_SCHEMA ],
     declarations: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         SvgLoginComponent, SvgSaveComponent, SvgDeleteComponent,
-        KalPanelFormComponent],
+        KalPanelFormComponent, KalModalComponent],
     exports: [KalButtonActionComponent, KalButtonMenuComponent, KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         SvgLoginComponent, SvgSaveComponent, SvgDeleteComponent,
         KalPanelFormComponent],

@@ -22,8 +22,8 @@ export class ContactsViewComponent implements OnInit {
       });
     }
   */
-  private contactSelected: Contact;
-  private contacts: FirebaseListObservable<Contact[]>
+  public contactSelected: Contact;
+  public contacts: FirebaseListObservable<Contact[]>
 
   constructor(private contactService: ContactService) { }
 

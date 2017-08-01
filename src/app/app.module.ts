@@ -15,14 +15,9 @@ import { KalendarModule } from './kalendar/kalendar.module';
 import { CoreModule } from './core/core.module';
 import { CommonModule } from './common/common.module';
 
-export const firebaseConfig = {
-    apiKey: 'AIzaSyDY_s4Lx7hJHhRMbDUuiwTiGiw-BbEH644',
-    authDomain: 'prjtoto.firebaseapp.com',
-    databaseURL: 'https://prjtoto.firebaseio.com',
-    projectId: 'prjtoto',
-    storageBucket: 'prjtoto.appspot.com',
-    messagingSenderId: '130899308329'
-};
+import { environment } from '../environments/environment';
+
+export const firebaseConfig = environment.firebaseConfig;
 
 @NgModule({
     declarations: [

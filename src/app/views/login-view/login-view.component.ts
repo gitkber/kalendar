@@ -18,7 +18,8 @@ export class LoginViewComponent implements OnInit {
   setDemoLogin() {
     console.log('test');
     
-    this.user = new User(null, 'toto.test@gmail.com', 'bonjour');
+    //this.user = new User(null, 'toto.test@gmail.com', 'bonjour');
+    this.user = new User(null, 'kslyfe.demo@gmail.com', 'matouchka*');
   }
 
 }
