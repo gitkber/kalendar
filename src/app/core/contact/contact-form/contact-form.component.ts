@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../../contact/contact';
 import { ContactAction } from '../contact-action';
 import { Action } from '../../action';
-import { DateStringPipe } from '../../../common/pipe/date-string.pipe';
+import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 
 @Component({
     selector: 'contact-form',
