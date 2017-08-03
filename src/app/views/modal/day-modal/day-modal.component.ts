@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
 import { MemoService } from '../../../core/memo/memo.service';
 import { DayItem } from '../../../kalendar/day-item';
@@ -22,6 +22,11 @@ export class DayModalComponent implements OnInit {
 
     ngOnInit() { }
 
+    @HostListener('document:keydown.escape', ['$event'])
+    onKeydownHandler(evt: KeyboardEvent) {
+        this.close();
+    }
+
     open(day: Day): void {
         this.isOpen = true;
         this.day = day;
@@ -42,7 +47,6 @@ export class DayModalComponent implements OnInit {
     }
 
     doActionOnMemo(event: MemoCriteria) {
-        console.log('doActionOnMemo event', event);
         this.memoService.doActionOnMemo(event);
     }
 }

@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateStringPipe } from '../../../common/pipe/date-string.pipe';
 import { Action } from '../../action';
@@ -10,6 +20,8 @@ import { MemoCriteria } from '../memo-criteria';
     styleUrls: ['./memo-criteria-form.component.css']
 })
 export class MemoCriteriaFormComponent implements OnInit, OnChanges {
+
+    @ViewChild('inputDescription') input: ElementRef;
 
     @Input() memoCriteria: MemoCriteria;
     @Output() actionClick = new EventEmitter<MemoCriteria>();
@@ -31,6 +43,10 @@ export class MemoCriteriaFormComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.memoCriteria.currentValue !== undefined) {
+            if (changes.memoCriteria.currentValue.description === null) {
+                this.input.nativeElement.focus();
+            }
+
             this.memoCriteria = changes.memoCriteria.currentValue;
             this.initFormGroup();
         }

@@ -9,11 +9,10 @@ export class Week {
         private date: Date
     ) {
         this.today = new Date();
-        this.createDays(this.date);
+        this.initWeekAndCreateDays(this.date);
     }
 
-    private createDays(date: Date) {
-        this.days = [];
+    private initWeekAndCreateDays(date: Date) {
         const currentDay: number = date.getDay();
         let count: number;
         if (currentDay === 1 || currentDay === 5) {
@@ -25,14 +24,18 @@ export class Week {
         } else {
             count = 3;
         }
-        const dayDate: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - count, 12, 0, 0);
-        for (let i = 0; i < 7; i++) {
+        this.createDays(new Date(date.getFullYear(), date.getMonth(), date.getDate() - count - 1, 12, 0, 0));
+    }
+
+    private createDays(dayDate: Date) {
+        this.days = [];
+        for (let i = 1; i <= 7; i++) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i), this.today));
         }
-        if (dayDate.getDay() === 1) {
+        if (dayDate.getDay() === 0) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 7)));
         } else {
-            this.days.splice(3, 0, new Day(date));
+            this.days.splice(3, 0, new Day(dayDate));
         }
     }
 
@@ -54,41 +57,28 @@ export class Week {
     }
 
     goToday(): Day[] {
-        this.createDays(new Date());
+        this.initWeekAndCreateDays(new Date());
         return this.days;
     }
 
     next(): Day[] {
-        this.days = this.days.slice(4, 8);
-        if (this.days[0].date.getDay() === 1) {
-            const dayDate: Date = this.days[3].date;
-            for (let i = 1; i < 4; i++) {
-                this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i), this.today));
-            }
-            this.days.push(new Day(this.date));
-            return this.days.slice(4, 7);
-        }
-        const dayDate: Date = this.days[2].date;
-        for (let i = 1; i < 5; i++) {
-            this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i), this.today));
-        }
-        return this.days.slice(4, 8);
+        const dayDate: Date = this.days[7].date;
+        this.createDays(dayDate);
+        return this.days;
     }
 
     previous(): Day[] {
-        this.days = this.days.slice(0, 4);
         const dayDate: Date = this.days[0].date;
-        if (this.days[0].date.getDay() === 1) {
-            this.days.unshift(new Day(this.date));
-            for (let i = 1; i < 4; i++) {
-                this.days.unshift(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - i), this.today));
-            }
-            return this.days.slice(0, 3);
-        }
-        for (let i = 1; i < 5; i++) {
+        this.days = [];
+        for (let i = 1; i < 8; i++) {
             this.days.unshift(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - i), this.today));
         }
-        return this.days.slice(0, 4);
+        if (dayDate.getDay() === 1) {
+            this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 6)));
+        } else {
+            this.days.splice(3, 0, new Day(dayDate));
+        }
+        return this.days;
     }
 
 }
