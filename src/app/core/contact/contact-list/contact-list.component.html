@@ -1,7 +1,4 @@
-<div class="sheet-container">
-    <div class="header-item">
-        <h3><span class="title">Contacts</span></h3>
-    </div>
+<kal-panel-list [title]="'Contacts'">
     <div class="memo-item" *ngFor="let contact of contacts | async" (click)="showContact(contact)">
         <div>
             <img src="../assets/images/user_male.svg" height="20" width="20">
@@ -11,4 +8,4 @@
             {{contact.birthdate | date}}
         </div>
     </div>
-</div>
+</kal-panel-list>

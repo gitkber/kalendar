@@ -1,7 +1,4 @@
-<div class="sheet-container">
-    <div class="header-item">
-        <h3><span class="title">Memos</span></h3>
-    </div>
+<kal-panel-list [title]="'Memos'">
     <div class="memo-item" *ngFor="let memo of memos | async" (click)="showMemo(memo)">
         <div>
             <img src="../assets/images/newspaper.svg" height="20" width="20">
@@ -11,4 +8,4 @@
             {{memo.kalendarDate | dateString }}
         </div>
     </div>
-</div>
+</kal-panel-list>
