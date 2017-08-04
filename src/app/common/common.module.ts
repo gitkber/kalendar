@@ -8,14 +8,17 @@ import { KalLogoComponent } from './kal-logo/kal-logo.component';
 import { KalPolaroidComponent } from './kal-polaroid/kal-polaroid.component';
 import { DateStringPipe } from './utils/date-string.pipe';
 import { KalModalComponent } from './kal-modal/kal-modal.component';
+import { LogoColorDirective } from './kal-logo/logo-color.directive';
 
 
 @NgModule({
     imports: [BrowserModule, RouterModule, ActionModule],
     declarations: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
-        KalModalComponent],
+        KalModalComponent,
+        LogoColorDirective],
     exports: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
-        ActionModule, PanelModule],
+        ActionModule, PanelModule,
+        LogoColorDirective],
     providers: []
 })
 export class CommonModule {
