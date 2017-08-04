@@ -1,11 +1,7 @@
 <kal-panel-list [title]="'Contacts'">
-    <div class="memo-item" *ngFor="let contact of contacts | async" (click)="showContact(contact)">
-        <div>
-            <img src="../assets/images/user_male.svg" height="20" width="20">
-            {{contact.firstname}} {{contact.lastname}}
-        </div>
-        <div>
-            {{contact.birthdate | date}}
-        </div>
-    </div>
+    <kal-panel-list-row *ngFor="let contact of contacts | async"
+                        [image]="'../assets/images/user_male.svg'"
+                        [description]="contact.firstname + ' ' + contact.lastname"
+                        [descriptionDate]="contact.birthdate"
+                        (editItemClick)="showContact(contact)"></kal-panel-list-row>
 </kal-panel-list>

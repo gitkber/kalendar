@@ -1,6 +1,6 @@
 
 .modal-overlay {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.7);
   bottom: 0;
   left: 0;
   position: fixed;
@@ -19,11 +19,6 @@
 }
 
 .modal {
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
-
-    background-color: #fff;
-    background-image: linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
   left: calc(50% - 300px);
   max-height: calc(100% - 10em);
   overflow-y: auto;
@@ -32,28 +27,4 @@
   width: 600px;
   z-index: 1100;
   transition: all .5s ease;
-
-  .title {
-    background-color: #4D5874;
-    text-align: center;
-    color: white;
-    line-height: 40px;
-
-    .right-align {
-      position: absolute;
-      right: 5px;
-      &, i{
-        line-height: 40px;
-      }
-
-      &:hover{
-        cursor: pointer;
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  .body{
-    padding: 1.2em;
-  }
 }

@@ -7,15 +7,10 @@ import { FirebaseListObservable } from 'angularfire2/database';
     templateUrl: './memo-list.component.html',
     styleUrls: ['./memo-list.component.css']
 })
-export class MemoListComponent implements OnInit {
+export class MemoListComponent {
 
     @Input() memos: FirebaseListObservable<Memo[]>;
     @Output() showMemoClick: EventEmitter<Memo> = new EventEmitter();
-
-    constructor() { }
-
-    ngOnInit() {
-    }
 
     showMemo(memo: Memo) {
         this.showMemoClick.emit(memo);
