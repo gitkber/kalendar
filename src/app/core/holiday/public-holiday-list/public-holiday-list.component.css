@@ -1,0 +1,28 @@
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.row-container:hover {
+    font-weight: bold;
+    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+}
+
+.icon-item {
+    display: flex;
+    justify-content: flex-end;
+    width: 5em;
+}
+
+.description-item {
+    flex: 1;
+    padding-top: 0.5em;
+    text-indent: 1.5em;
+}
+
+.descriptionDate-item {
+    padding-top: 0.5em;
+}

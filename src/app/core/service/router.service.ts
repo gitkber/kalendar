@@ -35,6 +35,11 @@ export class RouterService {
         this.router.navigate(['/memos'])
     }
 
+    navigateToHolidays() {
+        this.isChildView = false;
+        this.router.navigate(['/holidays'])
+    }
+
     navigateToKalYear(date: Date) {
         this.isChildView = true;
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
@@ -55,6 +60,10 @@ export class RouterService {
 
     isMemosViewSelected(): boolean {
         return this.router.isActive('/memos', true);
+    }
+
+    isHolidaysViewSelected(): boolean {
+        return this.router.isActive('/holidays', true);
     }
 
 }

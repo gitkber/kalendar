@@ -1,0 +1,32 @@
+.view-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 99%;
+    height: 100%;
+    padding: 1em;
+}
+
+.list-item {
+    height: 100%;
+    width: 50%;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* item */
+    height: 100%;
+    width: 50%;
+}
+
+.form-item {
+    width: 80%;
+}
+
+.polaroid-item {
+    /*align-self: flex-end;*/
+}

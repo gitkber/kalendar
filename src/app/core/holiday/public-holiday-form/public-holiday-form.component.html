@@ -1,0 +1,29 @@
+<kal-panel-form>
+    <form class="form-container" (ngSubmit)="add()" [formGroup]="formGroup" #addHolidayForm="ngForm">
+        <div class="row-item">
+            <label class="labelFor" for="inputYear">Year</label>
+            <input formControlName="year" name="year" id="inputYear"/>
+        </div>
+    </form>
+    <div class="panel-action">
+        <svg-save (click)="add()"></svg-save>
+        <svg-delete (click)="delete()"></svg-delete>
+    </div>
+</kal-panel-form>
+
+<kal-panel-form [title]="'ITEM'">
+    <form class="form-container" (ngSubmit)="addItem()" [formGroup]="formItemGroup" #addHolidayItemForm="ngForm">
+        <div class="row-item">
+            <label class="labelFor" for="inputDescription">Description</label>
+            <input formControlName="description" name="description" id="inputDescription"/>
+        </div>
+        <div class="row-item">
+            <label class="labelFor" for="inputDate">Date</label>
+            <input formControlName="date" name="date" id="inputDate"/>
+        </div>
+    </form>
+    <div class="panel-action">
+        <svg-save (click)="addItem()"></svg-save>
+        <svg-delete (click)="deleteItem()"></svg-delete>
+    </div>
+</kal-panel-form>

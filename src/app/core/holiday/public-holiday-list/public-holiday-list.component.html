@@ -1,0 +1,15 @@
+<kal-panel-list [title]="'Holidays'">
+    <div class="row-container" *ngFor="let holiday of holidays | async">
+        <div class="description-item">{{ holiday.val().year }}</div>
+        <kal-button-action [image]="'../../../../assets/images/edit.svg'"
+                           (click)="showHoliday(holiday)"></kal-button-action>
+        <kal-button-action [label]="'+'" (click)="addHolidayItem(holiday)"></kal-button-action>
+<!--
+        <kal-panel-list-row *ngFor="let item of holiday.items"
+                            [description]="item.description"
+                            [descriptionDate]="item.date"
+                            (editItemClick)="showHolidayItem(item)"></kal-panel-list-row>
+-->
+    </div>
+
+</kal-panel-list>
