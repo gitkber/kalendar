@@ -3,6 +3,7 @@ import { PublicHoliday, PublicHolidayItem } from './public-holiday';
 
 export class PublicHolidayAction {
     public holidayKey: string;
+    public holidayItemKey: string;
 
     constructor(
         public action: Action,

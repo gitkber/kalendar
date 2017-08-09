@@ -34,6 +34,7 @@ export class HolidaysViewComponent implements OnInit {
 
     addHolidayItem(event: PublicHoliday) {
         console.log('addHolidayItem event', event);
+        this.publicHolidaySelected = event;
         this.publicHolidayItemSelected = new PublicHolidayItem(null, null);
     }
 

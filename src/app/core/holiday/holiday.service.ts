@@ -31,11 +31,15 @@ export class HolidayService {
     getList(): Observable<PublicHoliday[]> { return this.publicHolidaysObservable }
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {
+        console.log('doActionOnPublicHoliday', event);
         if (event.action === Action.INSERT) {
             event.holiday.user = this.authService.currentUserId;
             this.firebaseListObservable.push(event.holiday);
         } else if (event.action === Action.UPDATE) {
-            this.firebaseListObservable.update(event.holidayKey, event.holiday);
+            if (event.holidayKey) {
+                this.firebaseListObservable.update(event.holidayKey, event.holiday);
+            } else {
+            }
         } else if (event.action === Action.DELETE) {
             this.firebaseListObservable.remove(event.holidayKey);
         }

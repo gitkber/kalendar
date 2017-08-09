@@ -15,30 +15,26 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     @Output() actionClick = new EventEmitter<PublicHolidayAction>();
-    public formGroup: FormGroup;
-    @Input() publicHoliday: PublicHoliday;
-    private publicHolidayKey: string;
 
-    public formItemGroup: FormGroup;
+    public formGroup: FormGroup;
+    public itemSelected: boolean;
+
+    @Input() publicHoliday: PublicHoliday;
     @Input() publicHolidayIem: PublicHolidayItem;
+
+    private publicHolidayKey: string;
+    private publicHolidayItemKey: string;
+    
+    
 
     constructor() { }
 
     ngOnInit() {
         this.formGroup = new FormGroup({
-            year: new FormControl('', Validators.required)
-        });
-        this.formGroup.valueChanges.subscribe(data => {
-            this.publicHoliday = data
-        })
-
-        this.formItemGroup = new FormGroup({
+            year: new FormControl('', Validators.required),
             description: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required)
         });
-        this.formItemGroup.valueChanges.subscribe(data => {
-            this.publicHolidayIem = data
-        })
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -46,33 +42,44 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
             this.publicHolidayKey = changes.publicHoliday.currentValue['$key']
             this.publicHoliday = changes.publicHoliday.currentValue;
             this.formGroup.setValue({
-                'year': this.publicHoliday.year
+                'year': this.publicHoliday.year,
+                'description': '',
+                'date': ''
             });
-            this.formItemGroup.reset();
-            this.publicHolidayIem = undefined;
+            this.itemSelected = false;
         }
         if (changes.publicHolidayIem && changes.publicHolidayIem.currentValue !== undefined) {
+            this.publicHolidayItemKey = changes.publicHolidayIem.currentValue['$key']
             this.publicHolidayIem = changes.publicHolidayIem.currentValue;
-            this.formItemGroup.setValue({
+            this.formGroup.setValue({
+                'year': '',
                 'description': this.publicHolidayIem.description,
                 'date': this.dateStringPipe.transform(this.publicHolidayIem.date)
             });
-            this.formGroup.reset();
-            this.publicHoliday = undefined;
+            this.itemSelected = true;
         }
     }
 
     add() {
+        console.log('', this.formGroup.getRawValue());
         let publicHolidayAction: PublicHolidayAction;
-        if (this.publicHolidayKey === undefined) {
-            publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday);
+        if (this.itemSelected) {
+            if (this.publicHolidayItemKey === undefined) {
+                publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday, this.publicHolidayIem);
+            } else {
+                publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday, this.publicHolidayIem);
+                publicHolidayAction.holidayKey = this.publicHolidayKey;
+                publicHolidayAction.holidayItemKey = this.publicHolidayItemKey;
+            }
         } else {
-            publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday);
-            publicHolidayAction.holidayKey = this.publicHolidayKey;
+            if (this.publicHolidayKey === undefined) {
+                publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday);
+            } else {
+                publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday);
+                publicHolidayAction.holidayKey = this.publicHolidayKey;
+            }
         }
-        this.actionClick.emit(publicHolidayAction);
-        this.publicHolidayKey = undefined;
-        this.formGroup.reset();
+        this.actionClickEmitAndResetFormGroup(publicHolidayAction);
     }
 
     delete() {
@@ -80,25 +87,15 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
         if (this.publicHolidayKey !== undefined) {
             publicHolidayAction = new PublicHolidayAction(Action.DELETE);
             publicHolidayAction.holidayKey = this.publicHolidayKey;
-            this.actionClick.emit(publicHolidayAction);
-            this.publicHolidayKey = undefined;
-            this.formGroup.reset();
+            this.actionClickEmitAndResetFormGroup(publicHolidayAction);
         }
     }
 
-    addItem() {
-        let publicHolidayAction: PublicHolidayAction;
-        // this.publicHoliday.items.push(this.publicHolidayIem);
-        publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday, this.publicHolidayIem);
-        publicHolidayAction.holidayKey = this.publicHolidayKey;
-
+    private actionClickEmitAndResetFormGroup(publicHolidayAction: PublicHolidayAction) {
         this.actionClick.emit(publicHolidayAction);
         this.publicHolidayKey = undefined;
-        this.formItemGroup.reset();
-    }
-
-    deleteItem() {
-        console.log('deleteItem')
+        this.publicHolidayItemKey = undefined;
+        this.formGroup.reset();
     }
 
 }
