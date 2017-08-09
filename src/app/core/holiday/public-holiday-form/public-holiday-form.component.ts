@@ -84,7 +84,7 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
 
     addItem() {
         let publicHolidayAction: PublicHolidayAction;
-        this.publicHoliday.items.push(this.publicHolidayIem);
+        // this.publicHoliday.items.push(this.publicHolidayIem);
         publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday, this.publicHolidayIem);
         publicHolidayAction.holidayKey = this.publicHolidayKey;
 

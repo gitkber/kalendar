@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { PublicHoliday, PublicHolidayItem } from '../public-holiday';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'public-holiday-list',
@@ -9,12 +9,12 @@ import { PublicHoliday, PublicHolidayItem } from '../public-holiday';
 })
 export class PublicHolidayListComponent {
 
-    @Input() holidays: FirebaseListObservable<PublicHoliday[]>;
+    @Input() holidays: Observable<PublicHoliday[]>;
     @Output() showHolidayClick: EventEmitter<PublicHoliday> = new EventEmitter();
     @Output() showHolidayItemClick: EventEmitter<PublicHolidayItem> = new EventEmitter();
     @Output() addHolidayItemClick: EventEmitter<PublicHoliday> = new EventEmitter();
 
-    showHoliday(holiday: PublicHoliday) {
+    showHoliday(holiday) {
         this.showHolidayClick.emit(holiday);
     }
 
@@ -23,8 +23,7 @@ export class PublicHolidayListComponent {
     }
 
     addHolidayItem(holiday: PublicHoliday) {
-        holiday.items.push(new PublicHolidayItem('tesz', '2001-01-01'));
-        this.holidays.push(holiday);
-        // this.addHolidayItemClick.emit(holiday)
+        this.addHolidayItemClick.emit(holiday)
     }
+
 }

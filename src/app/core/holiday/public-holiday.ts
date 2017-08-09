@@ -1,11 +1,11 @@
-import { FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 export class PublicHoliday {
 
     constructor(
         public user: string,
         public year: string,
-        public items: FirebaseListObservable<PublicHolidayItem>
+        public items: Observable<PublicHolidayItem>
     ) { }
 
 }

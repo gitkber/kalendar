@@ -1,68 +1,43 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import { Action } from '../action';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../service/auth.service';
-import { PublicHoliday } from './public-holiday';
+import { Action } from '../action';
 import { PublicHolidayAction } from './public-holiday-action';
+import { PublicHoliday } from './public-holiday';
 
 @Injectable()
 export class HolidayService {
 
-    private publicHolidaysObservable: FirebaseListObservable<PublicHoliday[]>;
+    private firebaseListObservable: FirebaseListObservable<PublicHoliday[]>;
+    private publicHolidaysObservable: Observable<PublicHoliday[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-        console.log('constructor service');
-        this.publicHolidaysObservable = this.db.list('/publicHolidays', { preserveSnapshot: true,
+        this.firebaseListObservable = this.db.list('/publicHolidays', {
             query: {
                 orderByChild: 'user',
                 equalTo: this.authService.currentUserId
             }
         });
-        this.db.list('/publicHolidays', { preserveSnapshot: true})
-            .subscribe(snapshots => {
-                snapshots.forEach(snapshot => {
-                    console.log(snapshot.key, snapshot.val());
-                    if (snapshot.val().items) {
-                        Object.keys(snapshot.val().items).forEach(d => {
-                            console.log(d, snapshot.val().items[d]);
-                        })
-                    }
-                });
+        this.publicHolidaysObservable = this.firebaseListObservable.map((itemKeys) => {
+            return itemKeys.map(key => {
+                key.items = this.db.list(`/publicHolidays/${key.$key}/items`);
+                return key;
             })
-        /*
-        this.publicHolidaysObservable.map(test => {
-            console.log('test', test)
-            test.forEach(d => {
-                if (d.items) {
-                    console.log('d', Object.keys(d.items));
-                    Object.keys(d.items).forEach(key => {
-                        console.log('value', d.items[key]);
-                    })
-                }
-            });
-            return test;
-        }).subscribe();
-        */
+        });
     }
 
-    getList(): FirebaseListObservable<PublicHoliday[]> { return this.publicHolidaysObservable }
-
-    getRef(): any {
-        return this.publicHolidaysObservable.map(test => {
-            console.log('test', test)
-            return test;
-        }); // .$ref.orderByChild('user').equalTo(this.authService.currentUserId);
-    }
+    getList(): Observable<PublicHoliday[]> { return this.publicHolidaysObservable }
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {
         if (event.action === Action.INSERT) {
             event.holiday.user = this.authService.currentUserId;
-            this.publicHolidaysObservable.push(event.holiday);
+            this.firebaseListObservable.push(event.holiday);
         } else if (event.action === Action.UPDATE) {
-            this.publicHolidaysObservable.update(event.holidayKey, event.holiday);
+            this.firebaseListObservable.update(event.holidayKey, event.holiday);
         } else if (event.action === Action.DELETE) {
-            this.publicHolidaysObservable.remove(event.holidayKey);
+            this.firebaseListObservable.remove(event.holidayKey);
         }
     }
 

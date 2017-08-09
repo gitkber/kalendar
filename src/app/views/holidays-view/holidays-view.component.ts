@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HolidayService } from '../../core/holiday/holiday.service';
 import { PublicHoliday, PublicHolidayItem } from '../../core/holiday/public-holiday';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { PublicHolidayAction } from '../../core/holiday/public-holiday-action';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'holidays-view',
@@ -14,7 +14,7 @@ export class HolidaysViewComponent implements OnInit {
     public publicHolidaySelected: PublicHoliday;
     public publicHolidayItemSelected: PublicHolidayItem;
 
-    public publicHolidays: FirebaseListObservable<PublicHoliday[]>
+    public publicHolidays: Observable<PublicHoliday[]>;
 
     constructor(private holidayService: HolidayService) { }
 
