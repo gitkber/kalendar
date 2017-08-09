@@ -48,6 +48,8 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
             this.formGroup.setValue({
                 'year': this.publicHoliday.year
             });
+            this.formItemGroup.reset();
+            this.publicHolidayIem = undefined;
         }
         if (changes.publicHolidayIem && changes.publicHolidayIem.currentValue !== undefined) {
             this.publicHolidayIem = changes.publicHolidayIem.currentValue;
@@ -55,6 +57,8 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
                 'description': this.publicHolidayIem.description,
                 'date': this.dateStringPipe.transform(this.publicHolidayIem.date)
             });
+            this.formGroup.reset();
+            this.publicHoliday = undefined;
         }
     }
 

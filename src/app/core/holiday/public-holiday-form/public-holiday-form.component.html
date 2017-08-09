@@ -1,4 +1,4 @@
-<kal-panel-form>
+<kal-panel-form *ngIf="!publicHolidayIem; else polaroid">
     <form class="form-container" (ngSubmit)="add()" [formGroup]="formGroup" #addHolidayForm="ngForm">
         <div class="row-item">
             <label class="labelFor" for="inputYear">Year</label>
@@ -11,6 +11,7 @@
     </div>
 </kal-panel-form>
 
+<ng-template #polaroid>
 <kal-panel-form [title]="'ITEM'">
     <form class="form-container" (ngSubmit)="addItem()" [formGroup]="formItemGroup" #addHolidayItemForm="ngForm">
         <div class="row-item">
@@ -27,3 +28,4 @@
         <svg-delete (click)="deleteItem()"></svg-delete>
     </div>
 </kal-panel-form>
+</ng-template>
