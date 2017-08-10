@@ -1,11 +1,8 @@
 <div class="view-container">
-    <public-holiday-list class="list-item" [holidays]="publicHolidays"
-                         (showHolidayClick)="showPublicHoliday($event)"
-                         (showHolidayItemClick)="showHolidayItem($event)"
-                         (addHolidayItemClick)="addHolidayItem($event)"></public-holiday-list>
+    <public-holiday-list class="list-item" [publicHolidays]="publicHolidays"
+                         (showHolidayClick)="showPublicHoliday($event)"></public-holiday-list>
     <div class="right-container">
         <public-holiday-form class="form-item" [publicHoliday]="publicHolidaySelected"
-                             [publicHolidayIem]="publicHolidayItemSelected"
                              (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
         <div class="polaroid-item">
             polaroid-item

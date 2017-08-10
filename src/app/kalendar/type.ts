@@ -1,3 +1,3 @@
 export enum Type {
-    CONTACT, MEMO, USER
+    CONTACT, MEMO, PUBLIC_HOLIDAY, USER
 }

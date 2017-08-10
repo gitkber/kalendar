@@ -4,6 +4,7 @@ export class Day {
 
     public day: number;
     public dayItems: DayItem[] = [];
+    public dayInfoItems: DayItem[] = [];
 
     public isDisabled: boolean;
     public isWeekend: boolean;

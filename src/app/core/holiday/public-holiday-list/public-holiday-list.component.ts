@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PublicHoliday, PublicHolidayItem } from '../public-holiday';
+import { PublicHoliday } from '../public-holiday';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -9,21 +9,11 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PublicHolidayListComponent {
 
-    @Input() holidays: Observable<PublicHoliday[]>;
+    @Input() publicHolidays: Observable<PublicHoliday[]>;
     @Output() showHolidayClick: EventEmitter<PublicHoliday> = new EventEmitter();
-    @Output() showHolidayItemClick: EventEmitter<PublicHolidayItem> = new EventEmitter();
-    @Output() addHolidayItemClick: EventEmitter<PublicHoliday> = new EventEmitter();
 
-    showHoliday(holiday) {
+    showPublicHoliday(holiday) {
         this.showHolidayClick.emit(holiday);
-    }
-
-    showHolidayItem(item: PublicHolidayItem) {
-        this.showHolidayItemClick.emit(item);
-    }
-
-    addHolidayItem(holiday: PublicHoliday) {
-        this.addHolidayItemClick.emit(holiday)
     }
 
 }

@@ -3,6 +3,9 @@
         <div>{{ day.day }}</div>
     </div>
     <div class="day-item-info-list">
+        <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayInfoItems">
+            <span>{{dayInfoItem.item}}</span>
+        </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
             <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="15" width="15" />
             <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="15" width="15" />

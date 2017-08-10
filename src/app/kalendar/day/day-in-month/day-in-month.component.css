@@ -66,3 +66,18 @@
     padding-top: 2px;
     padding-left: 10px;
 }
+
+.day-item-info-list {
+    width: 100%;
+}
+.day-item-info-detail {
+    border: 1px solid #9198A9;
+    background: #9198A9;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}

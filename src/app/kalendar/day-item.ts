@@ -17,4 +17,7 @@ export class DayItem {
         return this.type === Type.MEMO;
     }
 
+    isPublicHoliday(): boolean {
+        return this.type === Type.PUBLIC_HOLIDAY;
+    }
 }

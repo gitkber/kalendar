@@ -33,6 +33,13 @@
     color: white;
     text-align: center;
 }
+.coreinfo {
+    width: 100%;
+    background: #9198A9;
+    color: white;
+    text-align: center;
+}
+
 .day-selected {
     background-color: rgba(251,251,212,1);
     background-image: linear-gradient(#eee .1em, transparent .1em);

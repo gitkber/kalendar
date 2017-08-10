@@ -18,6 +18,9 @@
     </div>
     <div class="day-item-action">
         <div></div>
+        <div class="day-item-info coreinfo" *ngFor="let dayInfoItem of day.dayInfoItems">
+            {{ dayInfoItem.item }}
+        </div>
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end
         </div>
@@ -28,5 +31,6 @@
     </div>
 </div>
 <ng-template #polaroid>
-    <kal-polaroid class="polaroid-container" [label]="'Elsa'" [image]="'../../../assets/images/photo/IMG_elsa.jpg'"></kal-polaroid>
+    <kal-polaroid class="polaroid-container" [label]="'Elsa'"
+                  [image]="'../../../assets/images/photo/IMG_elsa.jpg'"></kal-polaroid>
 </ng-template>

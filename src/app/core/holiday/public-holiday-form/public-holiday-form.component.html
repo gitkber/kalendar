@@ -1,20 +1,16 @@
-<kal-panel-form [title]="itemSelected ? publicHoliday.year + '' : ''">
-    <form class="form-container" (ngSubmit)="add()" [formGroup]="formGroup" #addHolidayForm="ngForm">
-        <div class="row-item" *ngIf="!itemSelected">
-            <label class="labelFor" for="inputYear">Year</label>
-            <input formControlName="year" name="year" id="inputYear"/>
-        </div>
-        <div class="row-item" *ngIf="itemSelected">
+<kal-panel-form>
+    <form class="form-container" (ngSubmit)="addHoliday()" [formGroup]="formGroup" #addHolidayForm="ngForm">
+        <div class="row-item">
             <label class="labelFor" for="inputDescription">Description</label>
             <input formControlName="description" name="description" id="inputDescription"/>
         </div>
-        <div class="row-item" *ngIf="itemSelected">
+        <div class="row-item">
             <label class="labelFor" for="inputDate">Date</label>
             <input formControlName="date" name="date" id="inputDate"/>
         </div>
     </form>
     <div class="panel-action">
-        <svg-save (click)="add()"></svg-save>
-        <svg-delete (click)="delete()"></svg-delete>
+        <svg-save (click)="addHoliday()"></svg-save>
+        <svg-delete (click)="deleteHoliday()"></svg-delete>
     </div>
 </kal-panel-form>
