@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PublicHoliday } from '../public-holiday';
 import { PublicHolidayAction } from '../public-holiday-action';
-import { Action } from '../../action';
-import { DateStringPipe } from '../../../common/utils/date-string.pipe';
+import { Action } from '../../../action';
+import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 
 @Component({
     selector: 'public-holiday-form',

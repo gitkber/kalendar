@@ -1,7 +1,7 @@
 .view-container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: flex-start;
     width: 99%;
     height: 100%;
@@ -15,18 +15,15 @@
 
 .right-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     /* item */
-    height: 100%;
-    width: 50%;
+    height: 48%;
+    width: 100%;
 }
 
 .form-item {
-    width: 80%;
+    width: 40%;
 }
 
-.polaroid-item {
-    /*align-self: flex-end;*/
-}

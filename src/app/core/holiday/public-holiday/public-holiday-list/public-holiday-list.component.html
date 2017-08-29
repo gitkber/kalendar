@@ -1,4 +1,4 @@
-<kal-panel-list [title]="'Holidays'">
+<kal-panel-list [title]="'Public Holidays'">
     <kal-panel-list-row *ngFor="let publicHoliday of publicHolidays | async"
                         [image]="'../assets/images/sunbed.svg'"
                         [description]="publicHoliday.description"

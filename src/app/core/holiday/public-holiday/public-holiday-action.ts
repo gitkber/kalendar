@@ -1,4 +1,4 @@
-import { Action } from '../action';
+import { Action } from '../../action';
 import { PublicHoliday } from './public-holiday';
 
 export class PublicHolidayAction {
