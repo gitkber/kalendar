@@ -62,8 +62,7 @@ export class Week {
     }
 
     next(): Day[] {
-        const dayDate: Date = this.days[7].date;
-        this.createDays(dayDate);
+        this.createDays(this.days[7].date);
         return this.days;
     }
 
@@ -74,7 +73,7 @@ export class Week {
             this.days.unshift(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - i), this.today));
         }
         if (dayDate.getDay() === 1) {
-            this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 6)));
+            this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - 1)));
         } else {
             this.days.splice(3, 0, new Day(dayDate));
         }
