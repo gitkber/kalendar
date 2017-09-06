@@ -136,7 +136,7 @@ export class CoreService {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     // console.log('child_added publicHoliday', entity);
-                    d.dayInfoItems.push(new DayItem(Type.PUBLIC_HOLIDAY, data.key, entity.description));
+                    d.dayPublicHolidayItem = new DayItem(Type.PUBLIC_HOLIDAY, data.key, entity.description);
                 }
             })
         });
@@ -148,12 +148,7 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    d.dayInfoItems.forEach(di => {
-                        // console.log('child_changed publicHoliday', entity);
-                        if (di.key === data.key) {
-                            di.item = entity.description;
-                        }
-                    })
+                    d.dayPublicHolidayItem.item = entity.description;
                 }
             })
         });
@@ -165,12 +160,7 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    d.dayInfoItems.forEach(di => {
-                        if (di.key === data.key) {
-                            // console.log('child_removed publicHoliday', entity);
-                            d.dayInfoItems.splice(d.dayItems.indexOf(di), 1);
-                        }
-                    })
+                    d.dayPublicHolidayItem = null;
                 }
             })
         });
@@ -185,7 +175,7 @@ export class CoreService {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     // console.log('child_added contactHoliday', entity);
-                    d.dayInfoItems.push(new DayItem(Type.CONTACT_HOLIDAY, data.key, entity.description));
+                    d.dayContactHolidayItems.push(new DayItem(Type.CONTACT_HOLIDAY, data.key, entity.description));
                 }
             })
         });
@@ -197,7 +187,7 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    d.dayInfoItems.forEach(di => {
+                    d.dayContactHolidayItems.forEach(di => {
                         // console.log('child_changed contactHoliday', entity);
                         if (di.key === data.key) {
                             di.item = entity.description;
@@ -214,10 +204,10 @@ export class CoreService {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    d.dayInfoItems.forEach(di => {
+                    d.dayContactHolidayItems.forEach(di => {
                         if (di.key === data.key) {
                             // console.log('child_removed contactHoliday', entity);
-                            d.dayInfoItems.splice(d.dayItems.indexOf(di), 1);
+                            d.dayContactHolidayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })
                 }

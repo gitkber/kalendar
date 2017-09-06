@@ -3,7 +3,10 @@
         <div>{{ day.day }}</div>
     </div>
     <div class="day-item-info-list">
-        <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayInfoItems">
+        <div class="day-item-info-detail" *ngIf="day.dayPublicHolidayItem">
+            <span>{{day.dayPublicHolidayItem.item}}</span>
+        </div>
+        <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayContactHolidayItems">
             <span>{{dayInfoItem.item}}</span>
         </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">

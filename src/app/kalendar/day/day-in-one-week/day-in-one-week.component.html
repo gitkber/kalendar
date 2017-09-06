@@ -16,10 +16,13 @@
             <span>{{dayItem.item}}</span>
         </div>
     </div>
+    <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
+        {{ dayContactHolidayItem.item }}
+    </div>
     <div class="day-item-action">
         <div></div>
-        <div class="day-item-info coreinfo" *ngFor="let dayInfoItem of day.dayInfoItems">
-            {{ dayInfoItem.item }}
+        <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
+            {{ day.dayPublicHolidayItem.item }}
         </div>
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end
