@@ -18,7 +18,19 @@
     background-color: #fff;
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
+    box-shadow: inset 0 0 10px black;
+}
+
+.day-container:hover {
     box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    border: 1px solid #4D5874;
+    margin-top: -0.1em;
+}
+
+.day-selected {
+    box-shadow: none;
+    border: 1px solid #4D5874;
+    margin-top: -0.1em;
 }
 
 .today {
@@ -32,13 +44,6 @@
     background: #4D5874;
     color: white;
     text-align: center;
-}
-
-.day-selected {
-    background-color: rgba(251,251,212,1);
-    background-image: linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
-    box-shadow: inset 0 8px 16px -5px black;
 }
 
 .day-item-title {
@@ -91,6 +96,10 @@
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
+}
+
+.editbutton {
+    margin-bottom: 0.5em;
 }
 
 .day-item-info {

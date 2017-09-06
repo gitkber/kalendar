@@ -30,7 +30,7 @@
         <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
             Today
         </div>
-        <kal-button-action [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button-action>
+        <kal-button-action class="editbutton" [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button-action>
     </div>
 </div>
 <ng-template #polaroid>
