@@ -1,11 +1,10 @@
 <div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.day-selected]="day.isSelected">
     <div class="day-item-title">
-        <div>{{ day.date | date:'EEEE' }}</div>
+        <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
         <div class="day-item-title-header">
             <div class="day-item-select" (click)="navigateToMonth()">
-                {{ day.date | date:'d MMMM' }}
+                {{ day.date | date:'d MMMM yyyy' }}
             </div>
-            <div class="day-item-select" (click)="navigateToYear()">{{ day.date | date:'yyyy' }}</div>
         </div>
     </div>
     <div class="day-item-detail-list">

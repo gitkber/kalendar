@@ -39,4 +39,8 @@ export class AppComponent {
         }
     }
 
+    navigateToKalYear() {
+        this.routerService.navigateToKalYear(this.appService.currentDate);
+    }
+
 }

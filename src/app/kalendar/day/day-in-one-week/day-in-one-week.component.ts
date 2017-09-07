@@ -19,8 +19,8 @@ export class DayInOneWeekComponent {
         this.navigateToMonthClick.emit(this.day.date);
     }
 
-    navigateToYear() {
-        this.navigateToYearClick.emit(this.day.date);
+    firstCharToUpperCase(value: string) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
     }
 
     showModal() {

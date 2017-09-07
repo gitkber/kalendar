@@ -22,12 +22,14 @@
 }
 
 .day-container:hover {
-    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: none;
+    /* box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75); */
     border: 1px solid #4D5874;
     margin-top: -0.1em;
+
 }
 
-.day-selected {
+.day-selected.to-delete {
     box-shadow: none;
     border: 1px solid #4D5874;
     margin-top: -0.1em;

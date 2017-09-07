@@ -66,4 +66,7 @@ export class RouterService {
         return this.router.isActive('/holidays', true);
     }
 
+    isKalYearViewSelected(): boolean {
+        return this.router.isActive('/kalyear', true);
+    }
 }
