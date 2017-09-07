@@ -40,6 +40,11 @@ export class RouterService {
         this.router.navigate(['/holidays'])
     }
 
+    navigateToDay(date: Date) {
+        this.isChildView = true;
+        this.router.navigate(['/day', this.dateUtilService.toString(date)]);
+    }
+
     navigateToKalYear(date: Date) {
         this.isChildView = true;
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);

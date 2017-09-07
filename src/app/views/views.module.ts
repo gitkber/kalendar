@@ -6,6 +6,7 @@ import { CoreModule } from '../core/core.module';
 import { CommonModule } from '../common/common.module';
 
 import { HomeViewComponent } from './home-view/home-view.component';
+import { DayViewComponent } from './day-view/day-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { MemosViewComponent } from './memos-view/memos-view.component';
@@ -19,7 +20,8 @@ import { HolidaysViewComponent } from './holidays-view/holidays-view.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
-    declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent, ContactsViewComponent, MemosViewComponent,
+    declarations: [LoginViewComponent, HomeViewComponent, DayViewComponent, KalYearViewComponent, KalMonthViewComponent,
+        ContactsViewComponent, MemosViewComponent,
         SheetOfPaperComponent, PolaroidComponent,
         DayModalComponent,
         HolidaysViewComponent],

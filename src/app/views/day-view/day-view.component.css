@@ -1,0 +1,32 @@
+.day-view-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 99%;
+    height: 100%;
+    padding: 1em;
+}
+
+.one-day-item {
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.edit-day-item {
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.edit-day-item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 87%;
+    height: 95%;
+    padding: 0 1em 0 1em;
+    box-shadow: inset 0 0 10px black;
+}
