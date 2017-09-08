@@ -6,16 +6,13 @@
     align-items: left;
     width: 90%;
     height: 100%;
-    padding: 0.4em 0.7em 0 0.7em;
     background-color: #fff;
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
-    box-shadow: 50px 10px 100px 0px rgba(0, 0, 0, 0.75);
     cursor: pointer;
 }
 
 .day-disabled {
-    background-color: lightgray;
     background-image: none;
 }
 
@@ -78,6 +75,5 @@
     justify-content: center;
     width: 100%;
     color: white;
-    font-weight: bold;
     border-radius: 5px;
 }
