@@ -15,6 +15,10 @@ export class DayViewComponent implements OnInit {
     public day: Day;
     private subscription: Subscription;
 
+    public contactSelected: boolean;
+    public memoSelected: boolean;
+    public holidaySelected: boolean;
+
     constructor(private route: ActivatedRoute, private coreService: CoreService, private appService: AppService) {
         this.subscription = this.appService.date.subscribe(d => {
             this.day = new Day(d, new Date());
@@ -31,4 +35,21 @@ export class DayViewComponent implements OnInit {
         });
     }
 
+    editContact() {
+        this.contactSelected = true;
+        this.memoSelected = false;
+        this.holidaySelected = false;
+    }
+
+    editMemos() {
+        this.contactSelected = false;
+        this.memoSelected = true;
+        this.holidaySelected = false;
+    }
+
+    editHolidays() {
+        this.contactSelected = false;
+        this.memoSelected = false;
+        this.holidaySelected = true;
+    }
 }
