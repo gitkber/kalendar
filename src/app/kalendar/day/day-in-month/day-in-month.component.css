@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    align-items: left;
-    width: 90%;
-    height: 100%;
+    width: 87%;
+    height: 95%;
+    padding: 0 0.7em 0 0.7em;
     background-color: #fff;
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
+    box-shadow: inset 0 0 10px black;
     cursor: pointer;
 }
 
@@ -22,6 +23,10 @@
     border: none;
 }
 
+.day-item-title {
+    margin-top: 0.5em;
+}
+
 .day-item-title.today {
     background: #AD6B6B;
     color: #FBFBD4;
@@ -33,10 +38,8 @@
 }
 
 .day-selected {
-    background-color: rgba(251,251,212,1);
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
-    box-shadow: inset 0 8px 16px -5px black;
 }
 
 .day-item-title {

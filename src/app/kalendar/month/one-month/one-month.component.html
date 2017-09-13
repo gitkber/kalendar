@@ -1,4 +1,11 @@
-<div class="month-item-container">
-    <day-in-month *ngFor="let day of month.days" class="month-item" [day]="day"
-                  (click)="showDayDetail(day)"></day-in-month>
+<div class="one-month-container">
+    <div class="one-month-item-container">
+        <day-in-month *ngFor="let day of month.days" class="one-month-item" [day]="day"
+                         (click)="showDayDetail(day)"></day-in-month>
+    </div>
+    <div class="navigation-item">
+        <kal-button-action [image]="'../../../assets/images/chevron-up.svg'"></kal-button-action>
+        <kal-button-action [label]="'.'"></kal-button-action>
+        <kal-button-action [image]="'../../../assets/images/chevron-down.svg'"></kal-button-action>
+    </div>
 </div>
