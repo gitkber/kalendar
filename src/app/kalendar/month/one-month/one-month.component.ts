@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Month } from '../month';
 import { Day } from '../../day/day';
+import { Navigation } from '../../navigation';
 
 @Component({
     selector: 'one-month',
@@ -11,6 +12,7 @@ export class OneMonthComponent implements OnInit {
 
     @Input() month: Month;
     @Output() showDayDetailClick: EventEmitter<any> = new EventEmitter();
+    @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
 
     constructor() { }
 
@@ -18,5 +20,9 @@ export class OneMonthComponent implements OnInit {
 
     showDayDetail(day: Day) {
         this.showDayDetailClick.emit(day);
+    }
+
+    navigate(event: Navigation) {
+        this.navigateClick.emit(event);
     }
 }

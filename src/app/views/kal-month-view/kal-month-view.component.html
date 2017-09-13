@@ -1,4 +1,5 @@
 <div class="kal-month-view-content">
-    <one-month class="kal-month-item" [month]="month" (showDayDetailClick)="showDayDetail($event)"></one-month>
+    <one-month class="kal-month-item" [month]="month" (showDayDetailClick)="showDayDetail($event)"
+               (navigateClick)="navigate($event)"></one-month>
 </div>
 <day-modal [blocking]=false></day-modal>

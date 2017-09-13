@@ -1,0 +1,10 @@
+<div class="navig-panel-container">
+    <div class="navig-panel-item-container">
+        <ng-content></ng-content>
+    </div>
+    <div class="navigation-item">
+        <kal-button-action [image]="'../../../assets/images/chevron-up.svg'" (click)="goPrevious()"></kal-button-action>
+        <kal-button-action [label]="'.'" (click)="goToday()"></kal-button-action>
+        <kal-button-action [image]="'../../../assets/images/chevron-down.svg'" (click)="goNext()"></kal-button-action>
+    </div>
+</div>

@@ -14,17 +14,7 @@
 }
 
 .day-disabled {
-    background-image: none;
-}
-
-.day-disabled .day-item-title {
-    background-color: lightgray;
-    color: #4D5874;
-    border: none;
-}
-
-.day-item-title {
-    margin-top: 0.5em;
+    opacity: 0.5;
 }
 
 .day-item-title.today {
@@ -44,6 +34,7 @@
 
 .day-item-title {
     border: 1px solid #9198A9;
+    margin-top: 0.5em;
     background: white;
     align-items: center;
     display: flex;

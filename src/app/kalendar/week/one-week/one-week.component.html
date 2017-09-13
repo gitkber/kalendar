@@ -1,13 +1,7 @@
-<div class="one-week-container">
-    <div class="one-week-item-container">
-        <day-in-one-week *ngFor="let day of week.days" class="one-week-item" [day]="day"
-                         (navigateToMonthClick)="navigateToMonth($event)"
-                         (navigateToYearClick)="navigateToYear($event)"
-                         (showDayDetailClick)="showDayDetail(day)"></day-in-one-week>
-    </div>
-    <div class="navigation-item">
-        <kal-button-action [image]="'../../../assets/images/chevron-up.svg'" (click)="goPrevious()"></kal-button-action>
-        <kal-button-action [label]="'.'" (click)="goToday()"></kal-button-action>
-        <kal-button-action [image]="'../../../assets/images/chevron-down.svg'" (click)="goNext()"></kal-button-action>
-    </div>
-</div>
+<navig-panel [navigation]="navigation"
+             (navigateClick)="navigate($event)">
+    <day-in-one-week *ngFor="let day of week.days" class="content-item" [day]="day"
+                     (navigateToMonthClick)="navigateToMonth($event)"
+                     (navigateToYearClick)="navigateToYear($event)"
+                     (showDayDetailClick)="showDayDetail(day)"></day-in-one-week>
+</navig-panel>

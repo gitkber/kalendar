@@ -1,30 +1,4 @@
-.one-week-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    width: 100%;
-    height: 100%;
-    /*
-    border: 1px solid red;
-    */
-}
-
-.navigation-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.one-week-item-container {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-content: stretch;
-}
-
-.one-week-item {
+.content-item {
     justify-content: space-between;
     width: 25%;
     height: 50%;

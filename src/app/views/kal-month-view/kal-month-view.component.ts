@@ -6,6 +6,7 @@ import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
+import { Navigation } from '../../kalendar/navigation';
 
 @Component({
     selector: 'kal-month-view',
@@ -52,4 +53,7 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
         }
     }
 
+    navigate(event: Navigation) {
+        this.appService.navigate(event);
+    }
 }

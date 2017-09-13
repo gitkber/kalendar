@@ -6,6 +6,7 @@ import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Year } from '../../kalendar/year/year';
 import { Day } from '../../kalendar/day/day';
 import { CoreService } from '../../core/core.service';
+import { Navigation } from '../../kalendar/navigation';
 
 @Component({
     selector: 'kal-year-view',
@@ -49,4 +50,7 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
         this.modal.open(this.selectedDay);
     }
 
+    navigate(event: Navigation) {
+        this.appService.navigate(event);
+    }
 }

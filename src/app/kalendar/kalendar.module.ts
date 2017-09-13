@@ -11,6 +11,7 @@ import { OneMonthComponent } from './month/one-month/one-month.component';
 import { MonthInYearComponent } from './month/month-in-year/month-in-year.component';
 import { OneYearComponent } from './year/one-year/one-year.component';
 import { SelectDateComponent } from './select-date/select-date.component';
+import { NavigPanelComponent } from './navig-panel/navig-panel.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
@@ -18,6 +19,7 @@ import { SelectDateComponent } from './select-date/select-date.component';
         OneWeekComponent,
         OneMonthComponent, MonthInYearComponent,
         OneYearComponent,
+        NavigPanelComponent,
         SelectDateComponent
     ],
     exports: [OneDayComponent, OneWeekComponent, OneMonthComponent, OneYearComponent,
