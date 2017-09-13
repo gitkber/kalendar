@@ -31,7 +31,22 @@
     color: #FBFBD4;
 }
 
+.day-container.public-holiday.contact-holiday {
+    background: #4D5874;
+    color: #FBFBD4;
+}
+
+.day-container.public-holiday {
+    background: #4D5874;
+    color: #FBFBD4;
+}
+
+.day-container.contact-holiday {
+    background: #9198A9;
+    color: #FBFBD4;
+}
+
 .day-container.day-selected {
-    background: rgba(251,251,212,1);
+    background: rgba(251, 251, 212, 1);
     box-shadow: inset 0 8px 16px -5px black;
 }
