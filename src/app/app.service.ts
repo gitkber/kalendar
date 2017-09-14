@@ -24,6 +24,16 @@ export class AppService {
         this.subject.next(this.currentDate);
     }
 
+    nextDay() {
+        this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 12, 0, 0);
+        this.subject.next(this.currentDate);
+    }
+
+    previousDay() {
+        this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() - 1, 12, 0, 0);
+        this.subject.next(this.currentDate);
+    }
+
     nextMonth() {
         this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, this.currentDate.getDate(), 12, 0, 0);
         this.subject.next(this.currentDate);
@@ -46,13 +56,17 @@ export class AppService {
 
     navigate(event: Navigation) {
         if (event.isNext) {
-            if (event.navigation === 'month') {
+            if (event.navigation === 'day') {
+                this.nextDay();
+            } else if (event.navigation === 'month') {
                 this.nextMonth();
             } else if (event.navigation === 'year') {
                 this.nextYear();
             }
         } else if (event.isPrevious) {
-            if (event.navigation === 'month') {
+            if (event.navigation === 'day') {
+                this.previousDay();
+            } else if (event.navigation === 'month') {
                 this.previousMonth();
             } else if (event.navigation === 'year') {
                 this.previousYear();

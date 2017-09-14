@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { CoreService } from '../../core/core.service';
+import { Navigation } from '../../kalendar/navigation';
 
 @Component({
     selector: 'day-view',
@@ -51,5 +52,10 @@ export class DayViewComponent implements OnInit {
         this.contactSelected = false;
         this.memoSelected = false;
         this.holidaySelected = true;
+    }
+
+
+    navigate(event: Navigation) {
+        this.appService.navigate(event);
     }
 }
