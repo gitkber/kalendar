@@ -20,8 +20,6 @@
                              (click)="authService.signOut()"></kal-button-menu>
         </div>
         <div class="kal-header-item" *ngIf="routerService.isChildView">
-            <select-date class="select-date" [date]="appService.currentDate" [navigation]="'month'"
-                         (navigateClick)="navigate($event)"></select-date>
             <kal-button-action [label]="'CLOSE'" (click)="routerService.back()"></kal-button-action>
         </div>
     </div>

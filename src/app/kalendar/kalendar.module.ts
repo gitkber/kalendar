@@ -10,7 +10,6 @@ import { OneWeekComponent } from './week/one-week/one-week.component';
 import { OneMonthComponent } from './month/one-month/one-month.component';
 import { MonthInYearComponent } from './month/month-in-year/month-in-year.component';
 import { OneYearComponent } from './year/one-year/one-year.component';
-import { SelectDateComponent } from './select-date/select-date.component';
 import { NavigPanelComponent } from './navig-panel/navig-panel.component';
 
 @NgModule({
@@ -19,11 +18,9 @@ import { NavigPanelComponent } from './navig-panel/navig-panel.component';
         OneWeekComponent,
         OneMonthComponent, MonthInYearComponent,
         OneYearComponent,
-        NavigPanelComponent,
-        SelectDateComponent
+        NavigPanelComponent
     ],
-    exports: [OneDayComponent, OneWeekComponent, OneMonthComponent, OneYearComponent,
-        SelectDateComponent],
+    exports: [OneDayComponent, OneWeekComponent, OneMonthComponent, OneYearComponent],
     providers: []
 })
 export class KalendarModule {
