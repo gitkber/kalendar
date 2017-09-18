@@ -13,6 +13,7 @@ import { ContactHoliday } from 'app/core/holiday/contact-holiday/contact-holiday
 import { PublicHoliday } from 'app/core/holiday/public-holiday/public-holiday';
 import { PublicHolidayAction } from '../../core/holiday/public-holiday/public-holiday-action';
 import { ContactHolidayAction } from '../../core/holiday/contact-holiday/contact-holiday-action';
+import { DayItem } from '../../kalendar/day-item';
 
 @Component({
     selector: 'day-view',
@@ -92,6 +93,20 @@ export class DayViewComponent implements OnInit, OnDestroy {
         this.isMemoSelected = false;
         this.isContactHolidaySelected = false;
         this.isPublicHolidaySelected = true;
+    }
+
+    showDayItem(event: DayItem) {
+        if (event.isContact()) {
+            this.editContact();
+            this.contactSelected = new Contact(null, event.item, event.item, null, this.dateUtilService.toString(this.day.date));
+        } else if (event.isMemo()) {
+            this.editMemos();
+            this.memoCriteriaSelected = new MemoCriteria(event.item, this.dateUtilService.toString(this.day.date), event.key);
+        } else if (event.isContactHoliday()) {
+            this.editContactHolidays()
+        } else if (event.isPublicHoliday()) {
+            this.editPublicHolidays()
+        }
     }
 
     doActionOnMemo(event: MemoCriteria) {

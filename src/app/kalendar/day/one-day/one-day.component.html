@@ -1,7 +1,8 @@
 <navig-panel [navigation]="'day'"
              (navigateClick)="navigate($event)">
     <div class="panel-container">
-        <day-in-day class="content-item" [day]="day"></day-in-day>
+        <day-in-day class="content-item" [day]="day"
+                    (showDayItemClick)="showDayItem($event)"></day-in-day>
         <div class="edit-item">
             <ng-content></ng-content>
         </div>

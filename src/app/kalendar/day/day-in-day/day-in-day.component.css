@@ -80,18 +80,6 @@
     width: 100%;
 }
 
-.day-item-detail {
-    display: flex;
-    padding: 2px 0 2px 0;
-    color: #4D5874;
-    width: 100%;
-}
-
-.day-item-detail span {
-    padding-top: 3px;
-    padding-left: 10px;
-}
-
 .day-item-action {
     display: flex;
     flex-direction: row;

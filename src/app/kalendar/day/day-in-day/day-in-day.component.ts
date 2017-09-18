@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../day';
+import { DayItem } from '../../day-item';
 
 @Component({
     selector: 'day-in-day',
@@ -10,7 +11,7 @@ export class DayInDayComponent {
 
     @Input() day: Day;
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
-    @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
+    @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
     constructor() { }
 
@@ -22,7 +23,7 @@ export class DayInDayComponent {
         return value.charAt(0).toUpperCase() + value.slice(1);
     }
 
-    showModal() {
-        this.showDayDetailClick.emit(this.day);
+    showDayItem(dayItem: DayItem) {
+        this.showDayItemClick.emit(dayItem);
     }
 }

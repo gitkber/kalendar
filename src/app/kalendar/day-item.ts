@@ -20,4 +20,8 @@ export class DayItem {
     isPublicHoliday(): boolean {
         return this.type === Type.PUBLIC_HOLIDAY;
     }
+
+    isContactHoliday() {
+        return this.type === Type.CONTACT_HOLIDAY;
+    }
 }

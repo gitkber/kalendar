@@ -1,4 +1,4 @@
-<div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.day-selected]="day.isSelected">
+<div class="day-container" *ngIf="!day.isDisabled" [class.day-selected]="day.isSelected">
     <div class="day-item-title">
         <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
         <div class="day-item-title-header">
@@ -8,12 +8,10 @@
         </div>
     </div>
     <div class="day-item-detail-list">
-        <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
-            <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="18"
-                 width="18"/>
-            <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
-            <span>{{dayItem.item}}</span>
-        </div>
+        <kal-panel-list-row *ngFor="let dayItem of day.dayItems"
+                            [image]="dayItem.isContact() ? '../assets/images/birthday-cake-with-candle.svg' : '../assets/images/newspaper.svg'"
+                            [description]="dayItem.item"
+                            (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
     </div>
     <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
         {{ dayContactHolidayItem.item }}
@@ -29,10 +27,5 @@
         <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
             Today
         </div>
-        <kal-button-action class="editbutton" [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button-action>
     </div>
 </div>
-<ng-template #polaroid>
-    <kal-polaroid class="polaroid-container" [label]="'Elsa'"
-                  [image]="'../../../assets/images/photo/IMG_elsa.jpg'"></kal-polaroid>
-</ng-template>
