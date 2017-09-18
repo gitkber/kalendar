@@ -1,14 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    SimpleChanges,
-    ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { Action } from '../../action';
@@ -19,7 +9,7 @@ import { MemoCriteria } from '../memo-criteria';
     templateUrl: './memo-criteria-form.component.html',
     styleUrls: ['./memo-criteria-form.component.css']
 })
-export class MemoCriteriaFormComponent implements OnInit, OnChanges {
+export class MemoCriteriaFormComponent implements OnChanges {
 
     @ViewChild('inputDescription') input: ElementRef;
 
@@ -29,16 +19,14 @@ export class MemoCriteriaFormComponent implements OnInit, OnChanges {
     private dateStringPipe: DateStringPipe = new DateStringPipe();
     public memoCriteriaFormGroup: FormGroup;
 
-    constructor() { }
-
-    ngOnInit() {
+    constructor() {
         this.memoCriteriaFormGroup = new FormGroup({
             description: new FormControl('', Validators.required),
             kalendarDate: new FormControl('', Validators.required),
             duplication: new FormControl(),
             includeWeekend: new FormControl(),
             memoKey: new FormControl()
-        });
+        })
     }
 
     ngOnChanges(changes: SimpleChanges) {

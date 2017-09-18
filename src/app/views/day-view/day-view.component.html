@@ -1,24 +1,20 @@
 <div class="day-view-content">
     <one-day class="day-item" [day]="day"
-               (navigateClick)="navigate($event)">
-        <div>content for edit</div>
+             (navigateClick)="navigate($event)">
+        <div>
+            <div class="actions-item">
+                <kal-button-menu [image]="'../../../assets/images/users.svg'"
+                                 (click)="editContact()"></kal-button-menu>
+                <contact-form *ngIf="contactSelected"></contact-form>
+                <kal-button-menu [image]="'../../../assets/images/newspaper.svg'"
+                                 (click)="editMemos()"></kal-button-menu>
+                <memo-criteria-form *ngIf="memoSelected" [memoCriteria]="memoCriteriaSelected"
+                                    (actionClick)="doActionOnMemo($event)"></memo-criteria-form>
+                <kal-button-menu [image]="'../../../assets/images/sunbed.svg'"
+                                 (click)="editHolidays()"></kal-button-menu>
+                <public-holiday-form *ngIf="holidaySelected"></public-holiday-form>
+                <contact-holiday-form *ngIf="holidaySelected"></contact-holiday-form>
+            </div>
+        </div>
     </one-day>
 </div>
-
-<!--<div class="day-view-container">-->
-    <!--<one-day class="one-day-item" [day]="day"></one-day>-->
-    <!--<div class="edit-day-item">-->
-        <!--<div>-->
-            <!--<kal-button-menu [image]="'../../../assets/images/users.svg'"-->
-                             <!--(click)="editContact()"></kal-button-menu>-->
-            <!--<kal-button-menu [image]="'../../../assets/images/newspaper.svg'"-->
-                             <!--(click)="editMemos()"></kal-button-menu>-->
-            <!--<kal-button-menu [image]="'../../../assets/images/sunbed.svg'"-->
-                             <!--(click)="editHolidays()"></kal-button-menu>-->
-        <!--</div>-->
-        <!--<contact-form *ngIf="contactSelected"></contact-form>-->
-        <!--<memo-criteria-form *ngIf="memoSelected"></memo-criteria-form>-->
-        <!--<public-holiday-form *ngIf="holidaySelected"></public-holiday-form>-->
-        <!--<contact-holiday-form *ngIf="holidaySelected"></contact-holiday-form>-->
-    <!--</div>-->
-<!--</div>-->
