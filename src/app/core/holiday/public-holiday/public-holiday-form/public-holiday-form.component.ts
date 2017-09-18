@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PublicHoliday } from '../public-holiday';
 import { PublicHolidayAction } from '../public-holiday-action';
@@ -10,7 +10,7 @@ import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
     templateUrl: './public-holiday-form.component.html',
     styleUrls: ['./public-holiday-form.component.css']
 })
-export class PublicHolidayFormComponent implements OnInit, OnChanges {
+export class PublicHolidayFormComponent implements OnChanges {
 
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
@@ -21,9 +21,7 @@ export class PublicHolidayFormComponent implements OnInit, OnChanges {
     @Input() publicHoliday: PublicHoliday;
     private publicHolidayKey: string;
 
-    constructor() { }
-
-    ngOnInit() {
+    constructor() {
         this.formGroup = new FormGroup({
             description: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required)

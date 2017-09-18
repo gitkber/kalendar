@@ -4,16 +4,29 @@
         <div>
             <div class="actions-item">
                 <kal-button-menu [image]="'../../../assets/images/users.svg'"
+                                 [label]="'Contact'"
                                  (click)="editContact()"></kal-button-menu>
-                <contact-form *ngIf="contactSelected"></contact-form>
+                <contact-form *ngIf="isContactSelected"
+                              [contact]="contactSelected"
+                              (actionClick)="doActionOnContact($event)"></contact-form>
                 <kal-button-menu [image]="'../../../assets/images/newspaper.svg'"
+                                 [label]="'Memo'"
                                  (click)="editMemos()"></kal-button-menu>
-                <memo-criteria-form *ngIf="memoSelected" [memoCriteria]="memoCriteriaSelected"
+                <memo-criteria-form *ngIf="isMemoSelected"
+                                    [memoCriteria]="memoCriteriaSelected"
                                     (actionClick)="doActionOnMemo($event)"></memo-criteria-form>
                 <kal-button-menu [image]="'../../../assets/images/sunbed.svg'"
-                                 (click)="editHolidays()"></kal-button-menu>
-                <public-holiday-form *ngIf="holidaySelected"></public-holiday-form>
-                <contact-holiday-form *ngIf="holidaySelected"></contact-holiday-form>
+                                 [label]="'Contact Holiday'"
+                                 (click)="editContactHolidays()"></kal-button-menu>
+                <contact-holiday-form *ngIf="isContactHolidaySelected"
+                                      [contactHoliday]="contactHolidaySelected"
+                                      (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>
+                <kal-button-menu [image]="'../../../assets/images/sunbed.svg'"
+                                 [label]="'Public Holiday'"
+                                 (click)="editPublicHolidays()"></kal-button-menu>
+                <public-holiday-form *ngIf="isPublicHolidaySelected"
+                                     [publicHoliday]="publicHolidaySelected"
+                                     (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
             </div>
         </div>
     </one-day>

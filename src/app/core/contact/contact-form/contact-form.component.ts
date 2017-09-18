@@ -1,8 +1,14 @@
 import {
-    Component, EventEmitter, Inject, Input, LOCALE_ID, OnChanges, OnInit, Output,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    LOCALE_ID,
+    OnChanges,
+    OnInit,
+    Output,
     SimpleChanges
 } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../../contact/contact';
 import { ContactAction } from '../contact-action';
@@ -24,15 +30,15 @@ export class ContactFormComponent implements OnChanges, OnInit {
     @Input() contact: Contact;
     private contactKey: string;
 
-    constructor(@Inject(LOCALE_ID) private _locale: string) { }
-
-    ngOnInit() {
-
+    constructor(@Inject(LOCALE_ID) private _locale: string) {
         this.contactFormGroup = new FormGroup({
             firstname: new FormControl('', Validators.required),
             lastname: new FormControl('', Validators.required),
             birthdate: new FormControl('', Validators.required)
         });
+    }
+
+    ngOnInit() {
         this.contactFormGroup.valueChanges.subscribe(data => {
             this.contact = data
         })

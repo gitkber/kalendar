@@ -7,6 +7,12 @@ import { Day } from '../../kalendar/day/day';
 import { MemoCriteria } from '../../core/memo/memo-criteria';
 import { CoreService } from '../../core/core.service';
 import { DateUtilService } from '../../core/service/date-util.service';
+import { Contact } from '../../core/contact/contact';
+import { ContactAction } from '../../core/contact/contact-action';
+import { ContactHoliday } from 'app/core/holiday/contact-holiday/contact-holiday';
+import { PublicHoliday } from 'app/core/holiday/public-holiday/public-holiday';
+import { PublicHolidayAction } from '../../core/holiday/public-holiday/public-holiday-action';
+import { ContactHolidayAction } from '../../core/holiday/contact-holiday/contact-holiday-action';
 
 @Component({
     selector: 'day-view',
@@ -19,10 +25,14 @@ export class DayViewComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
 
     public memoCriteriaSelected: MemoCriteria;
+    public contactSelected: Contact;
+    public contactHolidaySelected: ContactHoliday;
+    public publicHolidaySelected: PublicHoliday;
 
-    public contactSelected: boolean;
-    public memoSelected: boolean;
-    public holidaySelected: boolean;
+    public isContactSelected: boolean;
+    public isMemoSelected: boolean;
+    public isContactHolidaySelected: boolean;
+    public isPublicHolidaySelected: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -30,11 +40,13 @@ export class DayViewComponent implements OnInit, OnDestroy {
         private coreService: CoreService,
         private dateUtilService: DateUtilService
     ) {
-
-        this.memoSelected = true;
+        this.isMemoSelected = true;
         this.subscription = this.appService.date.subscribe(d => {
             this.day = new Day(d, new Date());
             this.memoCriteriaSelected = new MemoCriteria(null, this.dateUtilService.toString(this.day.date), null);
+            this.contactSelected = new Contact(null, null, null, null, this.dateUtilService.toString(this.day.date));
+            this.contactHolidaySelected = new ContactHoliday(null, null, null, this.dateUtilService.toString(this.day.date));
+            this.publicHolidaySelected = new PublicHoliday(null, null, this.dateUtilService.toString(this.day.date));
             const days: Day[] = [];
             days.push(this.day);
             this.coreService.populateDays(days);
@@ -55,25 +67,47 @@ export class DayViewComponent implements OnInit, OnDestroy {
     }
 
     editContact() {
-        this.contactSelected = true;
-        this.memoSelected = false;
-        this.holidaySelected = false;
+        this.isContactSelected = true;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = false;
     }
 
     editMemos() {
-        this.contactSelected = false;
-        this.memoSelected = true;
-        this.holidaySelected = false;
+        this.isContactSelected = false;
+        this.isMemoSelected = true;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = false;
     }
 
-    editHolidays() {
-        this.contactSelected = false;
-        this.memoSelected = false;
-        this.holidaySelected = true;
+    editContactHolidays() {
+        this.isContactSelected = false;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = true;
+        this.isPublicHolidaySelected = false;
+    }
+
+    editPublicHolidays() {
+        this.isContactSelected = false;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = true;
     }
 
     doActionOnMemo(event: MemoCriteria) {
         this.coreService.memoService.doActionOnMemo(event);
+    }
+
+    doActionOnContact(event: ContactAction) {
+        this.coreService.contactService.doActionOnContact(event);
+    }
+
+    doActionOnContactHoliday(event: ContactHolidayAction) {
+        this.coreService.contactHolidayService.doActionOnContactHoliday(event);
+    }
+
+    doActionOnPublicHoliday(event: PublicHolidayAction) {
+        this.coreService.publicHolidayService.doActionOnPublicHoliday(event);
     }
 
     navigate(event: Navigation) {
