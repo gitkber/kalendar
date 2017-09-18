@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CoreService } from '../../core/core.service';
+import { CoreFacade } from '../../core/core.facade';
 import { RouterService } from '../../core/service/router.service';
 import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
@@ -19,23 +19,23 @@ export class HomeViewComponent implements OnInit {
     public week: Week;
     private selectedDay: Day;
 
-    constructor(private routerService: RouterService, private coreService: CoreService, private appService: AppService) { }
+    constructor(private routerService: RouterService, private coreFacade: CoreFacade, private appService: AppService) { }
 
     ngOnInit() {
         this.week = new Week(this.appService.currentDate);
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
-        this.coreService.populateDays(this.week.days);
+        this.coreFacade.populateDays(this.week.days);
     }
 
     navigate(event: Navigation) {
         if (event.isToday) {
-            this.coreService.populateDays(this.week.goToday());
+            this.coreFacade.populateDays(this.week.goToday());
             this.selectedDay = this.week.selectDate(this.appService.currentDate);
         } else if (event.isNext) {
-            this.coreService.populateDays(this.week.next());
+            this.coreFacade.populateDays(this.week.next());
             this.selectedDay = this.week.selectDate(this.appService.currentDate);
         } else if (event.isPrevious) {
-            this.coreService.populateDays(this.week.previous());
+            this.coreFacade.populateDays(this.week.previous());
             this.selectedDay = this.week.selectDate(this.appService.currentDate);
         } else if (event.isMonth) {
             this.routerService.navigateToKalMonth(event.toDate);

@@ -6,7 +6,7 @@ import { ContactService } from './contact/contact.service';
 import { ContactHolidayService } from './holiday/contact-holiday/contact-holiday.service';
 import { PublicHolidayService } from './holiday/public-holiday/public-holiday.service';
 import { MemoService } from './memo/memo.service';
-import { CoreService } from './core.service';
+import { CoreFacade } from './core.facade';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { DateUtilService } from './service/date-util.service';
@@ -32,7 +32,7 @@ import { ContactHolidayListComponent } from './holiday/contact-holiday/contact-h
         MemoCriteriaFormComponent, MemoListComponent,
         PublicHolidayFormComponent, PublicHolidayListComponent,
         ContactHolidayFormComponent, ContactHolidayListComponent],
-    providers: [ContactService, MemoService, PublicHolidayService, ContactHolidayService, CoreService, AuthService, RouterService, DateUtilService]
+    providers: [ContactService, MemoService, PublicHolidayService, ContactHolidayService, CoreFacade, AuthService, RouterService, DateUtilService]
 })
 export class CoreModule {
 }

@@ -5,7 +5,7 @@ import { AppService } from '../../app.service';
 import { Navigation } from '../../kalendar/navigation';
 import { Day } from '../../kalendar/day/day';
 import { MemoCriteria } from '../../core/memo/memo-criteria';
-import { CoreService } from '../../core/core.service';
+import { CoreFacade } from '../../core/core.facade';
 import { DateUtilService } from '../../core/service/date-util.service';
 import { Contact } from '../../core/contact/contact';
 import { ContactAction } from '../../core/contact/contact-action';
@@ -37,7 +37,7 @@ export class DayViewComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private appService: AppService,
-        private coreService: CoreService,
+        private coreFacade: CoreFacade,
         private dateUtilService: DateUtilService
     ) {
         this.isMemoSelected = true;
@@ -49,7 +49,7 @@ export class DayViewComponent implements OnInit, OnDestroy {
             this.publicHolidaySelected = new PublicHoliday(null, null, this.dateUtilService.toString(this.day.date));
             const days: Day[] = [];
             days.push(this.day);
-            this.coreService.populateDays(days);
+            this.coreFacade.populateDays(days);
         })
     }
 
@@ -95,19 +95,19 @@ export class DayViewComponent implements OnInit, OnDestroy {
     }
 
     doActionOnMemo(event: MemoCriteria) {
-        this.coreService.memoService.doActionOnMemo(event);
+        this.coreFacade.memoService.doActionOnMemo(event);
     }
 
     doActionOnContact(event: ContactAction) {
-        this.coreService.contactService.doActionOnContact(event);
+        this.coreFacade.contactService.doActionOnContact(event);
     }
 
     doActionOnContactHoliday(event: ContactHolidayAction) {
-        this.coreService.contactHolidayService.doActionOnContactHoliday(event);
+        this.coreFacade.contactHolidayService.doActionOnContactHoliday(event);
     }
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {
-        this.coreService.publicHolidayService.doActionOnPublicHoliday(event);
+        this.coreFacade.publicHolidayService.doActionOnPublicHoliday(event);
     }
 
     navigate(event: Navigation) {

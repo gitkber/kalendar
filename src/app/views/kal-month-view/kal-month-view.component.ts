@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { CoreService } from '../../core/core.service';
+import { CoreFacade } from '../../core/core.facade';
 import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Month } from '../../kalendar/month/month';
@@ -21,11 +21,11 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
     private selectedDay: Day;
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private coreService: CoreService, private appService: AppService) {
+    constructor(private route: ActivatedRoute, private coreFacade: CoreFacade, private appService: AppService) {
         this.subscription = this.appService.date.subscribe(d => {
             this.month = new Month(d.getMonth() + 1, d.getFullYear());
             this.selectedDay = this.month.selectDate(this.appService.currentDate);
-            this.coreService.populateDays(this.month.days);
+            this.coreFacade.populateDays(this.month.days);
         })
     }
 

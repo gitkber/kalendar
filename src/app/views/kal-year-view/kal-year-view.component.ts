@@ -5,7 +5,7 @@ import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Year } from '../../kalendar/year/year';
 import { Day } from '../../kalendar/day/day';
-import { CoreService } from '../../core/core.service';
+import { CoreFacade } from '../../core/core.facade';
 import { Navigation } from '../../kalendar/navigation';
 
 @Component({
@@ -21,12 +21,12 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
     private selectedDay: Day;
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private coreService: CoreService, private appService: AppService) {
+    constructor(private route: ActivatedRoute, private coreFacade: CoreFacade, private appService: AppService) {
         this.subscription = this.appService.date.subscribe(d => {
             this.year = new Year(d.getFullYear());
             this.selectedDay = this.year.selectDate(this.appService.currentDate);
             this.year.months.forEach(m => {
-                this.coreService.populateDays(m.days);
+                this.coreFacade.populateDays(m.days);
             })
         })
     }

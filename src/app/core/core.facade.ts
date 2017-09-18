@@ -13,7 +13,7 @@ import { ContactHoliday } from './holiday/contact-holiday/contact-holiday';
 import { ContactHolidayService } from './holiday/contact-holiday/contact-holiday.service';
 
 @Injectable()
-export class CoreService {
+export class CoreFacade {
 
     constructor(
         public contactService: ContactService,
