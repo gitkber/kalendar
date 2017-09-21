@@ -6,7 +6,7 @@
         <kal-panel-list [title]="day?.date | date:'EEE d MMMM yyyy'">
             <kal-panel-list-row *ngFor="let dayItem of day?.dayItems"
                                 [image]="dayItem.isContact() ? '../assets/images/user_male.svg' : '../../../../assets/images/newspaper.svg'"
-                                [description]="dayItem.item"
+                                [description]="dayItem.principalItem"
                                 (editItemClick)="selectDayItem(dayItem)"></kal-panel-list-row>
         </kal-panel-list>
 

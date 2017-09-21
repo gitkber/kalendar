@@ -5,7 +5,8 @@ export class DayItem {
     constructor(
         public type: Type,
         public key: string,
-        public item: string
+        public principalItem: string,
+        public additionalItem?: string
     ) {
     }
 

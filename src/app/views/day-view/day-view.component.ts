@@ -98,10 +98,10 @@ export class DayViewComponent implements OnInit, OnDestroy {
     showDayItem(event: DayItem) {
         if (event.isContact()) {
             this.editContact();
-            this.contactSelected = new Contact(null, event.item, event.item, null, this.dateUtilService.toString(this.day.date));
+            this.contactSelected = new Contact(null, event.principalItem, event.additionalItem, null, this.dateUtilService.toString(this.day.date));
         } else if (event.isMemo()) {
             this.editMemos();
-            this.memoCriteriaSelected = new MemoCriteria(event.item, this.dateUtilService.toString(this.day.date), event.key);
+            this.memoCriteriaSelected = new MemoCriteria(event.principalItem, this.dateUtilService.toString(this.day.date), event.key);
         } else if (event.isContactHoliday()) {
             this.editContactHolidays()
         } else if (event.isPublicHoliday()) {

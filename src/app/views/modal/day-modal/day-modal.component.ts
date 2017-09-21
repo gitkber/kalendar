@@ -42,7 +42,7 @@ export class DayModalComponent implements OnInit {
 
     selectDayItem(dayItem: DayItem) {
         if (dayItem.isMemo()) {
-            this.memoCriteriaSelected = new MemoCriteria(dayItem.item, this.dateUtilService.toString(this.day.date), dayItem.key);
+            this.memoCriteriaSelected = new MemoCriteria(dayItem.principalItem, this.dateUtilService.toString(this.day.date), dayItem.key);
         }
     }
 

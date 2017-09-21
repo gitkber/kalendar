@@ -38,7 +38,7 @@ export class CoreFacade {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() <= d.date.getFullYear()) {
                     // console.log('child_added contact', entity);
-                    d.dayItems.push(new DayItem(Type.CONTACT, data.key, entity.firstname + ' ' + entity.lastname));
+                    d.dayItems.push(new DayItem(Type.CONTACT, data.key, entity.firstname, entity.lastname));
                 }
             })
         });
@@ -53,7 +53,8 @@ export class CoreFacade {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
                             // console.log('child_changed contact', entity);
-                            di.item = entity.firstname + ' ' + entity.lastname;
+                            di.principalItem = entity.firstname;
+                            di.additionalItem = entity.lastname;
                         }
                     })
                 }
@@ -102,7 +103,7 @@ export class CoreFacade {
                     d.dayItems.forEach(di => {
                         // console.log('child_changed memo', entity);
                         if (di.key === data.key) {
-                            di.item = entity.description;
+                            di.principalItem = entity.description;
                         }
                     })
                 }
@@ -148,7 +149,7 @@ export class CoreFacade {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    d.dayPublicHolidayItem.item = entity.description;
+                    d.dayPublicHolidayItem.principalItem = entity.description;
                 }
             })
         });
@@ -190,7 +191,7 @@ export class CoreFacade {
                     d.dayContactHolidayItems.forEach(di => {
                         // console.log('child_changed contactHoliday', entity);
                         if (di.key === data.key) {
-                            di.item = entity.description;
+                            di.principalItem = entity.description;
                         }
                     })
                 }

@@ -4,15 +4,15 @@
     </div>
     <div class="day-item-info-list">
         <div class="day-item-info-detail" *ngIf="day.dayPublicHolidayItem">
-            <span>{{day.dayPublicHolidayItem.item}}</span>
+            <span>{{day.dayPublicHolidayItem.principalItem}}</span>
         </div>
         <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayContactHolidayItems">
-            <span>{{dayInfoItem.item}}</span>
+            <span>{{dayInfoItem.principalItem}}</span>
         </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
             <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="15" width="15" />
             <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="15" width="15" />
-            <span>{{dayItem.item}}</span>
+            <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
         </div>
     </div>
 </div>

@@ -10,16 +10,16 @@
     <div class="day-item-detail-list">
         <kal-panel-list-row *ngFor="let dayItem of day.dayItems"
                             [image]="dayItem.isContact() ? '../assets/images/birthday-cake-with-candle.svg' : '../assets/images/newspaper.svg'"
-                            [description]="dayItem.item"
+                            [description]="dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '')"
                             (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
     </div>
     <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
-        {{ dayContactHolidayItem.item }}
+        {{ dayContactHolidayItem.principalItem }}
     </div>
     <div class="day-item-action">
         <div></div>
         <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
-            {{ day.dayPublicHolidayItem.item }}
+            {{ day.dayPublicHolidayItem.principalItem }}
         </div>
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end

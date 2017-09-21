@@ -12,16 +12,16 @@
             <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="18"
                  width="18"/>
             <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
-            <span>{{dayItem.item}}</span>
+            <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
         </div>
     </div>
     <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
-        {{ dayContactHolidayItem.item }}
+        {{ dayContactHolidayItem.principalItem }}
     </div>
     <div class="day-item-action">
         <div></div>
         <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
-            {{ day.dayPublicHolidayItem.item }}
+            {{ day.dayPublicHolidayItem.principalItem }}
         </div>
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end
