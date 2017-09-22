@@ -1,35 +1,38 @@
 <div class="day-container" *ngIf="!day.isDisabled" [class.day-selected]="day.isSelected">
-    <div class="day-item-title">
-        <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
-        <div class="day-item-title-header">
-            <div class="day-item-select" (click)="navigateToMonth()">
-                {{ day.date | date:'d MMMM yyyy' }}
+    <div class="group-container">
+        <div class="day-item-title">
+            <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
+            <div class="day-item-title-header">
+                <div class="day-item-select" (click)="navigateToMonth()">
+                    {{ day.date | date:'d MMMM yyyy' }}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="day-item-detail-list">
-        <kal-panel-list-row *ngFor="let dayItem of day.dayItems"
+        <kal-panel-list-row class="day-item-detail-list"
+                            *ngFor="let dayItem of day.dayItems"
                             [image]="dayItem.isContact() ? '../assets/images/birthday-cake-with-candle.svg' : '../assets/images/newspaper.svg'"
                             [description]="dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '')"
                             (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
     </div>
-    <kal-panel-list-row class="day-item-contactholiday"
-                        *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems"
-                        [image]="'../assets/images/sunbed.svg'"
-                        [description]="dayContactHolidayItem.principalItem"
-                        (editItemClick)="showDayItem(dayContactHolidayItem)"></kal-panel-list-row>
-    <div class="day-item-action">
-        <div></div>
-        <kal-panel-list-row class="day-item-info weekend"
-                            *ngIf="day.dayPublicHolidayItem"
+    <div class="group-container">
+        <kal-panel-list-row class="day-item-contactholiday-list"
+                            *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems"
                             [image]="'../assets/images/sunbed.svg'"
-                            [description]="day.dayPublicHolidayItem.principalItem"
-                            (editItemClick)="showDayItem(day.dayPublicHolidayItem)"></kal-panel-list-row>
-        <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
-            Week-end
-        </div>
-        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
-            Today
+                            [description]="dayContactHolidayItem.principalItem"
+                            (editItemClick)="showDayItem(dayContactHolidayItem)"></kal-panel-list-row>
+        <div class="day-item-action">
+            <div></div>
+            <kal-panel-list-row class="day-item-info weekend"
+                                *ngIf="day.dayPublicHolidayItem"
+                                [image]="'../assets/images/sunbed.svg'"
+                                [description]="day.dayPublicHolidayItem.principalItem"
+                                (editItemClick)="showDayItem(day.dayPublicHolidayItem)"></kal-panel-list-row>
+            <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
+                Week-end
+            </div>
+            <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
+                Today
+            </div>
         </div>
     </div>
 </div>
