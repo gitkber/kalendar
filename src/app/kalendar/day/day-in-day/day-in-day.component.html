@@ -13,14 +13,18 @@
                             [description]="dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '')"
                             (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
     </div>
-    <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
-        {{ dayContactHolidayItem.principalItem }}
-    </div>
+    <kal-panel-list-row class="day-item-contactholiday"
+                        *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems"
+                        [image]="'../assets/images/sunbed.svg'"
+                        [description]="dayContactHolidayItem.principalItem"
+                        (editItemClick)="showDayItem(dayContactHolidayItem)"></kal-panel-list-row>
     <div class="day-item-action">
         <div></div>
-        <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
-            {{ day.dayPublicHolidayItem.principalItem }}
-        </div>
+        <kal-panel-list-row class="day-item-info weekend"
+                            *ngIf="day.dayPublicHolidayItem"
+                            [image]="'../assets/images/sunbed.svg'"
+                            [description]="day.dayPublicHolidayItem.principalItem"
+                            (editItemClick)="showDayItem(day.dayPublicHolidayItem)"></kal-panel-list-row>
         <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
             Week-end
         </div>

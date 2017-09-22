@@ -1,14 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    LOCALE_ID,
-    OnChanges,
-    OnInit,
-    Output,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../../contact/contact';
 import { ContactAction } from '../contact-action';
@@ -30,7 +20,7 @@ export class ContactFormComponent implements OnChanges, OnInit {
     @Input() contact: Contact;
     private contactKey: string;
 
-    constructor(@Inject(LOCALE_ID) private _locale: string) {
+    constructor() {
         this.contactFormGroup = new FormGroup({
             firstname: new FormControl('', Validators.required),
             lastname: new FormControl('', Validators.required),
@@ -46,7 +36,7 @@ export class ContactFormComponent implements OnChanges, OnInit {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.contact.currentValue !== undefined) {
-            this.contactKey = changes.contact.currentValue['$key']
+            this.contactKey = changes.contact.currentValue['$key'];
             this.contact = changes.contact.currentValue;
             this.contactFormGroup.setValue({
                 'firstname': this.contact.firstname,
