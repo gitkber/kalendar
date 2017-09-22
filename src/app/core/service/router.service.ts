@@ -46,7 +46,7 @@ export class RouterService {
     }
 
     navigateToKalYear(date: Date) {
-        this.isChildView = true;
+        this.isChildView = false;
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }
 
@@ -72,6 +72,6 @@ export class RouterService {
     }
 
     isKalYearViewSelected(): boolean {
-        return this.router.isActive('/kalyear', true);
+        return this.router.isActive('/kalyear', false);
     }
 }

@@ -16,8 +16,11 @@
 
 .actions-item {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
 
+.forms-item {
+    margin-top: 1em;
 }
