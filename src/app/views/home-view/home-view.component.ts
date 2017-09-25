@@ -49,8 +49,8 @@ export class HomeViewComponent implements OnInit {
     showDayDetail(event: Day) {
         this.appService.selectDate(event.date);
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
-        this.routerService.navigateToDay(this.selectedDay.date);
-        // this.modal.open(event);
+        // this.routerService.navigateToDay(this.selectedDay.date);
+        this.modal.open(event);
     }
 
 }

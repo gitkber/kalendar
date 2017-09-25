@@ -1,26 +1,69 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
-import { MemoService } from '../../../core/memo/memo.service';
 import { DayItem } from '../../../kalendar/day-item';
 import { MemoCriteria } from '../../../core/memo/memo-criteria';
 import { DateUtilService } from '../../../core/service/date-util.service';
+import { Navigation } from '../../../kalendar/navigation';
+import { AppService } from '../../../app.service';
+import { Subscription } from 'rxjs/Subscription';
+import { Contact } from '../../../core/contact/contact';
+import { ContactHoliday } from '../../../core/holiday/contact-holiday/contact-holiday';
+import { PublicHoliday } from '../../../core/holiday/public-holiday/public-holiday';
+import { CoreFacade } from '../../../core/core.facade';
+import { ContactAction } from '../../../core/contact/contact-action';
+import { PublicHolidayAction } from 'app/core/holiday/public-holiday/public-holiday-action';
+import { ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday-action';
 
 @Component({
     selector: 'day-modal',
     templateUrl: './day-modal.component.html',
-    styleUrls: ['./day-modal.component.scss']
+    styleUrls: ['./day-modal.component.css']
 })
-export class DayModalComponent implements OnInit {
+export class DayModalComponent implements OnInit, OnDestroy {
 
     @Input() blocking = false;
 
     public isOpen = false;
-    public memoCriteriaSelected: MemoCriteria;
     public day: Day;
 
-    constructor(private dateUtilService: DateUtilService, private memoService: MemoService) { }
+    private subscription: Subscription;
+
+    public memoCriteriaSelected: MemoCriteria;
+    public contactSelected: Contact;
+    public contactHolidaySelected: ContactHoliday;
+    public publicHolidaySelected: PublicHoliday;
+
+    public isContactSelected: boolean;
+    public isMemoSelected: boolean;
+    public isContactHolidaySelected: boolean;
+    public isPublicHolidaySelected: boolean;
+
+    constructor(
+        private appService: AppService,
+        private coreFacade: CoreFacade,
+        private dateUtilService: DateUtilService
+    ) {
+        console.log('DayModalComponent');
+        this.isMemoSelected = true;
+        this.subscription = this.appService.date.subscribe(d => {
+            this.day = new Day(d, new Date());
+            this.memoCriteriaSelected = new MemoCriteria(null, this.dateUtilService.toString(this.day.date), null);
+            this.contactSelected = new Contact(null, null, null, null, this.dateUtilService.toString(this.day.date));
+            this.contactHolidaySelected = new ContactHoliday(null, null, null, this.dateUtilService.toString(this.day.date));
+            this.publicHolidaySelected = new PublicHoliday(null, null, this.dateUtilService.toString(this.day.date));
+            const days: Day[] = [];
+            days.push(this.day);
+            this.coreFacade.populateDays(days);
+        })
+    }
 
     ngOnInit() { }
+
+    ngOnDestroy(): void {
+        // unsubscribe to ensure no memory leaks
+        console.log('DayViewComponent ngOnDestroy', this.appService.currentDate);
+        this.subscription.unsubscribe();
+    }
 
     @HostListener('document:keydown.escape', ['$event'])
     onKeydownHandler(evt: KeyboardEvent) {
@@ -40,13 +83,71 @@ export class DayModalComponent implements OnInit {
         this.isOpen = false;
     }
 
-    selectDayItem(dayItem: DayItem) {
-        if (dayItem.isMemo()) {
-            this.memoCriteriaSelected = new MemoCriteria(dayItem.principalItem, this.dateUtilService.toString(this.day.date), dayItem.key);
+    editContact() {
+        this.isContactSelected = true;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = false;
+    }
+
+    editMemos() {
+        this.isContactSelected = false;
+        this.isMemoSelected = true;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = false;
+    }
+
+    editContactHolidays() {
+        this.isContactSelected = false;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = true;
+        this.isPublicHolidaySelected = false;
+    }
+
+    editPublicHolidays() {
+        this.isContactSelected = false;
+        this.isMemoSelected = false;
+        this.isContactHolidaySelected = false;
+        this.isPublicHolidaySelected = true;
+    }
+
+    showDayItem(event: DayItem) {
+        if (event.isContact()) {
+            this.editContact();
+            this.contactSelected = new Contact(null, event.principalItem, event.additionalItem, null, this.dateUtilService.toString(this.day.date));
+            this.contactSelected['$key'] = event.key;
+        } else if (event.isMemo()) {
+            this.editMemos();
+            this.memoCriteriaSelected = new MemoCriteria(event.principalItem, this.dateUtilService.toString(this.day.date), event.key);
+        } else if (event.isContactHoliday()) {
+            this.editContactHolidays();
+            this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.contactHolidaySelected['$key'] = event.key;
+        } else if (event.isPublicHoliday()) {
+            this.editPublicHolidays();
+            this.publicHolidaySelected = new PublicHoliday(null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.publicHolidaySelected['$key'] = event.key;
         }
     }
 
     doActionOnMemo(event: MemoCriteria) {
-        this.memoService.doActionOnMemo(event);
+        this.coreFacade.memoService.doActionOnMemo(event);
     }
+
+    doActionOnContact(event: ContactAction) {
+        this.coreFacade.contactService.doActionOnContact(event);
+    }
+
+    doActionOnContactHoliday(event: ContactHolidayAction) {
+        this.coreFacade.contactHolidayService.doActionOnContactHoliday(event);
+    }
+
+    doActionOnPublicHoliday(event: PublicHolidayAction) {
+        this.coreFacade.publicHolidayService.doActionOnPublicHoliday(event);
+    }
+
+    navigate(event: Navigation) {
+        this.appService.navigate(event);
+    }
+
 }
