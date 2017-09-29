@@ -21,10 +21,10 @@
     border-radius: 0.5em;
     overflow: hidden;
     position: fixed;
-    bottom: 10em;
-    left: 10em;
-    right: 10em;
-    top: 10em;
+    bottom: 5em;
+    left: 15em;
+    right: 15em;
+    top: 5em;
     z-index: 1100;
     padding: 2em 1em 0.5em 2em;
 }
@@ -37,13 +37,3 @@
     display: none;
 }
 
-.actions-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.forms-item {
-    margin-top: 1em;
-}

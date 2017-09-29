@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../day';
 import { DayItem } from '../../day-item';
+import { Type } from '../../type';
 
 @Component({
     selector: 'day-in-day',
@@ -25,5 +26,21 @@ export class DayInDayComponent {
 
     showDayItem(dayItem: DayItem) {
         this.showDayItemClick.emit(dayItem);
+    }
+
+    addDayItemContact() {
+        this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, null, null));
+    }
+
+    addDayItemMemo() {
+        this.showDayItemClick.emit(new DayItem(Type.MEMO, null, null));
+    }
+
+    addDayItemContactHoliday() {
+        this.showDayItemClick.emit(new DayItem(Type.CONTACT_HOLIDAY, null, null));
+    }
+
+    addDayItemPublicHoliday() {
+        this.showDayItemClick.emit(new DayItem(Type.PUBLIC_HOLIDAY, null, null));
     }
 }

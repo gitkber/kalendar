@@ -4,6 +4,7 @@ import { Contact } from '../../contact/contact';
 import { ContactAction } from '../contact-action';
 import { Action } from '../../action';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'contact-form',
@@ -12,13 +13,14 @@ import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 })
 export class ContactFormComponent implements OnChanges, OnInit {
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
-    @Output() actionClick = new EventEmitter<ContactAction>();
-    public contactFormGroup: FormGroup;
-
     @Input() contact: Contact;
+    @Output() actionClick = new EventEmitter<ContactAction>();
+
+    public title: string;
+    public contactFormGroup: FormGroup;
     private contactKey: string;
+
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     constructor() {
         this.contactFormGroup = new FormGroup({
@@ -37,6 +39,11 @@ export class ContactFormComponent implements OnChanges, OnInit {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.contact.currentValue !== undefined) {
             this.contactKey = changes.contact.currentValue['$key'];
+            if (this.isEmptyKey()) {
+                this.title = 'Ajouter un contact';
+            } else {
+                this.title = 'Modifier ce contact';
+            }
             this.contact = changes.contact.currentValue;
             this.contactFormGroup.setValue({
                 'firstname': this.contact.firstname,
@@ -50,7 +57,7 @@ export class ContactFormComponent implements OnChanges, OnInit {
         this.contact.birthdate = this.dateStringPipe.transform(this.contact.birthdate, true);
 
         let contactAction: ContactAction;
-        if (this.contactKey === undefined) {
+        if (this.isEmptyKey()) {
             contactAction = new ContactAction(Action.INSERT, this.contact);
         } else {
             contactAction = new ContactAction(Action.UPDATE, this.contact);
@@ -63,12 +70,16 @@ export class ContactFormComponent implements OnChanges, OnInit {
 
     deleteContact() {
         let contactAction: ContactAction;
-        if (this.contactKey !== undefined) {
+        if (!this.isEmptyKey()) {
             contactAction = new ContactAction(Action.DELETE);
             contactAction.contactKey = this.contactKey;
             this.actionClick.emit(contactAction);
             this.contactKey = undefined;
             this.contactFormGroup.reset();
         }
+    }
+
+    private isEmptyKey(): boolean {
+        return isUndefined(this.contactKey) || this.contactKey === null;
     }
 }

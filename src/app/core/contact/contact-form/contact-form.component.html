@@ -1,4 +1,4 @@
-<kal-panel-form>
+<kal-panel-form [subTitle]="title">
     <form class="form-container" (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
         <div class="contact-row">
             <label class="labelFor" for="inputFirstname">Firstname</label>

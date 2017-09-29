@@ -4,6 +4,8 @@ import { PublicHoliday } from '../public-holiday';
 import { PublicHolidayAction } from '../public-holiday-action';
 import { Action } from '../../../action';
 import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
+import { isUndefined } from 'util';
+import { isEmpty } from 'rxjs/operator/isEmpty';
 
 @Component({
     selector: 'public-holiday-form',
@@ -12,14 +14,14 @@ import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 })
 export class PublicHolidayFormComponent implements OnChanges {
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
+    @Input() publicHoliday: PublicHoliday;
     @Output() actionClick = new EventEmitter<PublicHolidayAction>();
 
+    public title: string;
     public formGroup: FormGroup;
-
-    @Input() publicHoliday: PublicHoliday;
     private publicHolidayKey: string;
+
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     constructor() {
         this.formGroup = new FormGroup({
@@ -32,6 +34,11 @@ export class PublicHolidayFormComponent implements OnChanges {
         if (changes.publicHoliday && changes.publicHoliday.currentValue !== undefined) {
             this.publicHolidayKey = changes.publicHoliday.currentValue['$key'];
             this.publicHoliday = changes.publicHoliday.currentValue;
+            if (this.isEmptyKey()) {
+                this.title = 'Ajouter un jour férié';
+            } else {
+                this.title = 'Modifier ce jour férié';
+            }
             this.formGroup.setValue({
                 'description': this.publicHoliday.description,
                 'date': this.dateStringPipe.transform(this.publicHoliday.date)
@@ -44,7 +51,7 @@ export class PublicHolidayFormComponent implements OnChanges {
         this.publicHoliday.date = this.dateStringPipe.transform(this.publicHoliday.date, true);
 
         let publicHolidayAction: PublicHolidayAction;
-        if (this.publicHolidayKey === undefined) {
+        if (this.isEmptyKey()) {
             publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday);
         } else {
             publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday);
@@ -55,7 +62,7 @@ export class PublicHolidayFormComponent implements OnChanges {
 
     deleteHoliday() {
         let publicHolidayAction: PublicHolidayAction;
-        if (this.publicHolidayKey !== undefined) {
+        if (!this.isEmptyKey()) {
             publicHolidayAction = new PublicHolidayAction(Action.DELETE);
             publicHolidayAction.holidayKey = this.publicHolidayKey;
             this.actionClickEmitAndResetFormGroup(publicHolidayAction);
@@ -68,4 +75,7 @@ export class PublicHolidayFormComponent implements OnChanges {
         this.formGroup.reset();
     }
 
+    private isEmptyKey(): boolean {
+        return isUndefined(this.publicHolidayKey) || this.publicHolidayKey === null;
+    }
 }

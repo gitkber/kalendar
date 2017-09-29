@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { Action } from '../../action';
 import { MemoCriteria } from '../memo-criteria';
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'memo-criteria-form',
@@ -16,8 +17,10 @@ export class MemoCriteriaFormComponent implements OnChanges {
     @Input() memoCriteria: MemoCriteria;
     @Output() actionClick = new EventEmitter<MemoCriteria>();
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
+    public title: string;
     public memoCriteriaFormGroup: FormGroup;
+
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     constructor() {
         this.memoCriteriaFormGroup = new FormGroup({
@@ -36,6 +39,11 @@ export class MemoCriteriaFormComponent implements OnChanges {
             }
 
             this.memoCriteria = changes.memoCriteria.currentValue;
+            if (this.memoCriteria.memoKey === null || isUndefined(this.memoCriteria.memoKey)) {
+                this.title = 'Ajouter un événement';
+            } else {
+                this.title = 'Modifier cet événement';
+            }
             this.initFormGroup();
         }
     }

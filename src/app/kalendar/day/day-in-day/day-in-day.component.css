@@ -64,7 +64,6 @@
 }
 
 .day-item-info {
-    padding: 5px 0 5px 0;
     width: 100%;
     margin-top: 2px;
 }
@@ -75,16 +74,35 @@
     text-align: center;
 }
 
+.public-holiday {
+    background: #4D5874;
+    color: white;
+    text-align: center;
+}
+
 .today {
-    width: 100%;
+    padding: 5px 0 5px 0;
     background: #AD6B6B;
     color: white;
     text-align: center;
 }
 
 .weekend {
-    width: 100%;
+    padding: 5px 0 5px 0;
     background: #4D5874;
     color: white;
     text-align: center;
+}
+
+.row-container-add-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.description-item {
+    padding-top: 0.5em;
+    text-indent: 1.5em;
 }

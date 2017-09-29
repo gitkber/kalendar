@@ -7,50 +7,20 @@
                  (navigateClick)="navigate($event)"
                  (showDayItemClick)="showDayItem($event)">
             <div>
-                <div class="actions-item">
-                    <kal-button-menu [image]="'../../../assets/images/users.svg'"
-                                     [selected]="isContactSelected"
-                                     [label]="'Contact'"
-                                     (click)="editContact()"></kal-button-menu>
-                    <kal-button-menu [image]="'../../../assets/images/newspaper.svg'"
-                                     [selected]="isMemoSelected"
-                                     [label]="'Memo'"
-                                     (click)="editMemos()"></kal-button-menu>
-                    <kal-button-menu [image]="'../../../assets/images/sunbed.svg'"
-                                     [selected]="isContactHolidaySelected"
-                                     [label]="'Contact Holiday'"
-                                     (click)="editContactHolidays()"></kal-button-menu>
-                    <kal-button-menu [image]="'../../../assets/images/sunbed.svg'"
-                                     [selected]="isPublicHolidaySelected"
-                                     [label]="'Public Holiday'"
-                                     (click)="editPublicHolidays()"></kal-button-menu>
-                </div>
-                <div class="forms-item">
-                    <contact-form *ngIf="isContactSelected"
-                                  [contact]="contactSelected"
-                                  (actionClick)="doActionOnContact($event)"></contact-form>
-                    <memo-criteria-form *ngIf="isMemoSelected"
-                                        [memoCriteria]="memoCriteriaSelected"
-                                        (actionClick)="doActionOnMemo($event)"></memo-criteria-form>
-                    <contact-holiday-form *ngIf="isContactHolidaySelected"
-                                          [contactHoliday]="contactHolidaySelected"
-                                          (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>
-                    <public-holiday-form *ngIf="isPublicHolidaySelected"
-                                         [publicHoliday]="publicHolidaySelected"
-                                         (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
-                </div>
+                <contact-form *ngIf="isContactSelected"
+                              [contact]="contactSelected"
+                              (actionClick)="doActionOnContact($event)"></contact-form>
+                <memo-criteria-form *ngIf="isMemoSelected"
+                                    [memoCriteria]="memoCriteriaSelected"
+                                    (actionClick)="doActionOnMemo($event)"></memo-criteria-form>
+                <contact-holiday-form *ngIf="isContactHolidaySelected"
+                                      [contactHoliday]="contactHolidaySelected"
+                                      (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>
+                <public-holiday-form *ngIf="isPublicHolidaySelected"
+                                     [publicHoliday]="publicHolidaySelected"
+                                     (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
             </div>
         </one-day>
-
-        <!--<kal-panel-list [title]="day?.date | date:'EEE d MMMM yyyy'">-->
-            <!--<kal-panel-list-row *ngFor="let dayItem of day?.dayItems"-->
-                                <!--[image]="dayItem.isContact() ? '../assets/images/user_male.svg' : '../../../../assets/images/newspaper.svg'"-->
-                                <!--[description]="dayItem.principalItem"-->
-                                <!--(editItemClick)="selectDayItem(dayItem)"></kal-panel-list-row>-->
-        <!--</kal-panel-list>-->
-
-        <!--<memo-criteria-form class="memo-form-item" [memoCriteria]="memoCriteriaSelected"-->
-                            <!--(actionClick)="doActionOnMemo($event)"></memo-criteria-form>-->
     </div>
 
 </div>

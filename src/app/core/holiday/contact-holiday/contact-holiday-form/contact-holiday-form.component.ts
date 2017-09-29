@@ -4,6 +4,7 @@ import { ContactHoliday } from '../contact-holiday';
 import { ContactHolidayAction } from '../contact-holiday-action';
 import { Action } from '../../../action';
 import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'contact-holiday-form',
@@ -12,14 +13,14 @@ import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 })
 export class ContactHolidayFormComponent implements OnChanges {
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
+    @Input() contactHoliday: ContactHoliday;
     @Output() actionClick = new EventEmitter<ContactHolidayAction>();
 
+    public title: string;
     public formGroup: FormGroup;
-
-    @Input() contactHoliday: ContactHoliday;
     private contactHolidayKey: string;
+
+    private dateStringPipe: DateStringPipe = new DateStringPipe();
 
     constructor() {
         this.formGroup = new FormGroup({
@@ -32,6 +33,12 @@ export class ContactHolidayFormComponent implements OnChanges {
         if (changes.contactHoliday && changes.contactHoliday.currentValue !== undefined) {
             this.contactHolidayKey = changes.contactHoliday.currentValue['$key'];
             this.contactHoliday = changes.contactHoliday.currentValue;
+            if (this.isEmptyKey()) {
+                this.title = 'Ajouter un jour de congé';
+            } else {
+                this.title = 'Modifier ce jour de congé';
+            }
+
             this.formGroup.setValue({
                 'description': this.contactHoliday.description,
                 'date': this.dateStringPipe.transform(this.contactHoliday.date)
@@ -44,7 +51,7 @@ export class ContactHolidayFormComponent implements OnChanges {
         this.contactHoliday.date = this.dateStringPipe.transform(this.contactHoliday.date, true);
 
         let contactHolidayAction: ContactHolidayAction;
-        if (this.contactHolidayKey === undefined) {
+        if (this.isEmptyKey()) {
             contactHolidayAction = new ContactHolidayAction(Action.INSERT, this.contactHoliday);
         } else {
             contactHolidayAction = new ContactHolidayAction(Action.UPDATE, this.contactHoliday);
@@ -55,7 +62,7 @@ export class ContactHolidayFormComponent implements OnChanges {
 
     deleteHoliday() {
         let contactHolidayAction: ContactHolidayAction;
-        if (this.contactHolidayKey !== undefined) {
+        if (!this.isEmptyKey()) {
             contactHolidayAction = new ContactHolidayAction(Action.DELETE);
             contactHolidayAction.holidayKey = this.contactHolidayKey;
             this.actionClickEmitAndResetFormGroup(contactHolidayAction);
@@ -68,4 +75,7 @@ export class ContactHolidayFormComponent implements OnChanges {
         this.formGroup.reset();
     }
 
+    private isEmptyKey(): boolean {
+        return isUndefined(this.contactHolidayKey) || this.contactHolidayKey === null;
+    }
 }

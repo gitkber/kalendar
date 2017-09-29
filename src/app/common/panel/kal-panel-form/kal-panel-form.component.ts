@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class KalPanelFormComponent {
 
     @Input() title: string;
+    @Input() subTitle: string;
     @Input() errorMessage: string;
 
 }
