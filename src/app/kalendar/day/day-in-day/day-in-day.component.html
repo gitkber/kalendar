@@ -14,13 +14,13 @@
                             [description]="dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '')"
                             (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
     </div>
-    <div class="group-container">
-        <kal-panel-list-row class="day-item-contactholiday-list"
+    <div class="group-container margin-bottom">
+        <kal-panel-list-row class="day-item-info contact-holiday"
                             *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems"
                             [image]="'../assets/images/sunbed.svg'"
                             [description]="dayContactHolidayItem.principalItem"
                             (editItemClick)="showDayItem(dayContactHolidayItem)"></kal-panel-list-row>
-        <div class="day-item-action">
+        <div class="day-item-info-list-one-row">
             <div></div>
             <kal-panel-list-row class="day-item-info weekend"
                                 *ngIf="day.dayPublicHolidayItem"

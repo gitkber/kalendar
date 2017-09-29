@@ -1,35 +1,39 @@
-<div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.day-selected]="day.isSelected">
-    <div class="day-item-title">
-        <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
-        <div class="day-item-title-header">
-            <div class="day-item-select" (click)="navigateToMonth()">
-                {{ day.date | date:'d MMMM yyyy' }}
+<div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.day-selected]="day.isSelected"
+     (click)="showModal()">
+    <div class="group-container">
+        <div class="day-item-title">
+            <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
+            <div class="day-item-title-header">
+                <div class="day-item-select" (click)="navigateToMonth()">
+                    {{ day.date | date:'d MMMM yyyy' }}
+                </div>
+            </div>
+        </div>
+        <div class="day-item-detail-list">
+            <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
+                <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="18"
+                     width="18"/>
+                <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
+                <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
             </div>
         </div>
     </div>
-    <div class="day-item-detail-list">
-        <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
-            <img *ngIf="dayItem.isContact()" src="../../../assets/images/birthday-cake-with-candle.svg" height="18"
-                 width="18"/>
-            <img *ngIf="dayItem.isMemo()" src="../../../assets/images/newspaper.svg" height="18" width="18"/>
-            <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
+    <div class="group-container margin-bottom">
+        <div class="day-item-info contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
+            {{ dayContactHolidayItem.principalItem }}
         </div>
-    </div>
-    <div class="day-item-contactholiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
-        {{ dayContactHolidayItem.principalItem }}
-    </div>
-    <div class="day-item-action">
-        <div></div>
-        <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
-            {{ day.dayPublicHolidayItem.principalItem }}
+        <div class="day-item-info-list-one-row">
+            <div></div>
+            <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
+                {{ day.dayPublicHolidayItem.principalItem }}
+            </div>
+            <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
+                Week-end
+            </div>
+            <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
+                Today
+            </div>
         </div>
-        <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
-            Week-end
-        </div>
-        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
-            Today
-        </div>
-        <kal-button-action class="editbutton" [image]="'../../../assets/images/edit.svg'" (click)="showModal()"></kal-button-action>
     </div>
 </div>
 <ng-template #polaroid>

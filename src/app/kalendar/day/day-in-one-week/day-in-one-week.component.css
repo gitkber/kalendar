@@ -10,7 +10,7 @@
 .day-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 87%;
     height: 95%;
@@ -19,33 +19,15 @@
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
     box-shadow: inset 0 0 10px black;
+    cursor: pointer;
 }
 
-.day-container.to-delete:hover {
-    box-shadow: none;
-    /* box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75); */
-    border: 1px solid #4D5874;
-    margin-top: -0.1em;
-
-}
-
-.day-selected.to-delete {
-    box-shadow: none;
-    border: 1px solid #4D5874;
-    margin-top: -0.1em;
-}
-
-.today {
+.group-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
-    background: #AD6B6B;
-    color: white;
-    text-align: center;
-}
-.weekend {
-    width: 100%;
-    background: #4D5874;
-    color: white;
-    text-align: center;
 }
 
 .day-item-title {
@@ -76,8 +58,8 @@
 }
 
 .day-item-detail-list {
-    height: 100%;
     width: 100%;
+    margin-left: 3em;
 }
 
 .day-item-detail {
@@ -92,7 +74,11 @@
     padding-left: 10px;
 }
 
-.day-item-action {
+.margin-bottom {
+    margin-bottom: 12px;
+}
+
+.day-item-info-list-one-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -100,22 +86,28 @@
     width: 100%;
 }
 
-.editbutton {
-    margin-bottom: 0.5em;
-}
-
 .day-item-info {
     padding: 5px 0 5px 0;
-    margin-bottom: 12px;
     width: 100%;
+    margin-top: 2px;
 }
 
-.day-item-contactholiday {
-    padding: 5px 0 5px 0;
-    margin-bottom: 2px;
-    width: 100%;
+.contact-holiday {
     background: #9198A9;
     color: white;
     text-align: center;
 }
 
+.today {
+    width: 100%;
+    background: #AD6B6B;
+    color: white;
+    text-align: center;
+}
+
+.weekend {
+    width: 100%;
+    background: #4D5874;
+    color: white;
+    text-align: center;
+}
