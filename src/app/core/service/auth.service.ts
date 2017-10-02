@@ -84,7 +84,12 @@ export class AuthService {
     //// Sign Out ////
 
     signOut(): void {
-        this.afAuth.auth.signOut();
+        this.afAuth.auth.signOut().then(success => {
+            console.log('signOut', success);
+            localStorage.clear();
+        }).catch(error => {
+            console.error('error', error);
+        });
         this.routerService.navigateToRoot();
     }
 
@@ -100,7 +105,7 @@ export class AuthService {
         const data = {
             email: this.authState.email,
             name: this.authState.displayName
-        }
+        };
 
         this.db.object(path).update(data)
             .catch(error => console.log(error));
