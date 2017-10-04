@@ -31,18 +31,9 @@ export class MemoService {
     doActionOnMemo(event: MemoCriteria) {
         if (event.action === Action.INSERT) {
             console.log('insert');
-            this.memosObservable.push(new Memo(this.authService.currentUserId, event.description, event.kalendarDate));
-            let dayDate: Date = new Date(event.kalendarDate);
-            for (let i = 1; i <= event.duplication; i++) {
-                dayDate = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 1);
-                if (!event.includeWeekend) {
-                    if (dayDate.getDay() === 6) {
-                        dayDate = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 2);
-                    } else if (dayDate.getDay() === 0) {
-                        dayDate = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 1);
-                    }
-                }
-                this.memosObservable.push(new Memo(this.authService.currentUserId, event.description, this.dateUtilService.toString(dayDate)));
+            for (let i = 0; i < event.datesToAdd.length; i++) {
+                this.memosObservable.push(new Memo(this.authService.currentUserId, event.description,
+                    this.dateUtilService.toString(event.datesToAdd[i])));
             }
         } else if (event.action === Action.UPDATE) {
             console.log('update');

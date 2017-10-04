@@ -22,8 +22,8 @@
     overflow: hidden;
     position: fixed;
     bottom: 5em;
-    left: 15em;
-    right: 15em;
+    left: 5em;
+    right: 5em;
     top: 5em;
     z-index: 1100;
     padding: 2em 1em 0.5em 2em;

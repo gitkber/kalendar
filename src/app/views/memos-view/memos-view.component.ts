@@ -26,7 +26,7 @@ export class MemosViewComponent implements OnInit {
     showMemo(event: Memo) {
         console.log('showMemo action', event);
 
-        const memoCriteria: MemoCriteria = new MemoCriteria(null, null, event['$key'], null, null);
+        const memoCriteria: MemoCriteria = new MemoCriteria(null, null, event['$key']);
         memoCriteria.action = Action.DELETE;
         this.memoService.doActionOnMemo(memoCriteria);
 

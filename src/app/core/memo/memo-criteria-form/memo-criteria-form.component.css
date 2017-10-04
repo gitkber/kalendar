@@ -6,12 +6,14 @@
 .memo-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-content: center;
     align-items: center;
     color: white;
-    margin: 0;
-    flex: 1;
+}
+
+.labelFor {
+    width: 10em;
 }
 
 .switch {

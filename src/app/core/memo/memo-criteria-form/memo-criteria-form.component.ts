@@ -12,13 +12,14 @@ import { isUndefined } from 'util';
 })
 export class MemoCriteriaFormComponent implements OnChanges {
 
-    @ViewChild('inputDescription') input: ElementRef;
+    @ViewChild('inputDescription') inputDescription: ElementRef;
 
     @Input() memoCriteria: MemoCriteria;
     @Output() actionClick = new EventEmitter<MemoCriteria>();
 
     public title: string;
     public memoCriteriaFormGroup: FormGroup;
+    public toKalendarDate: Date;
 
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
@@ -35,9 +36,9 @@ export class MemoCriteriaFormComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.memoCriteria.currentValue !== undefined) {
             if (changes.memoCriteria.currentValue.description === null) {
-                this.input.nativeElement.focus();
+                this.inputDescription.nativeElement.focus();
             }
-
+            this.toKalendarDate = new Date(this.memoCriteria.kalendarDate);
             this.memoCriteria = changes.memoCriteria.currentValue;
             if (this.memoCriteria.memoKey === null || isUndefined(this.memoCriteria.memoKey)) {
                 this.title = 'Ajouter un événement';
@@ -48,12 +49,44 @@ export class MemoCriteriaFormComponent implements OnChanges {
         }
     }
 
+    changeSwitchToKalendarDate() {
+        this.changeToKalendarDate(parseInt(this.memoCriteriaFormGroup.get('duplication').value, 10),
+            this.memoCriteriaFormGroup.get('includeWeekend').value);
+    }
+
+    changeDuplicationToKalendarDate(event) {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+        this.changeToKalendarDate(parseInt(event.target.value, 10), this.memoCriteriaFormGroup.get('includeWeekend').value);
+    }
+
+    private changeToKalendarDate(duplication: number, includeWeekend: boolean) {
+        console.log('duplication', duplication + ' ' + includeWeekend);
+
+        const startDate: Date = new Date(this.memoCriteria.kalendarDate);
+        this.memoCriteria.datesToAdd = [];
+        this.memoCriteria.datesToAdd.push(new Date(startDate));
+        for (let i = 1; i <= duplication; i++) {
+            startDate.setDate(startDate.getDate() + 1);
+            if (!includeWeekend) {
+                if (startDate.getDay() === 6) {
+                    startDate.setDate(startDate.getDate() + 2);
+                } else if (startDate.getDay() === 0) {
+                    startDate.setDate(startDate.getDate() + 1);
+                }
+            }
+            this.memoCriteria.datesToAdd.push(new Date(startDate));
+        }
+        this.toKalendarDate = startDate;
+        console.log('test datesToAdd.length', this.memoCriteria.datesToAdd.length);
+        console.log('test datesToAdd', this.memoCriteria.datesToAdd);
+    }
+
     private initFormGroup() {
         this.memoCriteriaFormGroup.setValue({
             'description': this.memoCriteria.description,
             'kalendarDate': this.dateStringPipe.transform(this.memoCriteria.kalendarDate),
-            'duplication': this.memoCriteria.duplication,
-            'includeWeekend': this.memoCriteria.includeWeekend,
+            'duplication': 0,
+            'includeWeekend': false,
             'memoKey': this.memoCriteria.memoKey
         });
     }
