@@ -8,7 +8,7 @@
             <label class="labelFor" for="inputLastname">Lastname</label>
             <input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>
         </div>
-        <div class="contact-row">
+        <div class="contact-row" *ngIf="!contactFormGroup.controls['birthdate'].value">
             <label class="labelFor" for="inputBirthdate">Birthdate</label>
             <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
         </div>

@@ -67,7 +67,8 @@ export class DayModalComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('document:keydown.escape', ['$event'])
-    onKeydownHandler(evt: KeyboardEvent) {
+    onKeydownHandler(event: KeyboardEvent) {
+        console.log('escape', event);
         this.close();
     }
 
@@ -75,6 +76,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
         this.isOpen = true;
         this.day = day;
         this.memoSelected = new Memo(null, null, this.dateUtilService.toString(this.day.date));
+        this.editMemos();
     }
 
     close(checkBlocking = false): void {

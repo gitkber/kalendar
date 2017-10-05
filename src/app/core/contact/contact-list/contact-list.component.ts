@@ -16,4 +16,8 @@ export class ContactListComponent {
         this.showContactClick.emit(contact);
     }
 
+    addContact() {
+        this.showContactClick.emit(new Contact(null, null, null, null, null));
+    }
+
 }
