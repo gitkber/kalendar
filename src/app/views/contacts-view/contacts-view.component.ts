@@ -25,7 +25,6 @@ export class ContactsViewComponent implements OnInit {
     }
 
     doActionOnContact(event: ContactAction) {
-        console.log('doActionOnContact event', event);
         this.contactService.doActionOnContact(event);
     }
 }

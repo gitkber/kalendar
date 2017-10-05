@@ -16,7 +16,6 @@ export class AppComponent {
 
     constructor(public authService: AuthService, public routerService: RouterService, public appService: AppService) {
         this.user = this.authService.currentUserObservable;
-        console.log(this.user);
     }
 
     navigate(event: Navigation) {
