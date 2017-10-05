@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { MemoService } from '../../core/memo/memo.service';
 import { Memo } from '../../core/memo/memo';
-import { MemoCriteria } from '../../core/memo/memo-criteria';
+import { MemoAction } from '../../core/memo/memo-action';
 import { Action } from '../../core/action';
 import { ContactHolidayService } from '../../core/holiday/contact-holiday/contact-holiday.service';
 import { ContactHolidayAction } from '../../core/holiday/contact-holiday/contact-holiday-action';
@@ -25,7 +25,7 @@ export class MemosViewComponent implements OnInit {
 
     showMemo(event: Memo) {
         console.log('showMemo action', event);
-
+        /*
         const memoCriteria: MemoCriteria = new MemoCriteria(null, null, event['$key']);
         memoCriteria.action = Action.DELETE;
         this.memoService.doActionOnMemo(memoCriteria);
@@ -34,6 +34,7 @@ export class MemosViewComponent implements OnInit {
         const contactHolidayAction: ContactHolidayAction = new ContactHolidayAction(Action.INSERT);
         contactHolidayAction.holiday = holiday;
         this.contactHolidayService.doActionOnContactHoliday(contactHolidayAction);
+        */
     }
 
 }

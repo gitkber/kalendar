@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
 import { DayItem } from '../../../kalendar/day-item';
-import { MemoCriteria } from '../../../core/memo/memo-criteria';
+import { MemoAction } from '../../../core/memo/memo-action';
 import { DateUtilService } from '../../../core/service/date-util.service';
 import { Navigation } from '../../../kalendar/navigation';
 import { AppService } from '../../../app.service';
@@ -13,6 +13,7 @@ import { CoreFacade } from '../../../core/core.facade';
 import { ContactAction } from '../../../core/contact/contact-action';
 import { PublicHolidayAction } from 'app/core/holiday/public-holiday/public-holiday-action';
 import { ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday-action';
+import { Memo } from '../../../core/memo/memo';
 
 @Component({
     selector: 'day-modal',
@@ -28,7 +29,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
 
-    public memoCriteriaSelected: MemoCriteria;
+    public memoSelected: Memo;
     public contactSelected: Contact;
     public contactHolidaySelected: ContactHoliday;
     public publicHolidaySelected: PublicHoliday;
@@ -47,7 +48,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
         this.isMemoSelected = true;
         this.subscription = this.appService.date.subscribe(d => {
             this.day = new Day(d, new Date());
-            this.memoCriteriaSelected = new MemoCriteria(null, this.dateUtilService.toString(this.day.date), null);
+            this.memoSelected = new Memo(null, null, this.dateUtilService.toString(this.day.date));
             this.contactSelected = new Contact(null, null, null, null, this.dateUtilService.toString(this.day.date));
             this.contactHolidaySelected = new ContactHoliday(null, null, null, this.dateUtilService.toString(this.day.date));
             this.publicHolidaySelected = new PublicHoliday(null, null, this.dateUtilService.toString(this.day.date));
@@ -73,7 +74,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
     open(day: Day): void {
         this.isOpen = true;
         this.day = day;
-        this.memoCriteriaSelected = new MemoCriteria(null, this.dateUtilService.toString(this.day.date), null);
+        this.memoSelected = new Memo(null, null, this.dateUtilService.toString(this.day.date));
     }
 
     close(checkBlocking = false): void {
@@ -118,7 +119,8 @@ export class DayModalComponent implements OnInit, OnDestroy {
             this.contactSelected['$key'] = event.key;
         } else if (event.isMemo()) {
             this.editMemos();
-            this.memoCriteriaSelected = new MemoCriteria(event.principalItem, this.dateUtilService.toString(this.day.date), event.key);
+            this.memoSelected = new Memo(null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.memoSelected['$key'] = event.key;
         } else if (event.isContactHoliday()) {
             this.editContactHolidays();
             this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, this.dateUtilService.toString(this.day.date));
@@ -130,7 +132,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
         }
     }
 
-    doActionOnMemo(event: MemoCriteria) {
+    doActionOnMemo(event: MemoAction) {
         this.coreFacade.memoService.doActionOnMemo(event);
     }
 

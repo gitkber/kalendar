@@ -6,7 +6,7 @@ import { AuthService } from '../service/auth.service';
 import { DateUtilService } from '../service/date-util.service';
 import { Action } from '../action';
 import { Memo } from './memo';
-import { MemoCriteria } from './memo-criteria';
+import { MemoAction } from './memo-action';
 
 @Injectable()
 export class MemoService {
@@ -28,16 +28,18 @@ export class MemoService {
         return this.memosObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
     }
 
-    doActionOnMemo(event: MemoCriteria) {
+    doActionOnMemo(event: MemoAction) {
         if (event.action === Action.INSERT) {
             console.log('insert');
             for (let i = 0; i < event.datesToAdd.length; i++) {
-                this.memosObservable.push(new Memo(this.authService.currentUserId, event.description,
-                    this.dateUtilService.toString(event.datesToAdd[i])));
+                event.memo.user = this.authService.currentUserId;
+                event.memo.kalendarDate = this.dateUtilService.toString(event.datesToAdd[i]);
+                console.log(event.datesToAdd[i], event.memo);
+                this.memosObservable.push(event.memo);
             }
         } else if (event.action === Action.UPDATE) {
             console.log('update');
-            this.memosObservable.update(event.memoKey, new Memo(this.authService.currentUserId, event.description, event.kalendarDate));
+            this.memosObservable.update(event.memoKey, new Memo(this.authService.currentUserId, event.memo.description, event.memo.kalendarDate));
         } else if (event.action === Action.DELETE) {
             console.log('delete');
             this.memosObservable.remove(event.memoKey);

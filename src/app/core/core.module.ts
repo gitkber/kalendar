@@ -14,7 +14,7 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { MemoListComponent } from './memo/memo-list/memo-list.component';
-import { MemoCriteriaFormComponent } from './memo/memo-criteria-form/memo-criteria-form.component';
+import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
 import { PublicHolidayListComponent } from './holiday/public-holiday/public-holiday-list/public-holiday-list.component';
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
@@ -24,12 +24,12 @@ import { ContactHolidayListComponent } from './holiday/contact-holiday/contact-h
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        MemoCriteriaFormComponent, MemoListComponent,
+        MemoFormComponent, MemoListComponent,
         PublicHolidayFormComponent, PublicHolidayListComponent,
         ContactHolidayFormComponent, ContactHolidayListComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        MemoCriteriaFormComponent, MemoListComponent,
+        MemoFormComponent, MemoListComponent,
         PublicHolidayFormComponent, PublicHolidayListComponent,
         ContactHolidayFormComponent, ContactHolidayListComponent],
     providers: [ContactService, MemoService, PublicHolidayService, ContactHolidayService, CoreFacade, AuthService, RouterService, DateUtilService]

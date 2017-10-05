@@ -6,16 +6,17 @@
         </div>
         <div class="memo-row">
             <label class="labelFor">Du</label>
-            <label>{{ memoCriteria.kalendarDate | date: 'EEEE dd MMMM yyyy'}}</label>
+            <label>{{ memo.kalendarDate }}</label>
+            <!--<label>{{ memo.kalendarDate | date: 'EEEE dd MMMM yyyy'}}</label>-->
         </div>
         <div class="memo-row">
             <label class="labelFor">Au</label>
-            <label>{{ toKalendarDate | date: 'EEEE dd MMMM yyyy'}}</label>
+            <!--<label formControlName="toKalendarDate | date: 'EEEE dd MMMM yyyy'"></label>-->
         </div>
         <div class="memo-row">
             <label class="labelFor" for="inputDuplication">Dupliquer</label>
             <input formControlName="duplication" name="duplication" id="inputDuplication"
-                   (change)="changeDuplicationToKalendarDate($event)" />
+                   (change)="changeDuplicationToKalendarDate($event)"/>
         </div>
         <div class="memo-row">
             <label class="labelFor" for="inputIncludeWeekend">Week-end inclus</label>
