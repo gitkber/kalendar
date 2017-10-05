@@ -30,21 +30,6 @@ export class RouterService {
         this.router.navigateByUrl('/contacts');
     }
 
-    navigateToMemos() {
-        this.isChildView = false;
-        this.router.navigate(['/memos'])
-    }
-
-    navigateToHolidays() {
-        this.isChildView = false;
-        this.router.navigate(['/holidays'])
-    }
-
-    navigateToDay(date: Date) {
-        this.isChildView = true;
-        this.router.navigate(['/day', this.dateUtilService.toString(date)]);
-    }
-
     navigateToKalYear(date: Date) {
         this.isChildView = false;
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
@@ -61,14 +46,6 @@ export class RouterService {
 
     isContactsViewSelected(): boolean {
         return this.router.isActive('/contacts', true);
-    }
-
-    isMemosViewSelected(): boolean {
-        return this.router.isActive('/memos', true);
-    }
-
-    isHolidaysViewSelected(): boolean {
-        return this.router.isActive('/holidays', true);
     }
 
     isKalYearViewSelected(): boolean {
