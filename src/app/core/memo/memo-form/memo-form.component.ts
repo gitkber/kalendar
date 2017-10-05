@@ -1,10 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { Action } from '../../action';
 import { MemoAction } from '../memo-action';
-import { isUndefined } from 'util';
 import { Memo } from '../memo';
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'memo-form',
@@ -20,32 +19,31 @@ export class MemoFormComponent implements OnChanges {
 
     public title: string;
     public memoCriteriaFormGroup: FormGroup;
+    public kalendarDate: Date;
+    public toKalendarDate: Date;
     private memoKey: string;
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
     private datesToAdd: Date[] = [];
 
     constructor() {
         this.memoCriteriaFormGroup = new FormGroup({
             description: new FormControl('', Validators.required),
-            kalendarDate: new FormControl('', Validators.required),
-            toKalendarDate: new FormControl('', Validators.required),
             duplication: new FormControl(),
             includeWeekend: new FormControl()
         })
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        this.inputDescription.nativeElement.focus();
+
         if (changes.memo.currentValue !== undefined) {
-            if (changes.memo.currentValue.description === null) {
-                this.inputDescription.nativeElement.focus();
-            }
             this.memoKey = changes.memo.currentValue['$key'];
             if (this.isEmptyKey()) {
                 this.title = 'Ajouter un événement';
             } else {
                 this.title = 'Modifier cet événement';
             }
+            this.kalendarDate = new Date(this.memo.kalendarDate);
             this.initFormGroup();
         }
     }
@@ -61,8 +59,6 @@ export class MemoFormComponent implements OnChanges {
     }
 
     private changeToKalendarDate(duplication: number, includeWeekend: boolean) {
-        // console.log('duplication', duplication + ' ' + includeWeekend);
-
         const startDate: Date = new Date(this.memo.kalendarDate);
         this.datesToAdd = [];
         this.datesToAdd.push(new Date(startDate));
@@ -77,51 +73,45 @@ export class MemoFormComponent implements OnChanges {
             }
             this.datesToAdd.push(new Date(startDate));
         }
-        this.memoCriteriaFormGroup.get('toKalendarDate').setValue(startDate);
-        // console.log('test datesToAdd.length', this.memoCriteria.datesToAdd.length);
-        // console.log('test datesToAdd', this.memoCriteria.datesToAdd);
+        this.toKalendarDate = startDate;
     }
 
     private initFormGroup() {
+        this.changeSwitchToKalendarDate();
         this.memoCriteriaFormGroup.setValue({
             'description': this.memo.description,
-            'kalendarDate': this.dateStringPipe.transform(this.memo.kalendarDate),
-            'toKalendarDate': this.dateStringPipe.transform(this.memo.kalendarDate),
             'duplication': 0,
             'includeWeekend': false
         });
     }
 
     saveMemo() {
-        // this.memoCriteria = this.memoCriteriaFormGroup.getRawValue();
-
-        // this.memoCriteria.kalendarDate = this.dateStringPipe.transform(this.memoCriteria.kalendarDate, true);
         this.memo.description = this.memoCriteriaFormGroup.get('description').value;
-        let memoCriteria: MemoAction;
+        let memoAction: MemoAction;
         if (this.isEmptyKey()) {
-            memoCriteria = new MemoAction(Action.INSERT, this.memo);
+            memoAction = new MemoAction(Action.INSERT, this.memo);
         } else {
-            memoCriteria = new MemoAction(Action.UPDATE, this.memo);
-            memoCriteria.memoKey = this.memoKey;
+            memoAction = new MemoAction(Action.UPDATE, this.memo);
+            memoAction.memoKey = this.memoKey;
         }
-        memoCriteria.datesToAdd = this.datesToAdd;
-        this.actionClickEmitAndResetFormGroup(memoCriteria);
+        memoAction.datesToAdd = this.datesToAdd;
+        this.actionClickEmitAndResetFormGroup(memoAction);
     }
 
     deleteMemo() {
         if (!this.isEmptyKey()) {
-            const memoCriteria: MemoAction = new MemoAction(Action.DELETE);
-            memoCriteria.memoKey = this.memoKey;
-            this.actionClickEmitAndResetFormGroup(memoCriteria);
+            const memoAction: MemoAction = new MemoAction(Action.DELETE);
+            memoAction.memoKey = this.memoKey;
+            this.actionClickEmitAndResetFormGroup(memoAction);
         }
     }
 
-    private actionClickEmitAndResetFormGroup(memoCriteria: MemoAction) {
-        console.log('criteria', memoCriteria);
-        this.actionClick.emit(memoCriteria);
+    private actionClickEmitAndResetFormGroup(memoAction: MemoAction) {
+        this.actionClick.emit(memoAction);
 
         this.memoCriteriaFormGroup.reset();
         this.memo = new Memo(null, null, this.memo.kalendarDate);
+        this.kalendarDate = new Date(this.memo.kalendarDate);
         this.initFormGroup();
     }
 
