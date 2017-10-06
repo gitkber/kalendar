@@ -36,6 +36,15 @@ export class HomeViewComponent implements OnInit {
         this.coreFacade.populateDays(this.week.days);
 
         this.getImageData();
+
+        // firebase storage -->
+        // import * as firebase from 'firebase';
+        // const storageRef = firebase.storage().ref('20170611_manege_elsa 2.jpg');
+        // storageRef.getDownloadURL().then(function (url) {
+        //     document.getElementById('img-id').setAttribute('src', url);
+        // });
+        // <--
+
     }
 
     navigate(event: Navigation) {
