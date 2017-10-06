@@ -2,6 +2,36 @@
     <one-week class="one-week-item" [week]="week"
               [navigation]="'day'"
               (navigateClick)="navigate($event)"
-              (showDayDetailClick)="showDayDetail($event)"></one-week>
+              (showDayDetailClick)="showDayDetail($event)">
+
+        <div class="polaroid-container">
+
+            <kal-polaroid [label]="'Elsa'"
+                          [image]="'../../../assets/images/photo/IMG_elsa.jpg'"></kal-polaroid>
+
+            <!-- Start file-upload -->
+            <div class="row">
+                <div class="col-md-12">
+                    <file-upload
+                        projectId="100"
+                        sectionId="107"
+                        maxFiles="4"
+                        maxSize="2"
+                        fileExt="JPG, GIF, PNG"
+                        (uploadStatus)="refreshImages($event)">
+                    </file-upload>
+                </div>
+            </div>
+            <div class="well">
+                <img *ngFor="let img of images"
+                     [src]="'http://localhost:xxxx' + img.thumbPath"
+                     class="img-thumbnail"
+                     alt="">
+            </div>
+            <!-- End file-upload -->
+
+        </div>
+
+    </one-week>
 </div>
 <day-modal [blocking]=false></day-modal>

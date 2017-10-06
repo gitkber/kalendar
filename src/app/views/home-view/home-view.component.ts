@@ -6,6 +6,7 @@ import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Navigation } from '../../kalendar/navigation';
 import { Day } from '../../kalendar/day/day';
 import { Week } from '../../kalendar/week/week';
+import { FileService } from '../../common/file-upload/file-service';
 
 @Component({
     selector: 'home-view',
@@ -19,12 +20,22 @@ export class HomeViewComponent implements OnInit {
     public week: Week;
     private selectedDay: Day;
 
-    constructor(private routerService: RouterService, private coreFacade: CoreFacade, private appService: AppService) { }
+    errorMessage: any; // file-upload
+    images: any; // file-upload
 
-    ngOnInit() {
+    constructor(
+        private routerService: RouterService,
+        private coreFacade: CoreFacade,
+        private appService: AppService,
+        private fileService: FileService
+    ) { }
+
+    ngOnInit(): void {
         this.week = new Week(this.appService.currentDate);
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
         this.coreFacade.populateDays(this.week.days);
+
+        this.getImageData();
     }
 
     navigate(event: Navigation) {
@@ -51,6 +62,22 @@ export class HomeViewComponent implements OnInit {
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
         // this.routerService.navigateToDay(this.selectedDay.date);
         this.modal.open(event);
+    }
+
+    /* file-upload */
+    refreshImages(status) {
+        if (status === true) {
+            console.log('Uploaded successfully!');
+            this.getImageData();
+        }
+    }
+
+    /* file-upload */
+    getImageData() {
+        this.fileService.getImages().subscribe(
+            data => { this.images = data.result},
+            error => this.errorMessage = error
+        )
     }
 
 }
