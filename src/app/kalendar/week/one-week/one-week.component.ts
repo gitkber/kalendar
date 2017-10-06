@@ -14,6 +14,11 @@ export class OneWeekComponent {
     @Input() navigation: string; // year - month - day
     @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
+    public directory: string;
+
+    constructor() {
+        this.directory = 'todo';
+    }
 
     navigateToMonth(event: Date) {
         const navigation: Navigation = new Navigation(this.navigation);

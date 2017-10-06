@@ -5,6 +5,11 @@
                      (navigateToYearClick)="navigateToYear($event)"
                      (showDayDetailClick)="showDayDetail(day)">
 
-        <ng-content></ng-content>
+        <week-image class="polaroid-container" *ngIf="day.isDisabled"
+                    [date]="day.date"
+                    [directory]="directory"
+                    [label]="'Elsa'"
+                    [defaultImage]="'../../../assets/images/photo/IMG_elsa.jpg'"></week-image>
+
     </day-in-one-week>
 </navig-panel>

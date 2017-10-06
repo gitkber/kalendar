@@ -6,7 +6,6 @@ import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Navigation } from '../../kalendar/navigation';
 import { Day } from '../../kalendar/day/day';
 import { Week } from '../../kalendar/week/week';
-import { FileService } from '../../common/file-upload/file-service';
 
 @Component({
     selector: 'home-view',
@@ -20,31 +19,16 @@ export class HomeViewComponent implements OnInit {
     public week: Week;
     private selectedDay: Day;
 
-    errorMessage: any; // file-upload
-    images: any; // file-upload
-
     constructor(
         private routerService: RouterService,
         private coreFacade: CoreFacade,
-        private appService: AppService,
-        private fileService: FileService
+        private appService: AppService
     ) { }
 
     ngOnInit(): void {
         this.week = new Week(this.appService.currentDate);
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
         this.coreFacade.populateDays(this.week.days);
-
-        this.getImageData();
-
-        // firebase storage -->
-        // import * as firebase from 'firebase';
-        // const storageRef = firebase.storage().ref('20170611_manege_elsa 2.jpg');
-        // storageRef.getDownloadURL().then(function (url) {
-        //     document.getElementById('img-id').setAttribute('src', url);
-        // });
-        // <--
-
     }
 
     navigate(event: Navigation) {
@@ -71,22 +55,6 @@ export class HomeViewComponent implements OnInit {
         this.selectedDay = this.week.selectDate(this.appService.currentDate);
         // this.routerService.navigateToDay(this.selectedDay.date);
         this.modal.open(event);
-    }
-
-    /* file-upload */
-    refreshImages(status) {
-        if (status === true) {
-            console.log('Uploaded successfully!');
-            this.getImageData();
-        }
-    }
-
-    /* file-upload */
-    getImageData() {
-        this.fileService.getImages().subscribe(
-            data => { this.images = data.result},
-            error => this.errorMessage = error
-        )
     }
 
 }

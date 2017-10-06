@@ -1,0 +1,14 @@
+<div class="kal-polaroid-container" (click)="file.click()">
+    <img [src]="defaultImage" id="img-id"/>
+    <span class="label">{{ label }}</span>
+    <input type="file"
+           #file
+           [multiple]="(maxFiles > 1)"
+           (change)="onFileChange($event)"
+           style="display:none"/>
+    <div class="row error" *ngIf="errors.length > 0">
+        <ul>
+            <li *ngFor="let err of errors">{{err}}</li>
+        </ul>
+    </div>
+</div>

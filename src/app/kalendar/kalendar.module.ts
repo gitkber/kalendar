@@ -12,6 +12,7 @@ import { OneMonthComponent } from './month/one-month/one-month.component';
 import { MonthInYearComponent } from './month/month-in-year/month-in-year.component';
 import { OneYearComponent } from './year/one-year/one-year.component';
 import { NavigPanelComponent } from './navig-panel/navig-panel.component';
+import { WeekImageComponent } from './week-image/week-image.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
@@ -20,7 +21,7 @@ import { NavigPanelComponent } from './navig-panel/navig-panel.component';
         OneWeekComponent,
         OneMonthComponent, MonthInYearComponent,
         OneYearComponent,
-        NavigPanelComponent
+        NavigPanelComponent, WeekImageComponent
     ],
     exports: [OneDayComponent, OneWeekComponent, OneMonthComponent, OneYearComponent],
     providers: []
