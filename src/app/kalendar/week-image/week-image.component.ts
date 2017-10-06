@@ -53,6 +53,7 @@ export class WeekImageComponent implements OnInit {
         }
         if (files.length === 0) {
             firebase.storage().ref().child(this.createFullPathImage()).put(files[0]).then(success => {
+                console.log('Storage put success', success);
                 document.getElementById('img-id').setAttribute('src', success.downloadURL);
             }).catch(error => {
                 console.log('Storage put error', error);

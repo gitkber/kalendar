@@ -30,13 +30,19 @@ export class Week {
     private createDays(dayDate: Date) {
         this.days = [];
         for (let i = 1; i <= 7; i++) {
-            this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i), this.today));
+            const currentDate: Date = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i);
+            this.days.push(new Day(currentDate, this.today));
+            if (currentDate.getDay() === 0) {
+                this.days.push(new Day(currentDate));
+            }
         }
+        /*
         if (dayDate.getDay() === 0) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + 7)));
         } else {
             this.days.splice(3, 0, new Day(dayDate));
         }
+        */
     }
 
     selectDate(date: Date): Day {
@@ -70,13 +76,19 @@ export class Week {
         const dayDate: Date = this.days[0].date;
         this.days = [];
         for (let i = 1; i < 8; i++) {
-            this.days.unshift(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - i), this.today));
+            const currentDate: Date = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - i);
+            if (currentDate.getDay() === 0) {
+                this.days.unshift(new Day(currentDate));
+            }
+            this.days.unshift(new Day(currentDate, this.today));
         }
+        /*
         if (dayDate.getDay() === 1) {
             this.days.push(new Day(new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() - 1)));
         } else {
             this.days.splice(3, 0, new Day(dayDate));
         }
+        */
         return this.days;
     }
 
