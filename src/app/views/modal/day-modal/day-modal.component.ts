@@ -1,19 +1,15 @@
 import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Navigation } from '../../../kalendar/navigation';
 import { Day } from '../../../kalendar/day/day';
 import { DayItem } from '../../../kalendar/day-item';
-import { MemoAction } from '../../../core/memo/memo-action';
-import { DateUtilService } from '../../../core/service/date-util.service';
-import { Navigation } from '../../../kalendar/navigation';
 import { AppService } from '../../../app.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Contact } from '../../../core/contact/contact';
-import { ContactHoliday } from '../../../core/holiday/contact-holiday/contact-holiday';
-import { PublicHoliday } from '../../../core/holiday/public-holiday/public-holiday';
+import { DateUtilService } from '../../../core/service/date-util.service';
 import { CoreFacade } from '../../../core/core.facade';
-import { ContactAction } from '../../../core/contact/contact-action';
-import { PublicHolidayAction } from 'app/core/holiday/public-holiday/public-holiday-action';
-import { ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday-action';
-import { Memo } from '../../../core/memo/memo';
+import { Contact, ContactAction } from '../../../core/contact/contact';
+import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday';
+import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
+import { Memo, MemoAction } from '../../../core/memo/memo';
 
 @Component({
     selector: 'day-modal',

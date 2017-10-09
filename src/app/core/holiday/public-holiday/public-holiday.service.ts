@@ -4,8 +4,7 @@ import 'rxjs/add/operator/catch';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
 import { Action } from '../../action';
-import { PublicHolidayAction } from './public-holiday-action';
-import { PublicHoliday } from './public-holiday';
+import { PublicHoliday, PublicHolidayAction } from './public-holiday';
 
 @Injectable()
 export class PublicHolidayService {

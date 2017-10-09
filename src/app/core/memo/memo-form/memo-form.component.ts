@@ -1,8 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Action } from '../../action';
-import { MemoAction } from '../memo-action';
-import { Memo } from '../memo';
+import { Memo, MemoAction } from '../memo';
 import { isUndefined } from 'util';
 
 @Component({

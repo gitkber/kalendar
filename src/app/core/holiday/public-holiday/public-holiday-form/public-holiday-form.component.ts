@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PublicHoliday } from '../public-holiday';
-import { PublicHolidayAction } from '../public-holiday-action';
+import { PublicHoliday, PublicHolidayAction } from '../public-holiday';
 import { Action } from '../../../action';
 import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 import { isUndefined } from 'util';
-import { isEmpty } from 'rxjs/operator/isEmpty';
 
 @Component({
     selector: 'public-holiday-form',

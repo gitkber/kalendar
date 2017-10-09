@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/catch';
-import { Contact } from './contact';
-import { ContactAction } from './contact-action';
-import { Action } from '../action';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import 'rxjs/add/operator/catch';
+import { Contact, ContactAction } from './contact';
+import { Action } from '../action';
 import { AuthService } from '../service/auth.service';
 
 @Injectable()

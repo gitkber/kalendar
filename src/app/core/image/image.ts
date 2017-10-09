@@ -1,19 +1,19 @@
 import { Action } from '../action';
 
-export class Memo {
+export class Image {
     constructor(
         public user: string,
-        public description: string,
+        public fullPath: string,
+        public label: string,
         public kalendarDate: string // yyyy-MM-dd
     ) { }
 }
 
-export class MemoAction {
-    public datesToAdd: Date[] = [];
-    public memoKey: string;
+export class ImageAction {
+    public imageKey: string;
 
     constructor(
         public action: Action,
-        public memo?: Memo
+        public image?: Image
     ) {}
 }

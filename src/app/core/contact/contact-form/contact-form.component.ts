@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Contact } from '../contact';
-import { ContactAction } from '../contact-action';
+import { Contact, ContactAction } from '../contact';
 import { Action } from '../../action';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { isUndefined } from 'util';
