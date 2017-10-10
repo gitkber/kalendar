@@ -10,6 +10,7 @@ import { CoreFacade } from './core.facade';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { DateUtilService } from './service/date-util.service';
+import { ImageService } from './image/image.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
@@ -29,10 +30,11 @@ import { ContactHolidayListComponent } from './holiday/contact-holiday/contact-h
         ContactHolidayFormComponent, ContactHolidayListComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        MemoFormComponent, MemoListComponent,
-        PublicHolidayFormComponent, PublicHolidayListComponent,
-        ContactHolidayFormComponent, ContactHolidayListComponent],
-    providers: [ContactService, MemoService, PublicHolidayService, ContactHolidayService, CoreFacade, AuthService, RouterService, DateUtilService]
+        MemoFormComponent,
+        PublicHolidayFormComponent,
+        ContactHolidayFormComponent],
+    providers: [ContactService, MemoService, PublicHolidayService, ContactHolidayService, ImageService,
+        CoreFacade, AuthService, RouterService, DateUtilService]
 })
 export class CoreModule {
 }

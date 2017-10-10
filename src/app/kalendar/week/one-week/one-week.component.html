@@ -6,10 +6,7 @@
                      (showDayDetailClick)="showDayDetail(day)">
 
         <week-image class="polaroid-container" *ngIf="day.isDisabled"
-                    [date]="day.date"
-                    [directory]="directory"
-                    [label]="'Elsa'"
-                    [defaultImage]="'../../../assets/images/photo/IMG_elsa.jpg'"></week-image>
+                    [date]="day.date"></week-image>
 
     </day-in-one-week>
 </navig-panel>

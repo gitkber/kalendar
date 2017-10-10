@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as firebase from 'firebase';
-import { DateUtilService } from '../../core/service/date-util.service';
+import { ImageService } from '../../core/image/image.service';
 
 @Component({
     selector: 'week-image',
@@ -10,32 +9,31 @@ import { DateUtilService } from '../../core/service/date-util.service';
 export class WeekImageComponent implements OnInit {
 
     // Image
-
-    @Input() label: string;
-    @Input() directory: string;
-    @Input() defaultImage: string;
+    label: string;
     @Input() date: Date;
 
     // Upload
-
     @Output() uploadStatus = new EventEmitter();
     errors: Array<string> = [];
     fileExt: string;
     maxFiles: number;
     maxSize: number; // 5MB
 
-    constructor(private dateUtilService: DateUtilService) {
+    constructor(private imageService: ImageService) {
         this.fileExt = 'JPG, GIF, PNG';
         this.maxFiles = 1;
         this.maxSize = 5; // 5MB
     }
 
     ngOnInit(): void {
-        const storageRef = firebase.storage().ref().child(this.createFullPathImage());
-        storageRef.getDownloadURL().then(url => {
-            document.getElementById('img-id').setAttribute('src', url);
-        }).catch(error => {
-            console.log('storage get error', error['code']);
+        this.imageService.getImage(this.date).subscribe(success => {
+            if (success['$value'] === null) {
+                this.label = 'Parcourir';
+                this.imageService.loadImageFromStore();
+            } else {
+                this.label = success['label'];
+                this.imageService.loadImageFromStore(this.date);
+            }
         });
     }
 
@@ -51,19 +49,9 @@ export class WeekImageComponent implements OnInit {
             this.uploadStatus.emit(false);
             return;
         }
-        if (files.length === 0) {
-            firebase.storage().ref().child(this.createFullPathImage()).put(files[0]).then(success => {
-                console.log('Storage put success', success);
-                document.getElementById('img-id').setAttribute('src', success.downloadURL);
-            }).catch(error => {
-                console.log('Storage put error', error);
-            });
+        if (files.length === 1) {
+            this.imageService.saveImage(this.date, files[0]);
         }
-    }
-
-    private createFullPathImage(): string {
-        const filename: string = this.dateUtilService.toString(this.date);
-        return this.directory + '_' + filename + '.jpg';
     }
 
     private isValidFiles(files) {
