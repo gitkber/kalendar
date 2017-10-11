@@ -3,6 +3,7 @@ import { CoreFacade } from '../../core/core.facade';
 import { RouterService } from '../../core/service/router.service';
 import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
+import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
 import { Navigation } from '../../kalendar/navigation';
 import { Day } from '../../kalendar/day/day';
 import { Week } from '../../kalendar/week/week';
@@ -14,7 +15,8 @@ import { Week } from '../../kalendar/week/week';
 })
 export class HomeViewComponent implements OnInit {
 
-    @ViewChild(DayModalComponent) modal: DayModalComponent;
+    @ViewChild(DayModalComponent) dayModal: DayModalComponent;
+    @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
     public week: Week;
     private selectedDay: Day;
@@ -51,10 +53,13 @@ export class HomeViewComponent implements OnInit {
     }
 
     showDayDetail(event: Day) {
-        this.appService.selectDate(event.date);
-        this.selectedDay = this.week.selectDate(this.appService.currentDate);
-        // this.routerService.navigateToDay(this.selectedDay.date);
-        this.modal.open(event);
+        if (event.isDisabled) {
+            this.imageModal.open(event);
+        } else {
+            this.appService.selectDate(event.date);
+            this.selectedDay = this.week.selectDate(this.appService.currentDate);
+            this.dayModal.open(event);
+        }
     }
 
 }

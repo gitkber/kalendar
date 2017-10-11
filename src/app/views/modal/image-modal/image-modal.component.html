@@ -1,0 +1,12 @@
+<div class="modal-container" [class.closed]="!isOpen">
+    <div class="modal-overlay" (click)="close(true)"></div>
+
+    <div class="modal">
+
+        <div class="kal-polaroid-container" *ngIf="day">
+            <img class="image-item" id="img-item-id"/>
+            <span class="label-item">{{ label }}</span>
+        </div>
+    </div>
+
+</div>

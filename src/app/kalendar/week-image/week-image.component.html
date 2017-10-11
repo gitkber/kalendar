@@ -1,6 +1,6 @@
-<div class="kal-polaroid-container" (click)="file.click()">
-    <img id="img-id"/>
-    <span class="label">{{ label }}</span>
+<div class="kal-polaroid-container">
+    <img class="image-item" (click)="showImage()" id="img-id"/>
+    <span class="label-item" (click)="file.click()">{{ label }}</span>
     <input type="file"
            #file
            [multiple]="(maxFiles > 1)"

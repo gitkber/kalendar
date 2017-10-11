@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ImageService } from '../../core/image/image.service';
+import { Day } from '../day/day';
 
 @Component({
     selector: 'week-image',
@@ -10,7 +11,8 @@ export class WeekImageComponent implements OnInit {
 
     // Image
     label: string;
-    @Input() date: Date;
+    @Input() day: Day;
+    @Output() showImageClick: EventEmitter<Day> = new EventEmitter();
 
     // Upload
     @Output() uploadStatus = new EventEmitter();
@@ -26,15 +28,19 @@ export class WeekImageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.imageService.getImage(this.date).subscribe(success => {
+        this.imageService.getImage(this.day.date).subscribe(success => {
             if (success['$value'] === null) {
                 this.label = 'Parcourir';
-                this.imageService.loadImageFromStore();
+                this.imageService.loadImageFromStore('img-id');
             } else {
                 this.label = success['label'];
-                this.imageService.loadImageFromStore(this.date);
+                this.imageService.loadImageFromStore('img-id', this.day.date);
             }
         });
+    }
+
+    showImage() {
+        this.showImageClick.emit(this.day);
     }
 
     onFileChange(event) {
@@ -50,7 +56,7 @@ export class WeekImageComponent implements OnInit {
             return;
         }
         if (files.length === 1) {
-            this.imageService.saveImage(this.date, files[0]);
+            this.imageService.saveImage('img-id', this.day.date, files[0]);
         }
     }
 
@@ -88,4 +94,5 @@ export class WeekImageComponent implements OnInit {
             this.errors.push('Error (File Size): ' + file.name + ': exceed file size limit of ' + this.maxSize + 'MB ( ' + size + 'MB )');
         }
     }
+
 }
