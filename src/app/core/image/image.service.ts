@@ -11,17 +11,12 @@ export class ImageService {
 
     constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) { }
 
-    loadImageFromStore(imageId: string, date?: Date) {
+    loadImageFromStore(date?: Date): firebase.Promise<any> {
         let fullPath: string = 'default.jpg'.toString();
         if (date) {
             fullPath = this.getPathForStorage(date);
         }
-        const storageRef = firebase.storage().ref().child(fullPath);
-        storageRef.getDownloadURL().then(url => {
-            document.getElementById(imageId).setAttribute('src', url);
-        }).catch(error => {
-            console.error('storage get error', error['code']);
-        });
+        return firebase.storage().ref().child(fullPath).getDownloadURL();
     }
 
     getImage(date: Date): Observable<string> {
@@ -34,15 +29,11 @@ export class ImageService {
         return this.authService.currentUserId + '/' + dateFormatted + '.jpg';
     }
 
-    saveImage(imageId: string, date: Date, file) {
+    saveImage(date: Date, file): firebase.Promise<any> {
         const filename = file.name.toUpperCase().split('.').reverse().pop();
         this.saveLabel(date, filename);
 
-        firebase.storage().ref().child(this.getPathForStorage(date)).put(file).then(success => {
-            document.getElementById(imageId).setAttribute('src', success.downloadURL);
-        }).catch(error => {
-            console.error('storage put error', error);
-        });
+        return firebase.storage().ref().child(this.getPathForStorage(date)).put(file)
     }
 
     saveLabel(date: Date, label: string) {

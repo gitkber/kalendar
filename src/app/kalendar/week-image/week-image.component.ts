@@ -31,11 +31,19 @@ export class WeekImageComponent implements OnInit {
         this.imageService.getImage(this.day.date).subscribe(success => {
             if (success['$value'] === null) {
                 this.label = 'Parcourir';
-                this.imageService.loadImageFromStore('img-id');
+                this.loadImageFromStore();
             } else {
                 this.label = success['label'];
-                this.imageService.loadImageFromStore('img-id', this.day.date);
+                this.loadImageFromStore(this.day.date);
             }
+        });
+    }
+
+    private loadImageFromStore(date?: Date) {
+        this.imageService.loadImageFromStore(date).then(url => {
+            document.getElementById('img-id').setAttribute('src', url);
+        }).catch(error => {
+            console.error('storage get error', error['code']);
         });
     }
 
@@ -56,7 +64,11 @@ export class WeekImageComponent implements OnInit {
             return;
         }
         if (files.length === 1) {
-            this.imageService.saveImage('img-id', this.day.date, files[0]);
+            this.imageService.saveImage(this.day.date, files[0]).then(success => {
+                document.getElementById('img-id').setAttribute('src', success.downloadURL);
+            }).catch(error => {
+                console.error('storage put error', error);
+            });
         }
     }
 

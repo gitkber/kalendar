@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
 import { ImageService } from '../../../core/image/image.service';
 
@@ -33,12 +33,20 @@ export class ImageModalComponent {
             if (success['$value'] === null) {
                 this.label = 'Parcourir';
                 this.isModified = true;
-                this.imageService.loadImageFromStore('img-item-id');
+                this.loadImageFromStore();
             } else {
                 this.label = success['label'];
                 this.isModified = false;
-                this.imageService.loadImageFromStore('img-item-id', this.day.date);
+                this.loadImageFromStore(this.day.date);
             }
+        });
+    }
+
+    private loadImageFromStore(date?: Date) {
+        this.imageService.loadImageFromStore(date).then(url => {
+            document.getElementById('img-item-id').setAttribute('src', url);
+        }).catch(error => {
+            console.error('storage get error', error['code']);
         });
     }
 
