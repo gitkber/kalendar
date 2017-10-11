@@ -58,7 +58,7 @@
     height: auto;
     width: auto;
     max-width: 100%;
-    max-height: 35em;
+    max-height: 30em;
     min-height: 10em;
     min-width: 10em;
     background-size: cover;
@@ -67,5 +67,15 @@
 
 .kal-polaroid-container .label-item {
     padding-top: 10px;
-    color: #4D5874;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    color: white;
+    margin: 0;
+    flex: 1;
 }

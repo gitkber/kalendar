@@ -36,13 +36,17 @@ export class ImageService {
 
     saveImage(imageId: string, date: Date, file) {
         const filename = file.name.toUpperCase().split('.').reverse().pop();
-        const dateFormatted: string = this.dateUtilService.toString(date);
-        this.db.object('images/' + this.authService.currentUserId + '/' + dateFormatted).$ref.set({label: filename});
+        this.saveLabel(date, filename);
 
         firebase.storage().ref().child(this.getPathForStorage(date)).put(file).then(success => {
             document.getElementById(imageId).setAttribute('src', success.downloadURL);
         }).catch(error => {
             console.error('storage put error', error);
         });
+    }
+
+    saveLabel(date: Date, label: string) {
+        const dateFormatted: string = this.dateUtilService.toString(date);
+        this.db.object('images/' + this.authService.currentUserId + '/' + dateFormatted).$ref.set({label: label});
     }
 }
