@@ -1,14 +1,16 @@
-<div class="kal-polaroid-container">
-    <img class="image-item" (click)="showImage()" id="img-id"/>
-    <span class="label-item" (click)="file.click()">{{ label }}</span>
-    <input type="file"
-           #file
-           [multiple]="(maxFiles > 1)"
-           (change)="onFileChange($event)"
-           style="display:none"/>
-    <div class="row error" *ngIf="errors.length > 0">
-        <ul>
-            <li *ngFor="let err of errors">{{err}}</li>
-        </ul>
+<div class="day-container">
+    <div class="kal-polaroid-container" id="kal-polaroid-container-id">
+        <img class="image-item" (click)="showImage()" id="img-id"/>
+        <span class="label-item" (click)="file.click()">{{ label }}</span>
+        <input type="file"
+               #file
+               [multiple]="(maxFiles > 1)"
+               (change)="onFileChange($event)"
+               style="display:none"/>
+        <div class="row error" *ngIf="errors.length > 0">
+            <ul>
+                <li *ngFor="let err of errors">{{err}}</li>
+            </ul>
+        </div>
     </div>
 </div>

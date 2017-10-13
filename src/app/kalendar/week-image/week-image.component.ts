@@ -30,11 +30,11 @@ export class WeekImageComponent implements OnInit {
     ngOnInit(): void {
         this.imageService.getImage(this.day.date).subscribe(success => {
             if (success['$value'] === null) {
-                this.label = 'Parcourir';
                 this.loadImageFromStore();
+                this.label = 'Parcourir';
             } else {
-                this.label = success['label'];
                 this.loadImageFromStore(this.day.date);
+                this.label = success['label'];
             }
         });
     }
@@ -42,6 +42,18 @@ export class WeekImageComponent implements OnInit {
     private loadImageFromStore(date?: Date) {
         this.imageService.loadImageFromStore(date).then(url => {
             document.getElementById('img-id').setAttribute('src', url);
+            document.images['img-id'].onload = function() {
+                // console.log('dimension', document.images['img-id'].naturalWidth + ' ' + document.images['img-id'].naturalHeight)
+                if (document.images['img-id'].naturalWidth > document.images['img-id'].naturalHeight) {
+                    // console.log('landscape')
+                    document.getElementById('img-id').setAttribute('class', 'image-item-landscape');
+                    document.getElementById('kal-polaroid-container-id').setAttribute('style', 'width: 100%;');
+                } else {
+                    // console.log('portrait')
+                    document.getElementById('img-id').setAttribute('class', 'image-item-portrait');
+                    document.getElementById('kal-polaroid-container-id').setAttribute('style', 'height: 100%; width: inherit;');
+                }
+            };
         }).catch(error => {
             console.error('storage get error', error['code']);
         });
@@ -64,8 +76,14 @@ export class WeekImageComponent implements OnInit {
             return;
         }
         if (files.length === 1) {
+            // document.getElementById('img-id').setAttribute('src', files[0]);
             this.imageService.saveImage(this.day.date, files[0]).then(success => {
                 document.getElementById('img-id').setAttribute('src', success.downloadURL);
+                if (document.images['img-id'].width > document.images['img-id'].height) {
+                    document.getElementById('img-id').setAttribute('class', 'image-item-portrait');
+                } else {
+                    document.getElementById('img-id').setAttribute('class', 'image-item-landscape');
+                }
             }).catch(error => {
                 console.error('storage put error', error);
             });
@@ -87,6 +105,7 @@ export class WeekImageComponent implements OnInit {
         const extensions = (this.fileExt.split(','))
             .map(function (x) { return x.toLocaleUpperCase().trim() });
         for (let i = 0; i < files.length; i++) {
+            console.log('eeeeeeeeeeee', files[0].width);
             // Get file extension
             const ext = files[i].name.toUpperCase().split('.').pop() || files[i].name;
             // Check the extension exists
@@ -105,6 +124,18 @@ export class WeekImageComponent implements OnInit {
         if (size > this.maxSize) {
             this.errors.push('Error (File Size): ' + file.name + ': exceed file size limit of ' + this.maxSize + 'MB ( ' + size + 'MB )');
         }
+        this.logDimension(file);
+    }
+
+    private logDimension(file) {
+        console.log('ee');
+        const img = new Image();
+
+        console.log('pp', img.width + ' ' + img.height);
+        img.onload = function () {
+            console.log(img.width + ' ' + img.height);
+        };
+
     }
 
 }
