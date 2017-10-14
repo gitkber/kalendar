@@ -15,19 +15,19 @@
                             (editItemClick)="showDayItem(dayItem)"></kal-panel-list-row>
         <div class="row-container-add-item">
             <div class="description-item">Ajouter un contact</div>
-            <kal-button-action [image]="'../../../../assets/images/add.svg'"
+            <kal-button-action [image]="'fa fa-plus'"
                                (click)="addDayItemContact()"></kal-button-action>
         </div>
         <div class="row-container-add-item">
             <div class="description-item">Ajouter un événement</div>
-            <kal-button-action [image]="'../../../../assets/images/add.svg'"
+            <kal-button-action [image]="'fa fa-plus'"
                                (click)="addDayItemMemo()"></kal-button-action>
         </div>
     </div>
     <div class="group-container margin-bottom">
         <div class="row-container-add-item">
             <div class="description-item">Ajouter un jour de congé</div>
-            <kal-button-action [image]="'../../../../assets/images/add.svg'"
+            <kal-button-action [image]="'fa fa-plus'"
                                (click)="addDayItemContactHoliday()"></kal-button-action>
         </div>
         <kal-panel-list-row class="day-item-info contact-holiday"
@@ -38,7 +38,7 @@
         <div class="row-container-add-item"
              *ngIf="!day.dayPublicHolidayItem">
             <div class="description-item">Ajouter un jour férié</div>
-            <kal-button-action [image]="'../../../../assets/images/add.svg'"
+            <kal-button-action [image]="'fa fa-plus'"
                                (click)="addDayItemPublicHoliday()"></kal-button-action>
         </div>
         <div class="day-item-info-list-one-row">
