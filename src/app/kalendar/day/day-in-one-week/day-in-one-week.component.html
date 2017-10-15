@@ -1,4 +1,4 @@
-<div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.day-selected]="day.isSelected"
+<div class="day-container" *ngIf="!day.isDisabled; else polaroid" [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected"
      (click)="showModal()">
     <div class="group-container">
         <div class="day-item-title">
@@ -24,11 +24,8 @@
         </div>
         <div class="day-item-info-list-one-row">
             <div></div>
-            <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.weekend]="day.dayPublicHolidayItem">
+            <div class="day-item-info" *ngIf="day.dayPublicHolidayItem" [class.public-holiday]="day.dayPublicHolidayItem">
                 {{ day.dayPublicHolidayItem.principalItem }}
-            </div>
-            <div class="day-item-info" *ngIf="day.isWeekend" [class.weekend]="day.isWeekend">
-                Week-end
             </div>
             <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
                 Today
