@@ -10,22 +10,18 @@ import { Day } from '../day/day';
 export class WeekImageComponent implements OnInit {
 
     // Image
-    label: string;
+    public label: string;
     @Input() day: Day;
     @Output() showImageClick: EventEmitter<Day> = new EventEmitter();
 
     // Upload
     @Output() uploadStatus = new EventEmitter();
-    errors: Array<string> = [];
-    fileExt: string;
-    maxFiles: number;
-    maxSize: number; // 5MB
+    public errors: string[] = [];
+    public maxFiles: number = 1;
+    private maxSize: number = 5; // 5MB
+    private fileExt: string = 'JPG, GIF, PNG';
 
-    constructor(private imageService: ImageService) {
-        this.fileExt = 'JPG, GIF, PNG';
-        this.maxFiles = 1;
-        this.maxSize = 5; // 5MB
-    }
+    constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
         this.imageService.getImage(this.day.date).subscribe(success => {
@@ -64,8 +60,7 @@ export class WeekImageComponent implements OnInit {
     }
 
     onFileChange(event) {
-        const files = event.target.files;
-        this.saveFiles(files);
+        this.saveFiles(event.target.files);
     }
 
     saveFiles(files) {
@@ -73,20 +68,16 @@ export class WeekImageComponent implements OnInit {
         // Validate file size and allowed extensions
         if (files.length > 0 && (!this.isValidFiles(files))) {
             this.uploadStatus.emit(false);
-            return;
-        }
-        if (files.length === 1) {
-            // document.getElementById('img-id').setAttribute('src', files[0]);
-            this.imageService.saveImage(this.day.date, files[0]).then(success => {
-                document.getElementById('img-id').setAttribute('src', success.downloadURL);
-                if (document.images['img-id'].width > document.images['img-id'].height) {
-                    document.getElementById('img-id').setAttribute('class', 'image-item-portrait');
-                } else {
-                    document.getElementById('img-id').setAttribute('class', 'image-item-landscape');
-                }
-            }).catch(error => {
-                console.error('storage put error', error);
-            });
+        } else {
+            if (files.length === 1) {
+                this.imageService.saveImage(this.day.date, files[0]).then(success => {
+                    document.getElementById('img-id').setAttribute('src', success.downloadURL);
+                }).catch(error => {
+                    console.error('storage put error', error);
+                });
+            } else {
+                console.error('more than one files to upload');
+            }
         }
     }
 
@@ -105,7 +96,6 @@ export class WeekImageComponent implements OnInit {
         const extensions = (this.fileExt.split(','))
             .map(function (x) { return x.toLocaleUpperCase().trim() });
         for (let i = 0; i < files.length; i++) {
-            console.log('eeeeeeeeeeee', files[0].width);
             // Get file extension
             const ext = files[i].name.toUpperCase().split('.').pop() || files[i].name;
             // Check the extension exists
@@ -124,18 +114,6 @@ export class WeekImageComponent implements OnInit {
         if (size > this.maxSize) {
             this.errors.push('Error (File Size): ' + file.name + ': exceed file size limit of ' + this.maxSize + 'MB ( ' + size + 'MB )');
         }
-        this.logDimension(file);
-    }
-
-    private logDimension(file) {
-        console.log('ee');
-        const img = new Image();
-
-        console.log('pp', img.width + ' ' + img.height);
-        img.onload = function () {
-            console.log(img.width + ' ' + img.height);
-        };
-
     }
 
 }
