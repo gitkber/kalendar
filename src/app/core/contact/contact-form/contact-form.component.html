@@ -8,9 +8,14 @@
             <label class="labelFor" for="inputLastname">Lastname</label>
             <input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>
         </div>
-        <div class="contact-row" *ngIf="!contactFormGroup.controls['birthdate'].value">
+        <div class="contact-row" *ngIf="!fillYear">
             <label class="labelFor" for="inputBirthdate">Birthdate</label>
             <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
+        </div>
+        <div class="contact-row" *ngIf="fillYear">
+            <label class="labelFor" for="inputYear">Year</label>
+            {{this.dateUtilService.stringToDayAndLongMonth(this.contact.birthdate)}}
+            <input type="text" formControlName="year" name="year" id="inputYear"/>
         </div>
     </form>
     <div class="panel-action">

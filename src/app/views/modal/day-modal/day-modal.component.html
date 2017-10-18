@@ -7,7 +7,7 @@
                  (navigateClick)="navigate($event)"
                  (showDayItemClick)="showDayItem($event)">
             <div>
-                <contact-form *ngIf="isContactSelected"
+                <contact-form *ngIf="isContactSelected" [fillYear]="true"
                               [contact]="contactSelected"
                               (actionClick)="doActionOnContact($event)"></contact-form>
                 <memo-form *ngIf="isMemoSelected"

@@ -27,10 +27,11 @@ export class ContactService {
 
     doActionOnContact(event: ContactAction) {
         if (event.action === Action.INSERT) {
-            event.contact.user = this.authService.currentUserId;
-            this.contactsObservable.push(event.contact);
+            this.contactsObservable.push(new Contact(this.authService.currentUserId,
+                event.contact.firstname, event.contact.lastname, event.contact.gender, event.contact.birthdate));
         } else if (event.action === Action.UPDATE) {
-            this.contactsObservable.update(event.contactKey, event.contact);
+            this.contactsObservable.update(event.contactKey, new Contact(this.authService.currentUserId,
+                event.contact.firstname, event.contact.lastname, event.contact.gender, event.contact.birthdate));
         } else if (event.action === Action.DELETE) {
             this.contactsObservable.remove(event.contactKey);
         }

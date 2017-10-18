@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact, ContactAction } from '../contact';
 import { Action } from '../../action';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
+import { DateUtilService } from '../../service/date-util.service';
 import { isUndefined } from 'util';
 
 @Component({
@@ -10,8 +11,9 @@ import { isUndefined } from 'util';
     templateUrl: 'contact-form.component.html',
     styleUrls: ['./contact-form.component.css']
 })
-export class ContactFormComponent implements OnChanges, OnInit {
+export class ContactFormComponent implements OnChanges {
 
+    @Input() fillYear: boolean;
     @Input() contact: Contact;
     @Output() actionClick = new EventEmitter<ContactAction>();
 
@@ -21,18 +23,13 @@ export class ContactFormComponent implements OnChanges, OnInit {
 
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
-    constructor() {
+    constructor(public dateUtilService: DateUtilService) {
         this.contactFormGroup = new FormGroup({
             firstname: new FormControl('', Validators.required),
             lastname: new FormControl('', Validators.required),
-            birthdate: new FormControl('', Validators.required)
+            birthdate: new FormControl('', Validators.required),
+            year: new FormControl('', Validators.required)
         });
-    }
-
-    ngOnInit() {
-        this.contactFormGroup.valueChanges.subscribe(data => {
-            this.contact = data
-        })
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -43,17 +40,24 @@ export class ContactFormComponent implements OnChanges, OnInit {
             } else {
                 this.title = 'Modifier ce contact';
             }
-            this.contact = changes.contact.currentValue;
             this.contactFormGroup.setValue({
                 'firstname': this.contact.firstname,
                 'lastname': this.contact.lastname,
-                'birthdate': this.dateStringPipe.transform(this.contact.birthdate)
+                'birthdate': this.dateStringPipe.transform(this.contact.birthdate),
+                'year': this.dateUtilService.toYYYY(new Date(this.contact.birthdate))
             });
         }
     }
 
     addContact() {
-        this.contact.birthdate = this.dateStringPipe.transform(this.contact.birthdate, true);
+        this.contact.firstname = this.contactFormGroup.get('firstname').value;
+        this.contact.lastname = this.contactFormGroup.get('lastname').value;
+        if (this.fillYear) {
+            const year: string = this.contactFormGroup.get('year').value;
+            this.contact.birthdate = this.dateUtilService.replaceYear(year, this.contact.birthdate);
+        } else {
+            this.contact.birthdate = this.dateStringPipe.transform(this.contact.birthdate, true);
+        }
 
         let contactAction: ContactAction;
         if (this.isEmptyKey()) {
