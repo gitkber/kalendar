@@ -45,7 +45,7 @@ export class DayModalComponent implements OnInit, OnDestroy {
         this.subscription = this.appService.date.subscribe(d => {
             this.day = new Day(d, new Date());
             this.memoSelected = new Memo(null, null, this.dateUtilService.toString(this.day.date));
-            this.contactSelected = new Contact(null, null, null, null, this.dateUtilService.toString(this.day.date));
+            this.contactSelected = new Contact(null, '', '', this.dateUtilService.toString(this.day.date));
             this.contactHolidaySelected = new ContactHoliday(null, null, null, this.dateUtilService.toString(this.day.date));
             this.publicHolidaySelected = new PublicHoliday(null, null, this.dateUtilService.toString(this.day.date));
             const days: Day[] = [];
@@ -113,19 +113,19 @@ export class DayModalComponent implements OnInit, OnDestroy {
     showDayItem(event: DayItem) {
         if (event.isContact()) {
             this.editContact();
-            this.contactSelected = new Contact(null, event.principalItem, event.additionalItem, null, this.dateUtilService.toString(this.day.date));
+            this.contactSelected = new Contact(null, event.principalItem, event.additionalItem, event.date);
             this.contactSelected['$key'] = event.key;
         } else if (event.isMemo()) {
             this.editMemos();
-            this.memoSelected = new Memo(null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.memoSelected = new Memo(null, event.principalItem, event.date);
             this.memoSelected['$key'] = event.key;
         } else if (event.isContactHoliday()) {
             this.editContactHolidays();
-            this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, event.date);
             this.contactHolidaySelected['$key'] = event.key;
         } else if (event.isPublicHoliday()) {
             this.editPublicHolidays();
-            this.publicHolidaySelected = new PublicHoliday(null, event.principalItem, this.dateUtilService.toString(this.day.date));
+            this.publicHolidaySelected = new PublicHoliday(null, event.principalItem, event.date);
             this.publicHolidaySelected['$key'] = event.key;
         }
     }

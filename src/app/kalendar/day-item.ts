@@ -5,6 +5,7 @@ export class DayItem {
     constructor(
         public type: Type,
         public key: string,
+        public date: string, // yyyy-MM-dd
         public principalItem: string,
         public additionalItem?: string
     ) {

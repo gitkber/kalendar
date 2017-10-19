@@ -38,7 +38,7 @@ export class CoreFacade {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() <= d.date.getFullYear()) {
                     // console.log('child_added contact', entity);
-                    d.dayItems.push(new DayItem(Type.CONTACT, data.key, entity.firstname, entity.lastname));
+                    d.dayItems.push(new DayItem(Type.CONTACT, data.key, entity.birthdate, entity.firstname, entity.lastname));
                 }
             })
         });
@@ -88,7 +88,7 @@ export class CoreFacade {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     // console.log('child_added memo', entity);
-                    d.dayItems.push(new DayItem(Type.MEMO, data.key, entity.description));
+                    d.dayItems.push(new DayItem(Type.MEMO, data.key, entity.kalendarDate, entity.description));
                 }
             })
         });
@@ -137,7 +137,7 @@ export class CoreFacade {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     // console.log('child_added publicHoliday', entity);
-                    d.dayPublicHolidayItem = new DayItem(Type.PUBLIC_HOLIDAY, data.key, entity.description);
+                    d.dayPublicHolidayItem = new DayItem(Type.PUBLIC_HOLIDAY, data.key, entity.date, entity.description);
                 }
             })
         });
@@ -176,7 +176,7 @@ export class CoreFacade {
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     // console.log('child_added contactHoliday', entity);
-                    d.dayContactHolidayItems.push(new DayItem(Type.CONTACT_HOLIDAY, data.key, entity.description));
+                    d.dayContactHolidayItems.push(new DayItem(Type.CONTACT_HOLIDAY, data.key, entity.date, entity.description));
                 }
             })
         });

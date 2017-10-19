@@ -28,10 +28,10 @@ export class ContactService {
     doActionOnContact(event: ContactAction) {
         if (event.action === Action.INSERT) {
             this.contactsObservable.push(new Contact(this.authService.currentUserId,
-                event.contact.firstname, event.contact.lastname, event.contact.gender, event.contact.birthdate));
+                event.contact.firstname, event.contact.lastname, event.contact.birthdate));
         } else if (event.action === Action.UPDATE) {
             this.contactsObservable.update(event.contactKey, new Contact(this.authService.currentUserId,
-                event.contact.firstname, event.contact.lastname, event.contact.gender, event.contact.birthdate));
+                event.contact.firstname, event.contact.lastname, event.contact.birthdate));
         } else if (event.action === Action.DELETE) {
             this.contactsObservable.remove(event.contactKey);
         }

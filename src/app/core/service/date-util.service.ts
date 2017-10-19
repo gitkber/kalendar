@@ -12,13 +12,25 @@ export class DateUtilService {
         return this.datePipe.transform(date, 'yyyy-MM-dd')
     }
 
-    toYYYY(date: Date): string {
+    /** @param dateString yyyy-MM-dd */
+    stringToYYYY(dateString: string): string {
+        if (dateString === null) {
+            return '';
+        }
+        const date: Date = new Date(dateString);
         return this.datePipe.transform(date, 'yyyy')
     }
 
+    /** @param dateString yyyy-MM-dd */
     stringToDayAndLongMonth(dateString: string): string {
         const date: Date = new Date(dateString);
         return this.datePipe.transform(date, 'dd MMMM')
+    }
+
+    replaceYear(year: string, dateString: string): string {
+        const date: Date = new Date(dateString);
+        date.setFullYear(parseInt(year, 10));
+        return this.toString(date);
     }
 
     // countWeekendDays(startDate: Date, endDate: Date): number {
@@ -27,9 +39,4 @@ export class DateUtilService {
     //     return 2 * nsaturdays + (startDate.getDay() === 0 ? 1 : 0) - (endDate.getDay() === 6 ? 1 : 0);
     // }
 
-    replaceYear(year: string, dateString: string): string {
-        const date: Date = new Date(dateString);
-        date.setFullYear(parseInt(year, 10));
-        return this.toString(date);
-    }
 }

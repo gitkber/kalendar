@@ -44,7 +44,7 @@ export class ContactFormComponent implements OnChanges {
                 'firstname': this.contact.firstname,
                 'lastname': this.contact.lastname,
                 'birthdate': this.dateStringPipe.transform(this.contact.birthdate),
-                'year': this.dateUtilService.toYYYY(new Date(this.contact.birthdate))
+                'year': this.isEmptyKey() ? '' : this.dateUtilService.stringToYYYY(this.contact.birthdate)
             });
         }
     }
@@ -56,9 +56,8 @@ export class ContactFormComponent implements OnChanges {
             const year: string = this.contactFormGroup.get('year').value;
             this.contact.birthdate = this.dateUtilService.replaceYear(year, this.contact.birthdate);
         } else {
-            this.contact.birthdate = this.dateStringPipe.transform(this.contact.birthdate, true);
+            this.contact.birthdate = this.dateStringPipe.transform(this.contactFormGroup.get('birthdate').value, true);
         }
-
         let contactAction: ContactAction;
         if (this.isEmptyKey()) {
             contactAction = new ContactAction(Action.INSERT, this.contact);

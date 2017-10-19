@@ -17,7 +17,7 @@ export class ContactsViewComponent implements OnInit {
 
     ngOnInit() {
         this.contacts = this.contactService.getList();
-        this.contactSelected = new Contact(null, null, null, null, null);
+        this.contactSelected = new Contact(null, null, null, null);
     }
 
     showContact(event: Contact) {

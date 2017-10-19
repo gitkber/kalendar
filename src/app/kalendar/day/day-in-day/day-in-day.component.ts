@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../day';
 import { DayItem } from '../../day-item';
 import { Type } from '../../type';
+import { DateUtilService } from '../../../core/service/date-util.service';
 
 @Component({
     selector: 'day-in-day',
@@ -14,7 +15,7 @@ export class DayInDayComponent {
     @Output() navigateToMonthClick: EventEmitter<Date> = new EventEmitter();
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
-    constructor() { }
+    constructor(private dateUtilService: DateUtilService) { }
 
     navigateToMonth() {
         this.navigateToMonthClick.emit(this.day.date);
@@ -29,18 +30,18 @@ export class DayInDayComponent {
     }
 
     addDayItemContact() {
-        this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, null, null));
+        this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 
     addDayItemMemo() {
-        this.showDayItemClick.emit(new DayItem(Type.MEMO, null, null));
+        this.showDayItemClick.emit(new DayItem(Type.MEMO, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemContactHoliday() {
-        this.showDayItemClick.emit(new DayItem(Type.CONTACT_HOLIDAY, null, null));
+        this.showDayItemClick.emit(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemPublicHoliday() {
-        this.showDayItemClick.emit(new DayItem(Type.PUBLIC_HOLIDAY, null, null));
+        this.showDayItemClick.emit(new DayItem(Type.PUBLIC_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 }
