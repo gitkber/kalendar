@@ -72,4 +72,9 @@ export class CarouselWeek {
         return this.days;
     }
 
+    test() {
+        const currentDate: Date = new Date(this.days[6].date.getFullYear(), this.days[6].date.getMonth(), this.days[6].date.getDate() + 1);
+        this.days.shift();
+        this.days.push(new Day(currentDate, this.today));
+    }
 }
