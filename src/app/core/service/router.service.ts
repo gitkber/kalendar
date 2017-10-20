@@ -25,6 +25,11 @@ export class RouterService {
         this.router.navigateByUrl('/home');
     }
 
+    navigateToCarousel() {
+        this.isChildView = false;
+        this.router.navigateByUrl('/carousel');
+    }
+
     navigateToContacts() {
         this.isChildView = false;
         this.router.navigateByUrl('/contacts');

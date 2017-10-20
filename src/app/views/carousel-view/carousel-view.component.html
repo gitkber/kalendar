@@ -1,0 +1,8 @@
+<div class="home-view-container">
+    <carousel-week class="one-week-item" [carouselWeek]="carouselWeek"
+                   [navigation]="'day'"
+                   (navigateClick)="navigate($event)"
+                   (showDayDetailClick)="showDayDetail($event)"></carousel-week>
+</div>
+<day-modal [blocking]=false></day-modal>
+<image-modal [blocking]=false></image-modal>
