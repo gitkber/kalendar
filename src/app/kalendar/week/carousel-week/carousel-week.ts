@@ -29,7 +29,7 @@ export class CarouselWeek {
 
     private createDays(dayDate: Date) {
         this.days = [];
-        for (let i = 1; i <= 7; i++) {
+        for (let i = 1; i <= 8; i++) {
             const currentDate: Date = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate() + i);
             this.days.push(new Day(currentDate, this.today));
         }
@@ -58,7 +58,7 @@ export class CarouselWeek {
     }
 
     next(): Day[] {
-        this.createDays(this.days[6].date);
+        this.createDays(this.days[7].date);
         return this.days;
     }
 
@@ -73,7 +73,7 @@ export class CarouselWeek {
     }
 
     test() {
-        const currentDate: Date = new Date(this.days[6].date.getFullYear(), this.days[6].date.getMonth(), this.days[6].date.getDate() + 1);
+        const currentDate: Date = new Date(this.days[7].date.getFullYear(), this.days[7].date.getMonth(), this.days[7].date.getDate() + 1);
         this.days.shift();
         this.days.push(new Day(currentDate, this.today));
     }

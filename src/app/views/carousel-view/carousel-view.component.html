@@ -4,6 +4,7 @@
                    (navigateClick)="navigate($event)"
                    (showDayDetailClick)="showDayDetail($event)"></carousel-week>
     <div class="other-container">
+        <div></div>
         <div class="postit-container">
             <p>Mon anniversaire dans 54 jours.</p>
             <p>Les 3 prochains anniversaires</p>
@@ -13,7 +14,6 @@
                 <li>Jacques</li>
             </ul>
         </div>
-        <kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>
         <div class="todo-container">
             <ul>
                 <li>Prendre courrier</li>
@@ -21,6 +21,8 @@
                 <li>Developper carousel</li>
             </ul>
         </div>
+        <kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>
+        <div></div>
     </div>
 </div>
 <day-modal [blocking]=false></day-modal>

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Inject, Input, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Day } from '../../day/day';
 import { Navigation } from '../../navigation';
 import { CarouselWeek } from './carousel-week';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'carousel-week',
@@ -17,7 +16,7 @@ export class CarouselWeekComponent {
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
     public directory: string;
 
-    constructor(@Inject(DOCUMENT) renderer: Renderer2) {
+    constructor() {
         this.directory = 'todo';
     }
 

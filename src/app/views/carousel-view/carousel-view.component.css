@@ -17,7 +17,7 @@
 .other-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 40%;
     width: 100%;
