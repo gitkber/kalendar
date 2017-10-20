@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
@@ -10,7 +9,8 @@ import { ContactHoliday, ContactHolidayAction } from './contact-holiday';
 export class ContactHolidayService {
 
     private firebaseListObservable: FirebaseListObservable<ContactHoliday[]>;
-    private contactHolidaysObservable: Observable<ContactHoliday[]>;
+
+    // private contactHolidaysObservable: Observable<ContactHoliday[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
         this.firebaseListObservable = this.db.list('/contactHolidays', {
@@ -19,15 +19,21 @@ export class ContactHolidayService {
                 equalTo: this.authService.currentUserId
             }
         });
-        this.contactHolidaysObservable = this.firebaseListObservable.map((itemKeys) => {
-            return itemKeys.map(key => {
-                // key.items = this.db.list(`/contactHolidays/${key.$key}/items`);
-                return key;
-            })
-        });
+        // this.contactHolidaysObservable = this.firebaseListObservable.map((itemKeys) => {
+        //     return itemKeys.map(key => {
+        //         // key.items = this.db.list(`/contactHolidays/${key.$key}/items`);
+        //         return key;
+        //     })
+        // });
+        // this.testObservable = this.firebaseListObservable.map((items) => {
+        //     return items.map(item => {
+        //         return new TestContactHoliday(item.$key, item['description'], '');
+        //
+        //     })
+        // })
     }
 
-    getList(): Observable<ContactHoliday[]> { return this.contactHolidaysObservable }
+    // getList(): Observable<ContactHoliday[]> { return this.contactHolidaysObservable }
 
     getRef(): any {
         return this.firebaseListObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
