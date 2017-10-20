@@ -1,8 +1,46 @@
 <navig-panel [navigation]="navigation"
              (navigateClick)="navigate($event)">
-    <day-in-one-week *ngFor="let day of carouselWeek.days" class="content-item" [day]="day"
-                     (navigateToMonthClick)="navigateToMonth($event)"
-                     (navigateToYearClick)="navigateToYear($event)"
-                     (showDayDetailClick)="showDayDetail(day)">
-    </day-in-one-week>
+    <div id="carousel">
+        <div class="prevLeftSecond">
+            <img class="content-item" src="../../../../assets/images/photo/IMG_elsa.jpg" alt="Zen" [title]="carouselWeek.days[1].date | date: 'dd MM yyyy'"/>
+            <!--<day-in-one-week class="content-item" [day]="carouselWeek.days[1]"-->
+                            <!--(navigateToMonthClick)="navigateToMonth($event)"-->
+                            <!--(navigateToYearClick)="navigateToYear($event)"-->
+                            <!--(showDayDetailClick)="showDayDetail(carouselWeek.days[1])">-->
+            <!--</day-in-one-week>-->
+        </div>
+        <div class="prev">
+            <img class="content-item" src="../../../../assets/images/photo/IMG_elsa.jpg" alt="Zen" [title]="carouselWeek.days[2].date | date: 'dd MM yyyy'"/>
+            <!--<day-in-one-week class="content-item" [day]="carouselWeek.days[2]"-->
+                             <!--(navigateToMonthClick)="navigateToMonth($event)"-->
+                             <!--(navigateToYearClick)="navigateToYear($event)"-->
+                             <!--(showDayDetailClick)="showDayDetail(carouselWeek.days[2])">-->
+            <!--</day-in-one-week>-->
+        </div>
+        <div class="selected">
+            <img class="content-item" src="../../../../assets/images/photo/IMG_elsa.jpg" alt="Zen" [title]="carouselWeek.days[3].date | date: 'dd MM yyyy'"/>
+            <!--<day-in-one-week class="content-item" [day]="carouselWeek.days[3]"-->
+                             <!--(navigateToMonthClick)="navigateToMonth($event)"-->
+                             <!--(navigateToYearClick)="navigateToYear($event)"-->
+                             <!--(showDayDetailClick)="showDayDetail(carouselWeek.days[3])">-->
+            <!--</day-in-one-week>-->
+        </div>
+        <div class="next">
+            <img class="content-item" src="../../../../assets/images/photo/IMG_elsa.jpg" alt="Zen" [title]="carouselWeek.days[4].date | date: 'dd MM yyyy'"/>
+            <!--<day-in-one-week class="content-item" [day]="carouselWeek.days[4]"-->
+                             <!--(navigateToMonthClick)="navigateToMonth($event)"-->
+                             <!--(navigateToYearClick)="navigateToYear($event)"-->
+                             <!--(showDayDetailClick)="showDayDetail(carouselWeek.days[4])">-->
+            <!--</day-in-one-week>-->
+        </div>
+        <div class="nextRightSecond">
+            <img class="content-item" src="../../../../assets/images/photo/IMG_elsa.jpg" alt="Zen" [title]="carouselWeek.days[5].date | date: 'dd MM yyyy'"/>
+            <!--<day-in-one-week class="content-item" [day]="carouselWeek.days[5]"-->
+                             <!--(navigateToMonthClick)="navigateToMonth($event)"-->
+                             <!--(navigateToYearClick)="navigateToYear($event)"-->
+                             <!--(showDayDetailClick)="showDayDetail(carouselWeek.days[5])">-->
+            <!--</day-in-one-week>-->
+        </div>
+
+    </div>
 </navig-panel>
