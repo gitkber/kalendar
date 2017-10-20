@@ -39,11 +39,19 @@ export class CarouselWeekComponent {
         this.navigateClick.emit(event);
     }
 
+    prevTest() {
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isPrevious = true;
+        this.navigateClick.emit(navigation);
+    }
+
+    nextTest() {
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isNext = true;
+        this.navigateClick.emit(navigation);
+    }
+
     test() {
-        // this.navigateClick.emit(event);
-        document.getElementById('prevId').setAttribute('class', 'prevLeftSecond');
-
-
         document.getElementById('prevId').setAttribute('class', 'prevLeftSecond');
         document.getElementById('selectedId').setAttribute('class', 'prev');
         document.getElementById('nextId').setAttribute('class', 'selected');
