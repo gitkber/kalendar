@@ -3,6 +3,25 @@
                    [navigation]="'day'"
                    (navigateClick)="navigate($event)"
                    (showDayDetailClick)="showDayDetail($event)"></carousel-week>
+    <div class="other-container">
+        <div class="postit-container">
+            <p>Mon anniversaire dans 54 jours.</p>
+            <p>Les 3 prochains anniversaires</p>
+            <ul>
+                <li>Pierre</li>
+                <li>Paul</li>
+                <li>Jacques</li>
+            </ul>
+        </div>
+        <kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>
+        <div class="todo-container">
+            <ul>
+                <li>Prendre courrier</li>
+                <li>Payer Facture</li>
+                <li>Developper carousel</li>
+            </ul>
+        </div>
+    </div>
 </div>
 <day-modal [blocking]=false></day-modal>
 <image-modal [blocking]=false></image-modal>

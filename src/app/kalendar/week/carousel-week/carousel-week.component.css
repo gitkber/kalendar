@@ -9,6 +9,7 @@
     top: 50%;
     transform: translateY(-50%);
     overflow: hidden;
+    /*background-color: white;*/
 }
 #carousel div {
     position: absolute;
@@ -16,7 +17,7 @@
     opacity: 1;
 }
 #carousel div .content-item {
-    width: 400px;
+    width: 250px;
     transition: width 1s;
 }
 #carousel div.prev {
@@ -25,7 +26,7 @@
     transform: translateY(50px) translateX(-50%);
 }
 #carousel div.prev .content-item {
-    width: 300px;
+    width: 200px;
 }
 #carousel div.prevLeftSecond {
     z-index: 4;
@@ -34,7 +35,7 @@
     opacity: 0.7;
 }
 #carousel div.prevLeftSecond .content-item {
-    width: 200px;
+    width: 150px;
 }
 #carousel div.selected {
     z-index: 10;
@@ -47,7 +48,7 @@
     transform: translateY(50px) translateX(-50%);
 }
 #carousel div.next .content-item {
-    width: 300px;
+    width: 200px;
 }
 #carousel div.nextRightSecond {
     z-index: 4;
@@ -56,12 +57,12 @@
     opacity: 0.7;
 }
 #carousel div.nextRightSecond .content-item {
-    width: 200px;
+    width: 150px;
 }
 
 .buttons {
     position: fixed;
-    left: 50%;
+    right: 5em;
     transform: translateX(-50%);
     bottom: 10px;
 }

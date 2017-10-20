@@ -10,6 +10,31 @@
 
 .one-week-item {
     align-items: center;
-    height: 100%;
+    height: 60%;
     width: 100%;
+}
+
+.other-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 40%;
+    width: 100%;
+    /*background-color: #6A748C;*/
+}
+
+.postit-container {
+    height: 15em;
+    width: 15em;
+    background-color: #FBFBD4;
+}
+
+.todo-container {
+    background-color: #F8F8FF;
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    border: 1px solid #bbb;
+    height: 15em;
+    width: 20em;
 }
