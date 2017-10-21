@@ -6,6 +6,7 @@
     width: 87%;
     height: 95%;
     padding: 0 1em 0 1em;
+    box-shadow: 0 4px 6px rgba(0,0,0,.3);
     background-color: #F8F8FF;
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
