@@ -52,7 +52,7 @@ export class CarouselWeekComponent {
 
     showDayDetail(day: Day) {
         // this.showDayDetailClick.emit(day);
-        this.carouselWeek.test();
+        this.carouselWeek.test(day.date);
     }
 
 }
