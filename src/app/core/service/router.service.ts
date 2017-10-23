@@ -26,7 +26,7 @@ export class RouterService {
     }
 
     navigateToCarousel() {
-        this.isChildView = false;
+        this.isChildView = true;
         this.router.navigateByUrl('/carousel');
     }
 

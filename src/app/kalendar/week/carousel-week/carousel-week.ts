@@ -17,12 +17,10 @@ export class CarouselWeek {
     private initWeekAndCreateDays(date: Date) {
         this.days = [];
         for (let i = 3; i > 0; i--) {
-            const currentDate: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - i);
-            this.days.push(new Day(currentDate, this.today));
+            this.days.push(new Day(new Date(date.getFullYear(), date.getMonth(), date.getDate() - i), this.today));
         }
         for (let i = 0; i <= 4; i++) {
-            const currentDate: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + i);
-            this.days.push(new Day(currentDate, this.today));
+            this.days.push(new Day(new Date(date.getFullYear(), date.getMonth(), date.getDate() + i), this.today));
         }
     }
 
@@ -48,63 +46,62 @@ export class CarouselWeek {
         return this.days;
     }
 
-    next(): Day[] {
+    nextWeek(): Day[] {
         return this.nextDays(7);
     }
 
     private nextDays(count: number): Day[] {
+        const newDays: Day[] = [];
         for (let i = 0; i < count; i++) {
-            const currentDate: Date = new Date(this.days[7].date.getFullYear(), this.days[7].date.getMonth(), this.days[7].date.getDate() + 1);
+            const day: Day = new Day(
+                new Date(this.days[7].date.getFullYear(), this.days[7].date.getMonth(), this.days[7].date.getDate() + 1), this.today);
+            newDays.push(day)
             this.days.shift();
-            this.days.push(new Day(currentDate, this.today));
+            this.days.push(day);
         }
-        this.dateSelected = this.days[4].date;
-        return this.days;
+        this.dateSelected = this.days[3].date;
+        this.selectDate(this.dateSelected);
+        return newDays;
     }
-    
-    previous(): Day[] {
+
+    previousWeek(): Day[] {
         return this.previousDays(7);
     }
 
     private previousDays(count: number): Day[] {
+        const newDays: Day[] = [];
         for (let i = 0; i < count; i++) {
-            const currentDate: Date = new Date(this.days[0].date.getFullYear(), this.days[0].date.getMonth(), this.days[0].date.getDate() - 1);
+            const day: Day = new Day(
+                new Date(this.days[0].date.getFullYear(), this.days[0].date.getMonth(), this.days[0].date.getDate() - 1), this.today);
+            newDays.push(day)
             this.days.pop();
-            this.days.unshift(new Day(currentDate, this.today));
+            this.days.unshift(day);
         }
-        this.dateSelected = this.days[4].date;
-        return this.days;
+        this.dateSelected = this.days[3].date;
+        this.selectDate(this.dateSelected);
+        return newDays;
     }
 
-    test(dateClicked: Date) {
-        console.log('date clicked', dateClicked);
-        console.log('date selected', this.dateSelected);
-        //let count = this.days_between(dateClicked, this.dateSelected);
-        //console.log('diff', count);
-
+    goToDate(dateClicked: Date): Day[] {
         if (dateClicked < this.dateSelected) {
-            let count = this.days_between(this.dateSelected, dateClicked) - 1;
-            console.log('diff', count);
-            this.previousDays(count);
+            return this.previousDays(this.daysBetween(this.dateSelected, dateClicked));
         } else {
-            let count = this.days_between(dateClicked, this.dateSelected) + 1;
-            console.log('diff', count);
-            this.nextDays(count);
+            return this.nextDays(this.daysBetween(dateClicked, this.dateSelected));
         }
     }
 
-    days_between(date1, date2) {
+    private daysBetween(date1, date2) {
         // The number of milliseconds in one day
-        let ONE_DAY = 1000 * 60 * 60 * 24
+        const oneDay = 1000 * 60 * 60 * 24;
 
         // Convert both dates to milliseconds
-        var date1_ms = date1.getTime()
-        var date2_ms = date2.getTime()
+        const dateMS1 = date1.getTime();
+        const dateMS2 = date2.getTime();
 
         // Calculate the difference in milliseconds
-        var difference_ms = Math.abs(date1_ms - date2_ms)
+        const differenceMS = Math.abs(dateMS1 - dateMS2);
 
         // Convert back to days and return
-        return Math.round(difference_ms / ONE_DAY)
+        return Math.round(differenceMS / oneDay);
     }
 }

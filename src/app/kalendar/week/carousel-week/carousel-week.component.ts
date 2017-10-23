@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Day } from '../../day/day';
 import { Navigation } from '../../navigation';
 import { CarouselWeek } from './carousel-week';
@@ -14,11 +14,8 @@ export class CarouselWeekComponent {
     @Input() navigation: string; // year - month - day
     @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
-    public directory: string;
 
-    constructor() {
-        this.directory = 'todo';
-    }
+    constructor() { }
 
     navigateToMonth(event: Date) {
         const navigation: Navigation = new Navigation(this.navigation);
@@ -34,25 +31,32 @@ export class CarouselWeekComponent {
         this.navigateClick.emit(navigation);
     }
 
-    navigate(event: Navigation) {
-        this.navigateClick.emit(event);
-    }
-
-    prevTest() {
+    prevWeek() {
         const navigation: Navigation = new Navigation(this.navigation);
         navigation.isPrevious = true;
         this.navigateClick.emit(navigation);
     }
 
-    nextTest() {
+    goToday() {
+        const navigation: Navigation = new Navigation(this.navigation);
+        navigation.isToday = true;
+        this.navigateClick.emit(navigation);
+    }
+
+    nextWeek() {
         const navigation: Navigation = new Navigation(this.navigation);
         navigation.isNext = true;
         this.navigateClick.emit(navigation);
     }
 
     showDayDetail(day: Day) {
-        // this.showDayDetailClick.emit(day);
-        this.carouselWeek.test(day.date);
+        if (day.isSelected) {
+            this.showDayDetailClick.emit(day);
+        } else {
+            const navigation: Navigation = new Navigation('day');
+            navigation.toDate = day.date;
+            this.navigateClick.emit(navigation);
+        }
     }
 
 }

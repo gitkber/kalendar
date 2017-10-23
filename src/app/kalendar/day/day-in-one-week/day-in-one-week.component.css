@@ -19,6 +19,10 @@
     background-color: #fff;
 }
 
+.day-selected {
+    /* background-color: yellow; */
+}
+
 .group-container {
     display: flex;
     flex-direction: column;
