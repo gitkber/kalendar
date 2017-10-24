@@ -11,33 +11,30 @@ export class ImageService {
 
     constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) { }
 
-    loadImageFromStore(date?: Date): firebase.Promise<any> {
+    loadImageFromStore(weekNumber?: number): firebase.Promise<any> {
         let fullPath: string = 'default.jpg'.toString();
-        if (date) {
-            fullPath = this.getPathForStorage(date);
+        if (weekNumber) {
+            fullPath = this.getPathForStorage(weekNumber);
         }
         return firebase.storage().ref().child(fullPath).getDownloadURL();
     }
 
-    getImage(date: Date): Observable<string> {
-        const dateFormatted: string = this.dateUtilService.toString(date);
-        return this.db.object('images/' + this.authService.currentUserId + '/' + dateFormatted);
+    getImage(weekNumber: number): Observable<string> {
+        return this.db.object('images/' + this.authService.currentUserId + '/' + weekNumber);
     }
 
-    getPathForStorage(date: Date): string {
-        const dateFormatted: string = this.dateUtilService.toString(date);
-        return this.authService.currentUserId + '/' + dateFormatted + '.jpg';
+    getPathForStorage(weekNumber: number): string {
+        return this.authService.currentUserId + '/' + weekNumber + '.jpg';
     }
 
-    saveImage(date: Date, file): firebase.Promise<any> {
+    saveImage(weekNumber: number, file): firebase.Promise<any> {
         const filename = file.name.toUpperCase().split('.').reverse().pop();
-        this.saveLabel(date, filename);
+        this.saveLabel(weekNumber, filename);
 
-        return firebase.storage().ref().child(this.getPathForStorage(date)).put(file)
+        return firebase.storage().ref().child(this.getPathForStorage(weekNumber)).put(file)
     }
 
-    saveLabel(date: Date, label: string) {
-        const dateFormatted: string = this.dateUtilService.toString(date);
-        this.db.object('images/' + this.authService.currentUserId + '/' + dateFormatted).$ref.set({label: label});
+    saveLabel(weekNumber: number, label: string) {
+        this.db.object('images/' + this.authService.currentUserId + '/' + weekNumber).$ref.set({label: label});
     }
 }

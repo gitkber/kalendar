@@ -12,6 +12,7 @@ export class ImageModalComponent {
 
     public isOpen = false;
     public date: Date;
+    private weekNumber: number;
     public label: string;
     public isModified: boolean;
 
@@ -27,8 +28,9 @@ export class ImageModalComponent {
 
     open(date: Date): void {
         this.date = date;
+        this.weekNumber = this.getWeek(this.date);
         this.isOpen = true;
-        this.imageService.getImage(this.date).subscribe(success => {
+        this.imageService.getImage(this.weekNumber).subscribe(success => {
             if (success['$value'] === null) {
                 this.label = 'Parcourir';
                 this.isModified = true;
@@ -36,13 +38,18 @@ export class ImageModalComponent {
             } else {
                 this.label = success['label'];
                 this.isModified = false;
-                this.loadImageFromStore(date);
+                this.loadImageFromStore(this.weekNumber);
             }
         });
     }
 
-    private loadImageFromStore(date?: Date) {
-        this.imageService.loadImageFromStore(date).then(url => {
+    private getWeek(date: Date): number {
+        const onejan = new Date(date.getFullYear(), 0, 1);
+        return Math.ceil((((date.getTime() - onejan.getTime()) / 86400000) + onejan.getDay()) / 7);
+    };
+
+    private loadImageFromStore(weekNumber?: number) {
+        this.imageService.loadImageFromStore(weekNumber).then(url => {
             document.getElementById('img-item-id').setAttribute('src', url);
         }).catch(error => {
             console.error('storage get error', error['code']);
@@ -61,7 +68,7 @@ export class ImageModalComponent {
     }
 
     modifyLabel() {
-        this.imageService.saveLabel(this.date, this.label);
+        this.imageService.saveLabel(this.weekNumber, this.label);
         this.isModified = true;
     }
 
