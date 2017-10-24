@@ -10,7 +10,7 @@
         </div>
     </form>
     <div class="panel-action">
-        <svg-save (click)="addHoliday()"></svg-save>
-        <svg-delete (click)="deleteHoliday()"></svg-delete>
+        <kal-action [image]="'fa-save'" (click)="addHoliday()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteHoliday()"></kal-action>
     </div>
 </kal-panel-form>

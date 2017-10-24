@@ -8,7 +8,7 @@
             <div class="input-row" *ngIf="!isModified">
                 <input class="label-item" type="text" [value]="label" id="input-id"
                        (change)="onInputChange($event)"/>
-                <svg-save (click)="modifyLabel()"></svg-save>
+                <kal-action [image]="'fa-save'" (click)="modifyLabel()"></kal-action>
             </div>
         </div>
     </div>

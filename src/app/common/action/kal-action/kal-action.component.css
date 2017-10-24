@@ -8,26 +8,23 @@ http://codepen.io/berdejitendra/pen/KxmvD 	    - Login layout black background
 ---------------------------------------------------------------------------------------
 */
 
-svg {
-    margin: 0.5em;
-    padding: 1em 0.5em 0.5em 1em;
-    height: 2em;
-    width: 2em;
+i {
+    
+    /*padding: 0.5em 0.0em 0.1em 0.7em;*/
+    /*padding: 0.5em 0 0 0.5em;*/
+    text-align: center;
+    padding: 0.3em;
+    height: 1em;
+    width: 1em;
     background: rgba(253, 95, 0, 1);
-    border: 0.5em solid #222526;
+    border: 0.3em solid #222526;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 8px 16px -5px #222526;
+    color: white;
 }
 
-svg path {
-    fill: white;
-}
-svg rect {
-    fill: white;
-}
-
-svg:hover {
+i:hover {
     background:#222526;
     border-color:rgba(253, 95, 0, 1);
     -webkit-transition:0.5s ease;
@@ -35,12 +32,5 @@ svg:hover {
     -o-transition:0.5s ease;
     -ms-transition:0.5s ease;
     transition:0.5s ease;
-}
-
-svg:hover path {
-    fill: rgba(253, 95, 0, 1);
-}
-
-svg:hover rect {
-    fill: rgba(253, 95, 0, 1);
+    color: rgba(253, 95, 0, 1);
 }

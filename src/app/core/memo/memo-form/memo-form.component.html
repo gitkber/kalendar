@@ -31,7 +31,7 @@
         </div>
     </form>
     <div class="panel-action">
-        <svg-save (click)="saveMemo()"></svg-save>
-        <svg-delete (click)="deleteMemo()"></svg-delete>
+        <kal-action [image]="'fa-save'" (click)="saveMemo()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteMemo()"></kal-action>
     </div>
 </kal-panel-form>

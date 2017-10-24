@@ -19,8 +19,8 @@
         </div>
     </form>
     <div class="panel-action">
-        <svg-save (click)="addContact()"></svg-save>
-        <svg-delete (click)="deleteContact()"></svg-delete>
+        <kal-action [image]="'fa-save'" (click)="addContact()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteContact()"></kal-action>
     </div>
 </kal-panel-form>
 
