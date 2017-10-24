@@ -4,7 +4,7 @@ export class CarouselWeek {
 
     public days: Day[] = [];
     private today: Date;
-    private dateSelected: Date;
+    public dateSelected: Date;
 
     constructor(
         private date: Date

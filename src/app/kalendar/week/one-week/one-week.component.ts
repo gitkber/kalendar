@@ -13,6 +13,7 @@ export class OneWeekComponent {
     @Input() week: Week;
     @Input() navigation: string; // year - month - day
     @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
+    @Output() showImageClick: EventEmitter<Date> = new EventEmitter();
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
     public directory: string;
 
@@ -40,6 +41,10 @@ export class OneWeekComponent {
 
     showDayDetail(day: Day) {
         this.showDayDetailClick.emit(day);
+    }
+
+    showImage(date: Date) {
+        this.showImageClick.emit(date);
     }
 
 }

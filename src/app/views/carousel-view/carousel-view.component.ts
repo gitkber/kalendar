@@ -4,8 +4,8 @@ import { RouterService } from '../../core/service/router.service';
 import { AppService } from '../../app.service';
 import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Navigation } from '../../kalendar/navigation';
-import { Day } from '../../kalendar/day/day';
 import { CarouselWeek } from '../../kalendar/week/carousel-week/carousel-week';
+import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
 
 @Component({
     selector: 'carousel-view',
@@ -15,6 +15,7 @@ import { CarouselWeek } from '../../kalendar/week/carousel-week/carousel-week';
 export class CarouselViewComponent implements OnInit {
 
     @ViewChild(DayModalComponent) dayModal: DayModalComponent;
+    @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
     public carouselWeek: CarouselWeek;
 
@@ -47,9 +48,13 @@ export class CarouselViewComponent implements OnInit {
         }
     }
 
-    showDayDetail(event: Day) {
+    showDayDetail(event) {
         this.appService.selectDate(event.date);
         this.dayModal.open(event);
+    }
+
+    showImage(event: Date) {
+        this.imageModal.open(event);
     }
 
 }

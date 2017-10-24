@@ -21,7 +21,10 @@
                 <li>Developper carousel</li>
             </ul>
         </div>
-        <kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>
+        <!--<kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>-->
+        <week-image class="polaroid-container" *ngIf="carouselWeek.dateSelected"
+                    [date]="carouselWeek.dateSelected"
+                    (showImageClick)="showImage(carouselWeek.dateSelected)"></week-image>
         <div></div>
     </div>
 </div>

@@ -24,7 +24,8 @@ import { WeekImageComponent } from './week-image/week-image.component';
         OneYearComponent,
         NavigPanelComponent, WeekImageComponent
     ],
-    exports: [OneDayComponent, OneWeekComponent, CarouselWeekComponent, OneMonthComponent, OneYearComponent],
+    exports: [OneDayComponent, OneWeekComponent, OneMonthComponent, OneYearComponent,
+        CarouselWeekComponent, WeekImageComponent],
     providers: []
 })
 export class KalendarModule {

@@ -1,5 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Day } from '../../../kalendar/day/day';
+import { Component, HostListener, Input } from '@angular/core';
 import { ImageService } from '../../../core/image/image.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class ImageModalComponent {
     @Input() blocking = false;
 
     public isOpen = false;
-    public day: Day;
+    public date: Date;
     public label: string;
     public isModified: boolean;
 
@@ -26,10 +25,10 @@ export class ImageModalComponent {
         this.close();
     }
 
-    open(day: Day): void {
-        this.day = day;
+    open(date: Date): void {
+        this.date = date;
         this.isOpen = true;
-        this.imageService.getImage(this.day.date).subscribe(success => {
+        this.imageService.getImage(this.date).subscribe(success => {
             if (success['$value'] === null) {
                 this.label = 'Parcourir';
                 this.isModified = true;
@@ -37,7 +36,7 @@ export class ImageModalComponent {
             } else {
                 this.label = success['label'];
                 this.isModified = false;
-                this.loadImageFromStore(this.day.date);
+                this.loadImageFromStore(date);
             }
         });
     }
@@ -62,7 +61,7 @@ export class ImageModalComponent {
     }
 
     modifyLabel() {
-        this.imageService.saveLabel(this.day.date, this.label);
+        this.imageService.saveLabel(this.date, this.label);
         this.isModified = true;
     }
 

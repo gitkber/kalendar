@@ -28,7 +28,7 @@
     height: 15em;
     width: 15em;
     background-color: #FBFBD4;
-    box-shadow: 0 4px 6px rgba(0,0,0,.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
 }
 
 .todo-container {
@@ -38,5 +38,14 @@
     border: 1px solid #bbb;
     height: 15em;
     width: 20em;
-    box-shadow: 0 4px 6px rgba(0,0,0,.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+}
+
+.polaroid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15em;
+    width: 15em;
 }

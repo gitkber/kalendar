@@ -6,8 +6,8 @@
                      (showDayDetailClick)="showDayDetail(day)">
 
         <week-image class="polaroid-container" *ngIf="day.isDisabled"
-                    [day]="day"
-                    (showImageClick)="showDayDetail(day)"></week-image>
+                    [date]="day.date"
+                    (showImageClick)="showImage(day.date)"></week-image>
 
     </day-in-one-week>
 </navig-panel>

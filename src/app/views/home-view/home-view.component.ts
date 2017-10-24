@@ -53,13 +53,13 @@ export class HomeViewComponent implements OnInit {
     }
 
     showDayDetail(event: Day) {
-        if (event.isDisabled) {
-            this.imageModal.open(event);
-        } else {
-            this.appService.selectDate(event.date);
-            this.selectedDay = this.week.selectDate(this.appService.currentDate);
-            this.dayModal.open(event);
-        }
+        this.appService.selectDate(event.date);
+        this.selectedDay = this.week.selectDate(this.appService.currentDate);
+        this.dayModal.open(event);
+    }
+
+    showImage(event: Date) {
+        this.imageModal.open(event);
     }
 
 }

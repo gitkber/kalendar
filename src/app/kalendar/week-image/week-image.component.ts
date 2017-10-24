@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ImageService } from '../../core/image/image.service';
-import { Day } from '../day/day';
 
 @Component({
     selector: 'week-image',
@@ -11,8 +10,8 @@ export class WeekImageComponent implements OnInit {
 
     // Image
     public label: string;
-    @Input() day: Day;
-    @Output() showImageClick: EventEmitter<Day> = new EventEmitter();
+    @Input() date: Date;
+    @Output() showImageClick: EventEmitter<Date> = new EventEmitter();
 
     // Upload
     @Output() uploadStatus = new EventEmitter();
@@ -24,12 +23,12 @@ export class WeekImageComponent implements OnInit {
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
-        this.imageService.getImage(this.day.date).subscribe(success => {
+        this.imageService.getImage(this.date).subscribe(success => {
             if (success['$value'] === null) {
                 this.loadImageFromStore();
                 this.label = 'Parcourir';
             } else {
-                this.loadImageFromStore(this.day.date);
+                this.loadImageFromStore(this.date);
                 this.label = success['label'];
             }
         });
@@ -38,7 +37,7 @@ export class WeekImageComponent implements OnInit {
     private loadImageFromStore(date?: Date) {
         this.imageService.loadImageFromStore(date).then(url => {
             document.getElementById('img-id').setAttribute('src', url);
-            document.images['img-id'].onload = function() {
+            document.images['img-id'].onload = function () {
                 // console.log('dimension', document.images['img-id'].naturalWidth + ' ' + document.images['img-id'].naturalHeight)
                 if (document.images['img-id'].naturalWidth > document.images['img-id'].naturalHeight) {
                     // console.log('landscape')
@@ -56,7 +55,7 @@ export class WeekImageComponent implements OnInit {
     }
 
     showImage() {
-        this.showImageClick.emit(this.day);
+        this.showImageClick.emit(this.date);
     }
 
     onFileChange(event) {
@@ -70,7 +69,7 @@ export class WeekImageComponent implements OnInit {
             this.uploadStatus.emit(false);
         } else {
             if (files.length === 1) {
-                this.imageService.saveImage(this.day.date, files[0]).then(success => {
+                this.imageService.saveImage(this.date, files[0]).then(success => {
                     document.getElementById('img-id').setAttribute('src', success.downloadURL);
                 }).catch(error => {
                     console.error('storage put error', error);

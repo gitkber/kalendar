@@ -2,7 +2,8 @@
     <one-week class="one-week-item" [week]="week"
               [navigation]="'day'"
               (navigateClick)="navigate($event)"
-              (showDayDetailClick)="showDayDetail($event)"></one-week>
+              (showDayDetailClick)="showDayDetail($event)"
+              (showImageClick)="showImage($event)"></one-week>
 </div>
 <day-modal [blocking]=false></day-modal>
 <image-modal [blocking]=false></image-modal>
