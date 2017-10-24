@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ImageService } from '../../core/image/image.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ImageService } from '../../core/image/image.service';
     templateUrl: './week-image.component.html',
     styleUrls: ['./week-image.component.css']
 })
-export class WeekImageComponent implements OnInit {
+export class WeekImageComponent implements OnInit, OnChanges {
 
     // Image
     public label: string;
@@ -23,6 +23,27 @@ export class WeekImageComponent implements OnInit {
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
+        this.loadImage();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('ngOnChanges week-image current', this.getWeek(changes.date.currentValue));
+        if (changes.date.previousValue !== undefined) {
+            console.log('ngOnChanges week-image previous', this.getWeek(changes.date.previousValue));
+            if (this.getWeek(changes.date.previousValue) !== this.getWeek(changes.date.previousValue)) {
+                this.loadImage();
+            }
+        } else {
+            this.loadImage();
+        }
+    }
+
+    private getWeek(date: Date): number {
+        const onejan = new Date(date.getFullYear(), 0, 1);
+        return Math.ceil((((date.getTime() - onejan.getTime()) / 86400000) + onejan.getDay()) / 7);
+    };
+
+    private loadImage() {
         this.imageService.getImage(this.date).subscribe(success => {
             if (success['$value'] === null) {
                 this.loadImageFromStore();
@@ -116,3 +137,4 @@ export class WeekImageComponent implements OnInit {
     }
 
 }
+
