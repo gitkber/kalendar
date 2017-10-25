@@ -91,11 +91,11 @@ span.fa-stack {
     padding-left: 0;
     color: #4D5874;
     width: 100%;
+    padding-top: 0.1em; 
 }
 
-.day-item-detail span {
-    padding-top: 0.3em;
-    padding-left: 0.3em;
+.label-item {
+    padding-top: 0.3em; 
 }
 
 .day-item-detail-action {
