@@ -1,4 +1,5 @@
-<div class="day-container" [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected">
+<div class="day-container" [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected"
+     (click)="navigateToDay()">
     <div class="group-container">
         <div class="day-item-title">
             <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
@@ -17,13 +18,13 @@
                 </div>
                 <div *ngIf="day.isSelected">
                     <span class="fa-stack" title="Modifier un contact" *ngIf="dayItem.isContact()"
-                          (click)="showModal()">
+                          (click)="showDayDetail()">
                         <i class="fa fa-square fa-stack-2x text-background"></i>
                         <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                         <i class="fa fa-pencil fa-stack text-action"></i>
                     </span>
                     <span class="fa-stack" title="Modifier un événement" *ngIf="dayItem.isMemo()"
-                          (click)="showModal()">
+                          (click)="showDayDetail()">
                         <i class="fa fa-square fa-stack-2x text-background"></i>
                         <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
                         <i class="fa fa-pencil fa-stack text-action"></i>
@@ -35,19 +36,19 @@
             <div></div>
             <div>
                 <span class="fa-stack" title="Ajouter un contact"
-                      (click)="showModal()">
+                      (click)="showDayDetail()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
                 </span>
                 <span class="fa-stack" title="Ajouter un événement"
-                      (click)="showModal()">
+                      (click)="showDayDetail()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
                 </span>
                 <span class="fa-stack" title="Ajouter un jour de congé"
-                      (click)="showModal()">
+                      (click)="showDayDetail()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
@@ -62,7 +63,7 @@
             </div>
             <div *ngIf="day.isSelected">
                 <span class="fa-stack" title="Modifier un jour de congé"
-                      (click)="showModal()">
+                      (click)="showDayDetail()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-pencil fa-stack text-action"></i>
@@ -72,7 +73,7 @@
         <div class="day-item-detail" *ngIf="day.isSelected">
             <div></div>
             <span class="fa-stack" title="Ajouter un jour férié" *ngIf="!day.dayPublicHolidayItem"
-                  (click)="showModal()">
+                  (click)="showDayDetail()">
                 <i class="fa fa-square fa-stack-2x text-background"></i>
                 <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                 <i class="fa fa-plus fa-stack text-action"></i>
@@ -84,7 +85,7 @@
             </div>
             <div *ngIf="day.isSelected">
                 <span class="fa-stack" title="Modifier un jour férié"
-                      (click)="showModal()">
+                      (click)="showDayDetail()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-pencil fa-stack text-action"></i>

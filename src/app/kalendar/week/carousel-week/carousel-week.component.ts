@@ -17,18 +17,8 @@ export class CarouselWeekComponent {
 
     constructor() { }
 
-    navigateToMonth(event: Date) {
-        const navigation: Navigation = new Navigation(this.navigation);
-        navigation.isMonth = true;
-        navigation.toDate = event;
-        this.navigateClick.emit(navigation);
-    }
-
-    navigateToYear(event: Date) {
-        const navigation: Navigation = new Navigation(this.navigation);
-        navigation.isYear = true;
-        navigation.toDate = event;
-        this.navigateClick.emit(navigation);
+    navigate(event: Navigation) {
+        this.navigateClick.emit(event);
     }
 
     prevWeek() {

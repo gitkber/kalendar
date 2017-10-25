@@ -1,8 +1,7 @@
 <div class="navig-panel-container">
 
     <day-in-carousel-week *ngFor="let day of carouselWeek.days" class="content-item" [day]="day"
-                          (navigateToMonthClick)="navigateToMonth($event)"
-                          (navigateToYearClick)="navigateToYear($event)"
+                          (navigateClick)="navigate($event)"
                           (showDayDetailClick)="showDayDetail(day)">
     </day-in-carousel-week>
 

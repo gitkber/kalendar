@@ -41,7 +41,7 @@ export class CarouselViewComponent implements OnInit {
             this.routerService.navigateToKalMonth(event.toDate);
         } else if (event.isYear) {
             this.routerService.navigateToKalYear(event.toDate);
-        } else if (event.navigation === 'day') {
+        } else if (event.isDay) {
             this.coreFacade.populateDays(this.carouselWeek.goToDate(event.toDate));
         } else {
             console.warn('ERROR in CarouselView - Navigation');
