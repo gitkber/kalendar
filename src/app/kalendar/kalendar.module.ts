@@ -6,6 +6,7 @@ import { DayInDayComponent } from './day/day-in-day/day-in-day.component';
 import { DayInMonthComponent } from './day/day-in-month/day-in-month.component';
 import { DayInOneWeekComponent } from './day/day-in-one-week/day-in-one-week.component';
 import { DayInYearComponent } from './day/day-in-year/day-in-year.component';
+import { DayInCarouselWeekComponent } from './day/day-in-carousel-week/day-in-carousel-week.component';
 import { OneDayComponent } from './day/one-day/one-day.component';
 import { OneWeekComponent } from './week/one-week/one-week.component';
 import { CarouselWeekComponent } from './week/carousel-week/carousel-week.component';
@@ -17,7 +18,7 @@ import { WeekImageComponent } from './week-image/week-image.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
-    declarations: [DayInMonthComponent, DayInOneWeekComponent, DayInYearComponent, DayInDayComponent,
+    declarations: [DayInMonthComponent, DayInOneWeekComponent, DayInYearComponent, DayInDayComponent, DayInCarouselWeekComponent,
         OneDayComponent,
         OneWeekComponent, CarouselWeekComponent,
         OneMonthComponent, MonthInYearComponent,

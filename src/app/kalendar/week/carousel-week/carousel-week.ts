@@ -12,6 +12,7 @@ export class CarouselWeek {
         this.dateSelected = date;
         this.today = new Date();
         this.initWeekAndCreateDays(this.date);
+        this.selectDate(this.dateSelected);
     }
 
     private initWeekAndCreateDays(date: Date) {
