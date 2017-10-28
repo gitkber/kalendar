@@ -2,6 +2,6 @@
      [class.day-disabled]="day.isDisabled" [class.today]="day.isToday"
      [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected"
      [class.contact-holiday]="!day.isDisabled && day.dayContactHolidayItems.length > 0"
-     [class.public-holiday]="!day.isDisabled && day.dayPublicHolidayItem">
+     [class.public-holiday]="!day.isDisabled && day.dayPublicHolidayItem !== undefined">
     {{ day.date | date:'d' }}
 </div>
