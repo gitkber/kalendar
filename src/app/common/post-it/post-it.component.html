@@ -1,0 +1,10 @@
+<div class="post-it" [style.transform]="rotation" *ngIf="isVisible">
+
+    <i class="fa fa-close" (click)="close()"></i>
+
+    <blockquote class="note yellow" [style.background]="color">
+        <ng-content></ng-content>
+        <cite class="author">{{reference}}</cite>
+    </blockquote>
+
+</div>

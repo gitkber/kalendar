@@ -5,15 +5,10 @@
                    (showDayDetailClick)="showDayDetail($event)"></carousel-week>
     <div class="other-container">
         <div></div>
-        <div class="postit-container">
-            <p>Mon anniversaire dans 54 jours.</p>
-            <p>Les 3 prochains anniversaires</p>
-            <ul>
-                <li>Pierre</li>
-                <li>Paul</li>
-                <li>Jacques</li>
-            </ul>
-        </div>
+
+        <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
+            {{quote.text}}
+        </post-it>
         <div class="todo-container">
             <ul>
                 <li>Prendre courrier</li>

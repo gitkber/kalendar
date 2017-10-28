@@ -11,6 +11,7 @@ import { KalPolaroidComponent } from './kal-polaroid/kal-polaroid.component';
 import { DateStringPipe } from './utils/date-string.pipe';
 import { KalModalComponent } from './kal-modal/kal-modal.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import {PostItComponent} from "./post-it/post-it.component";
 
 import { LogoColorDirective } from './kal-logo/logo-color.directive';
 
@@ -21,11 +22,11 @@ import { FileService } from './file-upload/file-service';
     declarations: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         KalModalComponent,
         LogoColorDirective,
-        FileUploadComponent],
+        FileUploadComponent, PostItComponent],
     exports: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         ActionModule, PanelModule,
         LogoColorDirective,
-        FileUploadComponent],
+        FileUploadComponent, PostItComponent],
     providers: [FileService]
 })
 export class CommonModule {

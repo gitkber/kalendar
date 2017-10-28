@@ -1,0 +1,35 @@
+.post-it {
+    width: 250px;
+    position: relative;
+    transform: rotate(7deg);
+}
+
+.post-it .note {
+    color: #444;
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    /*font-family: Verdana;*/
+    font-size: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.post-it .note .author {
+    display: block;
+    color: #777;
+    font-size: 12px;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.post-it .fa-close {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.1);
+    top: 7px;
+    right: 7px;
+    z-index: 1;
+}
+
+.post-it .fa-close:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
