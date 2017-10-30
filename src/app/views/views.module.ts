@@ -16,13 +16,14 @@ import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-pape
 import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
 import { DayModalComponent } from './modal/day-modal/day-modal.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
+import { CoreModalComponent } from './modal/core-modal/core-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, KalMonthViewComponent,
         ContactsViewComponent, CarouselViewComponent,
         SheetOfPaperComponent, PolaroidComponent,
-        DayModalComponent, ImageModalComponent],
+        DayModalComponent, ImageModalComponent, CoreModalComponent],
     exports: [],
     providers: []
 })

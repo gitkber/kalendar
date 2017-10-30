@@ -2,7 +2,7 @@
     <carousel-week class="one-week-item" [carouselWeek]="carouselWeek"
                    [navigation]="'day'"
                    (navigateClick)="navigate($event)"
-                   (showDayDetailClick)="showDayDetail($event)"></carousel-week>
+                   (showDayItemClick)="showDayItem($event)"></carousel-week>
     <div class="other-container">
         <div></div>
 
@@ -23,5 +23,5 @@
         <div></div>
     </div>
 </div>
-<day-modal [blocking]=false></day-modal>
+<core-modal [blocking]=false></core-modal>
 <image-modal [blocking]=false></image-modal>

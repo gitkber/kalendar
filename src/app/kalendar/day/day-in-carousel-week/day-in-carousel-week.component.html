@@ -18,13 +18,13 @@
                 </div>
                 <div *ngIf="day.isSelected">
                     <span class="fa-stack" title="Modifier un contact" *ngIf="dayItem.isContact()"
-                          (click)="showDayDetail()">
+                          (click)="editDayItem(dayItem)">
                         <i class="fa fa-square fa-stack-2x text-background"></i>
                         <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                         <i class="fa fa-pencil fa-stack text-action"></i>
                     </span>
                     <span class="fa-stack" title="Modifier un événement" *ngIf="dayItem.isMemo()"
-                          (click)="showDayDetail()">
+                          (click)="editDayItem(dayItem)">
                         <i class="fa fa-square fa-stack-2x text-background"></i>
                         <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
                         <i class="fa fa-pencil fa-stack text-action"></i>
@@ -36,19 +36,19 @@
             <div></div>
             <div>
                 <span class="fa-stack" title="Ajouter un contact"
-                      (click)="showDayDetail()">
+                      (click)="addDayItemContact()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
                 </span>
                 <span class="fa-stack" title="Ajouter un événement"
-                      (click)="showDayDetail()">
+                      (click)="addDayItemMemo()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
                 </span>
                 <span class="fa-stack" title="Ajouter un jour de congé"
-                      (click)="showDayDetail()">
+                      (click)="addDayItemContactHoliday()">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-plus fa-stack text-action"></i>
@@ -63,7 +63,7 @@
             </div>
             <div *ngIf="day.isSelected">
                 <span class="fa-stack" title="Modifier un jour de congé"
-                      (click)="showDayDetail()">
+                      (click)="editDayItem(dayContactHolidayItem)">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-pencil fa-stack text-action"></i>
@@ -73,7 +73,7 @@
         <div class="day-item-detail" *ngIf="day.isSelected">
             <div></div>
             <span class="fa-stack" title="Ajouter un jour férié" *ngIf="!day.dayPublicHolidayItem"
-                  (click)="showDayDetail()">
+                  (click)="addDayItemPublicHoliday()">
                 <i class="fa fa-square fa-stack-2x text-background"></i>
                 <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                 <i class="fa fa-plus fa-stack text-action"></i>
@@ -85,7 +85,7 @@
             </div>
             <div *ngIf="day.isSelected">
                 <span class="fa-stack" title="Modifier un jour férié"
-                      (click)="showDayDetail()">
+                      (click)="editDayItem(day.dayPublicHolidayItem)">
                     <i class="fa fa-square fa-stack-2x text-background"></i>
                     <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                     <i class="fa fa-pencil fa-stack text-action"></i>

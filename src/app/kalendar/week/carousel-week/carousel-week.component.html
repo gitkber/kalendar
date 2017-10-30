@@ -2,7 +2,7 @@
 
     <day-in-carousel-week *ngFor="let day of carouselWeek.days" class="content-item" [day]="day"
                           (navigateClick)="navigate($event)"
-                          (showDayDetailClick)="showDayDetail(day)">
+                          (showDayItemClick)="showDayItem($event)">
     </day-in-carousel-week>
 
     <div class="buttons">

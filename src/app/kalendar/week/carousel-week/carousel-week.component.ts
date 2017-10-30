@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Day } from '../../day/day';
 import { Navigation } from '../../navigation';
 import { CarouselWeek } from './carousel-week';
+import { DayItem } from '../../day-item';
 
 @Component({
     selector: 'carousel-week',
@@ -12,7 +12,7 @@ export class CarouselWeekComponent {
 
     @Input() carouselWeek: CarouselWeek;
     @Input() navigation: string; // year - month - day
-    @Output() showDayDetailClick: EventEmitter<Day> = new EventEmitter();
+    @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
 
     constructor() { }
@@ -39,14 +39,8 @@ export class CarouselWeekComponent {
         this.navigateClick.emit(navigation);
     }
 
-    showDayDetail(day: Day) {
-        if (day.isSelected) {
-            this.showDayDetailClick.emit(day);
-        } else {
-            const navigation: Navigation = new Navigation('day');
-            navigation.toDate = day.date;
-            this.navigateClick.emit(navigation);
-        }
+    showDayItem(event: DayItem) {
+        this.showDayItemClick.emit(event);
     }
 
 }

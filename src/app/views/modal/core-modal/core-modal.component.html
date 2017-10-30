@@ -1,0 +1,22 @@
+<div class="modal-container" [class.closed]="!isOpen">
+    <div class="modal-overlay" (click)="close(true)"></div>
+
+    <div class="modal">
+
+        <div *ngIf="dayItem">
+            <contact-form *ngIf="dayItem.isContact()" [fillYear]="true"
+                          [contact]="contactSelected"
+                          (actionClick)="doActionOnContact($event)"></contact-form>
+            <memo-form *ngIf="dayItem.isMemo()"
+                       [memo]="memoSelected"
+                       (actionClick)="doActionOnMemo($event)"></memo-form>
+            <contact-holiday-form *ngIf="dayItem.isContactHoliday()"
+                                  [contactHoliday]="contactHolidaySelected"
+                                  (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>
+            <public-holiday-form *ngIf="dayItem.isPublicHoliday()"
+                                 [publicHoliday]="publicHolidaySelected"
+                                 (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
+        </div>
+    </div>
+
+</div>
