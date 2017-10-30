@@ -6,11 +6,11 @@ import { DayItem } from '../../day-item';
 import { DateUtilService } from '../../../core/service/date-util.service';
 
 @Component({
-    selector: 'day-in-carousel-week',
-    templateUrl: 'day-in-carousel-week.component.html',
-    styleUrls: ['./day-in-carousel-week.component.css']
+    selector: 'day-in-carousel-days',
+    templateUrl: 'day-in-carousel-days.component.html',
+    styleUrls: ['./day-in-carousel-days.component.css']
 })
-export class DayInCarouselWeekComponent {
+export class DayInCarouselDaysComponent {
 
     @Input() day: Day;
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();

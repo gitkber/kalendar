@@ -1,6 +1,6 @@
-import { Day } from '../../day/day';
+import { Day } from '../day/day';
 
-export class CarouselWeek {
+export class CarouselDays {
 
     public days: Day[] = [];
     private today: Date;

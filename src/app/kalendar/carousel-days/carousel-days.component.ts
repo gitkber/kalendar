@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Day } from '../day';
-import { Navigation } from '../../navigation';
-import { DayItem } from '../../day-item';
+import { Navigation } from '../navigation';
+import { CarouselDays } from './carousel-days';
+import { DayItem } from '../day-item';
 
 @Component({
-    selector: 'one-day',
-    templateUrl: 'one-day.component.html',
-    styleUrls: ['./one-day.component.css']
+    selector: 'carousel-days',
+    templateUrl: './carousel-days.component.html',
+    styleUrls: ['./carousel-days.component.css']
 })
-export class OneDayComponent {
+export class CarouselDaysComponent {
 
-    @Input() day: Day;
+    @Input() carouselDays: CarouselDays;
+    @Input() navigation: string; // year - month - day
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
 
@@ -23,4 +24,5 @@ export class OneDayComponent {
     showDayItem(event: DayItem) {
         this.showDayItemClick.emit(event);
     }
+
 }

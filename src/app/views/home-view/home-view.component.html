@@ -1,9 +1,35 @@
 <div class="home-view-container">
-    <one-week class="one-week-item" [week]="week"
-              [navigation]="'day'"
-              (navigateClick)="navigate($event)"
-              (showDayDetailClick)="showDayDetail($event)"
-              (showImageClick)="showImage($event)"></one-week>
+    <div class="principal-container">
+        <div class="carousel-week-item">
+            <carousel-days [carouselDays]="carouselDays"
+                           [navigation]="'day'"
+                           (navigateClick)="navigate($event)"
+                           (showDayItemClick)="showDayItem($event)"></carousel-days>
+        </div>
+        <div class="other-container">
+            <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
+                {{quote.text}}
+            </post-it>
+            <!--<div class="todo-container">-->
+            <!--<ul>-->
+            <!--<li>Prendre courrier</li>-->
+            <!--<li>Payer Facture</li>-->
+            <!--<li>Developper carousel</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--<kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>-->
+            <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
+                        [date]="carouselDays.dateSelected"
+                        (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
+            <div></div>
+        </div>
+
+    </div>
+    <div class="postit-container">
+        <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
+            {{quote.text}}
+        </post-it>
+    </div>
 </div>
-<day-modal [blocking]=false></day-modal>
+<core-modal [blocking]=false></core-modal>
 <image-modal [blocking]=false></image-modal>

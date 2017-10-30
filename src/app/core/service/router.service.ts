@@ -20,10 +20,6 @@ export class RouterService {
         this.router.navigateByUrl('/home');
     }
 
-    navigateToCarousel() {
-        this.router.navigateByUrl('/carousel');
-    }
-
     navigateToContacts() {
         this.router.navigateByUrl('/contacts');
     }
