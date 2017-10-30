@@ -12,21 +12,18 @@ import { ImageService } from './image/image.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
-import { MemoListComponent } from './memo/memo-list/memo-list.component';
 import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
-import { PublicHolidayListComponent } from './holiday/public-holiday/public-holiday-list/public-holiday-list.component';
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
-import { ContactHolidayListComponent } from './holiday/contact-holiday/contact-holiday-list/contact-holiday-list.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        MemoFormComponent, MemoListComponent,
-        PublicHolidayFormComponent, PublicHolidayListComponent,
-        ContactHolidayFormComponent, ContactHolidayListComponent,
+        MemoFormComponent,
+        PublicHolidayFormComponent,
+        ContactHolidayFormComponent,
         WeekImageComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,

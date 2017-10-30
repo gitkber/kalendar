@@ -1,7 +1,0 @@
-<kal-panel-list [title]="'Memos'">
-    <kal-panel-list-row *ngFor="let memo of memos | async"
-                        [image]="'../assets/images/newspaper.svg'"
-                        [description]="memo.description"
-                        [descriptionDate]="memo.kalendarDate"
-                        (editItemClick)="showMemo(memo)"></kal-panel-list-row>
-</kal-panel-list>

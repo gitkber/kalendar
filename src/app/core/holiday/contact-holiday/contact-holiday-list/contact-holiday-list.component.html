@@ -1,7 +1,0 @@
-<kal-panel-list [title]="'Contact Holidays'">
-    <kal-panel-list-row *ngFor="let contactHoliday of contactHolidays | async"
-                        [image]="'../assets/images/sunbed.svg'"
-                        [description]="contactHoliday.description"
-                        [descriptionDate]="contactHoliday.date"
-                        (editItemClick)="showPublicHoliday(contactHoliday)"></kal-panel-list-row>
-</kal-panel-list>

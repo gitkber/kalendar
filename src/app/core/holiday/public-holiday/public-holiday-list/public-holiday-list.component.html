@@ -1,7 +1,0 @@
-<kal-panel-list [title]="'Public Holidays'">
-    <kal-panel-list-row *ngFor="let publicHoliday of publicHolidays | async"
-                        [image]="'../assets/images/sunbed.svg'"
-                        [description]="publicHoliday.description"
-                        [descriptionDate]="publicHoliday.date"
-                        (editItemClick)="showPublicHoliday(publicHoliday)"></kal-panel-list-row>
-</kal-panel-list>
