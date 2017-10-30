@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../app.service';
-import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Year } from '../../kalendar/year/year';
 import { Day } from '../../kalendar/day/day';
 import { CoreFacade } from '../../core/core.facade';
 import { Navigation } from '../../kalendar/navigation';
+import { RouterService } from '../../core/service/router.service';
 
 @Component({
     selector: 'kal-year-view',
@@ -15,13 +15,16 @@ import { Navigation } from '../../kalendar/navigation';
 })
 export class KalYearViewComponent implements OnInit, OnDestroy {
 
-    @ViewChild(DayModalComponent) modal: DayModalComponent;
-
     public year: Year;
     private selectedDay: Day;
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private coreFacade: CoreFacade, private appService: AppService) {
+    constructor(
+        private route: ActivatedRoute,
+        private coreFacade: CoreFacade,
+        private appService: AppService,
+        private routerService: RouterService
+    ) {
         this.subscription = this.appService.date.subscribe(d => {
             this.year = new Year(d.getFullYear());
             this.selectedDay = this.year.selectDate(this.appService.currentDate);
@@ -47,7 +50,8 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
     showDayDetail(event: Day) {
         this.appService.selectDate(event.date);
         this.selectedDay = this.year.selectDate(this.appService.currentDate);
-        this.modal.open(this.selectedDay);
+        // this.modal.open(this.selectedDay);
+        this.routerService.navigateToCarousel();
     }
 
     navigate(event: Navigation) {

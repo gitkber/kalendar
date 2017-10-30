@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { CoreFacade } from '../../core/core.facade';
 import { AppService } from '../../app.service';
-import { DayModalComponent } from '../modal/day-modal/day-modal.component';
 import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
 import { Navigation } from '../../kalendar/navigation';
+import { RouterService } from '../../core/service/router.service';
 
 @Component({
     selector: 'kal-month-view',
@@ -15,13 +15,16 @@ import { Navigation } from '../../kalendar/navigation';
 })
 export class KalMonthViewComponent implements OnInit, OnDestroy {
 
-    @ViewChild(DayModalComponent) modal: DayModalComponent;
-
     public month: Month;
     private selectedDay: Day;
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private coreFacade: CoreFacade, private appService: AppService) {
+    constructor(
+        private route: ActivatedRoute,
+        private coreFacade: CoreFacade,
+        private appService: AppService,
+        private routerService: RouterService
+    ) {
         this.subscription = this.appService.date.subscribe(d => {
             this.month = new Month(d.getMonth() + 1, d.getFullYear());
             this.selectedDay = this.month.selectDate(this.appService.currentDate);
@@ -49,7 +52,7 @@ export class KalMonthViewComponent implements OnInit, OnDestroy {
             this.selectedDay = this.month.selectDate(event.date);
         } else {
             this.selectedDay = this.month.selectDate(this.appService.currentDate);
-            this.modal.open(this.selectedDay);
+            this.routerService.navigateToCarousel();
         }
     }
 

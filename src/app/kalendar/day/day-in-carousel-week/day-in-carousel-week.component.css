@@ -79,6 +79,7 @@ span.fa-stack {
 
 .day-item-title-header {
     display: flex;
+    align-items: center;
 }
 
 .day-item-detail-list {
@@ -91,11 +92,11 @@ span.fa-stack {
     padding-left: 0;
     color: #4D5874;
     width: 100%;
-    padding-top: 0.1em; 
+    padding-top: 0.1em;
 }
 
 .label-item {
-    padding-top: 0.3em; 
+    padding-top: 0.3em;
 }
 
 .day-item-detail-action {

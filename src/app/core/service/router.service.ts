@@ -6,42 +6,33 @@ import { DateUtilService } from './date-util.service';
 @Injectable()
 export class RouterService {
 
-    public isChildView: boolean;
-
     constructor(private router: Router, public location: Location, public dateUtilService: DateUtilService) { }
 
     back() {
-        this.isChildView = false;
         this.location.back();
     }
 
     navigateToRoot() {
-        this.isChildView = false;
         this.router.navigateByUrl('/');
     }
 
     navigateToHome() {
-        this.isChildView = false;
         this.router.navigateByUrl('/home');
     }
 
     navigateToCarousel() {
-        this.isChildView = false;
         this.router.navigateByUrl('/carousel');
     }
 
     navigateToContacts() {
-        this.isChildView = false;
         this.router.navigateByUrl('/contacts');
     }
 
     navigateToKalYear(date: Date) {
-        this.isChildView = false;
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }
 
     navigateToKalMonth(date: Date) {
-        this.isChildView = true;
         this.router.navigate(['/kalmonth', this.dateUtilService.toString(date)]);
     }
 
@@ -56,4 +47,5 @@ export class RouterService {
     isKalYearViewSelected(): boolean {
         return this.router.isActive('/kalyear', false);
     }
+
 }

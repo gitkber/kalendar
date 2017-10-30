@@ -1,8 +1,9 @@
 <div class="kal-app" [class.kal-app-header]="authService.authenticated">
     <div class="kal-header" *ngIf="authService.authenticated">
         <kal-logo (click)="routerService.navigateToCarousel()"></kal-logo>
-        <div class="kal-header-item" *ngIf="!routerService.isChildView">
-            <kal-button-menu [image]="'../../../assets/images/home.svg'" [selected]="routerService.isHomeViewSelected()"
+        <div class="kal-header-item">
+            <kal-button-menu [image]="'../../../assets/images/home.svg'"
+                             [selected]="routerService.isHomeViewSelected()"
                              (click)="routerService.navigateToHome()"></kal-button-menu>
             <kal-button-menu [image]="'../../../assets/images/users.svg'"
                              [selected]="routerService.isContactsViewSelected()"
@@ -13,14 +14,11 @@
             <!--<kal-button-menu [image]="'../../../assets/images/sunbed.svg'"-->
                              <!--[selected]="routerService.isHolidaysViewSelected()"-->
                              <!--(click)="routerService.navigateToHolidays()"></kal-button-menu>-->
-            <kal-button-menu [image]="'../../../assets/images/month-calendar.svg'"
-                             [selected]="routerService.isKalYearViewSelected()"
-                             (click)="navigateToKalYear()"></kal-button-menu>
+            <!--<kal-button-menu [image]="'../../../assets/images/month-calendar.svg'"-->
+                             <!--[selected]="routerService.isKalYearViewSelected()"-->
+                             <!--(click)="navigateToKalYear()"></kal-button-menu>-->
             <kal-button-menu [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
                              (click)="authService.signOut()"></kal-button-menu>
-        </div>
-        <div class="kal-header-item" *ngIf="routerService.isChildView">
-            <kal-button-action [label]="'CLOSE'" (click)="routerService.back()"></kal-button-action>
         </div>
     </div>
     <div class="kal-body">

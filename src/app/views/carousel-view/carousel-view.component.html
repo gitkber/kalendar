@@ -1,26 +1,34 @@
 <div class="home-view-container">
-    <carousel-week class="one-week-item" [carouselWeek]="carouselWeek"
-                   [navigation]="'day'"
-                   (navigateClick)="navigate($event)"
-                   (showDayItemClick)="showDayItem($event)"></carousel-week>
-    <div class="other-container">
-        <div></div>
+    <div class="principal-container">
+        <div class="carousel-week-item">
+            <carousel-week  [carouselWeek]="carouselWeek"
+                           [navigation]="'day'"
+                           (navigateClick)="navigate($event)"
+                           (showDayItemClick)="showDayItem($event)"></carousel-week>
+        </div>
+        <div class="other-container">
+            <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
+                {{quote.text}}
+            </post-it>
+            <!--<div class="todo-container">-->
+                <!--<ul>-->
+                    <!--<li>Prendre courrier</li>-->
+                    <!--<li>Payer Facture</li>-->
+                    <!--<li>Developper carousel</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>-->
+            <week-image class="polaroid-container" *ngIf="carouselWeek.dateSelected"
+                        [date]="carouselWeek.dateSelected"
+                        (showImageClick)="showImage(carouselWeek.dateSelected)"></week-image>
+            <div></div>
+        </div>
 
+    </div>
+    <div class="postit-container">
         <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
             {{quote.text}}
         </post-it>
-        <div class="todo-container">
-            <ul>
-                <li>Prendre courrier</li>
-                <li>Payer Facture</li>
-                <li>Developper carousel</li>
-            </ul>
-        </div>
-        <!--<kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>-->
-        <week-image class="polaroid-container" *ngIf="carouselWeek.dateSelected"
-                    [date]="carouselWeek.dateSelected"
-                    (showImageClick)="showImage(carouselWeek.dateSelected)"></week-image>
-        <div></div>
     </div>
 </div>
 <core-modal [blocking]=false></core-modal>

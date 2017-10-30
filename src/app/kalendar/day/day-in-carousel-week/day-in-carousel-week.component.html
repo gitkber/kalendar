@@ -4,8 +4,14 @@
         <div class="day-item-title">
             <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
             <div class="day-item-title-header">
+                <div>
+                    {{ day.date | date:'d' }}
+                </div>
                 <div class="day-item-select" (click)="navigateToMonth()">
-                    {{ day.date | date:'d MMMM yyyy' }}
+                    {{ day.date | date:'MMMM' }}
+                </div>
+                <div class="day-item-select" (click)="navigateToYear()">
+                    {{ day.date | date:'yyyy' }}
                 </div>
             </div>
         </div>

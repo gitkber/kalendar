@@ -1,5 +1,5 @@
 .post-it {
-    width: 250px;
+    width: 220px;
     position: relative;
     transform: rotate(7deg);
 }
@@ -10,7 +10,7 @@
     margin: 0 auto;
     padding: 20px;
     /*font-family: Verdana;*/
-    font-size: 15px;
+    /*font-size: 12px;*/
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
 

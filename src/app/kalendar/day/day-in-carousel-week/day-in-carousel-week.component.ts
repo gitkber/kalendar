@@ -25,6 +25,13 @@ export class DayInCarouselWeekComponent {
         this.navigateClick.emit(navigation);
     }
 
+    navigateToYear() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isYear = true;
+        navigation.toDate = this.day.date;
+        this.navigateClick.emit(navigation);
+    }
+
     navigateToDay() {
         const navigation: Navigation = new Navigation('day');
         navigation.isDay = true;
