@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { ImageService } from '../../core/image/image.service';
+import { ImageService } from '../image.service';
 
 @Component({
     selector: 'week-image',

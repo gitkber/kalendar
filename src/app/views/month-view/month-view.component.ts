@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { CoreFacade } from '../../core/core.facade';
+import { ViewsFacade } from '../views.facade';
 import { AppService } from '../../app.service';
 import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
@@ -21,14 +21,14 @@ export class MonthViewComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private coreFacade: CoreFacade,
+        private viewsFacade: ViewsFacade,
         private appService: AppService,
         private routerService: RouterService
     ) {
         this.subscription = this.appService.date.subscribe(d => {
             this.month = new Month(d.getMonth() + 1, d.getFullYear());
             this.selectedDay = this.month.selectDate(this.appService.currentDate);
-            this.coreFacade.populateDays(this.month.days);
+            this.viewsFacade.populateDays(this.month.days);
         })
     }
 

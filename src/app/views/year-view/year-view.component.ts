@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../app.service';
 import { Year } from '../../kalendar/year/year';
 import { Day } from '../../kalendar/day/day';
-import { CoreFacade } from '../../core/core.facade';
+import { ViewsFacade } from '../views.facade';
 import { Navigation } from '../../kalendar/navigation';
 import { RouterService } from '../../core/service/router.service';
 
@@ -21,7 +21,7 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private coreFacade: CoreFacade,
+        private viewsFacade: ViewsFacade,
         private appService: AppService,
         private routerService: RouterService
     ) {
@@ -29,7 +29,7 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
             this.year = new Year(d.getFullYear());
             this.selectedDay = this.year.selectDate(this.appService.currentDate);
             this.year.months.forEach(m => {
-                this.coreFacade.populateDays(m.days);
+                this.viewsFacade.populateDays(m.days);
             })
         })
     }

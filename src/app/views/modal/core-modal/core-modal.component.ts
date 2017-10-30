@@ -2,7 +2,7 @@ import { Component, HostListener, Input } from '@angular/core';
 import { Navigation } from '../../../kalendar/navigation';
 import { DayItem } from '../../../kalendar/day-item';
 import { AppService } from '../../../app.service';
-import { CoreFacade } from '../../../core/core.facade';
+import { ViewsFacade } from '../../views.facade';
 import { Contact, ContactAction } from '../../../core/contact/contact';
 import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday';
 import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
@@ -27,7 +27,7 @@ export class CoreModalComponent {
 
     constructor(
         private appService: AppService,
-        private coreFacade: CoreFacade,
+        private viewsFacade: ViewsFacade,
     ) {
         console.log('CoreModalComponent');
     }
@@ -79,22 +79,22 @@ export class CoreModalComponent {
     }
 
     doActionOnMemo(event: MemoAction) {
-        this.coreFacade.memoService.doActionOnMemo(event);
+        this.viewsFacade.memoService.doActionOnMemo(event);
         this.close();
     }
 
     doActionOnContact(event: ContactAction) {
-        this.coreFacade.contactService.doActionOnContact(event);
+        this.viewsFacade.contactService.doActionOnContact(event);
         this.close();
     }
 
     doActionOnContactHoliday(event: ContactHolidayAction) {
-        this.coreFacade.contactHolidayService.doActionOnContactHoliday(event);
+        this.viewsFacade.contactHolidayService.doActionOnContactHoliday(event);
         this.close();
     }
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {
-        this.coreFacade.publicHolidayService.doActionOnPublicHoliday(event);
+        this.viewsFacade.publicHolidayService.doActionOnPublicHoliday(event);
         this.close();
     }
 

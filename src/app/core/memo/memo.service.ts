@@ -3,7 +3,7 @@ import 'rxjs/add/operator/catch';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { QueryReference } from 'angularfire2/interfaces';
 import { AuthService } from '../service/auth.service';
-import { DateUtilService } from '../service/date-util.service';
+import { DateUtilService } from '../../common/utils/date-util.service';
 import { Action } from '../action';
 import { Memo, MemoAction } from './memo';
 

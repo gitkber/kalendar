@@ -10,7 +10,6 @@ import { OneMonthComponent } from './month/one-month/one-month.component';
 import { MonthInYearComponent } from './month/month-in-year/month-in-year.component';
 import { OneYearComponent } from './year/one-year/one-year.component';
 import { NavigPanelComponent } from './navig-panel/navig-panel.component';
-import { WeekImageComponent } from './week-image/week-image.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, CommonModule],
@@ -18,9 +17,9 @@ import { WeekImageComponent } from './week-image/week-image.component';
         CarouselDaysComponent,
         OneMonthComponent, MonthInYearComponent,
         OneYearComponent,
-        NavigPanelComponent, WeekImageComponent
+        NavigPanelComponent
     ],
-    exports: [OneMonthComponent, OneYearComponent, CarouselDaysComponent, WeekImageComponent],
+    exports: [OneMonthComponent, OneYearComponent, CarouselDaysComponent],
     providers: []
 })
 export class KalendarModule {

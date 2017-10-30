@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CoreFacade } from '../../core/core.facade';
+import { ViewsFacade } from '../views.facade';
 import { RouterService } from '../../core/service/router.service';
 import { AppService } from '../../app.service';
 import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
@@ -44,28 +44,28 @@ export class HomeViewComponent implements OnInit {
 
     constructor(
         private routerService: RouterService,
-        private coreFacade: CoreFacade,
+        private viewsFacade: ViewsFacade,
         private appService: AppService
     ) { }
 
     ngOnInit(): void {
         this.carouselDays = new CarouselDays(this.appService.currentDate);
-        this.coreFacade.populateDays(this.carouselDays.days);
+        this.viewsFacade.populateDays(this.carouselDays.days);
     }
 
     navigate(event: Navigation) {
         if (event.isToday) {
-            this.coreFacade.populateDays(this.carouselDays.goToday());
+            this.viewsFacade.populateDays(this.carouselDays.goToday());
         } else if (event.isNext) {
-            this.coreFacade.populateDays(this.carouselDays.nextWeek());
+            this.viewsFacade.populateDays(this.carouselDays.nextWeek());
         } else if (event.isPrevious) {
-            this.coreFacade.populateDays(this.carouselDays.previousWeek());
+            this.viewsFacade.populateDays(this.carouselDays.previousWeek());
         } else if (event.isMonth) {
             this.routerService.navigateToKalMonth(event.toDate);
         } else if (event.isYear) {
             this.routerService.navigateToKalYear(event.toDate);
         } else if (event.isDay) {
-            this.coreFacade.populateDays(this.carouselDays.goToDate(event.toDate));
+            this.viewsFacade.populateDays(this.carouselDays.goToDate(event.toDate));
         } else {
             console.warn('ERROR in CarouselView - Navigation');
         }

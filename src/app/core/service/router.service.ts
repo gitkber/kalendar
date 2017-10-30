@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { DateUtilService } from './date-util.service';
+import { DateUtilService } from '../../common/utils/date-util.service';
 
 @Injectable()
 export class RouterService {

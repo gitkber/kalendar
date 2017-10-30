@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact, ContactAction } from '../contact';
 import { Action } from '../../action';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
-import { DateUtilService } from '../../service/date-util.service';
+import { DateUtilService } from '../../../common/utils/date-util.service';
 import { isUndefined } from 'util';
 
 @Component({

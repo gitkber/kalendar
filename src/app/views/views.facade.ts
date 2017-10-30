@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
-import { ContactService } from './contact/contact.service';
-import { MemoService } from './memo/memo.service';
-import { PublicHolidayService } from './holiday/public-holiday/public-holiday.service';
+import { ContactService } from '../core/contact/contact.service';
+import { MemoService } from '../core/memo/memo.service';
+import { PublicHolidayService } from '../core/holiday/public-holiday/public-holiday.service';
 import { Type } from '../kalendar/type';
-import { Contact } from './contact/contact';
-import { Memo } from './memo/memo';
-import { PublicHoliday } from './holiday/public-holiday/public-holiday';
+import { Contact } from '../core/contact/contact';
+import { Memo } from '../core/memo/memo';
+import { PublicHoliday } from '../core/holiday/public-holiday/public-holiday';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
-import { ContactHoliday } from './holiday/contact-holiday/contact-holiday';
-import { ContactHolidayService } from './holiday/contact-holiday/contact-holiday.service';
+import { ContactHoliday } from '../core/holiday/contact-holiday/contact-holiday';
+import { ContactHolidayService } from '../core/holiday/contact-holiday/contact-holiday.service';
 
 @Injectable()
-export class CoreFacade {
+export class ViewsFacade {
 
     constructor(
         public contactService: ContactService,

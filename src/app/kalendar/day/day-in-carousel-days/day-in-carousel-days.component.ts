@@ -3,7 +3,7 @@ import { Day } from '../day';
 import { Navigation } from '../../navigation';
 import { Type } from '../../type';
 import { DayItem } from '../../day-item';
-import { DateUtilService } from '../../../core/service/date-util.service';
+import { DateUtilService } from '../../../common/utils/date-util.service';
 
 @Component({
     selector: 'day-in-carousel-days',

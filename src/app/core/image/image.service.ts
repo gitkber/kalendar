@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../service/auth.service';
-import { DateUtilService } from '../service/date-util.service';
+import { DateUtilService } from '../../common/utils/date-util.service';
 
 @Injectable()
 export class ImageService {

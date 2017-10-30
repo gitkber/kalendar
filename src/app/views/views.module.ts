@@ -5,6 +5,8 @@ import { KalendarModule } from '../kalendar/kalendar.module';
 import { CoreModule } from '../core/core.module';
 import { CommonModule } from '../common/common.module';
 
+import { ViewsFacade } from './views.facade';
+
 import { LoginViewComponent } from './login-view/login-view.component';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
@@ -23,7 +25,7 @@ import { CoreModalComponent } from './modal/core-modal/core-modal.component';
         SheetOfPaperComponent, PolaroidComponent,
         ImageModalComponent, CoreModalComponent],
     exports: [],
-    providers: []
+    providers: [ViewsFacade]
 })
 export class ViewsModule {
 }
