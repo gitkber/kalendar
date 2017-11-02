@@ -7,6 +7,8 @@ import { Navigation } from '../../kalendar/navigation';
 import { CarouselDays } from '../../kalendar/carousel-days/carousel-days';
 import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
 import { DayItem } from '../../kalendar/day-item';
+import { Observable } from 'rxjs/Observable';
+import { CatchAll } from '../../core/catch-all/catch-all';
 
 @Component({
     selector: 'home-view',
@@ -19,6 +21,7 @@ export class HomeViewComponent implements OnInit {
     @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
     public carouselDays: CarouselDays;
+    public catchAlls: Observable<CatchAll[]>;
 
     quotes = [
         {
@@ -51,6 +54,8 @@ export class HomeViewComponent implements OnInit {
     ngOnInit(): void {
         this.carouselDays = new CarouselDays(this.appService.currentDate);
         this.viewsFacade.populateDays(this.carouselDays.days);
+
+        this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
     }
 
     navigate(event: Navigation) {

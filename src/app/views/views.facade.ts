@@ -3,14 +3,15 @@ import 'rxjs/add/operator/catch';
 import { ContactService } from '../core/contact/contact.service';
 import { MemoService } from '../core/memo/memo.service';
 import { PublicHolidayService } from '../core/holiday/public-holiday/public-holiday.service';
-import { Type } from '../kalendar/type';
+import { ContactHolidayService } from '../core/holiday/contact-holiday/contact-holiday.service';
+import { CatchAllService } from '../core/catch-all/catch-all.service';
 import { Contact } from '../core/contact/contact';
 import { Memo } from '../core/memo/memo';
 import { PublicHoliday } from '../core/holiday/public-holiday/public-holiday';
+import { ContactHoliday } from '../core/holiday/contact-holiday/contact-holiday';
+import { Type } from '../kalendar/type';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
-import { ContactHoliday } from '../core/holiday/contact-holiday/contact-holiday';
-import { ContactHolidayService } from '../core/holiday/contact-holiday/contact-holiday.service';
 
 @Injectable()
 export class ViewsFacade {
@@ -19,7 +20,8 @@ export class ViewsFacade {
         public contactService: ContactService,
         public memoService: MemoService,
         public publicHolidayService: PublicHolidayService,
-        public contactHolidayService: ContactHolidayService
+        public contactHolidayService: ContactHolidayService,
+        public catchAllService: CatchAllService,
     ) { }
 
     populateDays(days: Day[]) {

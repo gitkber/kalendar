@@ -26,6 +26,9 @@
 
     </div>
     <div class="postit-container">
+        <!--<post-it *ngFor="let quote of catchAlls | async" [reference]="quote.tagCaseType" (closed)="log(quote.tagCase)">-->
+            <!--{{quote.description}}-->
+        <!--</post-it>-->
         <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
             {{quote.text}}
         </post-it>

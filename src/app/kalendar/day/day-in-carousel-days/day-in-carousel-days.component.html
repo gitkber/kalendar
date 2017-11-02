@@ -23,42 +23,22 @@
                     <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
                 </div>
                 <div *ngIf="day.isSelected">
-                    <span class="fa-stack" title="Modifier un contact" *ngIf="dayItem.isContact()"
-                          (click)="editDayItem(dayItem)">
-                        <i class="fa fa-square fa-stack-2x text-background"></i>
-                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                        <i class="fa fa-pencil fa-stack text-action"></i>
-                    </span>
-                    <span class="fa-stack" title="Modifier un événement" *ngIf="dayItem.isMemo()"
-                          (click)="editDayItem(dayItem)">
-                        <i class="fa fa-square fa-stack-2x text-background"></i>
-                        <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
-                        <i class="fa fa-pencil fa-stack text-action"></i>
-                    </span>
+                    <edit-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
+                                 [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-action>
+                    <edit-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isMemo()"
+                                 [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-action>
                 </div>
             </div>
         </div>
         <div *ngIf="day.isSelected" class="day-item-detail">
             <div></div>
             <div>
-                <span class="fa-stack" title="Ajouter un contact"
-                      (click)="addDayItemContact()">
-                    <i class="fa fa-square fa-stack-2x text-background"></i>
-                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                    <i class="fa fa-plus fa-stack text-action"></i>
-                </span>
-                <span class="fa-stack" title="Ajouter un événement"
-                      (click)="addDayItemMemo()">
-                    <i class="fa fa-square fa-stack-2x text-background"></i>
-                    <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
-                    <i class="fa fa-plus fa-stack text-action"></i>
-                </span>
-                <span class="fa-stack" title="Ajouter un jour de congé"
-                      (click)="addDayItemContactHoliday()">
-                    <i class="fa fa-square fa-stack-2x text-background"></i>
-                    <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
-                    <i class="fa fa-plus fa-stack text-action"></i>
-                </span>
+                <plus-action [tooltip]="'Ajouter un contact'"
+                             [image]="'fa-user'" (click)="addDayItemContact()"></plus-action>
+                <plus-action [tooltip]="'Ajouter un événement'"
+                             [image]="'fa-newspaper-o'" (click)="addDayItemMemo()"></plus-action>
+                <plus-action [tooltip]="'Ajouter un jour de congé'"
+                             [image]="'fa-sun-o'" (click)="addDayItemContactHoliday()"></plus-action>
             </div>
         </div>
     </div>
@@ -68,34 +48,22 @@
                 {{ dayContactHolidayItem.principalItem }}
             </div>
             <div *ngIf="day.isSelected">
-                <span class="fa-stack" title="Modifier un jour de congé"
-                      (click)="editDayItem(dayContactHolidayItem)">
-                    <i class="fa fa-square fa-stack-2x text-background"></i>
-                    <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
-                    <i class="fa fa-pencil fa-stack text-action"></i>
-                </span>
+                <edit-action [tooltip]="'Modifier un jour de congé'"
+                             [image]="'fa-sun-o'" (click)="editDayItem(dayContactHolidayItem)"></edit-action>
             </div>
         </div>
         <div class="day-item-detail" *ngIf="day.isSelected">
             <div></div>
-            <span class="fa-stack" title="Ajouter un jour férié" *ngIf="!day.dayPublicHolidayItem"
-                  (click)="addDayItemPublicHoliday()">
-                <i class="fa fa-square fa-stack-2x text-background"></i>
-                <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                <i class="fa fa-plus fa-stack text-action"></i>
-            </span>
+            <plus-action [tooltip]="'Ajouter un jour férié'"
+                         [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-action>
         </div>
         <div class="day-item-detail public-holiday" *ngIf="day.dayPublicHolidayItem">
             <div class="day-item-info">
                 {{ day.dayPublicHolidayItem.principalItem }}
             </div>
             <div *ngIf="day.isSelected">
-                <span class="fa-stack" title="Modifier un jour férié"
-                      (click)="editDayItem(day.dayPublicHolidayItem)">
-                    <i class="fa fa-square fa-stack-2x text-background"></i>
-                    <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                    <i class="fa fa-pencil fa-stack text-action"></i>
-                </span>
+                <edit-action [tooltip]="'Modifier un jour férié'"
+                             [image]="'fa-flag'" (click)="editDayItem(day.dayPublicHolidayItem)"></edit-action>
             </div>
         </div>
         <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
@@ -103,4 +71,3 @@
         </div>
     </div>
 </div>
-

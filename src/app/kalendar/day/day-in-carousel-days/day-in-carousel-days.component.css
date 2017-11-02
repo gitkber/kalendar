@@ -19,21 +19,6 @@
     cursor: default;
 }
 
-span.fa-stack {
-    cursor: pointer;
-}
-
-.text-background {
-    color: #4D5874;
-}
-
-.text-action {
-    color: #FBFBD4;
-    text-align: right;
-    margin-top: 0.5em;
-    text-shadow: -1px 0 #4D5874, 0 1px #4D5874, 1px 0 #4D5874, 0 -1px #4D5874;
-}
-
 .row-container-add-item {
     display: flex;
     flex-direction: row;
