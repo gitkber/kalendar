@@ -33,6 +33,14 @@ export class CatchAllService {
         return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'ADMINISTRATION'));
     }
 
+    getCatchAllToDo(): Observable<CatchAll[]> {
+        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'TODO'));
+    }
+
+    getCatchAllHealth(): Observable<CatchAll[]> {
+        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'HEALTH'));
+    }
+
     doActionOnTodo(event: CatchAllAction) {
         if (event.action === Action.INSERT) {
             event.catchAll.user = this.authService.currentUserId;

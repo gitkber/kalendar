@@ -21,7 +21,10 @@ export class HomeViewComponent implements OnInit {
     @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
     public carouselDays: CarouselDays;
-    public catchAlls: Observable<CatchAll[]>;
+    public catchAllsAdministration: Observable<CatchAll[]>;
+    public catchAllsTodo: Observable<CatchAll[]>;
+    public catchAllsProject: Observable<CatchAll[]>;
+    public catchAllsHealth: Observable<CatchAll[]>;
 
     quotes = [
         {
@@ -55,7 +58,12 @@ export class HomeViewComponent implements OnInit {
         this.carouselDays = new CarouselDays(this.appService.currentDate);
         this.viewsFacade.populateDays(this.carouselDays.days);
 
-        this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
+        // this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
+        this.catchAllsAdministration = this.viewsFacade.catchAllService.getCatchAllAdministration();
+        this.catchAllsTodo = this.viewsFacade.catchAllService.getCatchAllToDo();
+        this.catchAllsProject = this.viewsFacade.catchAllService.getCatchProject();
+        this.catchAllsHealth = this.viewsFacade.catchAllService.getCatchAllHealth();
+
     }
 
     navigate(event: Navigation) {

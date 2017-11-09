@@ -7,28 +7,38 @@
                            (showDayItemClick)="showDayItem($event)"></carousel-days>
         </div>
         <div class="other-container">
-            <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
-                {{quote.text}}
+            <post-it [reference]="'ADMINISTRATION'" (closed)="log('ADMINISTRATION')">
+                <div *ngFor="let quote of catchAllsAdministration | async">
+                    <!--<i class="fa fa-check-square-o"></i>-->
+                    <i class="fa fa-square-o"></i>
+                    {{quote.description}}
+                </div>
             </post-it>
-            <!--<div class="todo-container">-->
-            <!--<ul>-->
-            <!--<li>Prendre courrier</li>-->
-            <!--<li>Payer Facture</li>-->
-            <!--<li>Developper carousel</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--<kal-polaroid [label]="'test'" [image]="'../../../../assets/images/photo/IMG_elsa2.jpg'"></kal-polaroid>-->
+            <post-it [reference]="'TODO'" (closed)="log('TODO')">
+                <div *ngFor="let quote of catchAllsTodo | async">
+                    <i class="fa fa-square-o"></i>
+                    {{quote.description}}
+                </div>
+            </post-it>
+            <post-it [reference]="'PROJECT'" (closed)="log('PROJECT')">
+                <div *ngFor="let quote of catchAllsProject | async">
+                    <i class="fa fa-square-o"></i>
+                    {{quote.description}}
+                </div>
+            </post-it>
+            <post-it [reference]="'HEALTH'" (closed)="log('HEALTH')">
+                <div *ngFor="let quote of catchAllsHealth | async">
+                    <i class="fa fa-square-o"></i>
+                    {{quote.description}}
+                </div>
+            </post-it>
             <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
                         [date]="carouselDays.dateSelected"
                         (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
             <div></div>
         </div>
-
     </div>
     <div class="postit-container">
-        <!--<post-it *ngFor="let quote of catchAlls | async" [reference]="quote.tagCaseType" (closed)="log(quote.tagCase)">-->
-            <!--{{quote.description}}-->
-        <!--</post-it>-->
         <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
             {{quote.text}}
         </post-it>

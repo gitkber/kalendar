@@ -49,14 +49,16 @@ TAG
         - KsLIFE
     TAG_PROJECT_UC
         - UC VIEWS
-        - UC CONTACT
-        - UC CONTACT HOLIDAY
-        - UC PUBLIC HOLIDAY
-        - UC IMAGE
-        - UC MEMO
-        - UC TODOs
-        - UC OBJECTIVE
-        - UC BUDGET
+        - UC CONTACT            - Contact
+        - UC CONTACT HOLIDAY    - ContactHoliday
+        - UC PUBLIC HOLIDAY     - PublicHoliday
+        - UC IMAGE              - Image
+        - UC MEMO               - Refactor to UC Event
+        - UC TODOs              - CatchAll
+        - UC OBJECTIVE          - CatchAll
+        - UC BUDGET             - CatchAll
+        - UC EVENT              - CatchAll
+        - UC PROJECT            - CatchAll
      TAG_PROJECT_UC_VIEW
         - HOME_VIEW
         - MONTH_VIEW
