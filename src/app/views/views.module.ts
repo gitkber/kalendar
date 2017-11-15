@@ -9,6 +9,7 @@ import { ViewsFacade } from './views.facade';
 
 import { LoginViewComponent } from './login-view/login-view.component';
 import { HomeViewComponent } from './home-view/home-view.component';
+import { CatchAllViewComponent } from './catch-all-view/catch-all-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
@@ -21,6 +22,7 @@ import { CoreModalComponent } from './modal/core-modal/core-modal.component';
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, MonthViewComponent,
+        CatchAllViewComponent,
         ContactsViewComponent,
         SheetOfPaperComponent, PolaroidComponent,
         ImageModalComponent, CoreModalComponent],

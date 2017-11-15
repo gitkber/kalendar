@@ -33,8 +33,8 @@ export class CatchAllService {
         return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'ADMINISTRATION'));
     }
 
-    getCatchAllToDo(): Observable<CatchAll[]> {
-        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'TODO'));
+    getCatchAllFamily(): Observable<CatchAll[]> {
+        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'FAMILY'));
     }
 
     getCatchAllHealth(): Observable<CatchAll[]> {

@@ -20,6 +20,10 @@ export class RouterService {
         this.router.navigateByUrl('/home');
     }
 
+    navigateToCatchAll() {
+        this.router.navigateByUrl('/catchall');
+    }
+
     navigateToContacts() {
         this.router.navigateByUrl('/contacts');
     }

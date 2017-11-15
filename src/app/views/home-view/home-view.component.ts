@@ -22,7 +22,7 @@ export class HomeViewComponent implements OnInit {
 
     public carouselDays: CarouselDays;
     public catchAllsAdministration: Observable<CatchAll[]>;
-    public catchAllsTodo: Observable<CatchAll[]>;
+    public catchAllsFamily: Observable<CatchAll[]>;
     public catchAllsProject: Observable<CatchAll[]>;
     public catchAllsHealth: Observable<CatchAll[]>;
 
@@ -49,7 +49,7 @@ export class HomeViewComponent implements OnInit {
     ];
 
     constructor(
-        private routerService: RouterService,
+        public routerService: RouterService,
         private viewsFacade: ViewsFacade,
         private appService: AppService
     ) { }
@@ -60,7 +60,7 @@ export class HomeViewComponent implements OnInit {
 
         // this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
         this.catchAllsAdministration = this.viewsFacade.catchAllService.getCatchAllAdministration();
-        this.catchAllsTodo = this.viewsFacade.catchAllService.getCatchAllToDo();
+        this.catchAllsFamily = this.viewsFacade.catchAllService.getCatchAllFamily();
         this.catchAllsProject = this.viewsFacade.catchAllService.getCatchProject();
         this.catchAllsHealth = this.viewsFacade.catchAllService.getCatchAllHealth();
 

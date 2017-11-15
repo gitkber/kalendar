@@ -1,0 +1,13 @@
+<kal-panel-list [title]="'CatchAlls'">
+    <kal-panel-list-row *ngFor="let catchAll of catchAlls | async"
+                        [image]="'../assets/images/user_male.svg'"
+                        [description]="catchAll.description"
+                        [descriptionDate]="catchAll.deadline"
+                        (editItemClick)="showCatchAll(catchAll)"></kal-panel-list-row>
+    <div class="row-container-add-item">
+        <div class="description-item">Ajouter un element</div>
+        <kal-button-action [image]="'fa fa-plus'"
+                           (click)="addCatchAll()"></kal-button-action>
+    </div>
+
+</kal-panel-list>
