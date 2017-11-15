@@ -15,17 +15,17 @@ import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
 
 import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-paper.component';
-import { PolaroidComponent } from './login-view/polaroid/polaroid.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
 import { CoreModalComponent } from './modal/core-modal/core-modal.component';
+import { ContactModalComponent } from './modal/contact-modal/contact-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, MonthViewComponent,
         CatchAllViewComponent,
         ContactsViewComponent,
-        SheetOfPaperComponent, PolaroidComponent,
-        ImageModalComponent, CoreModalComponent],
+        SheetOfPaperComponent,
+        ImageModalComponent, CoreModalComponent, ContactModalComponent],
     exports: [],
     providers: [ViewsFacade]
 })

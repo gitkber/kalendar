@@ -7,12 +7,14 @@
         <div class="description-item">{{ contact.firstname + ' ' + contact.lastname }}</div>
         <div class="descriptionDate-item">{{ contact.birthdate | date}}</div>
 
-        <edit-action [tooltip]="'Modifier un contact'"
+        <edit-action class="action"
+                     [tooltip]="'Modifier un contact'"
                      [image]="'fa-user'" (click)="showContact(contact)"></edit-action>
     </div>
 
     <div class="row-container-add-item">
-        <plus-action [tooltip]="'Ajouter un contact'"
+        <plus-action class="action"
+                     [tooltip]="'Ajouter un contact'"
                      [image]="'fa-user'" (click)="addContact()"></plus-action>
     </div>
 

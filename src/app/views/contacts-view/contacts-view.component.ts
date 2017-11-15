@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { ContactService } from '../../core/contact/contact.service';
 import { Contact, ContactAction } from '../../core/contact/contact';
+import { ContactModalComponent } from '../modal/contact-modal/contact-modal.component';
+
 
 @Component({
     selector: 'contacts-view',
@@ -10,18 +12,18 @@ import { Contact, ContactAction } from '../../core/contact/contact';
 })
 export class ContactsViewComponent implements OnInit {
 
-    public contactSelected: Contact;
+    @ViewChild(ContactModalComponent) contactModal: ContactModalComponent;
+
     public contacts: FirebaseListObservable<Contact[]>;
 
     constructor(private contactService: ContactService) { }
 
     ngOnInit() {
         this.contacts = this.contactService.getList();
-        this.contactSelected = new Contact(null, null, null, null);
     }
 
     showContact(event: Contact) {
-        this.contactSelected = event;
+        this.contactModal.open(event);
     }
 
     doActionOnContact(event: ContactAction) {

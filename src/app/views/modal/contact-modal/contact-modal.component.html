@@ -1,0 +1,10 @@
+<div class="modal-container" [class.closed]="!isOpen">
+    <div class="modal-overlay" (click)="close(true)"></div>
+
+    <div class="modal">
+
+        <contact-form [contact]="contactSelected"
+                      (actionClick)="doActionOnContact($event)"></contact-form>
+    </div>
+
+</div>
