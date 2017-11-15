@@ -16,8 +16,12 @@ export class CatchAllListComponent {
         this.showCatchAllClick.emit(contact);
     }
 
-    addCatchAll() {
-        this.showCatchAllClick.emit(new CatchAll(null, null, null, null, null));
+    addCatchTodo() {
+        this.showCatchAllClick.emit(new CatchAll(null, 'TODOs', null, null, null));
+    }
+
+    addCatchAdministrative() {
+        this.showCatchAllClick.emit(new CatchAll(null, 'ADMINISTRATIVE', null, null, null));
     }
 
 }

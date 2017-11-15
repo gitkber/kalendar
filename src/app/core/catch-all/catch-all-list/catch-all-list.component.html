@@ -1,13 +1,24 @@
 <kal-panel-list [title]="'CatchAlls'">
-    <kal-panel-list-row *ngFor="let catchAll of catchAlls | async"
-                        [image]="'../assets/images/user_male.svg'"
-                        [description]="catchAll.description"
-                        [descriptionDate]="catchAll.deadline"
-                        (editItemClick)="showCatchAll(catchAll)"></kal-panel-list-row>
+
+    <div class="row-container" *ngFor="let catchAll of catchAlls | async">
+        <i class="icon-item" *ngIf="catchAll.tagCase === 'OBJECTIVE'" class="fa fa-eye fa-border"></i>
+        <i class="icon-item" *ngIf="catchAll.tagCase === 'TODOs'" class="fa fa-square-o fa-border"></i>
+        <div class="description-item">{{ catchAll.tagCaseType }}</div>
+        <div class="description-item">{{ catchAll.description }}</div>
+        <div class="descriptionDate-item">{{ catchAll.deadline | date}}</div>
+
+        <edit-action *ngIf="catchAll.tagCase === 'OBJECTIVE'"
+                     [tooltip]="'Modifier un objectif'"
+                     [image]="'fa-eye'" (click)="showCatchAll(catchAll)"></edit-action>
+        <edit-action *ngIf="catchAll.tagCase === 'TODOs'"
+                     [tooltip]="'Modifier un todo list'"
+                     [image]="'fa-square-o'" (click)="showCatchAll(catchAll)"></edit-action>
+    </div>
+
     <div class="row-container-add-item">
-        <div class="description-item">Ajouter un element</div>
-        <kal-button-action [image]="'fa fa-plus'"
-                           (click)="addCatchAll()"></kal-button-action>
+
+        <plus-action [tooltip]="'Ajouter un todo'"
+                     [image]="'fa-square-o'" (click)="addCatchTodo()"></plus-action>
     </div>
 
 </kal-panel-list>

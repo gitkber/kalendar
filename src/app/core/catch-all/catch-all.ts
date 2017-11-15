@@ -8,6 +8,17 @@ export class CatchAll {
         public description: string,
         public deadline?: string
     ) { }
+
+    isTodo(): boolean {
+        return true;
+        // return this.tagCase === TagCase.TODO;
+    }
+
+    isObjective(): boolean {
+        return true;
+        // return this.tagCase === TagCase.OBJECTIVE;
+    }
+
 }
 
 export class CatchProject extends CatchAll {
@@ -32,6 +43,10 @@ export class CatchAllAction {
         public action: Action,
         public catchAll?: CatchAll
     ) { }
+}
+
+export enum TagCase {
+    OBJECTIVE, TODO, THOUGHT_OF_DAY
 }
 
 /*

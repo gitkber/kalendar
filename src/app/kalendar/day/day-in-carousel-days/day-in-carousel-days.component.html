@@ -54,7 +54,8 @@
         </div>
         <div class="day-item-detail" *ngIf="day.isSelected">
             <div></div>
-            <plus-action [tooltip]="'Ajouter un jour férié'"
+            <plus-action *ngIf="!day.dayPublicHolidayItem"
+                         [tooltip]="'Ajouter un jour férié'"
                          [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-action>
         </div>
         <div class="day-item-detail public-holiday" *ngIf="day.dayPublicHolidayItem">
