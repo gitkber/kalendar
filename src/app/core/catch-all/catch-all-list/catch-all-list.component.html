@@ -1,11 +1,11 @@
-<kal-panel-list [title]="'CatchAlls'">
+<kal-panel-list [title]="title">
 
     <div class="row-container" *ngFor="let catchAll of catchAlls | async">
         <div class="icon-item">
             <i *ngIf="catchAll.tagCase === 'OBJECTIVE'" class="fa fa-eye fa-border"></i>
             <i *ngIf="catchAll.tagCase === 'TODOs'" class="fa fa-square-o fa-border"></i>
         </div>
-        <div class="description-item">{{ catchAll.tagCaseType }}</div>
+        <!--<div class="description-item">{{ catchAll.tagCaseType }}</div>-->
         <div class="description-item">{{ catchAll.description }}</div>
         <div class="descriptionDate-item">{{ catchAll.deadline | date}}</div>
 
@@ -21,6 +21,9 @@
 
     <div class="row-container-add-item">
 
+        <plus-action class="action"
+                     [tooltip]="'Ajouter un objectif'"
+                     [image]="'fa-eye'" (click)="addCatchObjective()"></plus-action>
         <plus-action class="action"
                      [tooltip]="'Ajouter un todo'"
                      [image]="'fa-square-o'" (click)="addCatchTodo()"></plus-action>

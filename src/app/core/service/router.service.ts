@@ -20,8 +20,8 @@ export class RouterService {
         this.router.navigateByUrl('/home');
     }
 
-    navigateToCatchAll() {
-        this.router.navigateByUrl('/catchall');
+    navigateToCatchAll(tagCaseType: string) {
+        this.router.navigate(['/catchall', tagCaseType]);
     }
 
     navigateToContacts() {

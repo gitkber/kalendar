@@ -13,7 +13,7 @@ export const routes: Route[] = [
     {path: '', component: LoginViewComponent},
     {path: 'home', component: HomeViewComponent, canActivate: [AuthGuard]},
     {path: 'contacts', component: ContactsViewComponent, canActivate: [AuthGuard]},
-    {path: 'catchall', component: CatchAllViewComponent, canActivate: [AuthGuard]},
+    {path: 'catchall/:tagCaseType', component: CatchAllViewComponent, canActivate: [AuthGuard]},
     {path: 'kalyear/:date', component: KalYearViewComponent, canActivate: [AuthGuard]},
     {path: 'kalmonth/:date', component: MonthViewComponent, canActivate: [AuthGuard]},
     {path: '**', redirectTo: ''}

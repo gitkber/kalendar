@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CatchAll, CatchAllAction } from '../../core/catch-all/catch-all';
+import { CatchAll } from '../../core/catch-all/catch-all';
 import { CatchAllService } from '../../core/catch-all/catch-all.service';
 import { Observable } from 'rxjs/Observable';
 import { CatchAllModalComponent } from '../modal/catch-all-modal/catch-all-modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'catch-all-view',
@@ -14,18 +15,34 @@ export class CatchAllViewComponent implements OnInit {
     @ViewChild(CatchAllModalComponent) modal: CatchAllModalComponent;
 
     public catchAlls: Observable<CatchAll[]>;
+    public principalTagCaseType: string;
 
-    constructor(private catchAllService: CatchAllService) { }
+    public catchAllsAdministration: Observable<CatchAll[]>;
+    public catchAllsFamily: Observable<CatchAll[]>;
+    public catchAllsProject: Observable<CatchAll[]>;
+    public catchAllsHealth: Observable<CatchAll[]>;
+
+    constructor(private route: ActivatedRoute, private catchAllService: CatchAllService) { }
 
     ngOnInit() {
-        this.catchAlls = this.catchAllService.getCatchAll();
+        this.route.params.subscribe(params => {
+            this.principalTagCaseType = params['tagCaseType'];
+            this.catchAlls = this.catchAllService.getCatchAllByTagCaseType(this.principalTagCaseType);
+
+            this.catchAllsAdministration = this.catchAllService.getCatchAllAdministration();
+            this.catchAllsFamily = this.catchAllService.getCatchAllFamily();
+            this.catchAllsProject = this.catchAllService.getCatchAllProject();
+            this.catchAllsHealth = this.catchAllService.getCatchAllHealth();
+        });
     }
 
     showCatchAll(event: CatchAll) {
         this.modal.open(event);
     }
 
-    doActionOnCatchAll(event: CatchAllAction) {
-        this.catchAllService.doActionOnCatchAll(event);
+    changePrincipalCatchAll(tagCaseType: string) {
+        this.principalTagCaseType = tagCaseType;
+        this.catchAlls = this.catchAllService.getCatchAllByTagCaseType(this.principalTagCaseType);
     }
+
 }

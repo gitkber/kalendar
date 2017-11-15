@@ -35,9 +35,9 @@ export class CatchAllFormComponent implements OnChanges {
         if (changes.catchAll.currentValue !== undefined) {
             this.catchAllKey = changes.catchAll.currentValue['$key'];
             if (this.isEmptyKey()) {
-                this.title = 'Ajouter un catchAll';
+                this.title = 'Ajouter';
             } else {
-                this.title = 'Modifier ce catchAll';
+                this.title = 'Modifier';
             }
             this.catchAllFormGroup.setValue({
                 'tagCase': this.catchAll.tagCase,
@@ -51,6 +51,7 @@ export class CatchAllFormComponent implements OnChanges {
     addCatchAll() {
         this.catchAll.tagCase = this.catchAllFormGroup.get('tagCase').value;
         this.catchAll.tagCaseType = this.catchAllFormGroup.get('tagCaseType').value;
+        this.catchAll.description = this.catchAllFormGroup.get('description').value;
         // this.catchAll.deadline = this.dateStringPipe.transform(this.catchAllFormGroup.get('deadline').value, true);
 
         let catchAllAction: CatchAllAction;

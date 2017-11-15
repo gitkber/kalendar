@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 export class CatchAllListComponent {
 
     @Input() catchAlls: Observable<CatchAll[]>;
+    @Input() title: string;
     @Output() showCatchAllClick: EventEmitter<CatchAll> = new EventEmitter();
 
     showCatchAll(contact: CatchAll) {
@@ -17,11 +18,11 @@ export class CatchAllListComponent {
     }
 
     addCatchTodo() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'TODOs', null, null, null));
+        this.showCatchAllClick.emit(new CatchAll(null, 'TODOs', this.title, null, null));
     }
 
-    addCatchAdministrative() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'ADMINISTRATIVE', null, null, null));
+    addCatchObjective() {
+        this.showCatchAllClick.emit(new CatchAll(null, 'OBJECTIVE', this.title, null, null));
     }
 
 }

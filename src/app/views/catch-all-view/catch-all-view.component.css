@@ -15,9 +15,10 @@
 
 .right-container {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
 	/* item */
 	height: 100%;
 	width: 35%;
@@ -29,4 +30,8 @@
 
 .polaroid-item {
 	/*align-self: flex-end;*/
+}
+
+post-it {
+    cursor: pointer;
 }

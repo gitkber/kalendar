@@ -21,24 +21,24 @@ export class CatchAllService {
         })
     }
 
-    getCatchAll(): Observable<CatchAll[]> {
-        return this.firebaseListObservable;
-    }
-
-    getCatchProject(): Observable<CatchAll[]> {
-        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'PROJECT'));
+    getCatchAllProject(): Observable<CatchAll[]> {
+        return this.getCatchAllByTagCaseType('PROJECT');
     }
 
     getCatchAllAdministration(): Observable<CatchAll[]> {
-        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'ADMINISTRATION'));
+        return this.getCatchAllByTagCaseType('ADMINISTRATION');
     }
 
     getCatchAllFamily(): Observable<CatchAll[]> {
-        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'FAMILY'));
+        return this.getCatchAllByTagCaseType('FAMILY');
     }
 
     getCatchAllHealth(): Observable<CatchAll[]> {
-        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'HEALTH'));
+        return this.getCatchAllByTagCaseType('HEALTH');
+    }
+
+    getCatchAllByTagCaseType(tagCaseType): Observable<CatchAll[]> {
+        return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === tagCaseType));
     }
 
     doActionOnCatchAll(event: CatchAllAction) {

@@ -7,7 +7,7 @@
                            (showDayItemClick)="showDayItem($event)"></carousel-days>
         </div>
         <div class="other-container">
-            <post-it [reference]="'ADMINISTRATION'" (closed)="log('ADMINISTRATION')" (click)="routerService.navigateToCatchAll()">
+            <post-it [reference]="'ADMINISTRATION'" (closed)="log('ADMINISTRATION')" (click)="routerService.navigateToCatchAll('ADMINISTRATION')">
                 <div *ngFor="let quote of catchAllsAdministration | async">
                     <!--<i class="fa fa-check-square-o"></i>-->
                     <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
@@ -15,21 +15,21 @@
                     {{quote.description}}
                 </div>
             </post-it>
-            <post-it [reference]="'FAMILY'" (closed)="log('TODO')" (click)="routerService.navigateToCatchAll()">
+            <post-it [reference]="'FAMILY'" (closed)="log('FAMILY')" (click)="routerService.navigateToCatchAll('FAMILY')">
                 <div *ngFor="let quote of catchAllsFamily | async">
                     <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
                     <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
                     {{quote.description}}
                 </div>
             </post-it>
-            <post-it [reference]="'PROJECT'" (closed)="log('PROJECT')" (click)="routerService.navigateToCatchAll()">
+            <post-it [reference]="'PROJECT'" (closed)="log('PROJECT')" (click)="routerService.navigateToCatchAll('PROJECT')">
                 <div *ngFor="let quote of catchAllsProject | async">
                     <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
                     <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
                     {{quote.description}}
                 </div>
             </post-it>
-            <post-it [reference]="'HEALTH'" (closed)="log('HEALTH')" (click)="routerService.navigateToCatchAll()">
+            <post-it [reference]="'HEALTH'" (closed)="log('HEALTH')" (click)="routerService.navigateToCatchAll('HEALTH')">
                 <div *ngFor="let quote of catchAllsHealth | async">
                     <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
                     <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>

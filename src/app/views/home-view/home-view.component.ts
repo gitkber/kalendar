@@ -61,7 +61,7 @@ export class HomeViewComponent implements OnInit {
         // this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
         this.catchAllsAdministration = this.viewsFacade.catchAllService.getCatchAllAdministration();
         this.catchAllsFamily = this.viewsFacade.catchAllService.getCatchAllFamily();
-        this.catchAllsProject = this.viewsFacade.catchAllService.getCatchProject();
+        this.catchAllsProject = this.viewsFacade.catchAllService.getCatchAllProject();
         this.catchAllsHealth = this.viewsFacade.catchAllService.getCatchAllHealth();
 
     }
