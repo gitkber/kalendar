@@ -18,6 +18,7 @@ import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-pape
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
 import { CoreModalComponent } from './modal/core-modal/core-modal.component';
 import { ContactModalComponent } from './modal/contact-modal/contact-modal.component';
+import { CatchAllModalComponent } from './modal/catch-all-modal/catch-all-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
@@ -25,7 +26,7 @@ import { ContactModalComponent } from './modal/contact-modal/contact-modal.compo
         CatchAllViewComponent,
         ContactsViewComponent,
         SheetOfPaperComponent,
-        ImageModalComponent, CoreModalComponent, ContactModalComponent],
+        ImageModalComponent, CoreModalComponent, ContactModalComponent, CatchAllModalComponent],
     exports: [],
     providers: [ViewsFacade]
 })

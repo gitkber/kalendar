@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CatchAll, CatchAllAction } from '../../core/catch-all/catch-all';
 import { CatchAllService } from '../../core/catch-all/catch-all.service';
 import { Observable } from 'rxjs/Observable';
+import { CatchAllModalComponent } from '../modal/catch-all-modal/catch-all-modal.component';
 
 @Component({
     selector: 'catch-all-view',
@@ -10,21 +11,21 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CatchAllViewComponent implements OnInit {
 
-    public catchAllSelected: CatchAll;
+    @ViewChild(CatchAllModalComponent) modal: CatchAllModalComponent;
+
     public catchAlls: Observable<CatchAll[]>;
 
     constructor(private catchAllService: CatchAllService) { }
 
     ngOnInit() {
         this.catchAlls = this.catchAllService.getCatchAll();
-        this.catchAllSelected = new CatchAll(null, null, null, null, null);
     }
 
     showCatchAll(event: CatchAll) {
-        this.catchAllSelected = event;
+        this.modal.open(event);
     }
 
-    doActionOnContact(event: CatchAllAction) {
-        // this.catchAllService.doActionOnContact(event);
+    doActionOnCatchAll(event: CatchAllAction) {
+        this.catchAllService.doActionOnCatchAll(event);
     }
 }

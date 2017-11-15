@@ -41,7 +41,7 @@ export class CatchAllService {
         return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === 'HEALTH'));
     }
 
-    doActionOnTodo(event: CatchAllAction) {
+    doActionOnCatchAll(event: CatchAllAction) {
         if (event.action === Action.INSERT) {
             event.catchAll.user = this.authService.currentUserId;
             this.firebaseListObservable.push(event.catchAll);

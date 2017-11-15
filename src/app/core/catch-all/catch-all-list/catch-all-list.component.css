@@ -15,14 +15,17 @@
 }
 
 .row-container:hover {
-    font-weight: bold;
-    box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
+    font-size: large;
 }
 
 .icon-item {
     display: flex;
     justify-content: flex-end;
     width: 5em;
+}
+
+.action {
+    padding-right: 1em;
 }
 
 .description-item {

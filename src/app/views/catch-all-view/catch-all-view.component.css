@@ -1,7 +1,7 @@
 .view-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: flex-start;
     width: 99%;
     height: 100%;
@@ -10,17 +10,17 @@
 
 .contact-list-item {
 	height: 100%;
-	width: 50%;
+	width: 40%;
 }
 
 .right-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	/* item */
 	height: 100%;
-	width: 50%;
+	width: 35%;
 }
 
 .contact-form-item {

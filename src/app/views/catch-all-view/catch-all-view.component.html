@@ -1,9 +1,9 @@
 <div class="view-container">
   <catch-all-list class="contact-list-item" [catchAlls]="catchAlls" (showCatchAllClick)="showCatchAll($event)"></catch-all-list>
   <div class="right-container">
-    <catch-all-form class="contact-form-item" [catchAll]="catchAllSelected" (actionClick)="doActionOnContact($event)"></catch-all-form>
     <div class="polaroid-item">
       polaroid-item
     </div>
   </div>
 </div>
+<catch-all-modal [blocking]="false"></catch-all-modal>
