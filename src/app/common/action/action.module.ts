@@ -6,15 +6,19 @@ import { KalButtonActionComponent } from './kal-button-action/kal-button-action.
 import { KalActionComponent } from './kal-action/kal-action.component';
 import { EditActionComponent } from './kal-action/edit-action.component';
 import { PlusActionComponent } from './kal-action/plus-action.component';
+import { EditIconActionComponent } from './kal-action/edit-icon-action.component';
+import { PlusIconActionComponent } from './kal-action/plus-icon-action.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule],
     declarations: [KalButtonMenuComponent, KalButtonActionComponent,
         KalActionComponent,
-        EditActionComponent, PlusActionComponent],
+        EditActionComponent, PlusActionComponent,
+        EditIconActionComponent, PlusIconActionComponent],
     exports: [KalButtonMenuComponent, KalButtonActionComponent,
         KalActionComponent,
-        EditActionComponent, PlusActionComponent],
+        EditActionComponent, PlusActionComponent,
+        EditIconActionComponent, PlusIconActionComponent],
     providers: []
 })
 export class ActionModule {}

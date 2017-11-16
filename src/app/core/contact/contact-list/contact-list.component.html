@@ -9,13 +9,13 @@
 
         <edit-action class="action"
                      [tooltip]="'Modifier un contact'"
-                     [image]="'fa-user'" (click)="showContact(contact)"></edit-action>
+                     (click)="showContact(contact)"></edit-action>
     </div>
 
     <div class="row-container-add-item">
         <plus-action class="action"
                      [tooltip]="'Ajouter un contact'"
-                     [image]="'fa-user'" (click)="addContact()"></plus-action>
+                     (click)="addContact()"></plus-action>
     </div>
 
 </kal-panel-list>
