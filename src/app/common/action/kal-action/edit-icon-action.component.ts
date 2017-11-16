@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
             <i [class]="image"></i>
             <i class="fa fa-pencil fa-stack text-icon-action"></i>
         </span>`,
-    styleUrls: ['./small-action.component.css']
+    styleUrls: ['./action.component.css']
 })
 export class EditIconActionComponent implements OnInit {
 

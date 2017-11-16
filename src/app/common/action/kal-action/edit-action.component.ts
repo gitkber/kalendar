@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
             <i class="fa fa-square fa-stack-2x text-background"></i>
             <i class="fa fa-pencil fa-stack-1x text-action"></i>
         </span>`,
-    styleUrls: ['./small-action.component.css']
+    styleUrls: ['./action.component.css']
 })
 export class EditActionComponent {
 

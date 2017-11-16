@@ -1,0 +1,43 @@
+.form-action {
+    background: rgba(253, 95, 0, 1);
+    color: white;
+    border: 0.3em solid #222526;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0.3em;
+    height: 1em;
+    width: 1em;
+    box-shadow: 0 8px 16px -5px #222526;
+    cursor: pointer;
+}
+
+.form-action:hover {
+    background: #222526;
+    color: rgba(253, 95, 0, 1);
+    border-color: rgba(253, 95, 0, 1);
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+span.fa-stack {
+    cursor: pointer;
+}
+
+.text-background {
+    color: #4D5874;
+}
+
+.text-action {
+    color: #FBFBD4;
+    text-shadow: -1px 0 #4D5874, 0 1px #4D5874, 1px 0 #4D5874, 0 -1px #4D5874;
+}
+
+.text-icon-action {
+    color: #FBFBD4;
+    text-align: right;
+    margin-top: 0.5em;
+    text-shadow: -1px 0 #4D5874, 0 1px #4D5874, 1px 0 #4D5874, 0 -1px #4D5874;
+}
