@@ -26,28 +26,6 @@ export class HomeViewComponent implements OnInit {
     public catchAllsProject: Observable<CatchAll[]>;
     public catchAllsHealth: Observable<CatchAll[]>;
 
-    quotes = [
-        {
-            id: 1,
-            author: 'Albert Einstein',
-            text: 'We can\'t solve problems by using the same kind of thinking we used when we created them.'
-        },
-        {
-            id: 2, author: 'Antoine de Saint-Exupéry',
-            text: 'Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.'
-        },
-        {
-            id: 3,
-            author: 'Oscar Levant',
-            text: 'What the world needs is more geniuses with humility, there are so few of us left.'
-        },
-        {
-            id: 4,
-            author: 'Blaise Pascal',
-            text: 'I have made this letter longer than usual because I lack the time to make it shorter.'
-        }
-    ];
-
     constructor(
         public routerService: RouterService,
         private viewsFacade: ViewsFacade,
@@ -92,8 +70,8 @@ export class HomeViewComponent implements OnInit {
         this.imageModal.open(event);
     }
 
-    log(quoteId) {
-        console.log('quoteId', quoteId);
+    log(id) {
+        console.log('id', id);
     }
 
 }

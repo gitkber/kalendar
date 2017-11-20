@@ -21,8 +21,10 @@ export class CatchAllViewComponent implements OnInit {
     public catchAllsFamily: Observable<CatchAll[]>;
     public catchAllsProject: Observable<CatchAll[]>;
     public catchAllsHealth: Observable<CatchAll[]>;
+    public catchAllsToBuy: Observable<CatchAll[]>;
+    public catchAllsThoughtOfDay: Observable<CatchAll[]>;
 
-    constructor(private route: ActivatedRoute, private catchAllService: CatchAllService) { }
+    constructor(private route: ActivatedRoute, public catchAllService: CatchAllService) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -33,6 +35,8 @@ export class CatchAllViewComponent implements OnInit {
             this.catchAllsFamily = this.catchAllService.getCatchAllFamily();
             this.catchAllsProject = this.catchAllService.getCatchAllProject();
             this.catchAllsHealth = this.catchAllService.getCatchAllHealth();
+            this.catchAllsToBuy = this.catchAllService.getCatchAllByTagCaseType('TO_BUY');
+            this.catchAllsThoughtOfDay = this.catchAllService.getCatchAllByTagCaseType('THOUGHT_OF_DAY');
         });
     }
 

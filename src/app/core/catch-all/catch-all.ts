@@ -54,12 +54,15 @@ TAG
     TAG_CASE
         - OBJECTIVE
         - TODOs
-        - THOUGHT_OF_DAY
+        - VARIOUS
+        - BUDGET
     TAG_CASE_TYPE
         - ADMINISTRATION
         - HEALTH
         - FAMILY
         - PROJECT
+        - THOUGHT_OF_DAY
+        - TO_BUY
     TAG_PROJECT
         - KsLIFE
     TAG_PROJECT_UC
@@ -91,7 +94,9 @@ TAG
 /*
 -TAG_CASE       -TAG_CASE_TYPE    -description              -deadline
 
-THOUGHT_OF_DAY  FAMILY            au bonheur d'elsa
+VARIOUS         THOUGHT_OF_DAY    au bonheur d'elsa
+BUDGET          TO_BUY            armoire à chaussures
+BUDGET          TO_BUY            pull elsa
 
 OBJECTIVE       ADMINISTRATION    trier photos
 OBJECTIVE       ADMINISTRATION    trier papier

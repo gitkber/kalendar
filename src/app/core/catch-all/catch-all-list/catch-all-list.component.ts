@@ -25,4 +25,12 @@ export class CatchAllListComponent {
         this.showCatchAllClick.emit(new CatchAll(null, 'OBJECTIVE', this.title, null, null));
     }
 
+    addCatchBudget() {
+        this.showCatchAllClick.emit(new CatchAll(null, 'BUDGET', this.title, null, null));
+    }
+
+    addCatchVarious() {
+        this.showCatchAllClick.emit(new CatchAll(null, 'VARIOUS', this.title, null, null));
+    }
+
 }

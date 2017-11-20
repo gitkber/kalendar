@@ -32,6 +32,19 @@
               {{quote.description}}
           </div>
       </post-it>
+      <post-it [reference]="'TO_BUY'" (click)="changePrincipalCatchAll('TO_BUY')">
+          <div *ngFor="let quote of catchAllsToBuy | async">
+              <i class="fa fa-money"></i>
+
+              {{quote.description}}
+          </div>
+      </post-it>
+      <post-it [reference]="'THOUGHT_OF_DAY'" (click)="changePrincipalCatchAll('THOUGHT_OF_DAY')">
+          <div *ngFor="let quote of catchAllsThoughtOfDay | async">
+              <i class="fa fa-commenting-o"></i>
+              {{quote.description}}
+          </div>
+      </post-it>
   </div>
 </div>
 <catch-all-modal [blocking]="false"></catch-all-modal>

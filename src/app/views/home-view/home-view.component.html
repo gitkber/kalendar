@@ -42,9 +42,37 @@
             <div></div>
         </div>
     </div>
+
     <div class="postit-container">
-        <post-it *ngFor="let quote of quotes" [reference]="quote.author" (closed)="log(quote.id)">
-            {{quote.text}}
+        <post-it [reference]="'CONTACT'">
+            <div>
+                <i class="fa fa-birthday-cake"></i>
+                21 juillet
+
+            </div>
+            <div class="post-it-item">X jours</div>
+            <div class="post-it-item">Karine Berth</div>
+        </post-it>
+        <post-it [reference]="'TO_BUY'">
+            <div>
+                <i class="fa fa-money"></i>
+                pull elsa
+            </div>
+            <div>
+                <i class="fa fa-money"></i>
+                lunette de soleil
+            </div>
+        </post-it>
+        <post-it [reference]="'THOUGHT_OF_DAY'">
+            <div>
+                <i class="fa fa-commenting-o"></i>
+                Au bonheur d'Elsa
+            </div>
+        </post-it>
+        <post-it [reference]="'FOR ANALYSE'">
+            <div>
+                ???
+            </div>
         </post-it>
     </div>
 </div>

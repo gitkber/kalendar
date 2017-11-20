@@ -17,6 +17,14 @@
                           class="action"
                           [tooltip]="'Modifier un todo list'"
                           [image]="'fa-square-o'" (click)="showCatchAll(catchAll)"></edit-icon-action>
+        <edit-icon-action *ngIf="catchAll.tagCase === 'BUDGET'"
+                          class="action"
+                          [tooltip]="'Modifier un to buy'"
+                          [image]="'fa-money'" (click)="showCatchAll(catchAll)"></edit-icon-action>
+        <edit-icon-action *ngIf="catchAll.tagCase === 'VARIOUS'"
+                          class="action"
+                          [tooltip]="'Modifier un various'"
+                          [image]="'fa-commenting-o'" (click)="showCatchAll(catchAll)"></edit-icon-action>
     </div>
 
     <div class="row-container-add-item">
@@ -27,6 +35,12 @@
         <plus-icon-action class="action"
                           [tooltip]="'Ajouter un todo'"
                           [image]="'fa-square-o'" (click)="addCatchTodo()"></plus-icon-action>
+        <plus-icon-action class="action"
+                          [tooltip]="'Ajouter un to buy'"
+                          [image]="'fa-money'" (click)="addCatchBudget()"></plus-icon-action>
+        <plus-icon-action class="action"
+                          [tooltip]="'Ajouter un various'"
+                          [image]="'fa-commenting-o'" (click)="addCatchVarious()"></plus-icon-action>
     </div>
 
 </kal-panel-list>
