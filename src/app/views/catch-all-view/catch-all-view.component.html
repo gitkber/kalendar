@@ -3,43 +3,43 @@
                   [catchAlls]="catchAlls" [title]="principalTagCaseType"
                   (showCatchAllClick)="showCatchAll($event)"></catch-all-list>
   <div class="right-container">
-      <post-it [reference]="'ADMINISTRATION'" (click)="changePrincipalCatchAll('ADMINISTRATION')">
+      <post-it [reference]="TagCaseType.ADMINISTRATION" (click)="changePrincipalCatchAll(TagCaseType.ADMINISTRATION)">
           <div *ngFor="let quote of catchAllsAdministration | async">
               <!--<i class="fa fa-check-square-o"></i>-->
-              <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-              <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
+              <i *ngIf="quote.tagCase === TagCase.OBJECTIVE" class="fa fa-eye"></i>
+              <i *ngIf="quote.tagCase === TagCase.TODO" class="fa fa-square-o"></i>
               {{quote.description}}
           </div>
       </post-it>
-      <post-it [reference]="'FAMILY'" (click)="changePrincipalCatchAll('FAMILY')">
+      <post-it [reference]="TagCaseType.FAMILY" (click)="changePrincipalCatchAll(TagCaseType.FAMILY)">
           <div *ngFor="let quote of catchAllsFamily | async">
-              <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-              <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
+              <i *ngIf="quote.tagCase === TagCase.OBJECTIVE" class="fa fa-eye"></i>
+              <i *ngIf="quote.tagCase === TagCase.TODO" class="fa fa-square-o"></i>
               {{quote.description}}
           </div>
       </post-it>
-      <post-it [reference]="'PROJECT'" (click)="changePrincipalCatchAll('PROJECT')">
+      <post-it [reference]="TagCaseType.PROJECT" (click)="changePrincipalCatchAll(TagCaseType.PROJECT)">
           <div *ngFor="let quote of catchAllsProject | async">
-              <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-              <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
+              <i *ngIf="quote.tagCase === TagCase.OBJECTIVE" class="fa fa-eye"></i>
+              <i *ngIf="quote.tagCase === TagCase.TODO" class="fa fa-square-o"></i>
               {{quote.description}}
           </div>
       </post-it>
-      <post-it [reference]="'HEALTH'" (click)="changePrincipalCatchAll('HEALTH')">
+      <post-it [reference]="TagCaseType.HEALTH" (click)="changePrincipalCatchAll(TagCaseType.HEALTH)">
           <div *ngFor="let quote of catchAllsHealth | async">
-              <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-              <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
+              <i *ngIf="quote.tagCase === TagCase.OBJECTIVE" class="fa fa-eye"></i>
+              <i *ngIf="quote.tagCase === TagCase.TODO" class="fa fa-square-o"></i>
               {{quote.description}}
           </div>
       </post-it>
-      <post-it [reference]="'TO_BUY'" (click)="changePrincipalCatchAll('TO_BUY')">
+      <post-it [reference]="TagCaseType.TO_BUY" (click)="changePrincipalCatchAll(TagCaseType.TO_BUY)">
           <div *ngFor="let quote of catchAllsToBuy | async">
               <i class="fa fa-money"></i>
 
               {{quote.description}}
           </div>
       </post-it>
-      <post-it [reference]="'THOUGHT_OF_DAY'" (click)="changePrincipalCatchAll('THOUGHT_OF_DAY')">
+      <post-it [reference]="TagCaseType.THOUGHT_OF_DAY" (click)="changePrincipalCatchAll(TagCaseType.THOUGHT_OF_DAY)">
           <div *ngFor="let quote of catchAllsThoughtOfDay | async">
               <i class="fa fa-commenting-o"></i>
               {{quote.description}}

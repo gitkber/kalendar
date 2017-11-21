@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { CatchAll } from '../../core/catch-all/catch-all';
 import { CatchAllService } from '../../core/catch-all/catch-all.service';
-import { Observable } from 'rxjs/Observable';
 import { CatchAllModalComponent } from '../modal/catch-all-modal/catch-all-modal.component';
-import { ActivatedRoute } from '@angular/router';
+import { TagCase, TagCaseType } from '../../common/utils/tag';
 
 @Component({
     selector: 'catch-all-view',
@@ -13,6 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CatchAllViewComponent implements OnInit {
 
     @ViewChild(CatchAllModalComponent) modal: CatchAllModalComponent;
+
+    TagCase = TagCase;
+    TagCaseType = TagCaseType;
 
     public catchAlls: Observable<CatchAll[]>;
     public principalTagCaseType: string;
@@ -31,12 +35,12 @@ export class CatchAllViewComponent implements OnInit {
             this.principalTagCaseType = params['tagCaseType'];
             this.catchAlls = this.catchAllService.getCatchAllByTagCaseType(this.principalTagCaseType);
 
-            this.catchAllsAdministration = this.catchAllService.getCatchAllAdministration();
-            this.catchAllsFamily = this.catchAllService.getCatchAllFamily();
-            this.catchAllsProject = this.catchAllService.getCatchAllProject();
-            this.catchAllsHealth = this.catchAllService.getCatchAllHealth();
-            this.catchAllsToBuy = this.catchAllService.getCatchAllByTagCaseType('TO_BUY');
-            this.catchAllsThoughtOfDay = this.catchAllService.getCatchAllByTagCaseType('THOUGHT_OF_DAY');
+            this.catchAllsAdministration = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.ADMINISTRATION);
+            this.catchAllsFamily = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.FAMILY);
+            this.catchAllsProject = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.PROJECT);
+            this.catchAllsHealth = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.HEALTH);
+            this.catchAllsToBuy = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
+            this.catchAllsThoughtOfDay = this.catchAllService.getCatchAllByTagCaseType(TagCaseType.THOUGHT_OF_DAY);
         });
     }
 

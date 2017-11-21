@@ -8,18 +8,51 @@ export class CatchAll {
         public description: string,
         public deadline?: string
     ) { }
-
-    isTodo(): boolean {
-        return true;
-        // return this.tagCase === TagCase.TODO;
-    }
-
-    isObjective(): boolean {
-        return true;
-        // return this.tagCase === TagCase.OBJECTIVE;
-    }
-
 }
+
+export class CatchAllAction {
+    public key: string;
+
+    constructor(
+        public action: Action,
+        public catchAll?: CatchAll
+    ) { }
+}
+
+export class CatchBudget extends CatchAll {
+    constructor(
+        public user: string,
+        public tagCase: string,
+        public tagCaseType: string,
+        public tagBudgetType: string,
+        public description: string,
+        public kalendarDate?: string,
+        public budget?: string,
+        public deadline?: string,
+    ) {
+        super(user, tagCase, tagCaseType, description, deadline);
+    }
+}
+
+/* BUDGET
+BUDGET          MIN         [HOME - CAR - FOOD - HEALTH - ELSA (contact) -  K    (contact) ]
+BUDGET          PLUS        [WORK - ALLOC]
+
+-TAG_CASE   -TAG_CASE_TYPE  -tagBudgetType  -description        -kalendarDate       -amount     -contactID
+
+BUDGET      TO_BUY          HOME            armoire à chaussures
+BUDGET      TO_BUY          CLOTHES         veste                                               elsa
+BUDGET      MIN             HEALTH          dentiste            15/12/2017          62.5
+BUDGET      MIN             HOME            pret hypothecaire   15/12/2017          622.5
+BUDGET      MIN             HOME            luminus             15/12/2017          200.5
+BUDGET      MIN             VARIOUS         base                25/12/2017          20          k
+BUDGET      MIN             FOOD            carrefour           15/12/2017          10.5
+BUDGET      MIN             FOOD            quick               15/12/2017          22.5
+BUDGET      MIN             CLOTHES         pantalon            15/12/2017          22.5        k
+BUDGET      MIN             CLOTHES         gants               15/12/2017          22.5        elsa
+BUDGET      MIN             CLOTHES         divers              15/12/2017          22.5        elsa
+BUDGET      PLUS            WORK            salaire             01/01/2017          500
+ */
 
 export class CatchProject extends CatchAll {
     constructor(
@@ -36,33 +69,7 @@ export class CatchProject extends CatchAll {
     }
 }
 
-export class CatchAllAction {
-    public key: string;
-
-    constructor(
-        public action: Action,
-        public catchAll?: CatchAll
-    ) { }
-}
-
-export enum TagCase {
-    OBJECTIVE, TODO, THOUGHT_OF_DAY
-}
-
 /*
-TAG
-    TAG_CASE
-        - OBJECTIVE
-        - TODOs
-        - VARIOUS
-        - BUDGET
-    TAG_CASE_TYPE
-        - ADMINISTRATION
-        - HEALTH
-        - FAMILY
-        - PROJECT
-        - THOUGHT_OF_DAY
-        - TO_BUY
     TAG_PROJECT
         - KsLIFE
     TAG_PROJECT_UC
@@ -74,7 +81,7 @@ TAG
         - UC MEMO               - Refactor to UC Event
         - UC TODOs              - CatchAll
         - UC OBJECTIVE          - CatchAll
-        - UC BUDGET             - CatchAll
+        - UC BUDGET             - CatchAll or Budget ?
         - UC EVENT              - CatchAll
         - UC PROJECT            - CatchAll
      TAG_PROJECT_UC_VIEW
@@ -89,31 +96,9 @@ TAG
         - COMPLETED
         - NICE_TO_HAVE
 
-*/
+-TAG_CASE   -TAG_CASE_TYPE  - TAG_PROJECT   -...
 
-/*
--TAG_CASE       -TAG_CASE_TYPE    -description              -deadline
-
-VARIOUS         THOUGHT_OF_DAY    au bonheur d'elsa
-BUDGET          TO_BUY            armoire à chaussures
-BUDGET          TO_BUY            pull elsa
-
-OBJECTIVE       ADMINISTRATION    trier photos
-OBJECTIVE       ADMINISTRATION    trier papier
-
-OBJECTIVE       HEALTH            ww (57)
-OBJECTIVE       HEALTH            bien se nourrir
-OBJECTIVE       HEALTH            faire du sport
-OBJECTIVE       HEALTH            arreter de fumer
-
-TODOs           ADMINISTRATION    relever courrier          05/11/2017
-TODOs           HEALTH            dentiste
-TODOs           HEALTH            checkup
-TODOs           FAMILY            organiser annif elsa      01/03/2018
-
-                                - TAG_PROJECT   -...
-
-TODOs           PROJECT         KsLIFE          ...
+TODOs       PROJECT         KsLIFE          ...
 
 ... -TAG_PROJECT_UC     -TAG_PROJECT_UC_VIEW -description   -TAG_PROJECT_STATUS
 

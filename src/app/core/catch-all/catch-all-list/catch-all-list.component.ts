@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CatchAll } from '../catch-all';
 import { Observable } from 'rxjs/Observable';
+import { CatchAll } from '../catch-all';
+import { TagCase } from '../../../common/utils/tag';
 
 @Component({
     selector: 'catch-all-list',
@@ -13,24 +14,14 @@ export class CatchAllListComponent {
     @Input() title: string;
     @Output() showCatchAllClick: EventEmitter<CatchAll> = new EventEmitter();
 
+    TagCase = TagCase;
+
     showCatchAll(contact: CatchAll) {
         this.showCatchAllClick.emit(contact);
     }
 
-    addCatchTodo() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'TODOs', this.title, null, null));
-    }
-
-    addCatchObjective() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'OBJECTIVE', this.title, null, null));
-    }
-
-    addCatchBudget() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'BUDGET', this.title, null, null));
-    }
-
-    addCatchVarious() {
-        this.showCatchAllClick.emit(new CatchAll(null, 'VARIOUS', this.title, null, null));
+    addCatchAll(tagCase: string) {
+        this.showCatchAllClick.emit(new CatchAll(null, tagCase, this.title, null, null));
     }
 
 }
