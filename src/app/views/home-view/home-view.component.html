@@ -7,35 +7,19 @@
                            (showDayItemClick)="showDayItem($event)"></carousel-days>
         </div>
         <div class="other-container">
-            <post-it [reference]="'ADMINISTRATION'" (closed)="log('ADMINISTRATION')" (click)="routerService.navigateToCatchAll('ADMINISTRATION')">
-                <div *ngFor="let quote of catchAllsAdministration | async">
-                    <!--<i class="fa fa-check-square-o"></i>-->
-                    <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-                    <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
-                    {{quote.description}}
-                </div>
-            </post-it>
-            <post-it [reference]="'FAMILY'" (closed)="log('FAMILY')" (click)="routerService.navigateToCatchAll('FAMILY')">
-                <div *ngFor="let quote of catchAllsFamily | async">
-                    <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-                    <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
-                    {{quote.description}}
-                </div>
-            </post-it>
-            <post-it [reference]="'PROJECT'" (closed)="log('PROJECT')" (click)="routerService.navigateToCatchAll('PROJECT')">
-                <div *ngFor="let quote of catchAllsProject | async">
-                    <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-                    <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
-                    {{quote.description}}
-                </div>
-            </post-it>
-            <post-it [reference]="'HEALTH'" (closed)="log('HEALTH')" (click)="routerService.navigateToCatchAll('HEALTH')">
-                <div *ngFor="let quote of catchAllsHealth | async">
-                    <i *ngIf="quote.tagCase === 'OBJECTIVE'" class="fa fa-eye"></i>
-                    <i *ngIf="quote.tagCase === 'TODOs'" class="fa fa-square-o"></i>
-                    {{quote.description}}
-                </div>
-            </post-it>
+
+            <catch-all-post-it [tagCaseType]="TagCaseType.ADMINISTRATION"
+                               [catchAlls]="catchAllsAdministration"
+                               (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+            <catch-all-post-it [tagCaseType]="TagCaseType.FAMILY"
+                               [catchAlls]="catchAllsFamily"
+                               (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+            <catch-all-post-it [tagCaseType]="TagCaseType.PROJECT"
+                               [catchAlls]="catchAllsProject"
+                               (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+            <catch-all-post-it [tagCaseType]="TagCaseType.HEALTH"
+                               [catchAlls]="catchAllsHealth"
+                               (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
             <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
                         [date]="carouselDays.dateSelected"
                         (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
@@ -44,7 +28,7 @@
     </div>
 
     <div class="postit-container">
-        <post-it [reference]="'CONTACT'">
+        <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
             <div>
                 <i class="fa fa-birthday-cake"></i>
                 21 juillet
@@ -53,22 +37,12 @@
             <div class="post-it-item">X jours</div>
             <div class="post-it-item">Karine Berth</div>
         </post-it>
-        <post-it [reference]="'TO_BUY'">
-            <div>
-                <i class="fa fa-money"></i>
-                pull elsa
-            </div>
-            <div>
-                <i class="fa fa-money"></i>
-                lunette de soleil
-            </div>
-        </post-it>
-        <post-it [reference]="'THOUGHT_OF_DAY'">
-            <div>
-                <i class="fa fa-commenting-o"></i>
-                Au bonheur d'Elsa
-            </div>
-        </post-it>
+        <catch-all-post-it [tagCaseType]="TagCaseType.TO_BUY"
+                           [catchAlls]="catchAllsToBuy"
+                           (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+        <catch-all-post-it [tagCaseType]="TagCaseType.THOUGHT_OF_DAY"
+                           [catchAlls]="catchAllsThoughtOfDay"
+                           (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
         <post-it [reference]="'FOR ANALYSE'">
             <div>
                 ???

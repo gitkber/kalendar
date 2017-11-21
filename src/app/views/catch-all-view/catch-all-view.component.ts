@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { CatchAll } from '../../core/catch-all/catch-all';
 import { CatchAllService } from '../../core/catch-all/catch-all.service';
 import { CatchAllModalComponent } from '../modal/catch-all-modal/catch-all-modal.component';
-import { TagCase, TagCaseType } from '../../common/utils/tag';
+import { TagCaseType } from '../../common/utils/tag';
 
 @Component({
     selector: 'catch-all-view',
@@ -15,7 +15,6 @@ export class CatchAllViewComponent implements OnInit {
 
     @ViewChild(CatchAllModalComponent) modal: CatchAllModalComponent;
 
-    TagCase = TagCase;
     TagCaseType = TagCaseType;
 
     public catchAlls: Observable<CatchAll[]>;

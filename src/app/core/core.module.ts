@@ -14,6 +14,7 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { CatchAllFormComponent } from './catch-all/catch-all-form/catch-all-form.component';
 import { CatchAllListComponent } from './catch-all/catch-all-list/catch-all-list.component';
+import { CatchAllPostItComponent } from './catch-all/catch-all-post-it/catch-all-post-it.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
@@ -24,14 +25,14 @@ import { WeekImageComponent } from './image/week-image/week-image.component';
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        CatchAllFormComponent, CatchAllListComponent,
+        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent,
-        CatchAllFormComponent, CatchAllListComponent,
+        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,

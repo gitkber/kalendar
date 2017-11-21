@@ -9,6 +9,7 @@ import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
 import { DayItem } from '../../kalendar/day-item';
 import { Observable } from 'rxjs/Observable';
 import { CatchAll } from '../../core/catch-all/catch-all';
+import { TagCaseType } from '../../common/utils/tag';
 
 @Component({
     selector: 'home-view',
@@ -20,11 +21,15 @@ export class HomeViewComponent implements OnInit {
     @ViewChild(CoreModalComponent) coreModal: CoreModalComponent;
     @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
+    TagCaseType = TagCaseType;
+
     public carouselDays: CarouselDays;
     public catchAllsAdministration: Observable<CatchAll[]>;
     public catchAllsFamily: Observable<CatchAll[]>;
     public catchAllsProject: Observable<CatchAll[]>;
     public catchAllsHealth: Observable<CatchAll[]>;
+    public catchAllsToBuy: Observable<CatchAll[]>;
+    public catchAllsThoughtOfDay: Observable<CatchAll[]>;
 
     constructor(
         public routerService: RouterService,
@@ -36,12 +41,12 @@ export class HomeViewComponent implements OnInit {
         this.carouselDays = new CarouselDays(this.appService.currentDate);
         this.viewsFacade.populateDays(this.carouselDays.days);
 
-        // this.catchAlls = this.viewsFacade.catchAllService.getCatchAll();
-        this.catchAllsAdministration = this.viewsFacade.catchAllService.getCatchAllAdministration();
-        this.catchAllsFamily = this.viewsFacade.catchAllService.getCatchAllFamily();
-        this.catchAllsProject = this.viewsFacade.catchAllService.getCatchAllProject();
-        this.catchAllsHealth = this.viewsFacade.catchAllService.getCatchAllHealth();
-
+        this.catchAllsAdministration = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.ADMINISTRATION);
+        this.catchAllsFamily = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.FAMILY);
+        this.catchAllsProject = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.PROJECT);
+        this.catchAllsHealth = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.HEALTH);
+        this.catchAllsToBuy = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
+        this.catchAllsThoughtOfDay = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.THOUGHT_OF_DAY);
     }
 
     navigate(event: Navigation) {
