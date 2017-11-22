@@ -1,0 +1,7 @@
+<post-it [reference]="inXdays" (click)="showDetail()">
+    <div>
+        <i class="fa fa-birthday-cake"></i>
+        {{contact.birthdate | date}}
+    </div>
+    <div class="post-it-item">{{contact.firstname}} {{contact.lastname}}</div>
+</post-it>

@@ -15,11 +15,13 @@ export class ContactsViewComponent implements OnInit {
     @ViewChild(ContactModalComponent) contactModal: ContactModalComponent;
 
     public contacts: FirebaseListObservable<Contact[]>;
+    public postItContacts: FirebaseListObservable<Contact[]>;
 
     constructor(private contactService: ContactService) { }
 
     ngOnInit() {
         this.contacts = this.contactService.getList();
+        this.postItContacts = this.contactService.getContactForPostId();
     }
 
     showContact(event: Contact) {

@@ -3,34 +3,8 @@
                   (showContactClick)="showContact($event)"></contact-list>
     <div class="right-container">
         <div class="post-it-container">
-            <post-it [reference]="'X jours'">
-                <div>
-                    <i class="fa fa-birthday-cake"></i>
-                    21 juillet
-                </div>
-                <div class="post-it-item">Karine Berth</div>
-            </post-it>
-            <post-it [reference]="'X jours'">
-                <div>
-                    <i class="fa fa-birthday-cake"></i>
-                    19 mars
-                </div>
-                <div class="post-it-item">Elsa Koscher</div>
-            </post-it>
-            <post-it [reference]="'X jours'">
-                <div>
-                    <i class="fa fa-birthday-cake"></i>
-                    31 octobre
-                </div>
-                <div class="post-it-item">Christophe Koscher</div>
-            </post-it>
-            <post-it [reference]="'X jours'">
-                <div>
-                    <i class="fa fa-birthday-cake"></i>
-                    2 octobre
-                </div>
-                <div class="post-it-item">Maeva Mungo</div>
-            </post-it>
+            <birthday-post-it *ngFor="let contact of postItContacts | async"
+                              [contact]="contact"></birthday-post-it>
         </div>
         <kal-polaroid [label]="'ToDo load image by contact'" [image]="'../../../assets/images/photo/IMG_yoga.jpg'"
                       class="polaroid-item"></kal-polaroid>

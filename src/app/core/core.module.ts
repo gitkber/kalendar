@@ -12,6 +12,7 @@ import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
+import { BirthdayPostItComponent } from './contact/birthday-post-it/birthday-post-it.component';
 import { CatchAllFormComponent } from './catch-all/catch-all-form/catch-all-form.component';
 import { CatchAllListComponent } from './catch-all/catch-all-list/catch-all-list.component';
 import { CatchAllPostItComponent } from './catch-all/catch-all-post-it/catch-all-post-it.component';
@@ -24,14 +25,14 @@ import { WeekImageComponent } from './image/week-image/week-image.component';
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
-        ContactFormComponent, ContactListComponent,
+        ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     exports: [LoginFormComponent,
-        ContactFormComponent, ContactListComponent,
+        ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
