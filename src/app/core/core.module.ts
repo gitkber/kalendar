@@ -16,6 +16,8 @@ import { BirthdayPostItComponent } from './contact/birthday-post-it/birthday-pos
 import { CatchAllFormComponent } from './catch-all/catch-all-form/catch-all-form.component';
 import { CatchAllListComponent } from './catch-all/catch-all-list/catch-all-list.component';
 import { CatchAllPostItComponent } from './catch-all/catch-all-post-it/catch-all-post-it.component';
+import { CarouselBudgetComponent } from './catch-all/carousel-budget/carousel-budget.component';
+import { MonthInCarouselBudgetComponent } from './catch-all/carousel-budget/month-in-carousel-budget/month-in-carousel-budget.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
@@ -26,13 +28,13 @@ import { WeekImageComponent } from './image/week-image/week-image.component';
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
-        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
+        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     exports: [LoginFormComponent,
-        ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
+        ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,

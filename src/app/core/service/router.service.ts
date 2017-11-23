@@ -28,6 +28,10 @@ export class RouterService {
         this.router.navigateByUrl('/contacts');
     }
 
+    navigateToBudget() {
+        this.router.navigateByUrl('/budget');
+    }
+
     navigateToKalYear(date: Date) {
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }

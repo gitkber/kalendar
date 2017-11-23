@@ -1,0 +1,19 @@
+<div class="home-view-container">
+    <div class="principal-container">
+        <div class="carousel-week-item">
+            <carousel-budget [carouselBudget]="carouselBudget"
+                             [navigation]="'month'"
+                             (navigateClick)="navigate($event)"
+                             (showDayItemClick)="showDayItem($event)">
+            </carousel-budget>
+        </div>
+        <div class="other-container">
+
+        </div>
+    </div>
+    <div class="postit-container">
+        <catch-all-post-it [tagCaseType]="TagCaseType.TO_BUY"
+                           [catchAlls]="catchAllsToBuy"
+                           (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+    </div>
+</div>

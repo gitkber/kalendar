@@ -13,6 +13,7 @@ import { CatchAllViewComponent } from './catch-all-view/catch-all-view.component
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
+import { BudgetViewComponent } from './budget-view/budget-view.component';
 
 import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-paper.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
@@ -25,6 +26,7 @@ import { CatchAllModalComponent } from './modal/catch-all-modal/catch-all-modal.
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, MonthViewComponent,
         CatchAllViewComponent,
         ContactsViewComponent,
+        BudgetViewComponent,
         SheetOfPaperComponent,
         ImageModalComponent, CoreModalComponent, ContactModalComponent, CatchAllModalComponent],
     exports: [],
