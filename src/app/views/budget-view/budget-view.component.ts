@@ -28,8 +28,12 @@ export class BudgetViewComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        // this.viewsFacade.catchAllService.insertBudgetList();
+        // this.viewsFacade.catchAllService.insertOtherList();
+        // this.viewsFacade.catchAllService.insertProjetList();
+
         this.carouselBudget = new CarouselBudget(this.appService.currentDate);
-        // this.viewsFacade.populateDays(this.carouselBudget.days);
+        this.viewsFacade.populateMonths(this.carouselBudget.months);
 
         this.catchAllsToBuy = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
     }

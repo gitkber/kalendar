@@ -2,4 +2,12 @@
 
     {{ month.date | date:'MMMM yyyy' }}
 
+    <div *ngFor="let m of month.catchBudgets">
+        {{ m.description }} {{ m.kalendarDate }}
+    </div>
+
+    <!--<div *ngFor="let item of month.catchBudgets | groupbytest: 'tagBudgetType'">-->
+        <!--Department {{ item.tagBudgetType }}-->
+    <!--</div>-->
+
 </div>

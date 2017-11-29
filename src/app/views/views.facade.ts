@@ -12,6 +12,8 @@ import { ContactHoliday } from '../core/holiday/contact-holiday/contact-holiday'
 import { Type } from '../kalendar/type';
 import { Day } from '../kalendar/day/day';
 import { DayItem } from '../kalendar/day-item';
+import { MontthInCarouselBudget } from '../core/catch-all/carousel-budget/month-in-carousel-budget/montth-in-carousel-budget';
+import { CatchBudget } from '../core/catch-all/catch-all';
 
 @Injectable()
 export class ViewsFacade {
@@ -213,6 +215,20 @@ export class ViewsFacade {
                             d.dayContactHolidayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })
+                }
+            })
+        });
+    }
+
+    populateMonths(months: MontthInCarouselBudget[]) {
+        this.catchAllService.getBudgetMinRef().on('child_added', data => {
+            const entity: CatchBudget = data.val();
+            const date: Date = new Date(entity.kalendarDate);
+            months.forEach(m => {
+                if (date.getTime() <= m.lastDate.getTime()
+                    && date.getTime() >= m.firstDate.getTime()) {
+                    // console.log('child_added catchAllService', entity);
+                    m.catchBudgets.push(entity);
                 }
             })
         });

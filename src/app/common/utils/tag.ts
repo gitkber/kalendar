@@ -11,7 +11,17 @@ export const TagCaseType = {
     FAMILY: 'FAMILY',
     PROJECT: 'PROJECT',
     THOUGHT_OF_DAY: 'THOUGHT_OF_DAY',
-    TO_BUY: 'TO_BUY'
+    TO_BUY: 'TO_BUY',
+    MIN: 'MIN',
+    PLUS: 'PLUS'
+}
+
+export const TagBudgetType = {
+    HOME: 'HOME',
+    CLOTHES: 'CLOTHES',
+    FOOD: 'FOOD',
+    HEALTH: 'HEALTH',
+    WORK: 'WORK'
 }
 
 /* SAMPLES ROW

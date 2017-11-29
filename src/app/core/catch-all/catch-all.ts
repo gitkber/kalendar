@@ -28,9 +28,9 @@ export class CatchBudget extends CatchAll {
         public description: string,
         public kalendarDate?: string,
         public budget?: string,
-        public deadline?: string,
+        // public deadline?: string,
     ) {
-        super(user, tagCase, tagCaseType, description, deadline);
+        super(user, tagCase, tagCaseType, description, null);
     }
 }
 
