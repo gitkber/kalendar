@@ -7,11 +7,6 @@
                              (showDayItemClick)="showDayItem($event)">
             </carousel-budget>
         </div>
-        <div class="other-container">
-            <div *ngFor="let t of test | async">
-               {{ t.budgetType }} - {{ t.amount }}
-            </div>
-        </div>
     </div>
     <div class="postit-container">
         <catch-all-post-it [tagCaseType]="TagCaseType.TO_BUY"
