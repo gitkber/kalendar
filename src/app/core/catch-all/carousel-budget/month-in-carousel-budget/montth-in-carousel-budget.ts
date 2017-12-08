@@ -5,6 +5,7 @@ export class MontthInCarouselBudget {
     public firstDate: Date;
     public lastDate: Date;
     public catchBudgets: CatchBudget[] = [];
+    public budgetByGroups: any[] = [];
 
     constructor(
         public date: Date

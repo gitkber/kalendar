@@ -46,21 +46,24 @@ export class CatchAllService {
         );
     }
 
-    sumByGroupCatchBudgetMin(): any {
+    sumByGroupCatchBudgetMin(firstDate: Date, lastDate: Date): any {
         return this.firebaseListObservable.map(
             items => items
-                .filter(item => item.tagCase === TagCase.BUDGET && item.tagCaseType === TagCaseType.MIN)
-                .reduce((accumulator, currentValue) => {
-                    // console.log(accumulator, currentValue);
-                    const index = accumulator.findIndex(v => v.groupby === currentValue.tagBudgetType);
+                .filter(item => {
+                    const kalendarDate: Date = new Date(item.kalendarDate);
+                    return item.tagCase === TagCase.BUDGET && item.tagCaseType === TagCaseType.MIN
+                        && firstDate.getTime() <= kalendarDate.getTime() && lastDate.getTime() >= kalendarDate.getTime();
+                }).reduce((accumulator, currentValue) => {
+                    const index = accumulator.findIndex(v => v.budgetType === currentValue.tagBudgetType);
                     if (index === -1) {
-                        accumulator.push({groupby: currentValue.tagBudgetType, amount: +currentValue.budget});
+                        accumulator.push({budgetType: currentValue.tagBudgetType, amount: +currentValue.budget, detail: [currentValue]});
                     } else {
                         accumulator[index].amount += +currentValue.budget;
+                        accumulator[index].detail.push(currentValue);
                     }
                     accumulator[0].amount += +currentValue.budget;
                     return accumulator;
-                }, [{groupby: 'TOTAL', amount: 0}])
+                }, [{budgetType: 'TOTAL', amount: 0}])
         );
     }
 
@@ -116,7 +119,7 @@ export class CatchAllService {
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
             TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.CLOTHES, 'veste', null, null));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HEALTH, 'dentiste', '2017-11-15', '47.52'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HEALTH, 'dentiste', '2017-12-15', '47.52'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
             TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'pret hypothecaire', '2017-10-01', '672.85'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
@@ -126,21 +129,25 @@ export class CatchAllService {
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
             TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'luminus', '2017-11-05', '202.85'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'base', '2017-11-25', '15.00'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'luminus', '2017-12-05', '202.85'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-11-05', '15.00'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'base', '2017-12-25', '15.00'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-11-15', '125.24'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-11-05', '115.40'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'quick', '2017-11-16', '45.94'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-12-05', '12.50'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'pantalon', '2017-11-03', '65.22'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-12-15', '125.24'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'gants elsa', '2017-11-01', '10.99'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'quick', '2017-12-16', '45.94'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'divers elsa', '2017-11-22', '101.98'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'pantalon', '2017-12-03', '65.22'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.PLUS, TagBudgetType.WORK, 'divers elsa', '2017-11-22', '1296.98'));
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'gants elsa', '2017-12-01', '10.99'));
+        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
+            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'divers elsa', '2017-12-22', '101.98'));
+        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
+            TagCase.BUDGET, TagCaseType.PLUS, TagBudgetType.WORK, 'salaire', '2017-12-22', '1296.98'));
     }
 
 }

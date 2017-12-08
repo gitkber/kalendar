@@ -35,9 +35,13 @@ export class BudgetViewComponent implements OnInit {
 
         this.carouselBudget = new CarouselBudget(this.appService.currentDate);
         this.viewsFacade.populateMonths(this.carouselBudget.months);
+        this.carouselBudget.months.forEach(m => {
+            m.budgetByGroups = this.viewsFacade.catchAllService.sumByGroupCatchBudgetMin(m.firstDate, m.lastDate);
+        });
 
         this.catchAllsToBuy = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
-        this.test = this.viewsFacade.catchAllService.sumByGroupCatchBudgetMin();
+        this.test = this.viewsFacade.catchAllService
+            .sumByGroupCatchBudgetMin(this.carouselBudget.months[2].firstDate, this.carouselBudget.months[2].lastDate);
     }
 
     navigate(event: Navigation) {

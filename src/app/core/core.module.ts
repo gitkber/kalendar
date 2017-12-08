@@ -23,14 +23,12 @@ import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
-import { GroupbyPipe } from './catch-all/carousel-budget/month-in-carousel-budget/groupby.pipe';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
-        GroupbyPipe,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
