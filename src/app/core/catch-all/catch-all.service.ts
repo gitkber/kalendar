@@ -33,9 +33,35 @@ export class CatchAllService {
         return this.firebaseListObservable.map(items => items.filter(item => item.tagCaseType === tagCaseType));
     }
 
-    getCatchBudgetMin(): Observable<CatchAll[]> {
+    sumCatchBudgetMin(): any {
+        // const numbers = [15.5, 2.3, 1.1, 4.7]; // 23.6
+        // return numbers.map(value => value * 2);
         return this.firebaseListObservable.map(
-            items => items.filter(item => item.tagCase === TagCase.BUDGET && item.tagCaseType === TagCaseType.MIN));
+            items => items.filter(item => item.tagCase === TagCase.BUDGET && item.tagCaseType === TagCaseType.MIN)
+            // .map(result => +result.budget)
+                .reduce((accumulator, currentValue) => {
+                    console.log(accumulator, currentValue);
+                    return accumulator + +currentValue.budget;
+                }, 0)
+        );
+    }
+
+    sumByGroupCatchBudgetMin(): any {
+        return this.firebaseListObservable.map(
+            items => items
+                .filter(item => item.tagCase === TagCase.BUDGET && item.tagCaseType === TagCaseType.MIN)
+                .reduce((accumulator, currentValue) => {
+                    // console.log(accumulator, currentValue);
+                    const index = accumulator.findIndex(v => v.groupby === currentValue.tagBudgetType);
+                    if (index === -1) {
+                        accumulator.push({groupby: currentValue.tagBudgetType, amount: +currentValue.budget});
+                    } else {
+                        accumulator[index].amount += +currentValue.budget;
+                    }
+                    accumulator[0].amount += +currentValue.budget;
+                    return accumulator;
+                }, [{groupby: 'TOTAL', amount: 0}])
+        );
     }
 
     doActionOnCatchAll(event: CatchAllAction) {

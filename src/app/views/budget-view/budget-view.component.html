@@ -8,7 +8,9 @@
             </carousel-budget>
         </div>
         <div class="other-container">
-
+            <div *ngFor="let t of test | async">
+               {{ t.groupby }} - {{ t.amount }}
+            </div>
         </div>
     </div>
     <div class="postit-container">

@@ -18,6 +18,7 @@ export class BudgetViewComponent implements OnInit {
 
     public carouselBudget: CarouselBudget;
     public catchAllsToBuy: Observable<CatchAll[]>;
+    public test: any[];
 
     TagCaseType = TagCaseType;
 
@@ -36,6 +37,7 @@ export class BudgetViewComponent implements OnInit {
         this.viewsFacade.populateMonths(this.carouselBudget.months);
 
         this.catchAllsToBuy = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
+        this.test = this.viewsFacade.catchAllService.sumByGroupCatchBudgetMin();
     }
 
     navigate(event: Navigation) {
