@@ -1,0 +1,8 @@
+
+    {{ timeline.description }}
+    <div *ngFor="let objective of timeline.objectives">
+        {{ objective.description }}
+        <div *ngFor="let occurence of objective.occurences">
+            {{ occurence.kalendarDate }}
+        </div>
+    </div>

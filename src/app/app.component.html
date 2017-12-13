@@ -8,6 +8,9 @@
             <kal-button-menu [image]="'../../../assets/images/users.svg'"
                              [selected]="routerService.isContactsViewSelected()"
                              (click)="routerService.navigateToContacts()"></kal-button-menu>
+            <kal-button-menu [image]="'../../../assets/images/month-calendar.svg'"
+                             [selected]="routerService.isTimelineViewSelected()"
+                             (click)="routerService.navigateToTimeline()"></kal-button-menu>
             <kal-button-menu [label]="(user | async)?.displayName" [image]="'../../../assets/images/logout.svg'"
                              (click)="authService.signOut()"></kal-button-menu>
         </div>

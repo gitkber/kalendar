@@ -32,6 +32,10 @@ export class RouterService {
         this.router.navigateByUrl('/budget');
     }
 
+    navigateToTimeline() {
+        this.router.navigateByUrl('/timeline');
+    }
+
     navigateToKalYear(date: Date) {
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }
@@ -46,6 +50,10 @@ export class RouterService {
 
     isContactsViewSelected(): boolean {
         return this.router.isActive('/contacts', true);
+    }
+
+    isTimelineViewSelected(): boolean {
+        return this.router.isActive('/timeline', true);
     }
 
     isKalYearViewSelected(): boolean {

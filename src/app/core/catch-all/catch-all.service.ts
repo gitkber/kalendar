@@ -56,7 +56,11 @@ export class CatchAllService {
                 }).reduce((accumulator, currentValue) => {
                     const index = accumulator.findIndex(v => v.budgetType === currentValue.tagBudgetType);
                     if (index === -1) {
-                        accumulator.push({budgetType: currentValue.tagBudgetType, amount: +currentValue.budget, detail: [currentValue]});
+                        accumulator.push({
+                            budgetType: currentValue.tagBudgetType,
+                            amount: +currentValue.budget,
+                            detail: [currentValue]
+                        });
                     } else {
                         accumulator[index].amount += +currentValue.budget;
                         accumulator[index].detail.push(currentValue);
@@ -92,6 +96,9 @@ export class CatchAllService {
         this.firebaseListObservable.push(
             new CatchAll(this.authService.currentUserId, TagCase.OBJECTIVE, TagCaseType.HEALTH, 'arreter de fumer', null));
         this.firebaseListObservable.push(
+            new CatchAll(this.authService.currentUserId, TagCase.OBJECTIVE, TagCaseType.HEALTH, 'Bien chez soi. Opération \'blanc\' '
+                + ': Ménage in/out : intérieur et exterieur (jeter ce qui est inutile)... 15 à 30 minutes par jour', null));
+        this.firebaseListObservable.push(
             new CatchAll(this.authService.currentUserId, TagCase.TODO, TagCaseType.ADMINISTRATION, 'relever courrier', null));
         this.firebaseListObservable.push(
             new CatchAll(this.authService.currentUserId, TagCase.TODO, TagCaseType.ADMINISTRATION, 'payer factures', null));
@@ -105,6 +112,12 @@ export class CatchAllService {
             new CatchAll(this.authService.currentUserId, TagCase.TODO, TagCaseType.HEALTH, 'prendre rdv dentiste', null));
         this.firebaseListObservable.push(
             new CatchAll(this.authService.currentUserId, TagCase.VARIOUS, TagCaseType.THOUGHT_OF_DAY, 'Au bonheur de Elsa', null));
+        this.firebaseListObservable.push(
+            new CatchAll(this.authService.currentUserId, TagCase.VARIOUS, TagCaseType.THOUGHT_OF_DAY, 'Le changement est une porte '
+                + 'qui ne s\'ouvre que de l\'intérieur. (Tom Peters)', null));
+        this.firebaseListObservable.push(
+            new CatchAll(this.authService.currentUserId, TagCase.VARIOUS, TagCaseType.THOUGHT_OF_DAY, 'Je suis la seule '
+                + 'personne responsable de ma vie et de mon bonheur.', null));
     }
 
     insertProjetList() {
@@ -118,6 +131,8 @@ export class CatchAllService {
             TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.HOME, 'armoire à chaussures', null, null));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
             TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.CLOTHES, 'veste', null, null));
+        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
+            TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.CLOTHES, 'charms en forme de lotus blanc/jaune/vert/bleu/violet/noir', null, null));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
             TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HEALTH, 'dentiste', '2017-12-15', '47.52'));
         this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,

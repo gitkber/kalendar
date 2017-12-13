@@ -1,0 +1,9 @@
+<div class="row-container" *ngFor="let timeline of timelines | async">
+    {{ timeline.description }}
+    <div *ngFor="let objective of timeline.objectives">
+        {{ objective.description }}
+        <div *ngFor="let occurence of objective.occurences">
+            {{ occurence.kalendarDate }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+.row-container-add-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.row-container:hover {
+    font-size: large;
+}
+
+.icon-item {
+    display: flex;
+    justify-content: flex-end;
+    width: 5em;
+}
+
+.action {
+    padding-right: 1em;
+}
+
+.description-item {
+    flex: 1;
+    padding-top: 0.5em;
+    text-indent: 1.5em;
+}
+
+.descriptionDate-item {
+    padding-top: 0.5em;
+}

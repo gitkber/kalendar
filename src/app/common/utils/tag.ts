@@ -27,6 +27,14 @@ export const TagBudgetType = {
 /* SAMPLES ROW
 -TAG_CASE       -TAG_CASE_TYPE    -description              -deadline
 
+OBJECTIVE       HEALTH            WELL_TO_BE
+
+WELL_TO_BE      CITATION          Le  changement est une porte que ne s'ouvre que de l'intérieur. (Tom Peters)
+                                  Je suis la seule personne responsable de ma vie et de mon bonheur.
+WELL_TO_BE      TO_BUY            charms en forme de lotus blanc / jaune / vert / bleu / violet / noir
+WELL_TO_BE      Mission           Bien chez soi. Opération 'blanc' : Ménage in/out : intérieur et exterieur
+                                  (jeter ce qui est inutile)... 15 à 30 minutes par jour
+
 VARIOUS         THOUGHT_OF_DAY    au bonheur d'elsa
 
 BUDGET          TO_BUY            armoire à chaussures

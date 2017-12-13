@@ -9,11 +9,13 @@ import { ViewsFacade } from './views.facade';
 
 import { LoginViewComponent } from './login-view/login-view.component';
 import { HomeViewComponent } from './home-view/home-view.component';
-import { CatchAllViewComponent } from './catch-all-view/catch-all-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
+
+import { CatchAllViewComponent } from './catch-all-view/catch-all-view.component';
 import { BudgetViewComponent } from './budget-view/budget-view.component';
+import { TimelineViewComponent } from './timeline-view/timeline-view.component';
 
 import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-paper.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
@@ -24,9 +26,8 @@ import { CatchAllModalComponent } from './modal/catch-all-modal/catch-all-modal.
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, MonthViewComponent,
-        CatchAllViewComponent,
         ContactsViewComponent,
-        BudgetViewComponent,
+        CatchAllViewComponent, BudgetViewComponent, TimelineViewComponent,
         SheetOfPaperComponent,
         ImageModalComponent, CoreModalComponent, ContactModalComponent, CatchAllModalComponent],
     exports: [],
