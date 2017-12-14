@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Timeline } from '../timeline';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import { OneTimeline } from '../one-timeline/one-timeline';
 
 @Component({
     selector: 'timeline-list',
@@ -9,6 +9,6 @@ import { FirebaseListObservable } from 'angularfire2/database';
 })
 export class TimelineListComponent {
 
-    @Input() timelines: FirebaseListObservable<Timeline[]>;
+    @Input() oneTimelines: Observable<OneTimeline[]>;
 
 }

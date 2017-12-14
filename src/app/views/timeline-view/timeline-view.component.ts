@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { TimelineService } from '../../core/timeline/timeline.service';
-import { Timeline } from '../../core/timeline/timeline';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { OneTimeline } from '../../core/timeline/one-timeline/one-timeline';
 
 @Component({
     selector: 'timeline-view',
@@ -10,12 +10,13 @@ import { FirebaseListObservable } from 'angularfire2/database';
 })
 export class TimelineViewComponent implements OnInit {
 
-    public timelines: FirebaseListObservable<Timeline[]>;
+    public oneTimelines: Observable<OneTimeline[]>;
 
     constructor(private timelineService: TimelineService) { }
 
     ngOnInit(): void {
-        this.timelines = this.timelineService.getList();
+        // this.timelineService.insertFixtures();
+        this.oneTimelines = this.timelineService.mapList();
     }
 
 }

@@ -1,44 +1,46 @@
 export class OneTimeline {
-    public monthLines: MonthLine[] = [];
-
-    constructor(
-        public description: string,
-        public category: string,
-        public status: string
-    ) { }
-}
-
-export class MonthLine {
-    public description;
-    public days: number[] = [];
     public objectiveLines: ObjectiveLine[] = [];
 
     constructor(
-        public month: number,
-        public year: number
-    ) {
-        this.description = month + ' ' + year;
-        const lastDayOfMonth: number = new Date(this.year, this.month, 0).getDate();
+        public description: string
+        // public category: string,
+        // public status: string
+    ) { }
+}
 
-        for (let index = 1; index <= lastDayOfMonth; index++) {
-            this.days.push(index);
+export class ObjectiveLine {
+    public monthLines: MonthLine[] = [];
+
+    constructor(
+        public type: string,
+        public description: string
+        // public status: string
+    ) {
+        let currentDate: Date = new Date();
+
+        for (let index = 1; index <= 3; index++) {
+            this.monthLines.push(new MonthLine(currentDate));
+            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
         }
     }
 }
 
-export class ObjectiveLine {
-    public values: string[] = [];
-    public description;
+export class MonthLine {
+    public dayOfLines: DayOfLine[] = [];
 
     constructor(
-        public month: number,
-        public year: number
+        public date: Date
     ) {
-        this.description = month + ' ' + year;
-        const lastDayOfMonth: number = new Date(this.year, this.month, 0).getDate();
+        const lastDayOfMonth: number = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
         for (let index = 1; index <= lastDayOfMonth; index++) {
-            this.values.push('');
+            this.dayOfLines.push(new DayOfLine(index));
         }
     }
+}
+
+export class DayOfLine {
+    public status: string;
+
+    constructor(public day: number) {}
 }
