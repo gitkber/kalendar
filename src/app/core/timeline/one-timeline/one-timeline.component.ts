@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Timeline } from '../timeline';
+import { OneTimeline } from './one-timeline';
 
 @Component({
     selector: 'one-timeline',
@@ -8,6 +9,6 @@ import { Timeline } from '../timeline';
 })
 export class OneTimelineComponent {
 
-    @Input() timeline: Timeline;
+    @Input() oneTimeline: OneTimeline;
 
 }

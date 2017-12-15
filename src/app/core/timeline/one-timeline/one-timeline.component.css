@@ -1,39 +1,43 @@
-.row-container-add-item {
+.one-timeline-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 99%;
+    padding: 0 1em 0 1em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    background-color: #F8F8FF;
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.objective-container {
+    padding-top: 1em;
+}
+
+.month-row-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.month-value-item {
+    width: 10em;
+    text-align: center;
+    border: 0.1em solid black;
+}
+.day-line-item {
+    width: 1.5em;
+    text-align: center;
+    border: 0.1em solid black;
 }
 
-.row-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.done {
+    background-color: green;
 }
-
-.row-container:hover {
-    font-size: large;
-}
-
-.icon-item {
-    display: flex;
-    justify-content: flex-end;
-    width: 5em;
-}
-
-.action {
-    padding-right: 1em;
-}
-
-.description-item {
-    flex: 1;
-    padding-top: 0.5em;
-    text-indent: 1.5em;
-}
-
-.descriptionDate-item {
-    padding-top: 0.5em;
+.not-done {
+    background-color: red;
 }

@@ -24,7 +24,6 @@ import { MemoFormComponent } from './memo/memo-form/memo-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
-import { TimelineListComponent } from './timeline/timeline-list/timeline-list.component';
 import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.component';
 
 @NgModule({
@@ -32,7 +31,7 @@ import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.compo
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
-        TimelineListComponent, OneTimelineComponent,
+        OneTimelineComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
@@ -40,7 +39,7 @@ import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.compo
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
-        TimelineListComponent, OneTimelineComponent,
+        OneTimelineComponent,
         MemoFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,

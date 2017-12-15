@@ -1,5 +1,7 @@
 <div class="timeline-view-container">
 
-    <timeline-list [oneTimelines]="oneTimelines"></timeline-list>
+    <div *ngFor="let oneTimeline of oneTimelines | async">
+        <one-timeline [oneTimeline]="oneTimeline"></one-timeline>
+    </div>
 
 </div>
