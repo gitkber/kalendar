@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    width: 99%;
-    padding: 0 1em 0 1em;
+    width: 90%;
+    padding: 1em;
     box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
     background-color: #F8F8FF;
     background-image: linear-gradient(#eee .1em, transparent .1em);
@@ -12,9 +12,14 @@
     border: 1px solid #bbb;
     border-radius: 3px;
     cursor: pointer;
+    color: #4D5874;
 }
 
 .objective-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
     padding-top: 1em;
 }
 
@@ -26,18 +31,19 @@
 }
 .month-value-item {
     width: 10em;
-    text-align: center;
-    border: 0.1em solid black;
+    border-bottom: 0.1em solid black;
 }
 .day-line-item {
-    width: 1.5em;
+    width: 2em;
     text-align: center;
-    border: 0.1em solid black;
+    border-bottom: 0.1em solid black;
 }
 
 .done {
     background-color: green;
+    color: green;
 }
 .not-done {
     background-color: red;
+    color: red;
 }
