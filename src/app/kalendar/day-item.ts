@@ -15,8 +15,8 @@ export class DayItem {
         return this.type === Type.CONTACT;
     }
 
-    isMemo(): boolean {
-        return this.type === Type.MEMO;
+    isEvent(): boolean {
+        return this.type === Type.EVENT;
     }
 
     isPublicHoliday(): boolean {

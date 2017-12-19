@@ -52,7 +52,7 @@ export class DayInCarouselDaysComponent {
     }
 
     addDayItemMemo() {
-        this.showDayItemClick.emit(new DayItem(Type.MEMO, null, this.dateUtilService.toString(this.day.date), null));
+        this.showDayItemClick.emit(new DayItem(Type.EVENT, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemContactHoliday() {

@@ -5,38 +5,33 @@ import { QueryReference } from 'angularfire2/interfaces';
 import { AuthService } from '../service/auth.service';
 import { DateUtilService } from '../../common/utils/date-util.service';
 import { Action } from '../action';
-import { Memo, MemoAction } from './memo';
+import { Event, EventAction } from './event';
 
 @Injectable()
-export class MemoService {
+export class EventService {
 
-    private memosObservable: FirebaseListObservable<Memo[]>;
+    private path: string;
+    private firebaseListObservable: FirebaseListObservable<Event[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) {
-        this.memosObservable = this.db.list('/memos', {
-            query: {
-                orderByChild: 'user',
-                equalTo: this.authService.currentUserId
-            }
-        });
+        this.path = '/events/' + this.authService.currentUserId + '/';
+        this.firebaseListObservable = this.db.list(this.path);
     }
-
-    getList(): FirebaseListObservable<Memo[]> { return this.memosObservable }
 
     getRef(): QueryReference {
-        return this.memosObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
+        return this.firebaseListObservable.$ref;
     }
 
-    doActionOnMemo(event: MemoAction) {
+    doActionOnEvent(event: EventAction) {
         if (event.action === Action.INSERT) {
             for (let i = 0; i < event.datesToAdd.length; i++) {
-                this.memosObservable.push(new Memo(this.authService.currentUserId, event.memo.description,
+                this.firebaseListObservable.push(new Event(event.event.description,
                     this.dateUtilService.toString(event.datesToAdd[i])));
             }
         } else if (event.action === Action.UPDATE) {
-            this.memosObservable.update(event.memoKey, new Memo(this.authService.currentUserId, event.memo.description, event.memo.kalendarDate));
+            this.firebaseListObservable.update(event.eventKey, new Event(event.event.description, event.event.kalendarDate));
         } else if (event.action === Action.DELETE) {
-            this.memosObservable.remove(event.memoKey);
+            this.firebaseListObservable.remove(event.eventKey);
         }
     }
 

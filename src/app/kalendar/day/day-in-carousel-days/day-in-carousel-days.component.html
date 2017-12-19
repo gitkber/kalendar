@@ -19,13 +19,13 @@
             <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
                 <div class="label-item">
                     <i *ngIf="dayItem.isContact()" class="fa fa-birthday-cake fa-border"></i>
-                    <i *ngIf="dayItem.isMemo()" class="fa fa-newspaper-o fa-border"></i>
+                    <i *ngIf="dayItem.isEvent()" class="fa fa-newspaper-o fa-border"></i>
                     <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
                 </div>
                 <div *ngIf="day.isSelected">
                     <edit-icon-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
                                       [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
-                    <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isMemo()"
+                    <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
                                       [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-icon-action>
                 </div>
             </div>

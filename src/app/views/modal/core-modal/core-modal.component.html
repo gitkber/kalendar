@@ -7,9 +7,9 @@
             <contact-form *ngIf="dayItem.isContact()" [fillYear]="true"
                           [contact]="contactSelected"
                           (actionClick)="doActionOnContact($event)"></contact-form>
-            <memo-form *ngIf="dayItem.isMemo()"
-                       [memo]="memoSelected"
-                       (actionClick)="doActionOnMemo($event)"></memo-form>
+            <event-form *ngIf="dayItem.isEvent()"
+                        [event]="eventSelected"
+                        (actionClick)="doActionOnEvent($event)"></event-form>
             <contact-holiday-form *ngIf="dayItem.isContactHoliday()"
                                   [contactHoliday]="contactHolidaySelected"
                                   (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>

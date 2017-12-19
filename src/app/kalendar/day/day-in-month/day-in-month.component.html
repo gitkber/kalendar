@@ -11,7 +11,7 @@
         </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
             <i *ngIf="dayItem.isContact()" class="fa fa-birthday-cake fa-border"></i>
-            <i *ngIf="dayItem.isMemo()" class="fa fa-newspaper-o fa-border"></i>
+            <i *ngIf="dayItem.isEvent()" class="fa fa-newspaper-o fa-border"></i>
             <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
         </div>
     </div>

@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.memo-row {
+.event-row {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { ContactService } from '../core/contact/contact.service';
-import { MemoService } from '../core/memo/memo.service';
+import { EventService } from '../core/event/event.service';
 import { PublicHolidayService } from '../core/holiday/public-holiday/public-holiday.service';
 import { ContactHolidayService } from '../core/holiday/contact-holiday/contact-holiday.service';
 import { CatchAllService } from '../core/catch-all/catch-all.service';
 import { Contact } from '../core/contact/contact';
-import { Memo } from '../core/memo/memo';
+import { Event } from '../core/event/event';
 import { PublicHoliday } from '../core/holiday/public-holiday/public-holiday';
 import { ContactHoliday } from '../core/holiday/contact-holiday/contact-holiday';
 import { Type } from '../kalendar/type';
@@ -20,7 +20,7 @@ export class ViewsFacade {
 
     constructor(
         public contactService: ContactService,
-        public memoService: MemoService,
+        public eventService: EventService,
         public publicHolidayService: PublicHolidayService,
         public contactHolidayService: ContactHolidayService,
         public catchAllService: CatchAllService,
@@ -28,7 +28,7 @@ export class ViewsFacade {
 
     populateDays(days: Day[]) {
         this.populateContactsWithDays(days);
-        this.populateMemosWithDays(days);
+        this.populateEventsWithDays(days);
         this.populatePublicHolidaysWithDays(days);
         this.populateContactHolidaysWithDays(days);
     }
@@ -83,29 +83,29 @@ export class ViewsFacade {
         });
     }
 
-    private populateMemosWithDays(days: Day[]) {
-        this.memoService.getRef().on('child_added', data => {
-            const entity: Memo = data.val();
+    private populateEventsWithDays(days: Day[]) {
+        this.eventService.getRef().on('child_added', data => {
+            const entity: Event = data.val();
             const date: Date = new Date(entity.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
-                    // console.log('child_added memo', entity);
-                    d.dayItems.push(new DayItem(Type.MEMO, data.key, entity.kalendarDate, entity.description));
+                    // console.log('child_added event', entity);
+                    d.dayItems.push(new DayItem(Type.EVENT, data.key, entity.kalendarDate, entity.description));
                 }
             })
         });
 
-        this.memoService.getRef().on('child_changed', data => {
-            const entity: Memo = data.val();
+        this.eventService.getRef().on('child_changed', data => {
+            const entity: Event = data.val();
             const date: Date = new Date(entity.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
                     && date.getMonth() === d.date.getMonth()
                     && date.getFullYear() === d.date.getFullYear()) {
                     d.dayItems.forEach(di => {
-                        // console.log('child_changed memo', entity);
+                        // console.log('child_changed event', entity);
                         if (di.key === data.key) {
                             di.principalItem = entity.description;
                         }
@@ -114,8 +114,8 @@ export class ViewsFacade {
             })
         });
 
-        this.memoService.getRef().on('child_removed', data => {
-            const entity: Memo = data.val();
+        this.eventService.getRef().on('child_removed', data => {
+            const entity: Event = data.val();
             const date: Date = new Date(entity.kalendarDate);
             days.forEach(d => {
                 if (date.getDate() === d.date.getDate()
@@ -123,7 +123,7 @@ export class ViewsFacade {
                     && date.getFullYear() === d.date.getFullYear()) {
                     d.dayItems.forEach(di => {
                         if (di.key === data.key) {
-                            // console.log('child_removed memo', entity);
+                            // console.log('child_removed event', entity);
                             d.dayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })

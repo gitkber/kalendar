@@ -6,7 +6,7 @@ import { ViewsFacade } from '../../views.facade';
 import { Contact, ContactAction } from '../../../core/contact/contact';
 import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday';
 import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
-import { Memo, MemoAction } from '../../../core/memo/memo';
+import { Event, EventAction } from '../../../core/event/event';
 
 @Component({
     selector: 'core-modal',
@@ -20,7 +20,7 @@ export class CoreModalComponent {
     public isOpen = false;
     public dayItem: DayItem;
 
-    public memoSelected: Memo;
+    public eventSelected: Event;
     public contactSelected: Contact;
     public contactHolidaySelected: ContactHoliday;
     public publicHolidaySelected: PublicHoliday;
@@ -42,9 +42,6 @@ export class CoreModalComponent {
         this.isOpen = true;
         this.dayItem = dayItem;
         this.showDayItem(dayItem);
-        // this.date = date;
-        // this.memoSelected = new Memo(null, null, this.dateUtilService.toString(this.date));
-        // this.editMemos();
     }
 
     close(checkBlocking = false): void {
@@ -60,10 +57,10 @@ export class CoreModalComponent {
             if (event.key !== null) {
                 this.contactSelected['$key'] = event.key;
             }
-        } else if (event.isMemo()) {
-            this.memoSelected = new Memo(null, event.principalItem, event.date);
+        } else if (event.isEvent()) {
+            this.eventSelected = new Event(event.principalItem, event.date);
             if (event.key !== null) {
-                this.memoSelected['$key'] = event.key;
+                this.eventSelected['$key'] = event.key;
             }
         } else if (event.isContactHoliday()) {
             this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, event.date);
@@ -78,8 +75,8 @@ export class CoreModalComponent {
         }
     }
 
-    doActionOnMemo(event: MemoAction) {
-        this.viewsFacade.memoService.doActionOnMemo(event);
+    doActionOnEvent(event: EventAction) {
+        this.viewsFacade.eventService.doActionOnEvent(event);
         this.close();
     }
 

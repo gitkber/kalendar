@@ -1,19 +1,18 @@
 import { Action } from '../action';
 
-export class Memo {
+export class Event {
     constructor(
-        public user: string,
         public description: string,
         public kalendarDate: string // yyyy-MM-dd
     ) { }
 }
 
-export class MemoAction {
+export class EventAction {
     public datesToAdd: Date[] = [];
-    public memoKey: string;
+    public eventKey: string;
 
     constructor(
         public action: Action,
-        public memo?: Memo
+        public event?: Event
     ) {}
 }

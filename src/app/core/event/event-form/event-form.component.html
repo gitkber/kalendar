@@ -1,23 +1,23 @@
 <kal-panel-form tabindex="0" auto-focus [subTitle]="title">
-    <form class="form-container" (ngSubmit)="saveMemo()" [formGroup]="memoCriteriaFormGroup" #addMemoForm="ngForm">
-        <div class="memo-row">
+    <form class="form-container" (ngSubmit)="saveEvent()" [formGroup]="eventCriteriaFormGroup" #addEventForm="ngForm">
+        <div class="event-row">
             <label class="labelFor" for="inputDescription">Description</label>
             <input formControlName="description" name="description" id="inputDescription" #inputDescription/>
         </div>
-        <div class="memo-row">
+        <div class="event-row">
             <label class="labelFor">Du</label>
             <label>{{ kalendarDate | date: 'EEEE dd MMMM yyyy'}}</label>
         </div>
-        <div class="memo-row">
+        <div class="event-row">
             <label class="labelFor">Au</label>
             <label> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</label>
         </div>
-        <div class="memo-row">
+        <div class="event-row">
             <label class="labelFor" for="inputDuplication">Dupliquer</label>
             <input formControlName="duplication" name="duplication" id="inputDuplication"
                    (change)="changeDuplicationToKalendarDate($event)"/>
         </div>
-        <div class="memo-row">
+        <div class="event-row">
             <label class="labelFor" for="inputIncludeWeekend">Week-end inclus</label>
             <div class="switch switch-yellow">
                 <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
@@ -31,7 +31,7 @@
         </div>
     </form>
     <div class="panel-action">
-        <kal-action [image]="'fa-save'" (click)="saveMemo()"></kal-action>
-        <kal-action [image]="'fa-trash-o'" (click)="deleteMemo()"></kal-action>
+        <kal-action [image]="'fa-save'" (click)="saveEvent()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteEvent()"></kal-action>
     </div>
 </kal-panel-form>
