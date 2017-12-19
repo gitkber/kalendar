@@ -13,3 +13,8 @@
 .one-timeline-container {
     margin-bottom: 1em;
 }
+
+.principal-container {
+    height: 100%;
+    width: 50%;
+}

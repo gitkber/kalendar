@@ -9,6 +9,7 @@ import { EventService } from './event/event.service';
 import { ImageService } from './image/image.service';
 import { TimelineService } from './timeline/timeline.service';
 import { CatchAllService } from './catch-all/catch-all.service';
+import { ObjectiveService } from './objective/objective.service';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
@@ -25,13 +26,14 @@ import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holi
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
 import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.component';
+import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
-        OneTimelineComponent,
+        OneTimelineComponent, ObjectiveListComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
@@ -39,12 +41,13 @@ import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.compo
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
-        OneTimelineComponent,
+        OneTimelineComponent, ObjectiveListComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
-    providers: [ContactService, EventService, PublicHolidayService, ContactHolidayService, ImageService, CatchAllService, TimelineService,
+    providers: [ContactService, EventService, PublicHolidayService, ContactHolidayService, ImageService,
+        CatchAllService, TimelineService, ObjectiveService,
         AuthService, RouterService]
 })
 export class CoreModule {
