@@ -11,7 +11,7 @@ export class ObjectiveService {
     private firebaseListObservable: FirebaseListObservable<Objective[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-        this.path = '/objective/' + this.authService.currentUserId + '/';
+        this.path = '/objectives/' + this.authService.currentUserId + '/';
         this.firebaseListObservable = this.db.list(this.path);
     }
 

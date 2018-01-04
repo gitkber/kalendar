@@ -27,13 +27,14 @@ import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-h
 import { WeekImageComponent } from './image/week-image/week-image.component';
 import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.component';
 import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
+import { ObjectiveFormComponent } from './objective/objective-form/objective-form.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
-        OneTimelineComponent, ObjectiveListComponent,
+        OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
@@ -41,7 +42,7 @@ import { ObjectiveListComponent } from './objective/objective-list/objective-lis
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
         CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
-        OneTimelineComponent, ObjectiveListComponent,
+        OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,

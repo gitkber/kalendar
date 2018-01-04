@@ -22,6 +22,7 @@ import { ImageModalComponent } from './modal/image-modal/image-modal.component';
 import { CoreModalComponent } from './modal/core-modal/core-modal.component';
 import { ContactModalComponent } from './modal/contact-modal/contact-modal.component';
 import { CatchAllModalComponent } from './modal/catch-all-modal/catch-all-modal.component';
+import { ObjectiveModalComponent } from './modal/objective-modal/objective-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
@@ -29,7 +30,7 @@ import { CatchAllModalComponent } from './modal/catch-all-modal/catch-all-modal.
         ContactsViewComponent,
         CatchAllViewComponent, BudgetViewComponent, TimelineViewComponent,
         SheetOfPaperComponent,
-        ImageModalComponent, CoreModalComponent, ContactModalComponent, CatchAllModalComponent],
+        ImageModalComponent, CoreModalComponent, ContactModalComponent, CatchAllModalComponent, ObjectiveModalComponent],
     exports: [],
     providers: [ViewsFacade]
 })
