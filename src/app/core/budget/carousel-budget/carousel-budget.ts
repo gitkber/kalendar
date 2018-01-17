@@ -1,8 +1,8 @@
-import { MontthInCarouselBudget } from './month-in-carousel-budget/montth-in-carousel-budget';
+import { MonthInCarouselBudget } from './month-in-carousel-budget/month-in-carousel-budget';
 
 export class CarouselBudget {
 
-    public months: MontthInCarouselBudget[] = [];
+    public months: MonthInCarouselBudget[] = [];
     private today: Date;
     public monthSelected: Date;
 
@@ -15,19 +15,19 @@ export class CarouselBudget {
     }
 
     private initMonth(date: Date) {
-        this.months.push(new MontthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 3, date.getDate(), 12, 0, 0)));
-        this.months.push(new MontthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 2, date.getDate(), 12, 0, 0)));
-        this.months.push(new MontthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 1, date.getDate(), 12, 0, 0)));
-        this.months.push(new MontthInCarouselBudget(date));
-        this.months.push(new MontthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() + 1, date.getDate(), 12, 0, 0)));
-        this.months.push(new MontthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() + 2, date.getDate(), 12, 0, 0)));
+        this.months.push(new MonthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 3, date.getDate(), 12, 0, 0)));
+        this.months.push(new MonthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 2, date.getDate(), 12, 0, 0)));
+        this.months.push(new MonthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() - 1, date.getDate(), 12, 0, 0)));
+        this.months.push(new MonthInCarouselBudget(date));
+        this.months.push(new MonthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() + 1, date.getDate(), 12, 0, 0)));
+        this.months.push(new MonthInCarouselBudget(new Date(date.getFullYear(), date.getMonth() + 2, date.getDate(), 12, 0, 0)));
     }
 
-    private previousMonth(count: number): MontthInCarouselBudget[] {
-        const newMonth: MontthInCarouselBudget[] = [];
+    private previousMonth(count: number): MonthInCarouselBudget[] {
+        const newMonth: MonthInCarouselBudget[] = [];
         console.log('prev', count);
         for (let i = 0; i < count; i++) {
-            const month: MontthInCarouselBudget = new MontthInCarouselBudget(
+            const month: MonthInCarouselBudget = new MonthInCarouselBudget(
                 new Date(this.months[0].date.getFullYear(), this.months[0].date.getMonth() - 1, this.months[0].date.getDate(), 12, 0, 0));
             newMonth.push(month);
             this.months.pop();
@@ -37,10 +37,10 @@ export class CarouselBudget {
         return newMonth;
     }
 
-    private nextMonth(count: number): MontthInCarouselBudget[] {
-        const newMonth: MontthInCarouselBudget[] = [];
+    private nextMonth(count: number): MonthInCarouselBudget[] {
+        const newMonth: MonthInCarouselBudget[] = [];
         for (let i = 0; i < count; i++) {
-            const month: MontthInCarouselBudget = new MontthInCarouselBudget(
+            const month: MonthInCarouselBudget = new MonthInCarouselBudget(
                 new Date(this.months[5].date.getFullYear(), this.months[5].date.getMonth() + 1, this.months[5].date.getDate(), 12, 0, 0));
             newMonth.push(month);
             this.months.shift();
@@ -50,7 +50,7 @@ export class CarouselBudget {
         return newMonth;
     }
 
-    goToDate(monthSelected: Date): MontthInCarouselBudget[] {
+    goToDate(monthSelected: Date): MonthInCarouselBudget[] {
         if (monthSelected < this.monthSelected) {
             return this.previousMonth(this.monthBetween(monthSelected, this.monthSelected));
         } else {

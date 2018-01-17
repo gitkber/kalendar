@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Navigation } from '../../../../kalendar/navigation';
 import { DayItem } from '../../../../kalendar/day-item';
-import { MontthInCarouselBudget } from './montth-in-carousel-budget';
+import { MonthInCarouselBudget } from './month-in-carousel-budget';
 
 @Component({
     selector: 'month-in-carousel-budget',
@@ -10,7 +10,7 @@ import { MontthInCarouselBudget } from './montth-in-carousel-budget';
 })
 export class MonthInCarouselBudgetComponent {
 
-    @Input() month: MontthInCarouselBudget;
+    @Input() month: MonthInCarouselBudget;
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 

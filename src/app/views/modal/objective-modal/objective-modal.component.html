@@ -2,8 +2,8 @@
     <div class="modal-overlay" (click)="close(true)"></div>
 
     <div class="modal">
-        <catch-all-form [catchAll]="objective"
-                        (actionClick)="doActionOnCatchAll($event)"></catch-all-form>
+        <objective-form [objective]="objective"
+                        (actionClick)="doActionOnCatchAll($event)"></objective-form>
     </div>
 
 </div>

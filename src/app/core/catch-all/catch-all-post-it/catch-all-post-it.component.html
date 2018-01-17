@@ -1,9 +1,0 @@
-<post-it [reference]="tagCaseType" (click)="showDetail()">
-    <div *ngFor="let catchAll of catchAlls | async">
-        <i *ngIf="catchAll.tagCase === TagCase.OBJECTIVE" class="fa fa-eye"></i>
-        <i *ngIf="catchAll.tagCase === TagCase.TODO" class="fa fa-square-o"></i>
-        <i *ngIf="catchAll.tagCase === TagCase.VARIOUS" class="fa fa-commenting-o"></i>
-        <i *ngIf="catchAll.tagCase === TagCase.BUDGET" class="fa fa-money"></i>
-        {{catchAll.description}}
-    </div>
-</post-it>

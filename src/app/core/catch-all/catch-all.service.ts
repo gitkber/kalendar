@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import { CatchAll, CatchAllAction, CatchBudget, CatchProject } from './catch-all';
+import { CatchAll, CatchAllAction, CatchProject, TagCase, TagCaseType } from './catch-all';
 import { Action } from '../action';
 import { AuthService } from '../service/auth.service';
-import { TagBudgetType, TagCase, TagCaseType } from '../../common/utils/tag';
 
 @Injectable()
 export class CatchAllService {
@@ -123,46 +122,6 @@ export class CatchAllService {
     insertProjetList() {
         this.firebaseListObservable.push(
             new CatchProject(null, TagCase.TODO, TagCaseType.PROJECT, 'UC_VIEWS', 'HOME_VIEW', 'layout', 'IN_PROGRESS', null));
-    }
-
-    insertBudgetList() {
-        // https://json-csv.com/
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.HOME, 'armoire à chaussures', null, null));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.CLOTHES, 'veste', null, null));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.TO_BUY, TagBudgetType.CLOTHES, 'charms en forme de lotus blanc/jaune/vert/bleu/violet/noir', null, null));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HEALTH, 'dentiste', '2017-12-15', '47.52'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'pret hypothecaire', '2017-10-01', '672.85'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'pret hypothecaire', '2017-11-01', '672.85'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'pret hypothecaire', '2017-12-01', '672.85'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'luminus', '2017-11-05', '202.85'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'luminus', '2017-12-05', '202.85'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.HOME, 'base', '2017-12-25', '15.00'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-11-05', '115.40'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-12-05', '12.50'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'carrefour', '2017-12-15', '125.24'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.FOOD, 'quick', '2017-12-16', '45.94'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'pantalon', '2017-12-03', '65.22'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'gants elsa', '2017-12-01', '10.99'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.MIN, TagBudgetType.CLOTHES, 'divers elsa', '2017-12-22', '101.98'));
-        this.firebaseListObservable.push(new CatchBudget(this.authService.currentUserId,
-            TagCase.BUDGET, TagCaseType.PLUS, TagBudgetType.WORK, 'salaire', '2017-12-22', '1296.98'));
     }
 
 }

@@ -1,10 +1,10 @@
-import { CatchBudget } from '../../catch-all';
+import { Budget } from '../../budget';
 
-export class MontthInCarouselBudget {
+export class MonthInCarouselBudget {
 
     public firstDate: Date;
     public lastDate: Date;
-    public catchBudgets: CatchBudget[] = [];
+    public budgets: Budget[] = [];
     public budgetByGroups: any[] = [];
 
     constructor(
@@ -12,7 +12,6 @@ export class MontthInCarouselBudget {
     ) {
         this.firstDate = new Date(date.getFullYear(), date.getMonth(), 1);
         this.lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        // console.log(this.firstDate, this.lastDate);
     }
 
 }

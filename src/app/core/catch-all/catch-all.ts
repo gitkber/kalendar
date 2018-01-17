@@ -34,6 +34,24 @@ export class CatchBudget extends CatchAll {
     }
 }
 
+export const TagCase = {
+    OBJECTIVE: 'OBJECTIVE',     // (eye)           - [ADMINISTRATION - HEALTH - FAMILY - PROJECT]
+    TODO: 'TODOs',              // (square)        - [ADMINISTRATION - HEALTH - FAMILY - PROJECT]
+    BUDGET: 'BUDGET',           // (money)         - [TO_BUY]
+    VARIOUS: 'VARIOUS'          // (commenting)    - [THOUGHT_OF_DAY]
+}
+
+export const TagCaseType = {
+    ADMINISTRATION: 'ADMINISTRATION',
+    HEALTH: 'HEALTH',
+    FAMILY: 'FAMILY',
+    PROJECT: 'PROJECT',
+    THOUGHT_OF_DAY: 'THOUGHT_OF_DAY',
+    TO_BUY: 'TO_BUY',
+    MIN: 'MIN',
+    PLUS: 'PLUS'
+}
+
 /* BUDGET
 BUDGET          MIN         [HOME - CAR - FOOD - HEALTH - ELSA (contact) -  K    (contact) ]
 BUDGET          PLUS        [WORK - ALLOC]

@@ -3,11 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { ViewsFacade } from '../views.facade';
 import { AppService } from '../../app.service';
 import { RouterService } from '../../core/service/router.service';
-import { CatchAll } from '../../core/catch-all/catch-all';
-import { CarouselBudget } from '../../core/catch-all/carousel-budget/carousel-budget';
-import { TagCaseType } from '../../common/utils/tag';
+import { CarouselBudget } from '../../core/budget/carousel-budget/carousel-budget';
 import { DayItem } from '../../kalendar/day-item';
 import { Navigation } from '../../kalendar/navigation';
+import { Budget } from '../../core/budget/budget';
 
 @Component({
     selector: 'budget-view',
@@ -17,10 +16,7 @@ import { Navigation } from '../../kalendar/navigation';
 export class BudgetViewComponent implements OnInit {
 
     public carouselBudget: CarouselBudget;
-    public catchAllsToBuy: Observable<CatchAll[]>;
-    public test: any[];
-
-    TagCaseType = TagCaseType;
+    public budgetToBuy: Observable<Budget[]>;
 
     constructor(
         public routerService: RouterService,
@@ -29,19 +25,15 @@ export class BudgetViewComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        // this.viewsFacade.catchAllService.insertBudgetList();
-        // this.viewsFacade.catchAllService.insertOtherList();
-        // this.viewsFacade.catchAllService.insertProjetList();
+        // this.viewsFacade.budgetService.insertBudgetList();
 
         this.carouselBudget = new CarouselBudget(this.appService.currentDate);
         this.viewsFacade.populateMonths(this.carouselBudget.months);
         this.carouselBudget.months.forEach(m => {
-            m.budgetByGroups = this.viewsFacade.catchAllService.sumByGroupCatchBudgetMin(m.firstDate, m.lastDate);
+            m.budgetByGroups = this.viewsFacade.budgetService.sumByTagOperationMin(m.firstDate, m.lastDate);
         });
 
-        this.catchAllsToBuy = this.viewsFacade.catchAllService.getCatchAllByTagCaseType(TagCaseType.TO_BUY);
-        this.test = this.viewsFacade.catchAllService
-            .sumByGroupCatchBudgetMin(this.carouselBudget.months[2].firstDate, this.carouselBudget.months[2].lastDate);
+        this.budgetToBuy = this.viewsFacade.budgetService.findAllTagOperationToBuy();
     }
 
     navigate(event: Navigation) {

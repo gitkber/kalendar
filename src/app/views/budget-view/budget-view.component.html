@@ -9,8 +9,10 @@
         </div>
     </div>
     <div class="postit-container">
-        <catch-all-post-it [tagCaseType]="TagCaseType.TO_BUY"
-                           [catchAlls]="catchAllsToBuy"
-                           (showDetailClick)="routerService.navigateToCatchAll($event)"></catch-all-post-it>
+        <post-it [reference]="'A acheter'">
+            <div *ngFor="let itemToBuy of budgetToBuy | async">
+                <i class="fa fa-money"></i>{{itemToBuy.description}}
+            </div>
+        </post-it>
     </div>
 </div>

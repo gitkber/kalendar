@@ -1,28 +1,20 @@
-export const TagCase = {
-    OBJECTIVE: 'OBJECTIVE',     // (eye)           - [ADMINISTRATION - HEALTH - FAMILY - PROJECT]
-    TODO: 'TODOs',              // (square)        - [ADMINISTRATION - HEALTH - FAMILY - PROJECT]
-    BUDGET: 'BUDGET',           // (money)         - [TO_BUY]
-    VARIOUS: 'VARIOUS'          // (commenting)    - [THOUGHT_OF_DAY]
+/** Budget */
+export enum TagBudgetOperation {
+    MIN = 'MIN',
+    PLUS = 'PLUS',
+    TO_BUY = 'TO_BUY',
+}
+/** Budget */
+export enum TagBudgetType {
+    HOME = 'HOME',
+    CAR = 'CAR',
+    CLOTHES = 'CLOTHES',
+    FOOD = 'FOOD',
+    HEALTH = 'HEALTH',
+    WORK = 'WORK',
+    OTHER = 'OTHER',
 }
 
-export const TagCaseType = {
-    ADMINISTRATION: 'ADMINISTRATION',
-    HEALTH: 'HEALTH',
-    FAMILY: 'FAMILY',
-    PROJECT: 'PROJECT',
-    THOUGHT_OF_DAY: 'THOUGHT_OF_DAY',
-    TO_BUY: 'TO_BUY',
-    MIN: 'MIN',
-    PLUS: 'PLUS'
-}
-
-export const TagBudgetType = {
-    HOME: 'HOME',
-    CLOTHES: 'CLOTHES',
-    FOOD: 'FOOD',
-    HEALTH: 'HEALTH',
-    WORK: 'WORK'
-}
 
 /* SAMPLES ROW
 -TAG_CASE       -TAG_CASE_TYPE    -description              -deadline

@@ -8,18 +8,15 @@ import { PublicHolidayService } from './holiday/public-holiday/public-holiday.se
 import { EventService } from './event/event.service';
 import { ImageService } from './image/image.service';
 import { TimelineService } from './timeline/timeline.service';
-import { CatchAllService } from './catch-all/catch-all.service';
 import { ObjectiveService } from './objective/objective.service';
+import { BudgetService } from './budget/budget.service';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { BirthdayPostItComponent } from './contact/birthday-post-it/birthday-post-it.component';
-import { CatchAllFormComponent } from './catch-all/catch-all-form/catch-all-form.component';
-import { CatchAllListComponent } from './catch-all/catch-all-list/catch-all-list.component';
-import { CatchAllPostItComponent } from './catch-all/catch-all-post-it/catch-all-post-it.component';
-import { CarouselBudgetComponent } from './catch-all/carousel-budget/carousel-budget.component';
-import { MonthInCarouselBudgetComponent } from './catch-all/carousel-budget/month-in-carousel-budget/month-in-carousel-budget.component';
+import { CarouselBudgetComponent } from './budget/carousel-budget/carousel-budget.component';
+import { MonthInCarouselBudgetComponent } from './budget/carousel-budget/month-in-carousel-budget/month-in-carousel-budget.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { EventFormComponent } from './event/event-form/event-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
@@ -33,7 +30,7 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
-        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent, CarouselBudgetComponent, MonthInCarouselBudgetComponent,
+        CarouselBudgetComponent, MonthInCarouselBudgetComponent,
         OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
@@ -41,14 +38,13 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
         WeekImageComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
-        CatchAllFormComponent, CatchAllListComponent, CatchAllPostItComponent,
         OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     providers: [ContactService, EventService, PublicHolidayService, ContactHolidayService, ImageService,
-        CatchAllService, TimelineService, ObjectiveService,
+        TimelineService, ObjectiveService, BudgetService,
         AuthService, RouterService]
 })
 export class CoreModule {
