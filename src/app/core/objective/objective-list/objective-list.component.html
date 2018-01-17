@@ -10,7 +10,7 @@
                      (click)="showItem(item)"></edit-action>
     </div>
     <div>
-        <div class="row-container" *ngFor="let todo of item.todos">
+        <div class="row-container" *ngFor="let todo of item.details">
             <div class="description-item">{{ todo.description }} - {{ todo.todoType }}</div>
             <edit-action class="action"
                          [tooltip]="'Modifier un objectif'"

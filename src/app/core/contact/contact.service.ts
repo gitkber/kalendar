@@ -9,41 +9,36 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class ContactService {
 
-    private contactsObservable: FirebaseListObservable<Contact[]>;
+    private path: string;
+    private firebaseListObservable: FirebaseListObservable<Contact[]>;
     private postItContactsObservable: FirebaseListObservable<Contact[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-        this.contactsObservable = this.db.list('/contacts', {
-            query: {
-                orderByChild: 'user',
-                equalTo: this.authService.currentUserId
-            }
-        });
+        this.path = '/contacts/' + this.authService.currentUserId + '/';
+        this.firebaseListObservable = this.db.list(this.path);
         const subject = new BehaviorSubject<number>(4);
-        this.postItContactsObservable = this.db.list('/contacts', {
+        this.postItContactsObservable = this.db.list(this.path, {
             query: {
-                limitToFirst: subject,
-                orderByChild: 'user',
-                equalTo: this.authService.currentUserId
+                limitToFirst: subject
             }
         });
     }
 
-    getList(): FirebaseListObservable<Contact[]> { return this.contactsObservable }
+    getList(): FirebaseListObservable<Contact[]> { return this.firebaseListObservable }
 
     getRef(): any {
-        return this.contactsObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
+        return this.firebaseListObservable.$ref;
     }
 
     doActionOnContact(event: ContactAction) {
         if (event.action === Action.INSERT) {
-            this.contactsObservable.push(new Contact(this.authService.currentUserId,
+            this.firebaseListObservable.push(new Contact(
                 event.contact.firstname, event.contact.lastname, event.contact.birthdate));
         } else if (event.action === Action.UPDATE) {
-            this.contactsObservable.update(event.contactKey, new Contact(this.authService.currentUserId,
+            this.firebaseListObservable.update(event.contactKey, new Contact(
                 event.contact.firstname, event.contact.lastname, event.contact.birthdate));
         } else if (event.action === Action.DELETE) {
-            this.contactsObservable.remove(event.contactKey);
+            this.firebaseListObservable.remove(event.contactKey);
         }
     }
 

@@ -15,3 +15,10 @@ export enum TagBudgetType {
     OTHER = 'OTHER',
 }
 
+/** Objective */
+export enum TagObjectiveType {
+    OBJ_BY_DAY = 'OBJ_BY_DAY',
+    OBJ_ONE_DAY = 'OBJ_ONE_DAY',
+    OBJ_BY_WEEK = 'OBJ_BY_WEEK',
+    OBJ_BY_MONTH = 'OBJ_BY_MONTH',
+}

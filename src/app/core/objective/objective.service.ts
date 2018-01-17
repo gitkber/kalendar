@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/catch';
 import { AuthService } from '../service/auth.service';
-import { Objective, Todo, TodoType } from './objective';
+import { Objective, ObjectiveDetail } from './objective';
+import { TagObjectiveType } from '../../common/utils/tag';
 
 @Injectable()
 export class ObjectiveService {
@@ -21,26 +22,26 @@ export class ObjectiveService {
         this.firebaseListObservable.push(objective);
     }
 
-    insertTodo(objective: Objective, todo: Todo) {
+    insertTodo(objective: Objective, todo: ObjectiveDetail) {
         this.db.list(this.path + objective['$key'] + 'todos').push(todo);
     }
 
     insertFixtures() {
         let objective: Objective = new Objective('Rangement', 'WELL_TO_BE / HOME');
-        objective.todos.push(new Todo(TodoType.OBJ_BY_DAY, 'rangement en surface 10 min par jour'));
-        objective.todos.push(new Todo(TodoType.OBJ_ONE_DAY, 'trier jouets'));
-        objective.todos.push(new Todo(TodoType.OBJ_ONE_DAY, 'trier/ranger dans les armoires'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_DAY, 'rangement en surface 10 min par jour'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trier jouets'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trier/ranger dans les armoires'));
         this.firebaseListObservable.push(objective);
 
         objective = new Objective('Papiers', 'WELL_TO_BE / HOME / ADMINISTRATION');
-        objective.todos.push(new Todo(TodoType.OBJ_BY_DAY, 'trier papiers 15 min par jour'));
-        objective.todos.push(new Todo(TodoType.OBJ_BY_WEEK, 'relever courriers'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_DAY, 'trier papiers 15 min par jour'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_WEEK, 'relever courriers'));
         this.firebaseListObservable.push(objective);
 
         objective = new Objective('Faire du sport', 'WELL_TO_BE / HEALTH');
-        objective.todos.push(new Todo(TodoType.OBJ_ONE_DAY, 'trouver un sport'));
-        objective.todos.push(new Todo(TodoType.OBJ_BY_MONTH, 'natation'));
-        objective.todos.push(new Todo(TodoType.OBJ_BY_MONTH, 'marche / course'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trouver un sport'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'natation'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'marche / course'));
         this.firebaseListObservable.push(objective);
     }
 

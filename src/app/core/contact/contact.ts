@@ -2,7 +2,6 @@ import { Action } from '../action';
 
 export class Contact {
     constructor(
-        public user: string,
         public firstname: string,
         public lastname: string,
         public birthdate: string // yyyy-MM-dd

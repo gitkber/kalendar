@@ -53,7 +53,7 @@ export class CoreModalComponent {
 
     showDayItem(event: DayItem) {
         if (event.isContact()) {
-            this.contactSelected = new Contact(null, event.principalItem, event.additionalItem, event.date);
+            this.contactSelected = new Contact(event.principalItem, event.additionalItem, event.date);
             if (event.key !== null) {
                 this.contactSelected['$key'] = event.key;
             }

@@ -1,7 +1,8 @@
 import { Action } from '../action';
+import { TagObjectiveType } from '../../common/utils/tag';
 
 export class Objective {
-    public todos: Todo[] = [];
+    public details: ObjectiveDetail[] = [];
 
     constructor(
         public description: string,
@@ -9,18 +10,11 @@ export class Objective {
     ) { }
 }
 
-export class Todo {
+export class ObjectiveDetail {
     constructor(
-        public todoType: TodoType,
+        public tagType: TagObjectiveType,
         public description: string
     ) { }
-}
-
-export enum TodoType {
-    OBJ_BY_DAY = 'OBJ_BY_DAY',
-    OBJ_ONE_DAY = 'OBJ_ONE_DAY',
-    OBJ_BY_WEEK = 'OBJ_BY_WEEK',
-    OBJ_BY_MONTH = 'OBJ_BY_MONTH',
 }
 
 export class ObjectiveAction {
