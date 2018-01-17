@@ -7,7 +7,6 @@ import { ContactHolidayService } from './holiday/contact-holiday/contact-holiday
 import { PublicHolidayService } from './holiday/public-holiday/public-holiday.service';
 import { EventService } from './event/event.service';
 import { ImageService } from './image/image.service';
-import { TimelineService } from './timeline/timeline.service';
 import { ObjectiveService } from './objective/objective.service';
 import { BudgetService } from './budget/budget.service';
 import { RouterService } from './service/router.service';
@@ -22,7 +21,6 @@ import { EventFormComponent } from './event/event-form/event-form.component';
 import { PublicHolidayFormComponent } from './holiday/public-holiday/public-holiday-form/public-holiday-form.component';
 import { ContactHolidayFormComponent } from './holiday/contact-holiday/contact-holiday-form/contact-holiday-form.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
-import { OneTimelineComponent } from './timeline/one-timeline/one-timeline.component';
 import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
 import { ObjectiveFormComponent } from './objective/objective-form/objective-form.component';
 
@@ -31,20 +29,21 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
     declarations: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CarouselBudgetComponent, MonthInCarouselBudgetComponent,
-        OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
+        ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     exports: [LoginFormComponent,
-        ContactFormComponent, ContactListComponent, BirthdayPostItComponent, CarouselBudgetComponent,
-        OneTimelineComponent, ObjectiveListComponent, ObjectiveFormComponent,
+        ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
+        CarouselBudgetComponent,
+        ObjectiveListComponent, ObjectiveFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
         WeekImageComponent],
     providers: [ContactService, EventService, PublicHolidayService, ContactHolidayService, ImageService,
-        TimelineService, ObjectiveService, BudgetService,
+        ObjectiveService, BudgetService,
         AuthService, RouterService]
 })
 export class CoreModule {

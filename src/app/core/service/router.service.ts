@@ -28,8 +28,8 @@ export class RouterService {
         this.router.navigateByUrl('/budget');
     }
 
-    navigateToTimeline() {
-        this.router.navigateByUrl('/timeline');
+    navigateToObjectives() {
+        this.router.navigateByUrl('/objective');
     }
 
     navigateToKalYear(date: Date) {
@@ -48,8 +48,8 @@ export class RouterService {
         return this.router.isActive('/contacts', true);
     }
 
-    isTimelineViewSelected(): boolean {
-        return this.router.isActive('/timeline', true);
+    isObjectiveViewSelected(): boolean {
+        return this.router.isActive('/objective', true);
     }
 
     isKalYearViewSelected(): boolean {

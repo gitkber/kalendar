@@ -13,7 +13,7 @@ import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
 import { BudgetViewComponent } from './budget-view/budget-view.component';
-import { TimelineViewComponent } from './timeline-view/timeline-view.component';
+import { ObjectiveViewComponent } from './objective-view/objective-view.component';
 
 import { SheetOfPaperComponent } from './login-view/sheet-of-paper/sheet-of-paper.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
@@ -25,7 +25,7 @@ import { ObjectiveModalComponent } from './modal/objective-modal/objective-modal
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [LoginViewComponent, HomeViewComponent, KalYearViewComponent, MonthViewComponent,
         ContactsViewComponent,
-        BudgetViewComponent, TimelineViewComponent,
+        BudgetViewComponent, ObjectiveViewComponent,
         SheetOfPaperComponent,
         ImageModalComponent, CoreModalComponent, ContactModalComponent, ObjectiveModalComponent],
     exports: [],

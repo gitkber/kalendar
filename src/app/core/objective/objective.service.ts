@@ -44,4 +44,27 @@ export class ObjectiveService {
         this.firebaseListObservable.push(objective);
     }
 
+    // insertOLDFixtures() {
+    //     const timeline: Timeline = new Timeline('Faire du sport', 'WELL_TO_BE / HEALTH', 'IN_PROGRESS');
+    //     timeline.objectives.push(new Objective('OBJ_ONE_DAY', 'trouver le sport', 'IN_PROGRESS'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-01', 'DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-02', 'DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-04', 'DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-05', 'NOT_DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-06', 'NOT_DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-10', 'NOT_DONE'));
+    //     timeline.objectives[0].occurences.push(new Occurence('2017-12-15', 'DONE'));
+    //     timeline.objectives.push(new Objective('OBJ_ONE_DAY', 'natation', 'NOT_STARTED'));
+    //     timeline.objectives[1].occurences.push(new Occurence('2017-12-01', 'DONE'));
+    //     timeline.objectives[1].occurences.push(new Occurence('2017-12-03', 'DONE'));
+    //     timeline.objectives[1].occurences.push(new Occurence('2017-12-05', 'DONE'));
+    //     timeline.objectives[1].occurences.push(new Occurence('2017-12-05', 'NOT_DONE'));
+    //     timeline.objectives[1].occurences.push(new Occurence('2017-12-06', 'NOT_DONE'));
+    //     timeline.objectives.push(new Objective('OBJ_ONE_DAY', 'marche / course', 'NOT_STARTED'));
+    //     timeline.objectives[2].occurences.push(new Occurence('2017-12-12', 'DONE'));
+    //
+    //     this.firebaseListObservable.push(timeline);
+    //     // this.firebaseListObservable.push(new Timeline('Papiers', 'WELL_TO_BE / HOME', 'NOT_STARTED'));
+    // }
+
 }
