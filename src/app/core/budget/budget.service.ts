@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/catch';
 import { Action } from '../action';
 import { AuthService } from '../service/auth.service';
@@ -24,6 +24,10 @@ export class BudgetService {
 
     findAllTagOperationToBuy(): Observable<Budget[]> {
         return this.firebaseListObservable.map(items => items.filter(item => item.tagOperation === TagBudgetOperation.TO_BUY));
+    }
+
+    getBudget(key: string): FirebaseObjectObservable<Budget> {
+        return this.db.object(this.path + key);
     }
 
     sumByTagOperationMin(firstDate: Date, lastDate: Date): any {

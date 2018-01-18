@@ -16,8 +16,8 @@
             <public-holiday-form *ngIf="dayItem.isPublicHoliday()"
                                  [publicHoliday]="publicHolidaySelected"
                                  (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
-            <budget-form *ngIf="dayItem.isBudget()"
-                         [budget]="budgetSelected"
+            <budget-form *ngIf="budgetSelected"
+                         [budget]="budgetSelected | async"
                          (actionClick)="doActionOnBudget($event)"></budget-form>
         </div>
     </div>

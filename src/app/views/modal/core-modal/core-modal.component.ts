@@ -8,6 +8,7 @@ import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/cont
 import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
 import { Event, EventAction } from '../../../core/event/event';
 import { Budget, BudgetAction } from '../../../core/budget/budget';
+import { Observable } from 'rxjs/Observable';
 import { TagBudgetOperation } from '../../../common/utils/tag';
 
 @Component({
@@ -26,7 +27,7 @@ export class CoreModalComponent {
     public contactSelected: Contact;
     public contactHolidaySelected: ContactHoliday;
     public publicHolidaySelected: PublicHoliday;
-    public budgetSelected: Budget;
+    public budgetSelected: Observable<Budget>;
 
     constructor(
         private appService: AppService,
@@ -76,9 +77,10 @@ export class CoreModalComponent {
                 this.publicHolidaySelected['$key'] = event.key;
             }
         } else if (event.isBudget()) {
-            this.budgetSelected = new Budget(TagBudgetOperation.MIN, null, event.principalItem, event.date);
             if (event.key !== null) {
-                this.budgetSelected['$key'] = event.key;
+                this.budgetSelected = this.viewsFacade.budgetService.getBudget(event.key);
+            } else {
+                this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, null, '', event.date, ''));
             }
         }
     }
