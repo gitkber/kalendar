@@ -7,6 +7,8 @@ import { Contact, ContactAction } from '../../../core/contact/contact';
 import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday';
 import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
 import { Event, EventAction } from '../../../core/event/event';
+import { Budget, BudgetAction } from '../../../core/budget/budget';
+import { TagBudgetOperation } from '../../../common/utils/tag';
 
 @Component({
     selector: 'core-modal',
@@ -24,6 +26,7 @@ export class CoreModalComponent {
     public contactSelected: Contact;
     public contactHolidaySelected: ContactHoliday;
     public publicHolidaySelected: PublicHoliday;
+    public budgetSelected: Budget;
 
     constructor(
         private appService: AppService,
@@ -72,6 +75,11 @@ export class CoreModalComponent {
             if (event.key !== null) {
                 this.publicHolidaySelected['$key'] = event.key;
             }
+        } else if (event.isBudget()) {
+            this.budgetSelected = new Budget(TagBudgetOperation.MIN, null, event.principalItem, event.date);
+            if (event.key !== null) {
+                this.budgetSelected['$key'] = event.key;
+            }
         }
     }
 
@@ -92,6 +100,11 @@ export class CoreModalComponent {
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {
         this.viewsFacade.publicHolidayService.doActionOnPublicHoliday(event);
+        this.close();
+    }
+
+    doActionOnBudget(event: BudgetAction) {
+        this.viewsFacade.budgetService.doActionOnBudget(event);
         this.close();
     }
 

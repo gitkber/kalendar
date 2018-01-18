@@ -20,6 +20,7 @@
                 <div class="label-item">
                     <i *ngIf="dayItem.isContact()" class="fa fa-birthday-cake fa-border"></i>
                     <i *ngIf="dayItem.isEvent()" class="fa fa-newspaper-o fa-border"></i>
+                    <i *ngIf="dayItem.isBudget()" class="fa fa-money fa-border"></i>
                     <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
                 </div>
                 <div *ngIf="day.isSelected">
@@ -27,6 +28,8 @@
                                       [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
                     <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
                                       [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                    <edit-icon-action [tooltip]="'Modifier une dépense'" *ngIf="dayItem.isBudget()"
+                                      [image]="'fa-money'" (click)="editDayItem(dayItem)"></edit-icon-action>
                 </div>
             </div>
         </div>
@@ -37,6 +40,8 @@
                                   [image]="'fa-user'" (click)="addDayItemContact()"></plus-icon-action>
                 <plus-icon-action [tooltip]="'Ajouter un événement'"
                                   [image]="'fa-newspaper-o'" (click)="addDayItemMemo()"></plus-icon-action>
+                <plus-icon-action [tooltip]="'Ajouter une dépense'"
+                                  [image]="'fa-money'" (click)="addDayItemBudget()"></plus-icon-action>
                 <plus-icon-action [tooltip]="'Ajouter un jour de congé'"
                                   [image]="'fa-sun-o'" (click)="addDayItemContactHoliday()"></plus-icon-action>
             </div>

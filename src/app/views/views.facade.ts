@@ -31,6 +31,7 @@ export class ViewsFacade {
         this.populateEventsWithDays(days);
         this.populatePublicHolidaysWithDays(days);
         this.populateContactHolidaysWithDays(days);
+        this.populateBudgetWithDays(days);
     }
 
     private populateContactsWithDays(days: Day[]) {
@@ -212,7 +213,57 @@ export class ViewsFacade {
                     d.dayContactHolidayItems.forEach(di => {
                         if (di.key === data.key) {
                             // console.log('child_removed contactHoliday', entity);
-                            d.dayContactHolidayItems.splice(d.dayItems.indexOf(di), 1);
+                            d.dayContactHolidayItems.splice(d.dayContactHolidayItems.indexOf(di), 1);
+                        }
+                    })
+                }
+            })
+        });
+    }
+
+    private populateBudgetWithDays(days: Day[]) {
+        this.budgetService.getMinRef().on('child_added', data => {
+            const entity: Budget = data.val();
+            const date: Date = new Date(entity.kalendarDate);
+            days.forEach(d => {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()
+                    && date.getFullYear() === d.date.getFullYear()) {
+                    // console.log('child_added publicHoliday', entity);
+                    d.dayItems.push(new DayItem(Type.BUDGET, data.key, entity.kalendarDate, entity.description));
+                }
+            })
+        });
+
+        this.budgetService.getMinRef().on('child_changed', data => {
+            const entity: Budget = data.val();
+            const date: Date = new Date(entity.kalendarDate);
+            days.forEach(d => {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()
+                    && date.getFullYear() === d.date.getFullYear()) {
+                    d.dayItems.forEach(di => {
+                        if (di.key === data.key) {
+                            // console.log('child_changed contact', entity);
+                            di.principalItem = entity.description;
+                            di.additionalItem = entity.tagType;
+                        }
+                    })
+                }
+            })
+        });
+
+        this.budgetService.getMinRef().on('child_removed', data => {
+            const entity: Budget = data.val();
+            const date: Date = new Date(entity.kalendarDate);
+            days.forEach(d => {
+                if (date.getDate() === d.date.getDate()
+                    && date.getMonth() === d.date.getMonth()
+                    && date.getFullYear() === d.date.getFullYear()) {
+                    d.dayContactHolidayItems.forEach(di => {
+                        if (di.key === data.key) {
+                            // console.log('child_removed contactHoliday', entity);
+                            d.dayItems.splice(d.dayItems.indexOf(di), 1);
                         }
                     })
                 }
@@ -233,5 +284,6 @@ export class ViewsFacade {
             })
         });
     }
+
 
 }

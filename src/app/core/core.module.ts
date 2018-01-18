@@ -13,6 +13,7 @@ import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
+import { BudgetFormComponent } from './budget/budget-form/budget-form.component';
 import { BirthdayPostItComponent } from './contact/birthday-post-it/birthday-post-it.component';
 import { CarouselBudgetComponent } from './budget/carousel-budget/carousel-budget.component';
 import { MonthInCarouselBudgetComponent } from './budget/carousel-budget/month-in-carousel-budget/month-in-carousel-budget.component';
@@ -30,6 +31,7 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CarouselBudgetComponent, MonthInCarouselBudgetComponent,
         ObjectiveListComponent, ObjectiveFormComponent,
+        BudgetFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,
@@ -38,6 +40,7 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
         CarouselBudgetComponent,
         ObjectiveListComponent, ObjectiveFormComponent,
+        BudgetFormComponent,
         EventFormComponent,
         PublicHolidayFormComponent,
         ContactHolidayFormComponent,

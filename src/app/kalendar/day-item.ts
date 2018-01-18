@@ -26,4 +26,8 @@ export class DayItem {
     isContactHoliday() {
         return this.type === Type.CONTACT_HOLIDAY;
     }
+
+    isBudget() {
+        return this.type === Type.BUDGET;
+    }
 }

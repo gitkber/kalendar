@@ -55,6 +55,10 @@ export class DayInCarouselDaysComponent {
         this.showDayItemClick.emit(new DayItem(Type.EVENT, null, this.dateUtilService.toString(this.day.date), null));
     }
 
+    addDayItemBudget() {
+        this.showDayItemClick.emit(new DayItem(Type.BUDGET, null, this.dateUtilService.toString(this.day.date), null));
+    }
+
     addDayItemContactHoliday() {
         this.showDayItemClick.emit(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
