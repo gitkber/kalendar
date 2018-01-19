@@ -1,12 +1,12 @@
 <kal-panel-form [subTitle]="title">
     <form class="form-container" (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
         <div class="contact-row">
-            <label class="labelFor" for="inputTagOperation">TagOperation</label>
-            <input type="text" formControlName="tagOperation" name="tagOperation" id="inputTagOperation"/>
+            <label class="labelFor">DEPENSE</label>
         </div>
         <div class="contact-row">
-            <label class="labelFor" for="inputTagType">TagType</label>
-            <input type="text" formControlName="tagType" name="tagType" id="inputTagType"/>
+            <div class="labelFor" *ngFor="let name of optionTypes">
+                <label><input type="radio" [value]="name" formControlName="tagType">{{name}}</label>
+            </div>
         </div>
         <div class="contact-row">
             <label class="labelFor" for="inputDescription">Description</label>

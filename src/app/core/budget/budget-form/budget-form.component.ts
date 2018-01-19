@@ -5,6 +5,7 @@ import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { DateUtilService } from '../../../common/utils/date-util.service';
 import { isUndefined } from 'util';
 import { Budget, BudgetAction } from '../budget';
+import { TagBudgetType } from '../../../common/utils/tag';
 
 @Component({
     selector: 'budget-form',
@@ -23,17 +24,22 @@ export class BudgetFormComponent implements OnChanges {
 
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
+    public optionTypes: string[] = [];
+
     constructor(public dateUtilService: DateUtilService) {
+        this.optionTypes = Object.keys(TagBudgetType);
+
         this.budgetFormGroup = new FormGroup({
-            tagOperation: new FormControl('', Validators.required),
             tagType: new FormControl('', Validators.required),
             description: new FormControl('', Validators.required),
             kalendarDate: new FormControl(''),
             amount: new FormControl('')
         });
+
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        // Object.keys(TagBudgetType).filter(key => console.log(TagBudgetType[key]));
         if (changes.budget.currentValue !== undefined) {
             this.budgetKey = changes.budget.currentValue['$key'];
             if (this.isEmptyKey()) {
@@ -42,7 +48,6 @@ export class BudgetFormComponent implements OnChanges {
                 this.title = 'Modifier ce budget';
             }
             this.budgetFormGroup.setValue({
-                'tagOperation': this.budget.tagOperation,
                 'tagType': this.budget.tagType,
                 'description': this.budget.description,
                 'kalendarDate': this.dateStringPipe.transform(this.budget.kalendarDate),
@@ -52,7 +57,6 @@ export class BudgetFormComponent implements OnChanges {
     }
 
     addBudget() {
-        this.budget.tagOperation = this.budgetFormGroup.get('tagOperation').value;
         this.budget.tagType = this.budgetFormGroup.get('tagType').value;
         this.budget.description = this.budgetFormGroup.get('description').value;
         this.budget.amount = this.budgetFormGroup.get('amount').value;
