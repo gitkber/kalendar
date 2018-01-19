@@ -1,5 +1,5 @@
-<div class="home-view-container">
-    <div class="principal-container">
+<div class="view-container">
+    <div class="carousel-container">
         <div class="carousel-week-item">
             <carousel-budget [carouselBudget]="carouselBudget"
                              [navigation]="'month'"
@@ -8,7 +8,7 @@
             </carousel-budget>
         </div>
     </div>
-    <div class="postit-container">
+    <div class="post-it-container">
         <post-it [reference]="'A acheter'">
             <div *ngFor="let itemToBuy of budgetToBuy | async">
                 <i class="fa fa-money"></i>{{itemToBuy.description}}

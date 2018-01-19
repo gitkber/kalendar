@@ -1,29 +1,19 @@
-.home-view-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 99%;
-    height: 100%;
-    padding: 1em;
-}
-
 .principal-container {
     height: 100%;
     width: 80%;
-}
-
-.postit-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: center;
 }
 
 .carousel-week-item {
     align-items: center;
     width: 100%;
     height: 70%;
+}
+
+.post-it-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
 }
 
 .other-container {

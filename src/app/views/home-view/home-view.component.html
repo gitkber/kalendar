@@ -1,4 +1,4 @@
-<div class="home-view-container">
+<div class="view-container">
     <div class="principal-container">
         <div class="carousel-week-item">
             <carousel-days [carouselDays]="carouselDays"
@@ -6,7 +6,7 @@
                            (navigateClick)="navigate($event)"
                            (showDayItemClick)="showDayItem($event)"></carousel-days>
         </div>
-        <div class="postit-container">
+        <div class="post-it-container">
             <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
                 <div>
                     <i class="fa fa-birthday-cake"></i>

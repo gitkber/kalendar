@@ -6,8 +6,8 @@
             <birthday-post-it *ngFor="let contact of postItContacts | async"
                               [contact]="contact"></birthday-post-it>
         </div>
-        <kal-polaroid [label]="'ToDo load image by contact'" [image]="'../../../assets/images/photo/IMG_yoga.jpg'"
-                      class="polaroid-item"></kal-polaroid>
+        <kal-polaroid [label]="'ToDo load image by contact'"
+                      [image]="'../../../assets/images/photo/IMG_yoga.jpg'"></kal-polaroid>
     </div>
 </div>
 <contact-modal [blocking]=false></contact-modal>
