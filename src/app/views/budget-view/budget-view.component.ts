@@ -7,6 +7,7 @@ import { CarouselBudget } from '../../core/budget/carousel-budget/carousel-budge
 import { DayItem } from '../../kalendar/day-item';
 import { Navigation } from '../../kalendar/navigation';
 import { Budget } from '../../core/budget/budget';
+import { MonthInCarouselBudget } from '../../core/budget/carousel-budget/month-in-carousel-budget/month-in-carousel-budget';
 
 @Component({
     selector: 'budget-view',
@@ -39,8 +40,10 @@ export class BudgetViewComponent implements OnInit {
     navigate(event: Navigation) {
         console.log('navigate', event);
         if (event.isMonth) {
-            this.carouselBudget.goToDate(event.toDate);
-            // this.routerService.navigateToKalMonth(event.toDate);
+            const monthInCarouselBudgets: MonthInCarouselBudget[] = this.carouselBudget.goToDate(event.toDate);
+            monthInCarouselBudgets.forEach(m => {
+                m.budgetByGroups = this.viewsFacade.budgetService.sumByTagOperationMin(m.firstDate, m.lastDate);
+            });
         } else {
             console.warn('ERROR in BudgetView - Navigation');
         }
