@@ -6,29 +6,27 @@
                            (navigateClick)="navigate($event)"
                            (showDayItemClick)="showDayItem($event)"></carousel-days>
         </div>
-        <div class="other-container">
-            <div class="postit-container">
-                <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
-                    <div>
-                        <i class="fa fa-birthday-cake"></i>
-                        21 juillet
+        <div class="postit-container">
+            <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
+                <div>
+                    <i class="fa fa-birthday-cake"></i>
+                    21 juillet
 
-                    </div>
-                    <div class="post-it-item">X jours</div>
-                    <div class="post-it-item">Karine Berth</div>
-                </post-it>
-                <post-it [reference]="'A acheter'">
-                    <div *ngFor="let itemToBuy of budgetToBuy | async">
-                        <i class="fa fa-money"></i>{{itemToBuy.description}}
-                    </div>
-                </post-it>
-
-            </div>
-            <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
-                        [date]="carouselDays.dateSelected"
-                        (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
-            <div></div>
+                </div>
+                <div class="post-it-item">X jours</div>
+                <div class="post-it-item">Karine Berth</div>
+            </post-it>
+            <post-it [reference]="'A acheter'">
+                <div *ngFor="let itemToBuy of budgetToBuy | async">
+                    <i class="fa fa-money"></i>{{itemToBuy.description}}
+                </div>
+            </post-it>
         </div>
+    </div>
+    <div class="other-container">
+        <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
+                    [date]="carouselDays.dateSelected"
+                    (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
     </div>
 </div>
 <core-modal [blocking]=false></core-modal>
