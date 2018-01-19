@@ -52,6 +52,10 @@ export class RouterService {
         return this.router.isActive('/objective', true);
     }
 
+    isBudgetViewSelected(): boolean {
+        return this.router.isActive('/budget', true);
+    }
+
     isKalYearViewSelected(): boolean {
         return this.router.isActive('/kalyear', false);
     }
