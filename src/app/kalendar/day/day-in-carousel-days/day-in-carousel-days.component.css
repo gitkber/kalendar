@@ -27,10 +27,6 @@
     width: 100%;
 }
 
-.weekend {
-    background-color: #fff;
-}
-
 .group-container {
     display: flex;
     flex-direction: column;
@@ -95,26 +91,8 @@
     width: 100%;
 }
 
-.today {
+.core-info {
     margin-top: 2px;
-    background: #AD6B6B;
-    color: white;
-    text-align: center;
-    border-radius: 1em;
-}
-
-.contact-holiday {
-    margin-top: 2px;
-    background: #9198A9;
-    color: white;
-    text-align: center;
-    border-radius: 1em;
-}
-
-.public-holiday {
-    margin-top: 2px;
-    background: #4D5874;
-    color: white;
     text-align: center;
     border-radius: 1em;
 }

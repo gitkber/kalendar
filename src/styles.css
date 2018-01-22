@@ -40,6 +40,26 @@ body {
     overflow: hidden;
 }
 
+.today {
+    background: #AD6B6B;
+    color: white;
+}
+
+.contact-holiday {
+    background: #9198A9;
+    color: white;
+}
+
+.public-holiday {
+    background: #4D5874;
+    color: white;
+}
+
+.weekend {
+    background: #4D5874;
+    color: white;
+}
+
 .color-primary-0 { color: #AD6B6B }	/* Main Primary color */
 .color-primary-1 { color: #FBD4D4 }
 .color-primary-2 { color: #D09898 }

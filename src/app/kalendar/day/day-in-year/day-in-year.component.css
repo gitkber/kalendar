@@ -1,7 +1,6 @@
 .day-container {
     cursor: pointer;
     border: 1px solid #9198A9;
-    background: white;
     display: flex;
     justify-content: center;
     width: 99%;
@@ -10,41 +9,9 @@
 }
 
 .day-container.day-disabled {
-    background: none;
-    border: none;
-}
-
-.day-container.day-container.weekend.day-disabled {
-    background: none;
-    border: none;
-}
-
-.day-container.today {
-    background: #AD6B6B;
-    color: #FBFBD4;
-}
-
-.day-container.weekend {
-    background: #4D5874;
-    color: #FBFBD4;
-}
-
-.day-container.public-holiday.contact-holiday {
-    background: #4D5874;
-    color: #FBFBD4;
-}
-
-.day-container.public-holiday {
-    background: #4D5874;
-    color: #FBFBD4;
-}
-
-.day-container.contact-holiday {
-    background: #9198A9;
-    color: #FBFBD4;
+    display: none;
 }
 
 .day-container.day-selected {
-    background: rgba(251, 251, 212, 1);
     box-shadow: inset 0 8px 16px -5px black;
 }

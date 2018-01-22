@@ -1,4 +1,4 @@
-<div class="day-container" [class.weekend]="day.isWeekend" [class.day-selected]="day.isSelected"
+<div class="day-container" [class.day-selected]="day.isSelected"
      (click)="navigateToDay()">
     <div class="group-container">
         <div class="day-item-title">
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="group-container margin-bottom">
-        <div class="day-item-detail contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
+        <div class="day-item-detail core-info contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
             <div class="day-item-info">
                 {{ dayContactHolidayItem.principalItem }}
             </div>
@@ -63,7 +63,7 @@
                               [tooltip]="'Ajouter un jour férié'"
                               [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-icon-action>
         </div>
-        <div class="day-item-detail public-holiday" *ngIf="day.dayPublicHolidayItem">
+        <div class="day-item-detail core-info public-holiday" *ngIf="day.dayPublicHolidayItem">
             <div class="day-item-info">
                 {{ day.dayPublicHolidayItem.principalItem }}
             </div>
@@ -73,7 +73,7 @@
                                   (click)="editDayItem(day.dayPublicHolidayItem)"></edit-icon-action>
             </div>
         </div>
-        <div class="day-item-info" *ngIf="day.isToday" [class.today]="day.isToday">
+        <div class="day-item-info core-info" *ngIf="day.isToday" [class.today]="day.isToday">
             Today
         </div>
     </div>
