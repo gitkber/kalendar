@@ -1,12 +1,15 @@
-<div class="extends-paper-container paper-container" [class.day-selected]="day.isSelected" [class.day-disabled]="day.isDisabled">
+<div class="extends-paper-container paper-container" [class.day-selected]="day.isSelected"
+     [class.day-disabled]="day.isDisabled">
     <div class="day-item-title" [class.weekend]="day.isWeekend" [class.today]="day.isToday">
         <div>{{ day.date | date:'d MMM' }}</div>
     </div>
     <div class="day-item-info-list">
-        <div class="day-item-info-detail" *ngIf="day.dayPublicHolidayItem">
+        <div class="day-item-info-detail" *ngIf="day.dayPublicHolidayItem"
+             [class.public-holiday]="!day.isDisabled && day.dayPublicHolidayItem !== undefined">
             <span>{{day.dayPublicHolidayItem.principalItem}}</span>
         </div>
-        <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayContactHolidayItems">
+        <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayContactHolidayItems"
+             [class.contact-holiday]="!day.isDisabled && day.dayContactHolidayItems.length > 0">
             <span>{{dayInfoItem.principalItem}}</span>
         </div>
         <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
