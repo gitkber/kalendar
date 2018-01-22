@@ -15,6 +15,22 @@
     flex-direction: column;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-item-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    color: white;
+    margin: 0;
+    flex: 1;
+}
+
 .labelFor {
     color: red;
     letter-spacing: 0.1em;

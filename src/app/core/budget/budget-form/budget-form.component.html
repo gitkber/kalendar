@@ -1,22 +1,22 @@
 <kal-panel-form [subTitle]="title">
-    <form class="form-container" (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
-        <div class="contact-row">
+    <form (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
+        <div class="form-item-row">
             <label class="labelFor">DEPENSE</label>
         </div>
-        <div class="contact-row">
+        <div class="form-item-row">
             <div class="labelFor" *ngFor="let name of optionTypes">
                 <label><input type="radio" [value]="name" formControlName="tagType">{{name}}</label>
             </div>
         </div>
-        <div class="contact-row">
+        <div class="form-item-row">
             <label class="labelFor" for="inputDescription">Description</label>
             <input type="text" formControlName="description" name="description" id="inputDescription"/>
         </div>
-        <div class="contact-row">
+        <div class="form-item-row">
             <label class="labelFor" for="inputKalendarDate">KalendarDate</label>
             <input type="text" formControlName="kalendarDate" name="kalendarDate" id="inputKalendarDate"/>
         </div>
-        <div class="contact-row">
+        <div class="form-item-row">
             <label class="labelFor" for="inputAmount">Amount</label>
             <input type="number" formControlName="amount" name="amount" id="inputAmount"/>
         </div>

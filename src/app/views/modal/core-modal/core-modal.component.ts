@@ -56,6 +56,7 @@ export class CoreModalComponent {
     }
 
     showDayItem(event: DayItem) {
+        this.budgetSelected = undefined;
         if (event.isContact()) {
             this.contactSelected = new Contact(event.principalItem, event.additionalItem, event.date);
             if (event.key !== null) {
