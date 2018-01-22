@@ -1,9 +1,6 @@
 <kal-panel-list [title]="'Contacts'">
 
     <div class="row-container" *ngFor="let contact of contacts | async">
-        <div class="icon-item">
-            <!--<img [src]="'../assets/images/user_male.svg'" height="20" width="20">-->
-        </div>
         <div class="description-item">{{ contact.firstname + ' ' + contact.lastname }}</div>
         <div class="descriptionDate-item">{{ contact.birthdate | date}}</div>
 
@@ -13,8 +10,7 @@
     </div>
 
     <div class="row-container-add-item">
-        <plus-action class="action"
-                     [tooltip]="'Ajouter un contact'"
+        <plus-action [tooltip]="'Ajouter un contact'"
                      (click)="addContact()"></plus-action>
     </div>
 

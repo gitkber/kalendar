@@ -9,6 +9,9 @@
     box-shadow: 10px 10px 100px 0px rgba(0, 0, 0, 0.75);
     border-radius: 0.3em;
     height: 100%;
+    padding-left: 90px;
+    padding-right: 10px;
+    color: #4D5874;
     overflow: auto;
 }
 

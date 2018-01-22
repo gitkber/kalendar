@@ -1,21 +1,18 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'sheet-of-paper',
-  templateUrl: './sheet-of-paper.component.html',
-  styleUrls: ['./sheet-of-paper.component.css']
+    selector: 'sheet-of-paper',
+    templateUrl: './sheet-of-paper.component.html',
+    styleUrls: ['./sheet-of-paper.component.css']
 })
 export class SheetOfPaperComponent {
 
-  @Output() setDemoLoginClick = new EventEmitter<any>();
+    @Output() setDemoLoginClick = new EventEmitter<any>();
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
-
-  setDemoLogin() {
-    this.setDemoLoginClick.emit();
-  }
+    setDemoLogin() {
+        this.setDemoLoginClick.emit();
+    }
 
 }

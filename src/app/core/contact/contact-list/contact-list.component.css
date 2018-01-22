@@ -18,20 +18,9 @@
     font-size: large;
 }
 
-.icon-item {
-    display: flex;
-    justify-content: flex-end;
-    width: 5em;
-}
-
-.action {
-    padding-right: 1em;
-}
-
 .description-item {
     flex: 1;
     padding-top: 0.5em;
-    text-indent: 1.5em;
 }
 
 .descriptionDate-item {
