@@ -31,9 +31,3 @@
     color: rgba(253, 95, 0, 1);
 }
 
-.action {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 100%;
-}

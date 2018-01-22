@@ -1,10 +1,10 @@
 <kal-panel-form [subTitle]="title">
     <form (ngSubmit)="addHoliday()" [formGroup]="formGroup" #addHolidayForm="ngForm">
-        <div class="form-item-row">
+        <div class="row-container">
             <label class="labelFor" for="inputDescription">Description</label>
             <input formControlName="description" name="description" id="inputDescription"/>
         </div>
-        <div class="form-item-row">
+        <div class="row-container">
             <label class="labelFor" for="inputDate">Date</label>
             <input formControlName="date" name="date" id="inputDate"/>
         </div>

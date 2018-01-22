@@ -1,4 +1,4 @@
-<div class="month-in-year-container">
+<div class="extends-paper-container paper-container">
     <div class="month-item-title">{{ month.lastDateOfMonth | date:'MMMM yyyy' }}</div>
     <div class="day-in-year-container">
         <day-in-year *ngFor="let day of month.days" class="day-in-year-item" [day]="day"

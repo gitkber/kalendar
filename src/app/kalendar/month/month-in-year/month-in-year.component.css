@@ -1,16 +1,6 @@
-.month-in-year-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.extends-paper-container {
     width: 87%;
     height: 95%;
-    padding: 0 1em 1em 1em;
-    background-color: #fff;
-    background-image: linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
-    border: 1px solid #bbb;
-    border-radius: 3px;
 }
 
 .day-in-year-container {

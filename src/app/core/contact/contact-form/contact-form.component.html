@@ -1,18 +1,18 @@
 <kal-panel-form [subTitle]="title">
     <form (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
-        <div class="form-item-row">
+        <div class="row-container">
             <label class="labelFor" for="inputFirstname">Firstname</label>
             <input type="text" formControlName="firstname" name="firstname" id="inputFirstname"/>
         </div>
-        <div class="form-item-row">
+        <div class="row-container">
             <label class="labelFor" for="inputLastname">Lastname</label>
             <input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>
         </div>
-        <div class="form-item-row" *ngIf="!fillYear">
+        <div class="row-container" *ngIf="!fillYear">
             <label class="labelFor" for="inputBirthdate">Birthdate</label>
             <input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>
         </div>
-        <div class="form-item-row" *ngIf="fillYear">
+        <div class="row-container" *ngIf="fillYear">
             <label class="labelFor" for="inputYear">Year</label>
             {{this.dateUtilService.stringToDayAndLongMonth(this.contact.birthdate)}}
             <input type="text" formControlName="year" name="year" id="inputYear"/>

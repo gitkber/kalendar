@@ -1,17 +1,6 @@
-.month-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+.extends-paper-container {
     width: 87%;
     height: 95%;
-    padding: 0 1em 0 1em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-    background-color: #F8F8FF;
-    background-image: linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
-    border: 1px solid #bbb;
-    border-radius: 3px;
     cursor: pointer;
 }
 
@@ -41,6 +30,7 @@
     color: white;
     padding: 0.2em;
 }
+
 .detail-item {
     display: flex;
     justify-content: space-between;

@@ -8,13 +8,6 @@
     margin-top: 0.5em;
 }
 
-.action-item {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-}
-
 .signature-item {
     display: flex;
     justify-content: flex-end;

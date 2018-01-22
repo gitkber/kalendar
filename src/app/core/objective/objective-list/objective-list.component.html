@@ -1,8 +1,5 @@
-<div class="objective-container" *ngFor="let item of items | async">
+<div class="extends-paper-container paper-container" *ngFor="let item of items | async">
     <div class="row-container">
-        <div class="icon-item">
-            <!--<img [src]="'../assets/images/user_male.svg'" height="20" width="20">-->
-        </div>
         <div class="description-item">{{ item.description }}</div>
         <div class="descriptionDate-item">{{ item.tags }}</div>
         <edit-action class="action"
@@ -22,7 +19,7 @@
     </div>
 </div>
 <div class="objective-container">
-    <div class="row-container-add-item">
+    <div class="align-right-container">
         <plus-action class="action"
                      [tooltip]="'Ajouter un objectif'"
                      (click)="addItem()"></plus-action>
