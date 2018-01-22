@@ -5,12 +5,12 @@
     </div>
     <div class="group-container">
         <div *ngFor="let m of month.budgetByGroups | async">
-            <div class="budget-type-item">
+            <div class="row-container weekend only-padding">
                 <div>{{ m.budgetType }}</div>
                 <div>{{ m.amount | number: '1.2' }}</div>
             </div>
             <div *ngFor="let d of m.detail">
-                <div class="detail-item">
+                <div class="row-container">
                     <div>{{ d.description }}</div>
                     <div>{{ d.amount | number: '1.2'}}</div></div>
             </div>

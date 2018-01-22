@@ -6,35 +6,15 @@
 
 .group-container {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
+    flex-direction: column;
     width: 100%;
 }
 
 .item-title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
     padding-top: 0.7em;
     padding-bottom: 0.7em;
     font-weight: bold;
 }
 
-.budget-type-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    background-color: #4D5874;
-    color: white;
-    padding: 0.2em;
-}
 
-.detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    padding: 0.2em;
-}

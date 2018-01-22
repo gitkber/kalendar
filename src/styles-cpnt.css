@@ -47,6 +47,10 @@
     border-radius: 3px;
 }
 
+.only-padding {
+    padding: 0.2em;
+}
+
 .labelFor {
     color: #88887a;
     letter-spacing: 0.1em;

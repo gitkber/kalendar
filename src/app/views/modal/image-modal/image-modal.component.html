@@ -5,7 +5,7 @@
 
         <div class="kal-polaroid-container" *ngIf="date">
             <img class="image-item" id="img-item-id"/>
-            <div class="input-row" *ngIf="!isModified">
+            <div class="row-container" *ngIf="!isModified">
                 <input class="label-item" type="text" [value]="label" id="input-id"
                        (change)="onInputChange($event)"/>
                 <kal-action [image]="'fa-save'" (click)="modifyLabel()"></kal-action>

@@ -68,14 +68,3 @@
 .kal-polaroid-container .label-item {
     padding-top: 10px;
 }
-
-.input-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    color: white;
-    margin: 0;
-    flex: 1;
-}
