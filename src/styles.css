@@ -60,6 +60,10 @@ body {
     color: white;
 }
 
+.error-message {
+    color: rgba(114, 41, 41,1)
+}
+
 .color-primary-0 { color: #AD6B6B }	/* Main Primary color */
 .color-primary-1 { color: #FBD4D4 }
 .color-primary-2 { color: #D09898 }

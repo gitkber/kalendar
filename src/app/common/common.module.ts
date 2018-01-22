@@ -9,7 +9,6 @@ import { PanelModule } from './panel/panel.module';
 import { KalLogoComponent } from './kal-logo/kal-logo.component';
 import { KalPolaroidComponent } from './kal-polaroid/kal-polaroid.component';
 import { DateStringPipe } from './utils/date-string.pipe';
-import { KalModalComponent } from './kal-modal/kal-modal.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PostItComponent } from './post-it/post-it.component';
 
@@ -21,7 +20,6 @@ import { DateUtilService } from './utils/date-util.service';
 @NgModule({
     imports: [BrowserModule, RouterModule, ActionModule, FileUploadModule, HttpModule],
     declarations: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
-        KalModalComponent,
         LogoColorDirective,
         FileUploadComponent, PostItComponent],
     exports: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
