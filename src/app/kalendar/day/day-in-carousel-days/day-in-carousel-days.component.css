@@ -44,7 +44,6 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    color: #4D5874;
     padding-top: 0.7em;
     padding-bottom: 0.7em;
     font-weight: bold;
@@ -75,7 +74,6 @@
     display: flex;
     justify-content: space-between;
     padding-left: 0;
-    color: #4D5874;
     width: 100%;
     padding-top: 0.1em;
 }
