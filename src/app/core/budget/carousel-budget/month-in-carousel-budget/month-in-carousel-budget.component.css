@@ -10,17 +10,15 @@
     cursor: pointer;
 }
 
-.group-container {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100%;
-}
-
 .item-title {
     padding-top: 0.7em;
     padding-bottom: 0.7em;
     font-weight: bold;
 }
 
-
+.group-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
