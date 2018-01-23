@@ -17,7 +17,7 @@ export class CarouselDays {
 
     private initWeekAndCreateDays(date: Date) {
         this.days = [];
-        for (let i = 3; i > 0; i--) {
+        for (let i = 2; i > 0; i--) {
             this.days.push(new Day(new Date(date.getFullYear(), date.getMonth(), date.getDate() - i, 12, 0, 0), this.today));
         }
         for (let i = 0; i <= 4; i++) {
@@ -55,12 +55,12 @@ export class CarouselDays {
         const newDays: Day[] = [];
         for (let i = 0; i < count; i++) {
             const day: Day = new Day(
-                new Date(this.days[7].date.getFullYear(), this.days[7].date.getMonth(), this.days[7].date.getDate() + 1, 12, 0, 0), this.today);
+                new Date(this.days[6].date.getFullYear(), this.days[6].date.getMonth(), this.days[6].date.getDate() + 1, 12, 0, 0), this.today);
             newDays.push(day)
             this.days.shift();
             this.days.push(day);
         }
-        this.dateSelected = this.days[3].date;
+        this.dateSelected = this.days[2].date;
         this.selectDate(this.dateSelected);
         return newDays;
     }
@@ -78,7 +78,7 @@ export class CarouselDays {
             this.days.pop();
             this.days.unshift(day);
         }
-        this.dateSelected = this.days[3].date;
+        this.dateSelected = this.days[2].date;
         this.selectDate(this.dateSelected);
         return newDays;
     }

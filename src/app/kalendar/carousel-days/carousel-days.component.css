@@ -12,10 +12,6 @@ day-in-carousel-days {
 }
 
 day-in-carousel-days:nth-child(1) {
-    display: none;
-}
-
-day-in-carousel-days:nth-child(2) {
     zoom: 0.7;
     width: 16%;
     height: 90%;
@@ -25,7 +21,7 @@ day-in-carousel-days:nth-child(2) {
     opacity: 0.96;
 }
 
-day-in-carousel-days:nth-child(3) {
+day-in-carousel-days:nth-child(2) {
     zoom: 0.8;
     width: 18%;
     height: 95%;
@@ -36,7 +32,7 @@ day-in-carousel-days:nth-child(3) {
 }
 
 /* Selected */
-day-in-carousel-days:nth-child(4) {
+day-in-carousel-days:nth-child(3) {
     zoom: 1;
     width: 25%;
     height: 100%;
@@ -45,7 +41,7 @@ day-in-carousel-days:nth-child(4) {
     z-index: 10;
 }
 
-day-in-carousel-days:nth-child(5) {
+day-in-carousel-days:nth-child(4) {
     zoom: 0.8;
     width: 18%;
     height: 95%;
@@ -55,7 +51,7 @@ day-in-carousel-days:nth-child(5) {
     opacity: 0.98;
 }
 
-day-in-carousel-days:nth-child(6) {
+day-in-carousel-days:nth-child(5) {
     zoom: 0.7;
     width: 16%;
     height: 90%;
@@ -65,7 +61,7 @@ day-in-carousel-days:nth-child(6) {
     opacity: 0.96;
 }
 
-day-in-carousel-days:nth-child(7) {
+day-in-carousel-days:nth-child(6) {
     zoom: 0.6;
     width: 14%;
     height: 85%;
@@ -75,7 +71,7 @@ day-in-carousel-days:nth-child(7) {
     opacity: 0.94;
 }
 
-day-in-carousel-days:nth-child(8) {
+day-in-carousel-days:nth-child(7) {
     zoom: 0.5;
     width: 12%;
     height: 80%;

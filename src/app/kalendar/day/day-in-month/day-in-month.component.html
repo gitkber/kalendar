@@ -1,4 +1,4 @@
-<div class="extends-paper-container paper-container" [class.day-selected]="day.isSelected"
+<div class="day-in-month-container" [class.day-selected]="day.isSelected"
      [class.day-disabled]="day.isDisabled">
     <div class="day-item-title" [class.weekend]="day.isWeekend" [class.today]="day.isToday">
         <div>{{ day.date | date:'d MMM' }}</div>

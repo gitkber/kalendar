@@ -1,7 +1,17 @@
-.extends-paper-container {
+.day-in-month-container {
     width: 87%;
     height: 95%;
     cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1em 0 1em;
+
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-radius: 3px;
 }
 
 .day-disabled {
