@@ -33,12 +33,7 @@
     width: 100%;
 }
 
-.paper-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 1em 0 1em;
+.paper-style {
     background-color: #F8F8FF;
     background-image: linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;

@@ -22,12 +22,5 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-content: stretch;
-
     padding: 1em;
-    background-color: #F8F8FF;
-    background-image: linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-    border: 1px solid #bbb;
-    border-radius: 3px;
 }

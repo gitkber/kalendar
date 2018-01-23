@@ -1,5 +1,10 @@
-.extends-paper-container {
+.day-in-carousel-days-container {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    padding: 0 1em 0 1em;
+
     width: 87%;
     height: 95%;
     cursor: pointer;
