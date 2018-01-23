@@ -21,13 +21,13 @@ export class CoreModalComponent {
     @Input() blocking = false;
 
     public isOpen = false;
-    public dayItem: DayItem;
 
-    public eventSelected: Event;
-    public contactSelected: Contact;
-    public contactHolidaySelected: ContactHoliday;
-    public publicHolidaySelected: PublicHoliday;
+    public eventSelected: Observable<Event>;
+    public contactSelected: Observable<Contact>;
+    public contactHolidaySelected: Observable<ContactHoliday>;
+    public publicHolidaySelected: Observable<PublicHoliday>;
     public budgetSelected: Observable<Budget>;
+    public fillOnlyYear: boolean;
 
     constructor(
         private appService: AppService,
@@ -44,8 +44,12 @@ export class CoreModalComponent {
 
     open(dayItem: DayItem): void {
         this.isOpen = true;
-        this.dayItem = dayItem;
         this.showDayItem(dayItem);
+    }
+
+    openContactForm(event: Contact) {
+        this.isOpen = true;
+        this.contactSelected = Observable.of(event);
     }
 
     close(checkBlocking = false): void {
@@ -56,32 +60,41 @@ export class CoreModalComponent {
     }
 
     showDayItem(event: DayItem) {
+        this.contactSelected = undefined;
+        this.eventSelected = undefined;
+        this.contactHolidaySelected = undefined;
+        this.publicHolidaySelected = undefined;
         this.budgetSelected = undefined;
         if (event.isContact()) {
-            this.contactSelected = new Contact(event.principalItem, event.additionalItem, event.date);
+            this.fillOnlyYear = true;
             if (event.key !== null) {
-                this.contactSelected['$key'] = event.key;
+                this.contactSelected = this.viewsFacade.contactService.getContact(event.key);
+            } else {
+                this.contactSelected = Observable.of(new Contact(null, null, event.date));
             }
         } else if (event.isEvent()) {
-            this.eventSelected = new Event(event.principalItem, event.date);
             if (event.key !== null) {
-                this.eventSelected['$key'] = event.key;
+                this.eventSelected = this.viewsFacade.eventService.getEvent(event.key);
+            } else {
+                this.eventSelected = Observable.of(new Event(null, event.date));
             }
         } else if (event.isContactHoliday()) {
-            this.contactHolidaySelected = new ContactHoliday(null, null, event.principalItem, event.date);
             if (event.key !== null) {
-                this.contactHolidaySelected['$key'] = event.key;
+                this.contactHolidaySelected = this.viewsFacade.contactHolidayService.getContactHoliday(event.key);
+            } else {
+                this.contactHolidaySelected = Observable.of(new ContactHoliday(null, null, null, event.date));
             }
         } else if (event.isPublicHoliday()) {
-            this.publicHolidaySelected = new PublicHoliday(null, event.principalItem, event.date);
             if (event.key !== null) {
-                this.publicHolidaySelected['$key'] = event.key;
+                this.publicHolidaySelected = this.viewsFacade.publicHolidayService.getPublicHoliday(event.key);
+            } else {
+                this.publicHolidaySelected = Observable.of(new PublicHoliday(null, null, event.date));
             }
         } else if (event.isBudget()) {
             if (event.key !== null) {
                 this.budgetSelected = this.viewsFacade.budgetService.getBudget(event.key);
             } else {
-                this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, null, '', event.date, ''));
+                this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, null, null, event.date, null));
             }
         }
     }

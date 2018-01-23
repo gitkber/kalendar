@@ -3,18 +3,18 @@
 
     <div class="modal">
 
-        <div *ngIf="dayItem">
-            <contact-form *ngIf="dayItem.isContact()" [fillYear]="true"
-                          [contact]="contactSelected"
+        <div>
+            <contact-form *ngIf="contactSelected" [fillYear]="fillOnlyYear"
+                          [contact]="contactSelected | async"
                           (actionClick)="doActionOnContact($event)"></contact-form>
-            <event-form *ngIf="dayItem.isEvent()"
-                        [event]="eventSelected"
+            <event-form *ngIf="eventSelected"
+                        [event]="eventSelected | async"
                         (actionClick)="doActionOnEvent($event)"></event-form>
-            <contact-holiday-form *ngIf="dayItem.isContactHoliday()"
-                                  [contactHoliday]="contactHolidaySelected"
+            <contact-holiday-form *ngIf="contactHolidaySelected"
+                                  [contactHoliday]="contactHolidaySelected | async"
                                   (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-form>
-            <public-holiday-form *ngIf="dayItem.isPublicHoliday()"
-                                 [publicHoliday]="publicHolidaySelected"
+            <public-holiday-form *ngIf="publicHolidaySelected"
+                                 [publicHoliday]="publicHolidaySelected | async"
                                  (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-form>
             <budget-form *ngIf="budgetSelected"
                          [budget]="budgetSelected | async"

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { QueryReference } from 'angularfire2/interfaces';
 import { AuthService } from '../service/auth.service';
 import { DateUtilService } from '../../common/utils/date-util.service';
@@ -20,6 +20,10 @@ export class EventService {
 
     getRef(): QueryReference {
         return this.firebaseListObservable.$ref;
+    }
+
+    getEvent(key: string): FirebaseObjectObservable<Event> {
+        return this.db.object(this.path + key);
     }
 
     doActionOnEvent(event: EventAction) {

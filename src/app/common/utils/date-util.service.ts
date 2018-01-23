@@ -14,7 +14,7 @@ export class DateUtilService {
 
     /** @param dateString yyyy-MM-dd */
     stringToYYYY(dateString: string): string {
-        if (dateString === null) {
+        if (!dateString) {
             return '';
         }
         const date: Date = new Date(dateString);

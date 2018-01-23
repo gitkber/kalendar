@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
 import { Action } from '../../action';
 import { PublicHoliday, PublicHolidayAction } from './public-holiday';
@@ -27,10 +27,14 @@ export class PublicHolidayService {
         });
     }
 
-    getList(): Observable<PublicHoliday[]> { return this.publicHolidaysObservable }
+    // getList(): Observable<PublicHoliday[]> { return this.publicHolidaysObservable }
 
     getRef(): any {
         return this.firebaseListObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
+    }
+
+    getPublicHoliday(key: string): FirebaseObjectObservable<PublicHoliday> {
+        return this.db.object('/publicHolidays/' + key);
     }
 
     doActionOnPublicHoliday(event: PublicHolidayAction) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AuthService } from '../../service/auth.service';
 import { Action } from '../../action';
 import { ContactHoliday, ContactHolidayAction } from './contact-holiday';
@@ -9,8 +9,6 @@ import { ContactHoliday, ContactHolidayAction } from './contact-holiday';
 export class ContactHolidayService {
 
     private firebaseListObservable: FirebaseListObservable<ContactHoliday[]>;
-
-    // private contactHolidaysObservable: Observable<ContactHoliday[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
         this.firebaseListObservable = this.db.list('/contactHolidays', {
@@ -37,6 +35,10 @@ export class ContactHolidayService {
 
     getRef(): any {
         return this.firebaseListObservable.$ref.orderByChild('user').equalTo(this.authService.currentUserId);
+    }
+
+    getContactHoliday(key: string): FirebaseObjectObservable<ContactHoliday> {
+        return this.db.object('/contactHolidays/' + key);
     }
 
     doActionOnContactHoliday(event: ContactHolidayAction) {
