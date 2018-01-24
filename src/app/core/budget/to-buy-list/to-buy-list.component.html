@@ -1,0 +1,9 @@
+<div class="paper-style">
+    <p>
+        to-buy-list works!
+    </p>
+    <div *ngFor="let itemToBuy of budgets | async">
+        <i class="fa fa-money"></i>{{itemToBuy.description}}
+    </div>
+
+</div>

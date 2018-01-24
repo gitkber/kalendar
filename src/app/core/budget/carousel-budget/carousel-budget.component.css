@@ -2,7 +2,6 @@
 
 .carousel-budget-container {
     position: relative;
-    width: 100%;
     height: 100%;
 }
 
@@ -13,7 +12,7 @@ month-in-carousel-budget {
 
 month-in-carousel-budget:nth-child(1) {
     zoom: 0.7;
-    width: 16%;
+    width: 24%;
     height: 90%;
     top: 2em;
     left: 0;
@@ -23,10 +22,10 @@ month-in-carousel-budget:nth-child(1) {
 
 month-in-carousel-budget:nth-child(2) {
     zoom: 0.8;
-    width: 18%;
+    width: 27%;
     height: 95%;
     top: 1em;
-    left: 12%;
+    left: 15%;
     z-index: 5;
     opacity: 0.98;
 }
@@ -34,29 +33,29 @@ month-in-carousel-budget:nth-child(2) {
 /* Selected */
 month-in-carousel-budget:nth-child(3) {
     zoom: 1;
-    width: 25%;
+    width: 30%;
     height: 100%;
     top: 0em;
-    left: 24%;
+    left: 35%;
     z-index: 10;
 }
 
 month-in-carousel-budget:nth-child(4) {
     zoom: 0.8;
-    width: 18%;
+    width: 27%;
     height: 95%;
     top: 1em;
-    left: 46%;
+    left: 56%;
     z-index: 5;
     opacity: 0.98;
 }
 
 month-in-carousel-budget:nth-child(5) {
     zoom: 0.7;
-    width: 16%;
+    width: 24%;
     height: 90%;
     top: 2em;
-    left: 62%;
+    left: 77%;
     z-index: 4;
     opacity: 0.96;
 }

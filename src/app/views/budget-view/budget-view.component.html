@@ -1,18 +1,12 @@
 <div class="view-container">
-    <div class="carousel-container">
-        <div class="carousel-week-item">
+    <div class="carousel-budget-container">
             <carousel-budget [carouselBudget]="carouselBudget"
                              [navigation]="'month'"
                              (navigateClick)="navigate($event)"
                              (showDayItemClick)="showDayItem($event)">
             </carousel-budget>
-        </div>
     </div>
-    <div class="post-it-container">
-        <post-it [reference]="'A acheter'">
-            <div *ngFor="let itemToBuy of budgetToBuy | async">
-                <i class="fa fa-money"></i>{{itemToBuy.description}}
-            </div>
-        </post-it>
+    <div class="to-buy-list-container">
+        <to-buy-list [budgets]="budgetToBuy"></to-buy-list>
     </div>
 </div>

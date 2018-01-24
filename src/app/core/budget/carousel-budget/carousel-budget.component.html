@@ -1,8 +1,6 @@
 <div class="carousel-budget-container">
-
     <month-in-carousel-budget *ngFor="let month of carouselBudget.months" [month]="month"
                               (navigateClick)="navigate($event)"
                               (showDayItemClick)="showDayItem($event)">
     </month-in-carousel-budget>
-
 </div>
