@@ -1,11 +1,13 @@
 <div class="panel">
-    <div class="title" *ngIf="title">{{ title }}</div>
-    <div class="sub-title" *ngIf="subTitle">{{ subTitle }}</div>
+    <div>
+        <div class="title" *ngIf="title">{{ title }}</div>
+        <div class="sub-title" *ngIf="subTitle">{{ subTitle }}</div>
+    </div>
     <div class="body">
         <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
         <ng-content></ng-content>
     </div>
-    <div class="align-right-container">
+    <div>
         <ng-content select=".panel-action"></ng-content>
     </div>
 </div>

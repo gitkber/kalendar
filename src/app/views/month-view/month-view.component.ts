@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ViewsFacade } from '../views.facade';
@@ -7,6 +7,9 @@ import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
 import { Navigation } from '../../kalendar/navigation';
 import { RouterService } from '../../core/service/router.service';
+import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
+import { Type } from '../../kalendar/type';
+import { DayItem } from '../../kalendar/day-item';
 
 @Component({
     selector: 'month-view',
@@ -14,6 +17,8 @@ import { RouterService } from '../../core/service/router.service';
     styleUrls: ['./month-view.component.css']
 })
 export class MonthViewComponent implements OnInit, OnDestroy {
+
+    @ViewChild(CoreModalComponent) coreModal: CoreModalComponent;
 
     public month: Month;
     private selectedDay: Day;
@@ -46,14 +51,15 @@ export class MonthViewComponent implements OnInit, OnDestroy {
     }
 
     showDayDetail(event: Day) {
-        this.appService.selectDate(event.date);
-        if (event.isDisabled) {
-            this.month.jump(event.date.getMonth() + 1, event.date.getFullYear());
-            this.selectedDay = this.month.selectDate(event.date);
-        } else {
-            this.selectedDay = this.month.selectDate(this.appService.currentDate);
-            this.routerService.navigateToHome();
-        }
+        this.coreModal.open(new DayItem(Type.CONTACT, null, '2010-10-10', ''));
+        // this.appService.selectDate(event.date);
+        // if (event.isDisabled) {
+        //     this.month.jump(event.date.getMonth() + 1, event.date.getFullYear());
+        //     this.selectedDay = this.month.selectDate(event.date);
+        // } else {
+        //     this.selectedDay = this.month.selectDate(this.appService.currentDate);
+        //     this.routerService.navigateToHome();
+        // }
     }
 
     navigate(event: Navigation) {

@@ -3,28 +3,16 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-}
-
-.modal-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 1000;
+    background: var(--color-green-0);
+    /*box-shadow: inset 0 8px 16px -5px black,*/
+        /*inset 0 -8px 16px 5px black;*/
+    /*box-shadow:*/
+        /*inset 0px 5px 1px -5px #ffffff,*/
+        /*inset 0px -5px 2px -5px #ffffff;*/
 }
 
 .modal {
-    overflow: hidden;
-    position: fixed;
-    bottom: 10em;
-    left: 20em;
-    right: 20em;
-    top: 10em;
-    z-index: 1100;
-    padding: 2em 1em 0.5em 2em;
+    width: 100%;
 }
 
 .closed .modal {
