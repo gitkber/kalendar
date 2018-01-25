@@ -18,11 +18,11 @@
 }
 
 .sub-title {
-    font-size: 2em;
+    font-size: 1.5em;
     letter-spacing: 0.1em;
     font-weight: bold;
     color: rgba(253, 95, 0, 0.8);
-    text-shadow: 1px 4px 6px #555555, 0 0 0 #000, 1px 4px 6px #555555;
+    text-shadow: 1px 4px 6px var(--color-green-0), 0 0 0 #000, 1px 4px 6px var(--color-green-0);
     line-height: 1.5;
     margin-bottom: 0.5em;
 }
