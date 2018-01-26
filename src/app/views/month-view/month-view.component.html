@@ -1,5 +1,6 @@
 <core-modal [blocking]=false></core-modal>
 <div class="view-container">
-    <one-month class="kal-month-item" [month]="month" (showDayDetailClick)="showDayDetail($event)"
+    <one-month class="kal-month-item" [month]="month" (showDayClick)="showDayDetail($event)"
+               (showDayItemClick)="showDayItemDetail($event)"
                (navigateClick)="navigate($event)"></one-month>
 </div>

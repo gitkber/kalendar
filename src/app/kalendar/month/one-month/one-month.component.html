@@ -1,5 +1,5 @@
 <navig-panel [navigation]="'month'"
              (navigateClick)="navigate($event)">
     <day-in-month *ngFor="let day of month.days" class="content-item" [day]="day"
-                  (click)="showDayDetail(day)"></day-in-month>
+                  (showDayClick)="showDayDetail($event)" (showDayItemClick)="showDayItemDetail($event)"></day-in-month>
 </navig-panel>

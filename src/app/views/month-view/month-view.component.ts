@@ -8,7 +8,6 @@ import { Day } from '../../kalendar/day/day';
 import { Navigation } from '../../kalendar/navigation';
 import { RouterService } from '../../core/service/router.service';
 import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
-import { Type } from '../../kalendar/type';
 import { DayItem } from '../../kalendar/day-item';
 
 @Component({
@@ -51,15 +50,18 @@ export class MonthViewComponent implements OnInit, OnDestroy {
     }
 
     showDayDetail(event: Day) {
-        this.coreModal.open(new DayItem(Type.CONTACT, null, '2010-10-10', ''));
-        // this.appService.selectDate(event.date);
-        // if (event.isDisabled) {
-        //     this.month.jump(event.date.getMonth() + 1, event.date.getFullYear());
-        //     this.selectedDay = this.month.selectDate(event.date);
-        // } else {
-        //     this.selectedDay = this.month.selectDate(this.appService.currentDate);
-        //     this.routerService.navigateToHome();
-        // }
+        this.appService.selectDate(event.date);
+        if (event.isDisabled) {
+            this.month.jump(event.date.getMonth() + 1, event.date.getFullYear());
+            this.selectedDay = this.month.selectDate(event.date);
+        } else {
+            this.selectedDay = this.month.selectDate(this.appService.currentDate);
+            this.routerService.navigateToHome();
+        }
+    }
+
+    showDayItemDetail(event: DayItem) {
+        this.coreModal.open(event);
     }
 
     navigate(event: Navigation) {
