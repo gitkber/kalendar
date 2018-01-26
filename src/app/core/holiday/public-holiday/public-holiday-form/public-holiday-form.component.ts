@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PublicHoliday, PublicHolidayAction } from '../public-holiday';
 import { Action } from '../../../action';
-import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 import { isUndefined } from 'util';
 
 @Component({
@@ -19,12 +18,9 @@ export class PublicHolidayFormComponent implements OnChanges {
     public formGroup: FormGroup;
     private publicHolidayKey: string;
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
     constructor() {
         this.formGroup = new FormGroup({
-            description: new FormControl('', Validators.required),
-            date: new FormControl('', Validators.required)
+            description: new FormControl('', Validators.required)
         });
     }
 
@@ -38,15 +34,13 @@ export class PublicHolidayFormComponent implements OnChanges {
                 this.title = 'Modifier ce jour férié';
             }
             this.formGroup.setValue({
-                'description': this.publicHoliday.description,
-                'date': this.dateStringPipe.transform(this.publicHoliday.date)
+                'description': this.publicHoliday.description
             });
         }
     }
 
     addHoliday() {
-        this.publicHoliday = this.formGroup.getRawValue();
-        this.publicHoliday.date = this.dateStringPipe.transform(this.publicHoliday.date, true);
+        this.publicHoliday = this.formGroup.get('description').value;
 
         let publicHolidayAction: PublicHolidayAction;
         if (this.isEmptyKey()) {

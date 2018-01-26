@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactHoliday, ContactHolidayAction } from '../contact-holiday';
 import { Action } from '../../../action';
-import { DateStringPipe } from '../../../../common/utils/date-string.pipe';
 import { isUndefined } from 'util';
 
 @Component({
@@ -19,12 +18,9 @@ export class ContactHolidayFormComponent implements OnChanges {
     public formGroup: FormGroup;
     private contactHolidayKey: string;
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
     constructor() {
         this.formGroup = new FormGroup({
-            description: new FormControl('', Validators.required),
-            date: new FormControl('', Validators.required)
+            description: new FormControl('', Validators.required)
         });
     }
 
@@ -39,15 +35,13 @@ export class ContactHolidayFormComponent implements OnChanges {
             }
 
             this.formGroup.setValue({
-                'description': this.contactHoliday.description,
-                'date': this.dateStringPipe.transform(this.contactHoliday.date)
+                'description': this.contactHoliday.description
             });
         }
     }
 
     addHoliday() {
-        this.contactHoliday = this.formGroup.getRawValue();
-        this.contactHoliday.date = this.dateStringPipe.transform(this.contactHoliday.date, true);
+        this.contactHoliday.description = this.formGroup.get('description').value;
 
         let contactHolidayAction: ContactHolidayAction;
         if (this.isEmptyKey()) {

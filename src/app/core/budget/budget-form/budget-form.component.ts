@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Action } from '../../action';
-import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { DateUtilService } from '../../../common/utils/date-util.service';
 import { isUndefined } from 'util';
 import { Budget, BudgetAction } from '../budget';
@@ -22,8 +21,6 @@ export class BudgetFormComponent implements OnChanges {
     public budgetFormGroup: FormGroup;
     private budgetKey: string;
 
-    private dateStringPipe: DateStringPipe = new DateStringPipe();
-
     public optionTypes: string[] = [];
 
     constructor(public dateUtilService: DateUtilService) {
@@ -32,7 +29,6 @@ export class BudgetFormComponent implements OnChanges {
         this.budgetFormGroup = new FormGroup({
             tagType: new FormControl('', Validators.required),
             description: new FormControl('', Validators.required),
-            kalendarDate: new FormControl(''),
             amount: new FormControl('')
         });
 
@@ -43,14 +39,13 @@ export class BudgetFormComponent implements OnChanges {
         if (changes.budget.currentValue !== undefined) {
             this.budgetKey = changes.budget.currentValue['$key'];
             if (this.isEmptyKey()) {
-                this.title = 'Ajouter un budget';
+                this.title = 'Ajouter une dépense';
             } else {
-                this.title = 'Modifier ce budget';
+                this.title = 'Modifier cette dépense';
             }
             this.budgetFormGroup.setValue({
                 'tagType': this.budget.tagType,
                 'description': this.budget.description,
-                'kalendarDate': this.dateStringPipe.transform(this.budget.kalendarDate),
                 'amount': this.budget.amount
             });
         }
@@ -60,7 +55,6 @@ export class BudgetFormComponent implements OnChanges {
         this.budget.tagType = this.budgetFormGroup.get('tagType').value;
         this.budget.description = this.budgetFormGroup.get('description').value;
         this.budget.amount = this.budgetFormGroup.get('amount').value;
-        this.budget.kalendarDate = this.dateStringPipe.transform(this.budgetFormGroup.get('kalendarDate').value, true);
 
         let budgetAction: BudgetAction;
         if (this.isEmptyKey()) {
