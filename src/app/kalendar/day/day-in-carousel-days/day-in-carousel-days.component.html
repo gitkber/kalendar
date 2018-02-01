@@ -1,80 +1,95 @@
-<div class="day-in-carousel-days-container paper-style" [class.day-selected]="day.isSelected"
-     (click)="navigateToDay()">
-    <div class="group-container">
-        <div class="day-item-title">
-            <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
-            <div class="day-item-title-header">
-                <div>
-                    {{ day.date | date:'d' }}
+
+<div class="flip-container" [class.editMode]="editMode">
+    <div class="flipper">
+        <div class="paper-style front" [class.day-selected]="day.isSelected"
+         (click)="navigateToDay()">
+            <div class="flex-container">
+                <div class="group-container">
+                    <div class="day-item-title">
+                        <div>{{ firstCharToUpperCase(day.date | date:'EEEE') }}</div>
+                        <div class="day-item-title-header">
+                            <div>
+                                {{ day.date | date:'d' }}
+                            </div>
+                            <div class="day-item-select" (click)="navigateToMonth()">
+                                {{ day.date | date:'MMMM' }}
+                            </div>
+                            <div class="day-item-select" (click)="navigateToYear()">
+                                {{ day.date | date:'yyyy' }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-item-detail-list">
+                        <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
+                            <div class="label-item">
+                                <i *ngIf="dayItem.isContact()" class="fa fa-birthday-cake fa-border"></i>
+                                <i *ngIf="dayItem.isEvent()" class="fa fa-newspaper-o fa-border"></i>
+                                <i *ngIf="dayItem.isBudget()" class="fa fa-money fa-border"></i>
+                                <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
+                            </div>
+                            <div *ngIf="day.isSelected">
+                                <edit-icon-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
+                                                  [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                                <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
+                                                  [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                                <edit-icon-action [tooltip]="'Modifier une dépense'" *ngIf="dayItem.isBudget()"
+                                                  [image]="'fa-money'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="day.isSelected" class="day-item-detail">
+                        <div></div>
+                        <div>
+                            <plus-icon-action [tooltip]="'Ajouter un contact'"
+                                              [image]="'fa-user'" (click)="addDayItemContact()"></plus-icon-action>
+                            <plus-icon-action [tooltip]="'Ajouter un événement'"
+                                              [image]="'fa-newspaper-o'" (click)="addDayItemMemo()"></plus-icon-action>
+                            <plus-icon-action [tooltip]="'Ajouter une dépense'"
+                                              [image]="'fa-money'" (click)="addDayItemBudget()"></plus-icon-action>
+                            <plus-icon-action [tooltip]="'Ajouter un jour de congé'"
+                                              [image]="'fa-sun-o'" (click)="addDayItemContactHoliday()"></plus-icon-action>
+                        </div>
+                    </div>
                 </div>
-                <div class="day-item-select" (click)="navigateToMonth()">
-                    {{ day.date | date:'MMMM' }}
+                <div class="group-container margin-bottom">
+                    <div class="day-item-detail core-info contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
+                        <div class="day-item-info">
+                            {{ dayContactHolidayItem.principalItem }}
+                        </div>
+                        <div *ngIf="day.isSelected">
+                            <edit-icon-action [tooltip]="'Modifier un jour de congé'"
+                                              [image]="'fa-sun-o'" (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
+                        </div>
+                    </div>
+                    <div class="day-item-detail" *ngIf="day.isSelected">
+                        <div></div>
+                        <plus-icon-action *ngIf="!day.dayPublicHolidayItem"
+                                          [tooltip]="'Ajouter un jour férié'"
+                                          [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-icon-action>
+                    </div>
+                    <div class="day-item-detail core-info public-holiday" *ngIf="day.dayPublicHolidayItem">
+                        <div class="day-item-info">
+                            {{ day.dayPublicHolidayItem.principalItem }}
+                        </div>
+                        <div *ngIf="day.isSelected">
+                            <edit-icon-action [tooltip]="'Modifier un jour férié'"
+                                              [image]="'fa-flag'"
+                                              (click)="editDayItem(day.dayPublicHolidayItem)"></edit-icon-action>
+                        </div>
+                    </div>
+                    <div class="day-item-info core-info" *ngIf="day.isToday" [class.today]="day.isToday">
+                        Today
+                    </div>
                 </div>
-                <div class="day-item-select" (click)="navigateToYear()">
-                    {{ day.date | date:'yyyy' }}
-                </div>
             </div>
         </div>
-        <div class="day-item-detail-list">
-            <div class="day-item-detail" *ngFor="let dayItem of day.dayItems">
-                <div class="label-item">
-                    <i *ngIf="dayItem.isContact()" class="fa fa-birthday-cake fa-border"></i>
-                    <i *ngIf="dayItem.isEvent()" class="fa fa-newspaper-o fa-border"></i>
-                    <i *ngIf="dayItem.isBudget()" class="fa fa-money fa-border"></i>
-                    <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
-                </div>
-                <div *ngIf="day.isSelected">
-                    <edit-icon-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
-                                      [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
-                    <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
-                                      [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-icon-action>
-                    <edit-icon-action [tooltip]="'Modifier une dépense'" *ngIf="dayItem.isBudget()"
-                                      [image]="'fa-money'" (click)="editDayItem(dayItem)"></edit-icon-action>
-                </div>
+        <div class="paper-style back">
+            <div class="flex-container">
+                back
+                <plus-icon-action [tooltip]="'Test'"
+                              [image]="'fa-times'" (click)="closeEditMode()"></plus-icon-action>
             </div>
-        </div>
-        <div *ngIf="day.isSelected" class="day-item-detail">
-            <div></div>
-            <div>
-                <plus-icon-action [tooltip]="'Ajouter un contact'"
-                                  [image]="'fa-user'" (click)="addDayItemContact()"></plus-icon-action>
-                <plus-icon-action [tooltip]="'Ajouter un événement'"
-                                  [image]="'fa-newspaper-o'" (click)="addDayItemMemo()"></plus-icon-action>
-                <plus-icon-action [tooltip]="'Ajouter une dépense'"
-                                  [image]="'fa-money'" (click)="addDayItemBudget()"></plus-icon-action>
-                <plus-icon-action [tooltip]="'Ajouter un jour de congé'"
-                                  [image]="'fa-sun-o'" (click)="addDayItemContactHoliday()"></plus-icon-action>
-            </div>
-        </div>
-    </div>
-    <div class="group-container margin-bottom">
-        <div class="day-item-detail core-info contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
-            <div class="day-item-info">
-                {{ dayContactHolidayItem.principalItem }}
-            </div>
-            <div *ngIf="day.isSelected">
-                <edit-icon-action [tooltip]="'Modifier un jour de congé'"
-                                  [image]="'fa-sun-o'" (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
-            </div>
-        </div>
-        <div class="day-item-detail" *ngIf="day.isSelected">
-            <div></div>
-            <plus-icon-action *ngIf="!day.dayPublicHolidayItem"
-                              [tooltip]="'Ajouter un jour férié'"
-                              [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-icon-action>
-        </div>
-        <div class="day-item-detail core-info public-holiday" *ngIf="day.dayPublicHolidayItem">
-            <div class="day-item-info">
-                {{ day.dayPublicHolidayItem.principalItem }}
-            </div>
-            <div *ngIf="day.isSelected">
-                <edit-icon-action [tooltip]="'Modifier un jour férié'"
-                                  [image]="'fa-flag'"
-                                  (click)="editDayItem(day.dayPublicHolidayItem)"></edit-icon-action>
-            </div>
-        </div>
-        <div class="day-item-info core-info" *ngIf="day.isToday" [class.today]="day.isToday">
-            Today
+
         </div>
     </div>
 </div>

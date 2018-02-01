@@ -16,6 +16,8 @@ export class DayInCarouselDaysComponent {
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
+    public editMode: boolean;
+
     constructor(private dateUtilService: DateUtilService) { }
 
     navigateToMonth() {
@@ -47,8 +49,13 @@ export class DayInCarouselDaysComponent {
         this.showDayItemClick.emit(event);
     }
 
+    closeEditMode() {
+        this.editMode = false;
+    }
+
     addDayItemContact() {
-        this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
+        this.editMode = true;
+        // this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 
     addDayItemMemo() {
