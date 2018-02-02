@@ -1,0 +1,37 @@
+<div>
+    <h5> {{ kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
+    <h1>Evénement</h1>
+    <form (ngSubmit)="saveEvent()" [formGroup]="eventCriteriaFormGroup" #addEventForm="ngForm">
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder=""
+                   formControlName="description" name="description" id="inputDescription">
+            <label for="inputDescription">Description</label>
+            <span class="focus-border"></span>
+        </div>
+        <h5> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder=""
+                   formControlName="duplication" name="duplication" id="inputDuplication"
+                   (change)="changeDuplicationToKalendarDate($event)">
+            <label for="inputDuplication">Description</label>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3 input-effect">
+            <div class="effect-16 has-content switch switch-yellow">
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
+                       [value]="false" id="inputIncludeWeekend" checked (click)="changeSwitchToKalendarDate()">
+                <label for="inputIncludeWeekend" class="switch-label switch-label-off">NON</label>
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
+                       [value]="true" id="month3" (click)="changeSwitchToKalendarDate()">
+                <label for="month3" class="switch-label switch-label-on">OUI</label>
+                <span class="switch-selection"></span>
+            </div>
+            <label for="inputIncludeWeekend">Week-end inclus</label>
+            <span class="focus-border"></span>
+        </div>
+    </form>
+    <div class="panel-action">
+        <kal-action [image]="'fa-save'" (click)="saveEvent()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteEvent()"></kal-action>
+    </div>
+</div>

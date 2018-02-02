@@ -1,0 +1,9 @@
+.option-types-container {
+    /*display: flex;*/
+    flex-wrap: wrap;
+    width: 100%;
+    /*border: 1px solid red;*/
+}
+.option-types-item {
+    /*border: 1px solid red;*/
+}

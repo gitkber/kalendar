@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Day } from '../../../kalendar/day/day';
 import { Navigation } from '../../../kalendar/navigation';
 import { Type } from '../../../kalendar/type';
@@ -6,6 +6,8 @@ import { DayItem } from '../../../kalendar/day-item';
 import { DateUtilService } from '../../../common/utils/date-util.service';
 import { Observable } from 'rxjs/Observable';
 import { Contact } from '../../contact/contact';
+import { CoreModalComponent } from '../../../views/modal/core-modal/core-modal.component';
+import { EditDayComponent } from '../edit-day/edit-day.component';
 
 @Component({
     selector: 'day-in-carousel-days',
@@ -13,6 +15,8 @@ import { Contact } from '../../contact/contact';
     styleUrls: ['./day-in-carousel-days.component.css']
 })
 export class DayInCarouselDaysComponent {
+
+    @ViewChild(EditDayComponent) editDayComponent: EditDayComponent;
 
     @Input() day: Day;
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
@@ -50,7 +54,9 @@ export class DayInCarouselDaysComponent {
     }
 
     editDayItem(event: DayItem) {
-        this.showDayItemClick.emit(event);
+        this.editMode = true;
+        // this.showDayItemClick.emit(event);
+        this.editDayComponent.open(event);
     }
 
     closeEditMode() {
@@ -59,23 +65,28 @@ export class DayInCarouselDaysComponent {
 
     addDayItemContact() {
         this.editMode = true;
-        this.contactSelected = Observable.of(new Contact(null, null, '2010-10-10'));
+        this.editDayComponent.open(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
+        // this.contactSelected = Observable.of(new Contact(null, null, '2010-10-10'));
         // this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 
     addDayItemMemo() {
-        this.showDayItemClick.emit(new DayItem(Type.EVENT, null, this.dateUtilService.toString(this.day.date), null));
+        this.editMode = true;
+        this.editDayComponent.open(new DayItem(Type.EVENT, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemBudget() {
-        this.showDayItemClick.emit(new DayItem(Type.BUDGET, null, this.dateUtilService.toString(this.day.date), null));
+        this.editMode = true;
+        this.editDayComponent.open(new DayItem(Type.BUDGET, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemContactHoliday() {
-        this.showDayItemClick.emit(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
+        this.editMode = true;
+        this.editDayComponent.open(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemPublicHoliday() {
-        this.showDayItemClick.emit(new DayItem(Type.PUBLIC_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
+        this.editMode = true;
+        this.editDayComponent.open(new DayItem(Type.PUBLIC_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 }

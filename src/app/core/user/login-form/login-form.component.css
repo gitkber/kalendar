@@ -2,3 +2,26 @@
     display: flex;
     flex-direction: column;
 }
+
+.input-form {
+    border-radius: 5px;
+    background: #333333;
+    padding: 0.5em 2em 0.5em 2em;
+    margin-bottom: 10px;
+    font-size: medium;
+    border: none;
+    color: #929999;
+    box-shadow: inset 0 1px 5px #272727;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+.input-form:focus {
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    transition: 0.5s ease;
+    box-shadow: 0 0 5px 1px #161718;
+}

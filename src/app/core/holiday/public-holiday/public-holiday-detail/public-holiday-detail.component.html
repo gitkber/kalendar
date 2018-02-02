@@ -1,0 +1,16 @@
+<div>
+    <h5> {{ publicHoliday.date | date: 'EEEE d MMMM yyyy' }}</h5>
+    <h1>Jour férié</h1>
+    <form (ngSubmit)="addHoliday()" [formGroup]="formGroup" #addHolidayForm="ngForm">
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder=""
+                   formControlName="description" name="description" id="inputDescription">
+            <label for="inputDescription">Description</label>
+            <span class="focus-border"></span>
+        </div>
+    </form>
+    <div class="panel-action">
+        <kal-action [image]="'fa-save'" (click)="addHoliday()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteHoliday()"></kal-action>
+    </div>
+</div>

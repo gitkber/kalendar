@@ -1,0 +1,29 @@
+<div>
+    <h5> {{ budget.kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
+    <h1>Dépense</h1>
+    <form (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
+        <div class="option-types-container">
+            <div class="option-types-item" *ngFor="let name of optionTypes">
+                <label><input type="radio" [value]="name" formControlName="tagType">{{name}}</label>
+            </div>
+
+        </div>
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder=""
+                   formControlName="description" name="description" id="inputDescription">
+            <label for="inputDescription">Description</label>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder=""
+                   formControlName="amount" name="amount" id="inputAmount">
+            <label for="inputAmount">Montant</label>
+            <span class="focus-border"></span>
+        </div>
+    </form>
+    <div class="panel-action">
+        <kal-action [image]="'fa-save'" (click)="addBudget()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteBudget()"></kal-action>
+    </div>
+</div>
+
