@@ -2,9 +2,9 @@
     <h5> {{ budget.kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
     <h1>Dépense</h1>
     <form (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
-        <div class="option-types-container">
-            <div class="option-types-item" *ngFor="let name of optionTypes">
-                <label><input type="radio" [value]="name" formControlName="tagType">{{name}}</label>
+        <div class="switch-field">
+            <div *ngFor="let name of optionTypes">
+                <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name">{{name}}</label>
             </div>
 
         </div>
