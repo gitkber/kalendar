@@ -4,9 +4,6 @@ import { Navigation } from '../../../kalendar/navigation';
 import { Type } from '../../../kalendar/type';
 import { DayItem } from '../../../kalendar/day-item';
 import { DateUtilService } from '../../../common/utils/date-util.service';
-import { Observable } from 'rxjs/Observable';
-import { Contact } from '../../contact/contact';
-import { CoreModalComponent } from '../../../views/modal/core-modal/core-modal.component';
 import { EditDayComponent } from '../edit-day/edit-day.component';
 
 @Component({
@@ -23,8 +20,6 @@ export class DayInCarouselDaysComponent {
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
     public editMode: boolean;
-
-    public contactSelected: Observable<Contact>;
 
     constructor(private dateUtilService: DateUtilService) { }
 
@@ -55,7 +50,6 @@ export class DayInCarouselDaysComponent {
 
     editDayItem(event: DayItem) {
         this.editMode = true;
-        // this.showDayItemClick.emit(event);
         this.editDayComponent.open(event);
     }
 
@@ -66,8 +60,6 @@ export class DayInCarouselDaysComponent {
     addDayItemContact() {
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
-        // this.contactSelected = Observable.of(new Contact(null, null, '2010-10-10'));
-        // this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 
     addDayItemMemo() {

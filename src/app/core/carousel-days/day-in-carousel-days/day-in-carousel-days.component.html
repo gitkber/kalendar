@@ -1,8 +1,7 @@
-
 <div class="flip-container" [class.editMode]="editMode">
     <div class="flipper">
         <div class="paper-style front" [class.day-selected]="day.isSelected"
-         (click)="navigateToDay()">
+             (click)="navigateToDay()">
             <div class="flex-container">
                 <div class="group-container">
                     <div class="day-item-title">
@@ -31,9 +30,11 @@
                                 <edit-icon-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
                                                   [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
                                 <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
-                                                  [image]="'fa-newspaper-o'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                                                  [image]="'fa-newspaper-o'"
+                                                  (click)="editDayItem(dayItem)"></edit-icon-action>
                                 <edit-icon-action [tooltip]="'Modifier une dépense'" *ngIf="dayItem.isBudget()"
-                                                  [image]="'fa-money'" (click)="editDayItem(dayItem)"></edit-icon-action>
+                                                  [image]="'fa-money'"
+                                                  (click)="editDayItem(dayItem)"></edit-icon-action>
                             </div>
                         </div>
                     </div>
@@ -47,18 +48,21 @@
                             <plus-icon-action [tooltip]="'Ajouter une dépense'"
                                               [image]="'fa-money'" (click)="addDayItemBudget()"></plus-icon-action>
                             <plus-icon-action [tooltip]="'Ajouter un jour de congé'"
-                                              [image]="'fa-sun-o'" (click)="addDayItemContactHoliday()"></plus-icon-action>
+                                              [image]="'fa-sun-o'"
+                                              (click)="addDayItemContactHoliday()"></plus-icon-action>
                         </div>
                     </div>
                 </div>
                 <div class="group-container margin-bottom">
-                    <div class="day-item-detail core-info contact-holiday" *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
+                    <div class="day-item-detail core-info contact-holiday"
+                         *ngFor="let dayContactHolidayItem of day.dayContactHolidayItems">
                         <div class="day-item-info">
                             {{ dayContactHolidayItem.principalItem }}
                         </div>
                         <div *ngIf="day.isSelected">
                             <edit-icon-action [tooltip]="'Modifier un jour de congé'"
-                                              [image]="'fa-sun-o'" (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
+                                              [image]="'fa-sun-o'"
+                                              (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
                         </div>
                     </div>
                     <div class="day-item-detail" *ngIf="day.isSelected">
@@ -85,15 +89,8 @@
         </div>
         <div class="paper-style back">
             <div class="flex-container">
-                <div>
-                    <edit-day></edit-day>
-                    <!--<contact-detail *ngIf="contactSelected" [fillYear]="true"-->
-                                  <!--[contact]="contactSelected | async"></contact-detail>-->
-                    <plus-icon-action [tooltip]="'Test'"
-                                      [image]="'fa-times'" (click)="closeEditMode()"></plus-icon-action>
-                </div>
+                <edit-day (closeEditDayClick)="closeEditMode()"></edit-day>
             </div>
-
         </div>
     </div>
 </div>

@@ -1,13 +1,13 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Navigation } from '../../../kalendar/navigation';
 import { DayItem } from '../../../kalendar/day-item';
 import { AppService } from '../../../app.service';
-import { Contact, ContactAction } from '../../../core/contact/contact';
-import { ContactHoliday, ContactHolidayAction } from '../../../core/holiday/contact-holiday/contact-holiday';
-import { PublicHoliday, PublicHolidayAction } from '../../../core/holiday/public-holiday/public-holiday';
-import { Event, EventAction } from '../../../core/event/event';
-import { Budget, BudgetAction } from '../../../core/budget/budget';
-import { Observable } from 'rxjs/Observable';
+import { Contact, ContactAction } from '../../contact/contact';
+import { ContactHoliday, ContactHolidayAction } from '../../holiday/contact-holiday/contact-holiday';
+import { PublicHoliday, PublicHolidayAction } from '../../holiday/public-holiday/public-holiday';
+import { Budget, BudgetAction } from '../../budget/budget';
+import { Event, EventAction } from '../../event/event';
 import { TagBudgetOperation } from '../../../common/utils/tag';
 import { ViewsFacade } from '../../../views/views.facade';
 
@@ -18,9 +18,7 @@ import { ViewsFacade } from '../../../views/views.facade';
 })
 export class EditDayComponent {
 
-    @Input() blocking = false;
-
-    public isOpen = false;
+    @Output() closeEditDayClick: EventEmitter<any> = new EventEmitter();
 
     public eventSelected: Observable<Event>;
     public contactSelected: Observable<Contact>;
@@ -32,9 +30,7 @@ export class EditDayComponent {
     constructor(
         private appService: AppService,
         private viewsFacade: ViewsFacade,
-    ) {
-        console.log('CoreModalComponent');
-    }
+    ) { }
 
     @HostListener('document:keydown.escape', ['$event'])
     onKeydownHandler(event: KeyboardEvent) {
@@ -43,20 +39,11 @@ export class EditDayComponent {
     }
 
     open(dayItem: DayItem): void {
-        this.isOpen = true;
         this.showDayItem(dayItem);
     }
 
-    openContactForm(event: Contact) {
-        this.isOpen = true;
-        this.contactSelected = Observable.of(event);
-    }
-
-    close(checkBlocking = false): void {
-        if (checkBlocking && this.blocking) {
-            return;
-        }
-        this.isOpen = false;
+    close(): void {
+        this.closeEditDayClick.emit();
     }
 
     showDayItem(event: DayItem) {
