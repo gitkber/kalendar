@@ -10,16 +10,11 @@
 }
 
 /*.flip-container:hover .flipper {*/
-    /*-webkit-transform: rotateY(180deg);*/
-    /*-moz-transform: rotateY(180deg);*/
-    /*-o-transform: rotateY(180deg);*/
-    /*transform: rotateY(180deg);*/
-/*}*/
 .editMode .flipper {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
 }
 
 .flipper {
@@ -70,12 +65,12 @@
 }
 
 .back {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
 
-    background: #88887a;
+    background: var(--color-green-1);
 }
 
 .day-selected {

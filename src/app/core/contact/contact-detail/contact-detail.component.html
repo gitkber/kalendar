@@ -1,0 +1,47 @@
+<div>
+    <h1>Contact</h1>
+    <form (ngSubmit)="addContact()" [formGroup]="contactFormGroup" #addContactForm="ngForm">
+
+
+        <!--<label class="labelFor" for="inputFirstname">Firstname</label>-->
+        <!--<input type="text" formControlName="firstname" name="firstname" id="inputFirstname"/>-->
+
+        <!--<label class="labelFor" for="inputLastname">Lastname</label>-->
+        <!--<input type="text" formControlName="lastname" name="lastname" id="inputLastname"/>-->
+
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder="" value="Karine">
+            <label>Prénom</label>
+            <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder="" value="Berth">
+            <label>Nom</label>
+            <span class="focus-border"></span>
+        </div>
+
+
+        <div class="col-3 input-effect">
+            <input class="effect-16 has-content" type="text" placeholder="" value="1976">
+            <label>Année de naissance</label>
+            <span class="focus-border"></span>
+        </div>
+
+        <!--<div *ngIf="!fillYear">-->
+            <!--<label class="labelFor" for="inputBirthdate">Birthdate</label>-->
+            <!--<input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>-->
+        <!--</div>-->
+        <!--<div *ngIf="fillYear">-->
+            <!--<label class="labelFor" for="inputYear">Year</label>-->
+            <!--{{this.dateUtilService.stringToDayAndLongMonth(this.contact.birthdate)}}-->
+            <!--<input type="text" formControlName="year" name="year" id="inputYear"/>-->
+        <!--</div>-->
+    </form>
+    <div class="panel-action">
+        <kal-action [image]="'fa-save'" (click)="addContact()"></kal-action>
+        <kal-action [image]="'fa-trash-o'" (click)="deleteContact()"></kal-action>
+    </div>
+</div>
+
+

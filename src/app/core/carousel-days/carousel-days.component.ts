@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Navigation } from '../navigation';
+import { Navigation } from '../../kalendar/navigation';
 import { CarouselDays } from './carousel-days';
-import { DayItem } from '../day-item';
+import { DayItem } from '../../kalendar/day-item';
 
 @Component({
     selector: 'carousel-days',

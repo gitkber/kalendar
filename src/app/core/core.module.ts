@@ -11,8 +11,11 @@ import { ObjectiveService } from './objective/objective.service';
 import { BudgetService } from './budget/budget.service';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
+import { CarouselDaysComponent } from './carousel-days/carousel-days.component';
+import { DayInCarouselDaysComponent } from './carousel-days/day-in-carousel-days/day-in-carousel-days.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
+import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import { BirthdayPostItComponent } from './contact/birthday-post-it/birthday-post-it.component';
 import { BudgetFormComponent } from './budget/budget-form/budget-form.component';
 import { ToBuyListComponent } from './budget/to-buy-list/to-buy-list.component';
@@ -29,8 +32,8 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
-        ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
-        CarouselBudgetComponent, MonthInCarouselBudgetComponent,
+        ContactFormComponent, ContactListComponent, BirthdayPostItComponent, ContactDetailComponent,
+        CarouselBudgetComponent, MonthInCarouselBudgetComponent, CarouselDaysComponent, DayInCarouselDaysComponent,
         ObjectiveListComponent, ObjectiveFormComponent,
         BudgetFormComponent, ToBuyListComponent,
         EventFormComponent,
@@ -39,7 +42,7 @@ import { ObjectiveFormComponent } from './objective/objective-form/objective-for
         WeekImageComponent],
     exports: [LoginFormComponent,
         ContactFormComponent, ContactListComponent, BirthdayPostItComponent,
-        CarouselBudgetComponent,
+        CarouselBudgetComponent, CarouselDaysComponent,
         ObjectiveListComponent, ObjectiveFormComponent,
         BudgetFormComponent, ToBuyListComponent,
         EventFormComponent,

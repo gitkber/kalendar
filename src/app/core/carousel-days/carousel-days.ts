@@ -1,4 +1,4 @@
-import { Day } from '../day/day';
+import { Day } from '../../kalendar/day/day';
 
 export class CarouselDays {
 

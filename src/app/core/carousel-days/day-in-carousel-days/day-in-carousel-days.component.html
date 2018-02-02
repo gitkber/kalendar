@@ -85,9 +85,12 @@
         </div>
         <div class="paper-style back">
             <div class="flex-container">
-                back
-                <plus-icon-action [tooltip]="'Test'"
-                              [image]="'fa-times'" (click)="closeEditMode()"></plus-icon-action>
+                <div>
+                    <contact-detail *ngIf="contactSelected" [fillYear]="true"
+                                  [contact]="contactSelected | async"></contact-detail>
+                    <plus-icon-action [tooltip]="'Test'"
+                                      [image]="'fa-times'" (click)="closeEditMode()"></plus-icon-action>
+                </div>
             </div>
 
         </div>

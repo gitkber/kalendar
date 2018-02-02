@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Day } from '../day';
-import { Navigation } from '../../navigation';
-import { Type } from '../../type';
-import { DayItem } from '../../day-item';
+import { Day } from '../../../kalendar/day/day';
+import { Navigation } from '../../../kalendar/navigation';
+import { Type } from '../../../kalendar/type';
+import { DayItem } from '../../../kalendar/day-item';
 import { DateUtilService } from '../../../common/utils/date-util.service';
+import { Observable } from 'rxjs/Observable';
+import { Contact } from '../../contact/contact';
 
 @Component({
     selector: 'day-in-carousel-days',
@@ -17,6 +19,8 @@ export class DayInCarouselDaysComponent {
     @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
     public editMode: boolean;
+
+    public contactSelected: Observable<Contact>;
 
     constructor(private dateUtilService: DateUtilService) { }
 
@@ -55,6 +59,7 @@ export class DayInCarouselDaysComponent {
 
     addDayItemContact() {
         this.editMode = true;
+        this.contactSelected = Observable.of(new Contact(null, null, '2010-10-10'));
         // this.showDayItemClick.emit(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 

@@ -4,7 +4,7 @@ import { RouterService } from '../../core/service/router.service';
 import { AppService } from '../../app.service';
 import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
 import { Navigation } from '../../kalendar/navigation';
-import { CarouselDays } from '../../kalendar/carousel-days/carousel-days';
+import { CarouselDays } from '../../core/carousel-days/carousel-days';
 import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
 import { DayItem } from '../../kalendar/day-item';
 import { Observable } from 'rxjs/Observable';
