@@ -24,6 +24,15 @@ export const TagBudgetType = {
     WORK: 'WORK'
 }
 
+enum Direction {
+    Up = "UP",
+    Down = "DOWN",
+    Left = "LEFT",
+    Right = "RIGHT",
+}
+
+
+
 /* SAMPLES ROW
 -TAG_CASE       -TAG_CASE_TYPE    -description              -deadline
 
