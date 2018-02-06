@@ -17,7 +17,6 @@ export class ContactDetailComponent implements OnChanges {
     @Input() contact: Contact;
     @Output() actionClick = new EventEmitter<ContactAction>();
 
-    public title: string;
     public contactFormGroup: FormGroup;
     private contactKey: string;
 
@@ -28,18 +27,13 @@ export class ContactDetailComponent implements OnChanges {
             firstname: new FormControl('', Validators.required),
             lastname: new FormControl('', Validators.required),
             birthdate: new FormControl('', Validators.required),
-            year: new FormControl('', Validators.required)
+            year: new FormControl('', [Validators.required, Validators.pattern('[0-9]{4}')])
         });
     }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.contact.currentValue !== undefined) {
             this.contactKey = changes.contact.currentValue['$key'];
-            if (this.isEmptyKey()) {
-                this.title = 'Ajouter un contact';
-            } else {
-                this.title = 'Modifier ce contact';
-            }
             this.contactFormGroup.setValue({
                 'firstname': this.contact.firstname,
                 'lastname': this.contact.lastname,
@@ -49,23 +43,34 @@ export class ContactDetailComponent implements OnChanges {
         }
     }
 
-    addContact() {
-        this.contact.firstname = this.contactFormGroup.get('firstname').value;
-        this.contact.lastname = this.contactFormGroup.get('lastname').value;
-        if (this.fillYear) {
-            const year: string = this.contactFormGroup.get('year').value;
-            this.contact.birthdate = this.dateUtilService.replaceYear(year, this.contact.birthdate);
+    hasContent(control: string): boolean {
+        return this.contactFormGroup.get(control).value;
+    }
+
+    saveContact() {
+        if (!this.contactFormGroup.valid) {
+            console.log('invalid');
+            this.contactFormGroup.get('firstname').markAsTouched();
+            this.contactFormGroup.get('lastname').markAsTouched();
+            this.contactFormGroup.get('year').markAsTouched();
         } else {
-            this.contact.birthdate = this.dateStringPipe.transform(this.contactFormGroup.get('birthdate').value, true);
+            this.contact.firstname = this.contactFormGroup.get('firstname').value;
+            this.contact.lastname = this.contactFormGroup.get('lastname').value;
+            if (this.fillYear) {
+                const year: string = this.contactFormGroup.get('year').value;
+                this.contact.birthdate = this.dateUtilService.replaceYear(year, this.contact.birthdate);
+            } else {
+                this.contact.birthdate = this.dateStringPipe.transform(this.contactFormGroup.get('birthdate').value, true);
+            }
+            let contactAction: ContactAction;
+            if (this.isEmptyKey()) {
+                contactAction = new ContactAction(Action.INSERT, this.contact);
+            } else {
+                contactAction = new ContactAction(Action.UPDATE, this.contact);
+                contactAction.contactKey = this.contactKey;
+            }
+            this.actionClickEmitAndResetFormGroup(contactAction);
         }
-        let contactAction: ContactAction;
-        if (this.isEmptyKey()) {
-            contactAction = new ContactAction(Action.INSERT, this.contact);
-        } else {
-            contactAction = new ContactAction(Action.UPDATE, this.contact);
-            contactAction.contactKey = this.contactKey;
-        }
-        this.actionClickEmitAndResetFormGroup(contactAction);
     }
 
     deleteContact() {
