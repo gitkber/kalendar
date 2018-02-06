@@ -1,16 +1,18 @@
-<div>
+<div class="form-container">
     <h5> {{ publicHoliday.date | date: 'EEEE d MMMM yyyy' }}</h5>
     <h1>Jour férié</h1>
-    <form (ngSubmit)="addHoliday()" [formGroup]="formGroup" #addHolidayForm="ngForm">
+    <form [formGroup]="formGroup" #addHolidayForm="ngForm">
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder=""
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">
             <label for="inputDescription">Description</label>
             <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('description').touched && formGroup.get('description').hasError('required')"></i>
         </div>
     </form>
-    <div class="panel-action">
-        <icon-action [image]="'fa-save'" (click)="addHoliday()"></icon-action>
+    <div class="align-right-container">
+        <icon-action [image]="'fa-save'" (click)="saveHoliday()"></icon-action>
         <icon-action [image]="'fa-trash-o'" (click)="deleteHoliday()"></icon-action>
     </div>
 </div>

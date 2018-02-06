@@ -14,7 +14,6 @@ export class ContactHolidayDetailComponent implements OnChanges {
     @Input() contactHoliday: ContactHoliday;
     @Output() actionClick = new EventEmitter<ContactHolidayAction>();
 
-    public title: string;
     public formGroup: FormGroup;
     private contactHolidayKey: string;
 
@@ -25,38 +24,35 @@ export class ContactHolidayDetailComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.contactHoliday && changes.contactHoliday.currentValue !== undefined) {
+        if (changes.contactHoliday && changes.contactHoliday.currentValue) {
             this.contactHolidayKey = changes.contactHoliday.currentValue['$key'];
-            this.contactHoliday = changes.contactHoliday.currentValue;
-            if (this.isEmptyKey()) {
-                this.title = 'Ajouter un jour de congé';
-            } else {
-                this.title = 'Modifier ce jour de congé';
-            }
-
             this.formGroup.setValue({
-                'description': this.contactHoliday.description
+                'description': changes.contactHoliday.currentValue['$value'] !== null ? this.contactHoliday.description : ''
             });
         }
     }
 
-    addHoliday() {
-        this.contactHoliday.description = this.formGroup.get('description').value;
-
-        let contactHolidayAction: ContactHolidayAction;
-        if (this.isEmptyKey()) {
-            contactHolidayAction = new ContactHolidayAction(Action.INSERT, this.contactHoliday);
+    saveHoliday() {
+        if (!this.formGroup.valid) {
+            console.log('invalid');
+            this.formGroup.get('description').markAsTouched();
         } else {
-            contactHolidayAction = new ContactHolidayAction(Action.UPDATE, this.contactHoliday);
-            contactHolidayAction.holidayKey = this.contactHolidayKey;
+            this.contactHoliday.description = this.formGroup.get('description').value;
+
+            let contactHolidayAction: ContactHolidayAction;
+            if (this.isEmptyKey()) {
+                contactHolidayAction = new ContactHolidayAction(Action.INSERT, this.contactHoliday);
+            } else {
+                contactHolidayAction = new ContactHolidayAction(Action.UPDATE, this.contactHoliday);
+                contactHolidayAction.holidayKey = this.contactHolidayKey;
+            }
+            this.actionClickEmitAndResetFormGroup(contactHolidayAction);
         }
-        this.actionClickEmitAndResetFormGroup(contactHolidayAction);
     }
 
     deleteHoliday() {
-        let contactHolidayAction: ContactHolidayAction;
         if (!this.isEmptyKey()) {
-            contactHolidayAction = new ContactHolidayAction(Action.DELETE);
+            let contactHolidayAction = new ContactHolidayAction(Action.DELETE);
             contactHolidayAction.holidayKey = this.contactHolidayKey;
             this.actionClickEmitAndResetFormGroup(contactHolidayAction);
         }

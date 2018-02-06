@@ -14,7 +14,6 @@ export class PublicHolidayDetailComponent implements OnChanges {
     @Input() publicHoliday: PublicHoliday;
     @Output() actionClick = new EventEmitter<PublicHolidayAction>();
 
-    public title: string;
     public formGroup: FormGroup;
     private publicHolidayKey: string;
 
@@ -25,37 +24,35 @@ export class PublicHolidayDetailComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.publicHoliday && changes.publicHoliday.currentValue !== undefined) {
+        if (changes.publicHoliday && changes.publicHoliday.currentValue) {
             this.publicHolidayKey = changes.publicHoliday.currentValue['$key'];
-            this.publicHoliday = changes.publicHoliday.currentValue;
-            if (this.isEmptyKey()) {
-                this.title = 'Ajouter un jour férié';
-            } else {
-                this.title = 'Modifier ce jour férié';
-            }
             this.formGroup.setValue({
-                'description': this.publicHoliday.description
+                'description': changes.publicHoliday.currentValue['$value'] !== null ? this.publicHoliday.description : ''
             });
         }
     }
 
-    addHoliday() {
-        this.publicHoliday = this.formGroup.get('description').value;
-
-        let publicHolidayAction: PublicHolidayAction;
-        if (this.isEmptyKey()) {
-            publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday);
+    saveHoliday() {
+        if (!this.formGroup.valid) {
+            console.log('invalid');
+            this.formGroup.get('description').markAsTouched();
         } else {
-            publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday);
-            publicHolidayAction.holidayKey = this.publicHolidayKey;
+            this.publicHoliday.description = this.formGroup.get('description').value;
+
+            let publicHolidayAction: PublicHolidayAction;
+            if (this.isEmptyKey()) {
+                publicHolidayAction = new PublicHolidayAction(Action.INSERT, this.publicHoliday);
+            } else {
+                publicHolidayAction = new PublicHolidayAction(Action.UPDATE, this.publicHoliday);
+                publicHolidayAction.holidayKey = this.publicHolidayKey;
+            }
+            this.actionClickEmitAndResetFormGroup(publicHolidayAction);
         }
-        this.actionClickEmitAndResetFormGroup(publicHolidayAction);
     }
 
     deleteHoliday() {
-        let publicHolidayAction: PublicHolidayAction;
         if (!this.isEmptyKey()) {
-            publicHolidayAction = new PublicHolidayAction(Action.DELETE);
+            let publicHolidayAction = new PublicHolidayAction(Action.DELETE);
             publicHolidayAction.holidayKey = this.publicHolidayKey;
             this.actionClickEmitAndResetFormGroup(publicHolidayAction);
         }

@@ -26,7 +26,7 @@
                                 <i *ngIf="dayItem.isBudget()" class="fa fa-money fa-border"></i>
                                 <span>{{ dayItem.principalItem + (dayItem.additionalItem ? ' ' + dayItem.additionalItem : '') }}</span>
                             </div>
-                            <div *ngIf="day.isSelected">
+                            <div *ngIf="day.isSelected  && !editMode">
                                 <edit-icon-action [tooltip]="'Modifier un contact'" *ngIf="dayItem.isContact()"
                                                   [image]="'fa-user'" (click)="editDayItem(dayItem)"></edit-icon-action>
                                 <edit-icon-action [tooltip]="'Modifier un événement'" *ngIf="dayItem.isEvent()"
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="day.isSelected" class="day-item-detail">
+                    <div *ngIf="day.isSelected && !editMode" class="day-item-detail">
                         <div></div>
                         <div>
                             <plus-icon-action [tooltip]="'Ajouter un contact'"
@@ -59,13 +59,13 @@
                         <div class="day-item-info">
                             {{ dayContactHolidayItem.principalItem }}
                         </div>
-                        <div *ngIf="day.isSelected">
+                        <div *ngIf="day.isSelected  && !editMode">
                             <edit-icon-action [tooltip]="'Modifier un jour de congé'"
                                               [image]="'fa-sun-o'"
                                               (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
                         </div>
                     </div>
-                    <div class="day-item-detail" *ngIf="day.isSelected">
+                    <div class="day-item-detail" *ngIf="day.isSelected  && !editMode">
                         <div></div>
                         <plus-icon-action *ngIf="!day.dayPublicHolidayItem"
                                           [tooltip]="'Ajouter un jour férié'"
@@ -75,7 +75,7 @@
                         <div class="day-item-info">
                             {{ day.dayPublicHolidayItem.principalItem }}
                         </div>
-                        <div *ngIf="day.isSelected">
+                        <div *ngIf="day.isSelected  && !editMode">
                             <edit-icon-action [tooltip]="'Modifier un jour férié'"
                                               [image]="'fa-flag'"
                                               (click)="editDayItem(day.dayPublicHolidayItem)"></edit-icon-action>
@@ -89,7 +89,7 @@
         </div>
         <div class="paper-style back">
             <div class="flex-container">
-                <edit-day class="full-container"
+                <edit-day class="full-container" *ngIf="day.isSelected"
                           (closeEditDayClick)="closeEditMode()"></edit-day>
             </div>
         </div>

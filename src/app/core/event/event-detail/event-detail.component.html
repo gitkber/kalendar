@@ -1,21 +1,25 @@
-<div>
-    <h5> {{ kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
+<div class="form-container">
+    <h5> {{ event.kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
     <h1>Evénement</h1>
-    <form (ngSubmit)="saveEvent()" [formGroup]="eventCriteriaFormGroup" #addEventForm="ngForm">
+    <form [formGroup]="formGroup" #addEventForm="ngForm">
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder=""
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">
             <label for="inputDescription">Description</label>
             <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('description').touched && formGroup.get('description').hasError('required')"></i>
         </div>
-        <h5> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder=""
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('duplication').value"
                    formControlName="duplication" name="duplication" id="inputDuplication"
                    (change)="changeDuplicationToKalendarDate($event)">
-            <label for="inputDuplication">Description</label>
+            <label for="inputDuplication">Dupliquer</label>
             <span class="focus-border"></span>
+            <i class="fa input-i-error" title="number one digit"
+               [class.fa-times]="formGroup.get('duplication').touched && formGroup.get('duplication').hasError('pattern')"></i>
         </div>
+        <h5> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
         <div class="col-3 input-effect">
             <div class="effect-16 has-content switch switch-yellow">
                 <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
@@ -27,10 +31,9 @@
                 <span class="switch-selection"></span>
             </div>
             <label for="inputIncludeWeekend">Week-end inclus</label>
-            <span class="focus-border"></span>
         </div>
     </form>
-    <div class="panel-action">
+    <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveEvent()"></icon-action>
         <icon-action [image]="'fa-trash-o'" (click)="deleteEvent()"></icon-action>
     </div>

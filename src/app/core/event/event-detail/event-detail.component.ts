@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Action } from '../../action';
 import { Event, EventAction } from '../event';
@@ -11,50 +11,64 @@ import { isUndefined } from 'util';
 })
 export class EventDetailComponent implements OnChanges {
 
-    @ViewChild('inputDescription') inputDescription: ElementRef;
-
     @Input() event: Event;
     @Output() actionClick = new EventEmitter<EventAction>();
 
-    public title: string;
-    public eventCriteriaFormGroup: FormGroup;
-    public kalendarDate: Date;
-    public toKalendarDate: Date;
+    public formGroup: FormGroup;
     private eventKey: string;
+    public toKalendarDate: Date;
 
     private datesToAdd: Date[] = [];
 
     constructor() {
-        this.eventCriteriaFormGroup = new FormGroup({
+        this.formGroup = new FormGroup({
             description: new FormControl('', Validators.required),
-            duplication: new FormControl(),
+            duplication: new FormControl('', Validators.pattern('[0-9]')),
             includeWeekend: new FormControl()
         })
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.inputDescription.nativeElement.focus();
-
         if (changes.event.currentValue !== undefined) {
             this.eventKey = changes.event.currentValue['$key'];
-            if (this.isEmptyKey()) {
-                this.title = 'Ajouter un événement';
-            } else {
-                this.title = 'Modifier cet événement';
-            }
-            this.kalendarDate = new Date(this.event.kalendarDate);
             this.initFormGroup();
         }
     }
 
     changeSwitchToKalendarDate() {
-        this.changeToKalendarDate(parseInt(this.eventCriteriaFormGroup.get('duplication').value, 10),
-            !this.eventCriteriaFormGroup.get('includeWeekend').value);
+        this.changeToKalendarDate(parseInt(this.formGroup.get('duplication').value, 10),
+            !this.formGroup.get('includeWeekend').value);
     }
 
     changeDuplicationToKalendarDate(event) {
         event.target.value = event.target.value.replace(/[^0-9]/g, '');
-        this.changeToKalendarDate(parseInt(event.target.value, 10), this.eventCriteriaFormGroup.get('includeWeekend').value);
+        this.changeToKalendarDate(parseInt(event.target.value, 10), this.formGroup.get('includeWeekend').value);
+    }
+
+    saveEvent() {
+        if (!this.formGroup.valid) {
+            console.log('invalid');
+            this.formGroup.get('description').markAsTouched();
+        } else {
+            this.event.description = this.formGroup.get('description').value;
+            let eventAction: EventAction;
+            if (this.isEmptyKey()) {
+                eventAction = new EventAction(Action.INSERT, this.event);
+            } else {
+                eventAction = new EventAction(Action.UPDATE, this.event);
+                eventAction.eventKey = this.eventKey;
+            }
+            eventAction.datesToAdd = this.datesToAdd;
+            this.actionClickEmitAndResetFormGroup(eventAction);
+        }
+    }
+
+    deleteEvent() {
+        if (!this.isEmptyKey()) {
+            const eventAction: EventAction = new EventAction(Action.DELETE);
+            eventAction.eventKey = this.eventKey;
+            this.actionClickEmitAndResetFormGroup(eventAction);
+        }
     }
 
     private changeToKalendarDate(duplication: number, includeWeekend: boolean) {
@@ -77,40 +91,18 @@ export class EventDetailComponent implements OnChanges {
 
     private initFormGroup() {
         this.changeSwitchToKalendarDate();
-        this.eventCriteriaFormGroup.setValue({
+        this.formGroup.setValue({
             'description': this.event.description,
-            'duplication': 0,
+            'duplication': '',
             'includeWeekend': false
         });
-    }
-
-    saveEvent() {
-        this.event.description = this.eventCriteriaFormGroup.get('description').value;
-        let eventAction: EventAction;
-        if (this.isEmptyKey()) {
-            eventAction = new EventAction(Action.INSERT, this.event);
-        } else {
-            eventAction = new EventAction(Action.UPDATE, this.event);
-            eventAction.eventKey = this.eventKey;
-        }
-        eventAction.datesToAdd = this.datesToAdd;
-        this.actionClickEmitAndResetFormGroup(eventAction);
-    }
-
-    deleteEvent() {
-        if (!this.isEmptyKey()) {
-            const eventAction: EventAction = new EventAction(Action.DELETE);
-            eventAction.eventKey = this.eventKey;
-            this.actionClickEmitAndResetFormGroup(eventAction);
-        }
     }
 
     private actionClickEmitAndResetFormGroup(eventAction: EventAction) {
         this.actionClick.emit(eventAction);
 
-        this.eventCriteriaFormGroup.reset();
+        this.formGroup.reset();
         this.event = new Event(null, this.event.kalendarDate);
-        this.kalendarDate = new Date(this.event.kalendarDate);
         this.initFormGroup();
     }
 
