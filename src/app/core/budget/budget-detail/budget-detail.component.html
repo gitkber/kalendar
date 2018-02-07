@@ -1,28 +1,35 @@
-<div>
+<div class="form-container">
     <h5> {{ budget.kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
     <h1>Dépense</h1>
-    <form (ngSubmit)="addBudget()" [formGroup]="budgetFormGroup" #addContactForm="ngForm">
+    <form [formGroup]="formGroup" #addContactForm="ngForm">
         <div class="switch-field">
             <div *ngFor="let name of optionTypes">
-                <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name">{{name}}</label>
+                <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name"><i [class]="getImage(name)"></i></label>
+                <!--<input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name">{{getImage(name)}} {{img}}</label>-->
             </div>
 
         </div>
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder=""
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">
             <label for="inputDescription">Description</label>
             <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('description').touched && formGroup.get('description').hasError('required')"></i>
         </div>
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder=""
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('amount').value"
                    formControlName="amount" name="amount" id="inputAmount">
             <label for="inputAmount">Montant</label>
             <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('amount').touched && formGroup.get('amount').hasError('required')"></i>
+            <i class="fa input-i-error" title="0.00"
+               [class.fa-times]="formGroup.get('amount').touched && formGroup.get('amount').hasError('pattern')"></i>
         </div>
     </form>
-    <div class="panel-action">
-        <icon-action [image]="'fa-save'" (click)="addBudget()"></icon-action>
+    <div class="align-right-container">
+        <icon-action [image]="'fa-save'" (click)="saveBudget()"></icon-action>
         <icon-action [image]="'fa-trash-o'" (click)="deleteBudget()"></icon-action>
     </div>
 </div>
