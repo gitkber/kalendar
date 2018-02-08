@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ViewsFacade } from '../views.facade';
@@ -7,7 +7,6 @@ import { Month } from '../../kalendar/month/month';
 import { Day } from '../../kalendar/day/day';
 import { Navigation } from '../../kalendar/navigation';
 import { RouterService } from '../../core/service/router.service';
-import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
 import { DayItem } from '../../kalendar/day-item';
 
 @Component({
@@ -16,8 +15,6 @@ import { DayItem } from '../../kalendar/day-item';
     styleUrls: ['./month-view.component.css']
 })
 export class MonthViewComponent implements OnInit, OnDestroy {
-
-    @ViewChild(CoreModalComponent) coreModal: CoreModalComponent;
 
     public month: Month;
     private selectedDay: Day;
@@ -61,7 +58,8 @@ export class MonthViewComponent implements OnInit, OnDestroy {
     }
 
     showDayItemDetail(event: DayItem) {
-        this.coreModal.open(event);
+        // TODO
+        console.log('TODO', event);
     }
 
     navigate(event: Navigation) {

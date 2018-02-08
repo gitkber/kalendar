@@ -1,8 +1,7 @@
 <div class="carousel-days-container">
 
     <day-in-carousel-days *ngFor="let day of carouselDays.days" [day]="day"
-                          (navigateClick)="navigate($event)"
-                          (showDayItemClick)="showDayItem($event)">
+                          (navigateClick)="navigate($event)">
     </day-in-carousel-days>
 
 </div>

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Action } from '../../action';
-import { DateUtilService } from '../../../common/utils/date-util.service';
 import { isUndefined } from 'util';
 import { Budget, BudgetAction } from '../budget';
 import { getTagBudgetTypeImage, TagBudgetType } from '../../../common/utils/tag';
+import { BudgetService } from '../budget.service';
 
 @Component({
     selector: 'budget-detail',
@@ -14,14 +14,14 @@ import { getTagBudgetTypeImage, TagBudgetType } from '../../../common/utils/tag'
 export class BudgetDetailComponent implements OnChanges {
 
     @Input() budget: Budget;
-    @Output() actionClick = new EventEmitter<BudgetAction>();
+    @Output() closeClick = new EventEmitter();
 
     public formGroup: FormGroup;
-    private budgetKey: string;
+    public budgetKey: string;
 
     public optionTypes: string[] = [];
 
-    constructor(public dateUtilService: DateUtilService) {
+    constructor(private budgetService: BudgetService) {
         this.optionTypes = Object.keys(TagBudgetType);
 
         this.formGroup = new FormGroup({
@@ -40,9 +40,9 @@ export class BudgetDetailComponent implements OnChanges {
         if (changes.budget.currentValue !== undefined) {
             this.budgetKey = changes.budget.currentValue['$key'];
             this.formGroup.setValue({
-                'tagType': this.budget.tagType,
-                'description': this.budget.description,
-                'amount': this.budget.amount
+                'tagType': changes.budget.currentValue['$value'] !== null ? this.budget.tagType : '',
+                'description': changes.budget.currentValue['$value'] !== null ? this.budget.description : '',
+                'amount': changes.budget.currentValue['$value'] !== null ? this.budget.amount : ''
             });
         }
     }
@@ -76,10 +76,14 @@ export class BudgetDetailComponent implements OnChanges {
         }
     }
 
-    private actionClickEmitAndResetFormGroup(budgetAction: BudgetAction) {
-        this.actionClick.emit(budgetAction);
-        this.budgetKey = undefined;
+    close() {
+        this.closeClick.emit();
         this.formGroup.reset();
+    }
+
+    private actionClickEmitAndResetFormGroup(budgetAction: BudgetAction) {
+        this.budgetService.doActionOnBudget(budgetAction);
+        this.close();
     }
 
     private isEmptyKey(): boolean {

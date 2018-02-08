@@ -17,7 +17,6 @@ export class DayInCarouselDaysComponent {
 
     @Input() day: Day;
     @Output() navigateClick: EventEmitter<Navigation> = new EventEmitter();
-    @Output() showDayItemClick: EventEmitter<DayItem> = new EventEmitter();
 
     public editMode: boolean;
 
@@ -58,31 +57,26 @@ export class DayInCarouselDaysComponent {
     }
 
     addDayItemContact() {
-        console.log('addd');
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.CONTACT, null, this.dateUtilService.toString(this.day.date), null, null));
     }
 
     addDayItemMemo() {
-        console.log('addd');
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.EVENT, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemBudget() {
-        console.log('addd');
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.BUDGET, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemContactHoliday() {
-        console.log('addd');
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 
     addDayItemPublicHoliday() {
-        console.log('addd');
         this.editMode = true;
         this.editDayComponent.open(new DayItem(Type.PUBLIC_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }

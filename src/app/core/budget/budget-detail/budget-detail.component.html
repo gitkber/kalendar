@@ -1,5 +1,8 @@
 <div class="form-container">
-    <h5> {{ budget.kalendarDate | date: 'EEEE d MMMM yyyy' }}</h5>
+    <div class="form-title">
+        <div> {{ budget.kalendarDate | date: 'EEEE d MMMM yyyy' }}</div>
+        <i class="fa fa-window-close" (click)="close()"></i>
+    </div>
     <h1>Dépense</h1>
     <form [formGroup]="formGroup" #addContactForm="ngForm">
         <div class="switch-field">
@@ -30,7 +33,7 @@
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveBudget()"></icon-action>
-        <icon-action [image]="'fa-trash-o'" (click)="deleteBudget()"></icon-action>
+        <icon-action [image]="'fa-trash-o'" (click)="deleteBudget()" *ngIf="budgetKey"></icon-action>
     </div>
 </div>
 

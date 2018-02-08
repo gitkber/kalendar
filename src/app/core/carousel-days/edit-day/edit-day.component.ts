@@ -3,12 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { Navigation } from '../../../kalendar/navigation';
 import { DayItem } from '../../../kalendar/day-item';
 import { AppService } from '../../../app.service';
-import { Contact, ContactAction } from '../../contact/contact';
-import { ContactHoliday, ContactHolidayAction } from '../../holiday/contact-holiday/contact-holiday';
-import { PublicHoliday, PublicHolidayAction } from '../../holiday/public-holiday/public-holiday';
-import { Budget, BudgetAction } from '../../budget/budget';
-import { Event, EventAction } from '../../event/event';
-import { TagBudgetOperation } from '../../../common/utils/tag';
+import { Contact } from '../../contact/contact';
+import { ContactHoliday } from '../../holiday/contact-holiday/contact-holiday';
+import { PublicHoliday } from '../../holiday/public-holiday/public-holiday';
+import { Budget } from '../../budget/budget';
+import { Event } from '../../event/event';
+import { TagBudgetOperation, TagBudgetType } from '../../../common/utils/tag';
 import { ViewsFacade } from '../../../views/views.facade';
 
 @Component({
@@ -81,34 +81,9 @@ export class EditDayComponent {
             if (event.key !== null) {
                 this.budgetSelected = this.viewsFacade.budgetService.getBudget(event.key);
             } else {
-                this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, null, null, event.date, null));
+                this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, TagBudgetType.FOOD, null, event.date, null));
             }
         }
-    }
-
-    doActionOnEvent(event: EventAction) {
-        this.viewsFacade.eventService.doActionOnEvent(event);
-        this.close();
-    }
-
-    doActionOnContact(event: ContactAction) {
-        this.viewsFacade.contactService.doActionOnContact(event);
-        this.close();
-    }
-
-    doActionOnContactHoliday(event: ContactHolidayAction) {
-        this.viewsFacade.contactHolidayService.doActionOnContactHoliday(event);
-        this.close();
-    }
-
-    doActionOnPublicHoliday(event: PublicHolidayAction) {
-        this.viewsFacade.publicHolidayService.doActionOnPublicHoliday(event);
-        this.close();
-    }
-
-    doActionOnBudget(event: BudgetAction) {
-        this.viewsFacade.budgetService.doActionOnBudget(event);
-        this.close();
     }
 
     navigate(event: Navigation) {

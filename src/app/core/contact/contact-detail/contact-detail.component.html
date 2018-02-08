@@ -1,34 +1,37 @@
 <div class="form-container">
-    <h5> {{ this.contact.birthdate | date: 'd MMMM' }}</h5>
+    <div class="form-title">
+        <div> {{ this.contact.birthdate | date: 'd MMMM' }}</div>
+        <i class="fa fa-window-close" (click)="close()"></i>
+    </div>
     <h1>Contact</h1>
-    <form [formGroup]="contactFormGroup" #addContactForm="ngForm">
+    <form [formGroup]="formGroup" #addContactForm="ngForm">
 
         <div class="col-3 input-effect">
-            <input class="effect-16" type="text" placeholder="" [class.has-content]="hasContent('firstname')"
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('firstname').value"
                    formControlName="firstname" name="firstname" id="inputFirstname">
             <label for="inputFirstname">Prénom</label>
             <span class="focus-border"></span>
             <i class="fa input-i-error"
-               [class.fa-asterisk]="contactFormGroup.get('firstname').touched && contactFormGroup.get('firstname').hasError('required')"></i>
+               [class.fa-asterisk]="formGroup.get('firstname').touched && formGroup.get('firstname').hasError('required')"></i>
         </div>
         <div class="col-3 input-effect">
-            <input class="effect-16" type="text" placeholder="" [class.has-content]="hasContent('lastname')"
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('lastname').value"
                    formControlName="lastname" name="lastname" id="inputLastname">
             <label for="inputLastname">Nom</label>
             <span class="focus-border"></span>
             <i class="fa input-i-error"
-               [class.fa-asterisk]="contactFormGroup.get('lastname').touched && contactFormGroup.get('lastname').hasError('required')"></i>
+               [class.fa-asterisk]="formGroup.get('lastname').touched && formGroup.get('lastname').hasError('required')"></i>
         </div>
         <div class="col-3 input-effect">
-            <input class="effect-16 has-content" type="text" placeholder="" [class.has-content]="hasContent('year')"
+            <input class="effect-16 has-content" type="text" placeholder="" [class.has-content]="formGroup.get('year').value"
                    formControlName="year" name="year" id="inputYear">
             <label for="inputYear">Année de naissance</label>
             <!--{{this.dateUtilService.stringToDayAndLongMonth(this.contact.birthdate)}}-->
             <span class="focus-border"></span>
             <i class="fa input-i-error"
-               [class.fa-asterisk]="contactFormGroup.get('year').touched && contactFormGroup.get('year').hasError('required')"></i>
+               [class.fa-asterisk]="formGroup.get('year').touched && formGroup.get('year').hasError('required')"></i>
             <i class="fa input-i-error" title="yyyy"
-               [class.fa-times]="contactFormGroup.get('year').touched && contactFormGroup.get('year').hasError('pattern')"></i>
+               [class.fa-times]="formGroup.get('year').touched && formGroup.get('year').hasError('pattern')"></i>
         </div>
         <!--<div *ngIf="!fillYear">-->
         <!--<label class="labelFor" for="inputBirthdate">Birthdate</label>-->
@@ -37,7 +40,7 @@
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveContact()"></icon-action>
-        <icon-action [image]="'fa-trash-o'" (click)="deleteContact()"></icon-action>
+        <icon-action [image]="'fa-trash-o'" (click)="deleteContact()" *ngIf="contactKey"></icon-action>
     </div>
 </div>
 

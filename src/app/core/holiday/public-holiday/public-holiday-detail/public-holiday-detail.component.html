@@ -1,5 +1,8 @@
 <div class="form-container">
-    <h5> {{ publicHoliday.date | date: 'EEEE d MMMM yyyy' }}</h5>
+    <div class="form-title">
+        <div> {{ publicHoliday.date | date: 'EEEE d MMMM yyyy' }}</div>
+        <i class="fa fa-window-close" (click)="close()"></i>
+    </div>
     <h1>Jour férié</h1>
     <form [formGroup]="formGroup" #addHolidayForm="ngForm">
         <div class="col-3 input-effect">
@@ -13,6 +16,6 @@
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveHoliday()"></icon-action>
-        <icon-action [image]="'fa-trash-o'" (click)="deleteHoliday()"></icon-action>
+        <icon-action [image]="'fa-trash-o'" (click)="deleteHoliday()" *ngIf="publicHolidayKey"></icon-action>
     </div>
 </div>

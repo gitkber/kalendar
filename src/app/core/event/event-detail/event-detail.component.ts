@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Action } from '../../action';
 import { Event, EventAction } from '../event';
 import { isUndefined } from 'util';
+import { EventService } from '../event.service';
 
 @Component({
     selector: 'event-detail',
@@ -12,15 +13,15 @@ import { isUndefined } from 'util';
 export class EventDetailComponent implements OnChanges {
 
     @Input() event: Event;
-    @Output() actionClick = new EventEmitter<EventAction>();
+    @Output() closeClick = new EventEmitter();
 
     public formGroup: FormGroup;
-    private eventKey: string;
+    public eventKey: string;
     public toKalendarDate: Date;
 
     private datesToAdd: Date[] = [];
 
-    constructor() {
+    constructor(private eventService: EventService) {
         this.formGroup = new FormGroup({
             description: new FormControl('', Validators.required),
             duplication: new FormControl('', Validators.pattern('[0-9]')),
@@ -31,7 +32,13 @@ export class EventDetailComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.event.currentValue !== undefined) {
             this.eventKey = changes.event.currentValue['$key'];
-            this.initFormGroup();
+
+            this.changeSwitchToKalendarDate();
+            this.formGroup.setValue({
+                'description': changes.event.currentValue['$value'] !== null ? this.event.description : '',
+                'duplication': '',
+                'includeWeekend': false
+            });
         }
     }
 
@@ -47,7 +54,6 @@ export class EventDetailComponent implements OnChanges {
 
     saveEvent() {
         if (!this.formGroup.valid) {
-            console.log('invalid');
             this.formGroup.get('description').markAsTouched();
         } else {
             this.event.description = this.formGroup.get('description').value;
@@ -71,6 +77,11 @@ export class EventDetailComponent implements OnChanges {
         }
     }
 
+    close() {
+        this.closeClick.emit();
+        this.formGroup.reset();
+    }
+
     private changeToKalendarDate(duplication: number, includeWeekend: boolean) {
         const startDate: Date = new Date(this.event.kalendarDate);
         this.datesToAdd = [];
@@ -89,21 +100,9 @@ export class EventDetailComponent implements OnChanges {
         this.toKalendarDate = startDate;
     }
 
-    private initFormGroup() {
-        this.changeSwitchToKalendarDate();
-        this.formGroup.setValue({
-            'description': this.event.description,
-            'duplication': '',
-            'includeWeekend': false
-        });
-    }
-
     private actionClickEmitAndResetFormGroup(eventAction: EventAction) {
-        this.actionClick.emit(eventAction);
-
-        this.formGroup.reset();
-        this.event = new Event(null, this.event.kalendarDate);
-        this.initFormGroup();
+        this.eventService.doActionOnEvent(eventAction);
+        this.close();
     }
 
     private isEmptyKey(): boolean {

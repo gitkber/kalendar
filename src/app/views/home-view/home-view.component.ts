@@ -5,8 +5,6 @@ import { AppService } from '../../app.service';
 import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
 import { Navigation } from '../../kalendar/navigation';
 import { CarouselDays } from '../../core/carousel-days/carousel-days';
-import { CoreModalComponent } from '../modal/core-modal/core-modal.component';
-import { DayItem } from '../../kalendar/day-item';
 import { Observable } from 'rxjs/Observable';
 import { Budget } from '../../core/budget/budget';
 
@@ -17,7 +15,6 @@ import { Budget } from '../../core/budget/budget';
 })
 export class HomeViewComponent implements OnInit {
 
-    @ViewChild(CoreModalComponent) coreModal: CoreModalComponent;
     @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
 
     public carouselDays: CarouselDays;
@@ -52,10 +49,6 @@ export class HomeViewComponent implements OnInit {
         } else {
             console.warn('ERROR in CarouselView - Navigation');
         }
-    }
-
-    showDayItem(event: DayItem) {
-        this.coreModal.open(event);
     }
 
     showImage(event: Date) {

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PublicHoliday, PublicHolidayAction } from '../public-holiday';
 import { Action } from '../../../action';
 import { isUndefined } from 'util';
+import { PublicHolidayService } from '../public-holiday.service';
 
 @Component({
     selector: 'public-holiday-detail',
@@ -12,12 +13,12 @@ import { isUndefined } from 'util';
 export class PublicHolidayDetailComponent implements OnChanges {
 
     @Input() publicHoliday: PublicHoliday;
-    @Output() actionClick = new EventEmitter<PublicHolidayAction>();
+    @Output() closeClick = new EventEmitter();
 
     public formGroup: FormGroup;
-    private publicHolidayKey: string;
+    public publicHolidayKey: string;
 
-    constructor() {
+    constructor(private publicHolidayService: PublicHolidayService) {
         this.formGroup = new FormGroup({
             description: new FormControl('', Validators.required)
         });
@@ -52,16 +53,20 @@ export class PublicHolidayDetailComponent implements OnChanges {
 
     deleteHoliday() {
         if (!this.isEmptyKey()) {
-            let publicHolidayAction = new PublicHolidayAction(Action.DELETE);
+            const publicHolidayAction = new PublicHolidayAction(Action.DELETE);
             publicHolidayAction.holidayKey = this.publicHolidayKey;
             this.actionClickEmitAndResetFormGroup(publicHolidayAction);
         }
     }
 
-    private actionClickEmitAndResetFormGroup(publicHolidayAction: PublicHolidayAction) {
-        this.actionClick.emit(publicHolidayAction);
-        this.publicHolidayKey = undefined;
+    close() {
+        this.closeClick.emit();
         this.formGroup.reset();
+    }
+
+    private actionClickEmitAndResetFormGroup(publicHolidayAction: PublicHolidayAction) {
+        this.publicHolidayService.doActionOnPublicHoliday(publicHolidayAction);
+        this.close()
     }
 
     private isEmptyKey(): boolean {

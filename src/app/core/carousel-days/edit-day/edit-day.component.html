@@ -1,15 +1,15 @@
 <contact-detail *ngIf="contactSelected" [fillYear]="fillOnlyYear"
                 [contact]="contactSelected | async"
-                (actionClick)="doActionOnContact($event)"></contact-detail>
+                (closeClick)="close()"></contact-detail>
 <event-detail *ngIf="eventSelected"
               [event]="eventSelected | async"
-              (actionClick)="doActionOnEvent($event)"></event-detail>
+              (closeClick)="close()"></event-detail>
 <contact-holiday-detail *ngIf="contactHolidaySelected"
                         [contactHoliday]="contactHolidaySelected | async"
-                        (actionClick)="doActionOnContactHoliday($event)"></contact-holiday-detail>
+                        (closeClick)="close()"></contact-holiday-detail>
 <public-holiday-detail *ngIf="publicHolidaySelected"
                        [publicHoliday]="publicHolidaySelected | async"
-                       (actionClick)="doActionOnPublicHoliday($event)"></public-holiday-detail>
+                       (closeClick)="close()"></public-holiday-detail>
 <budget-detail *ngIf="budgetSelected"
                [budget]="budgetSelected | async"
-               (actionClick)="doActionOnBudget($event)"></budget-detail>
+               (closeClick)="close()"></budget-detail>

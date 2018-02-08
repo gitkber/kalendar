@@ -43,6 +43,21 @@
     /*border: 1px solid red;*/
 }
 
+.form-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 1.7em;
+    padding-bottom: 0.7em;
+    font-weight: bold;
+    /*border: 1px solid red;*/
+}
+
+form {
+    width: 100%;
+}
+
 .paper-style {
     background-color: #F8F8FF;
     background-image: linear-gradient(#eee .1em, transparent .1em);

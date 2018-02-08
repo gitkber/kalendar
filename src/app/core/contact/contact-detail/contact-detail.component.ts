@@ -5,6 +5,7 @@ import { Action } from '../../action';
 import { DateStringPipe } from '../../../common/utils/date-string.pipe';
 import { DateUtilService } from '../../../common/utils/date-util.service';
 import { isUndefined } from 'util';
+import { ContactService } from '../contact.service';
 
 @Component({
     selector: 'contact-detail',
@@ -15,15 +16,15 @@ export class ContactDetailComponent implements OnChanges {
 
     @Input() fillYear: boolean;
     @Input() contact: Contact;
-    @Output() actionClick = new EventEmitter<ContactAction>();
+    @Output() closeClick = new EventEmitter();
 
-    public contactFormGroup: FormGroup;
-    private contactKey: string;
+    public formGroup: FormGroup;
+    public contactKey: string;
 
     private dateStringPipe: DateStringPipe = new DateStringPipe();
 
-    constructor(public dateUtilService: DateUtilService) {
-        this.contactFormGroup = new FormGroup({
+    constructor(private contactService: ContactService, private dateUtilService: DateUtilService) {
+        this.formGroup = new FormGroup({
             firstname: new FormControl('', Validators.required),
             lastname: new FormControl('', Validators.required),
             birthdate: new FormControl('', Validators.required),
@@ -34,33 +35,28 @@ export class ContactDetailComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.contact.currentValue !== undefined) {
             this.contactKey = changes.contact.currentValue['$key'];
-            this.contactFormGroup.setValue({
-                'firstname': this.contact.firstname,
-                'lastname': this.contact.lastname,
+            this.formGroup.setValue({
+                'firstname': changes.contact.currentValue['$value'] !== null ? this.contact.firstname : '',
+                'lastname': changes.contact.currentValue['$value'] !== null ? this.contact.lastname : '',
                 'birthdate': this.dateStringPipe.transform(this.contact.birthdate),
                 'year': this.isEmptyKey() ? '' : this.dateUtilService.stringToYYYY(this.contact.birthdate)
             });
         }
     }
 
-    hasContent(control: string): boolean {
-        return this.contactFormGroup.get(control).value;
-    }
-
     saveContact() {
-        if (!this.contactFormGroup.valid) {
-            console.log('invalid');
-            this.contactFormGroup.get('firstname').markAsTouched();
-            this.contactFormGroup.get('lastname').markAsTouched();
-            this.contactFormGroup.get('year').markAsTouched();
+        if (!this.formGroup.valid) {
+            this.formGroup.get('firstname').markAsTouched();
+            this.formGroup.get('lastname').markAsTouched();
+            this.formGroup.get('year').markAsTouched();
         } else {
-            this.contact.firstname = this.contactFormGroup.get('firstname').value;
-            this.contact.lastname = this.contactFormGroup.get('lastname').value;
+            this.contact.firstname = this.formGroup.get('firstname').value;
+            this.contact.lastname = this.formGroup.get('lastname').value;
             if (this.fillYear) {
-                const year: string = this.contactFormGroup.get('year').value;
+                const year: string = this.formGroup.get('year').value;
                 this.contact.birthdate = this.dateUtilService.replaceYear(year, this.contact.birthdate);
             } else {
-                this.contact.birthdate = this.dateStringPipe.transform(this.contactFormGroup.get('birthdate').value, true);
+                this.contact.birthdate = this.dateStringPipe.transform(this.formGroup.get('birthdate').value, true);
             }
             let contactAction: ContactAction;
             if (this.isEmptyKey()) {
@@ -81,10 +77,14 @@ export class ContactDetailComponent implements OnChanges {
         }
     }
 
+    close() {
+        this.closeClick.emit();
+        this.formGroup.reset();
+    }
+
     private actionClickEmitAndResetFormGroup(contactAction: ContactAction) {
-        this.actionClick.emit(contactAction);
-        this.contactKey = undefined;
-        this.contactFormGroup.reset();
+        this.contactService.doActionOnContact(contactAction);
+        this.close();
     }
 
     private isEmptyKey(): boolean {

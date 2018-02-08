@@ -1,11 +1,9 @@
-<core-modal class="core-modal-container" [blocking]=false></core-modal>
 <div class="view-container">
     <div class="principal-container">
         <div class="carousel-week-item">
             <carousel-days [carouselDays]="carouselDays"
                            [navigation]="'day'"
-                           (navigateClick)="navigate($event)"
-                           (showDayItemClick)="showDayItem($event)"></carousel-days>
+                           (navigateClick)="navigate($event)"></carousel-days>
         </div>
         <div class="post-it-container">
             <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
