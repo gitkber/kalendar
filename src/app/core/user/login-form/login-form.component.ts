@@ -13,16 +13,16 @@ export class LoginFormComponent implements OnInit, OnChanges {
     @Input() user: User;
 
     public loginError: Error;
-    public loginFormGroup: FormGroup;
+    public formGroup: FormGroup;
 
     constructor(public authService: AuthService) { }
 
     ngOnInit() {
-        this.loginFormGroup = new FormGroup({
+        this.formGroup = new FormGroup({
             email: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required)
         });
-        this.loginFormGroup.valueChanges.subscribe(data => {
+        this.formGroup.valueChanges.subscribe(data => {
             this.user = data
         })
     }
@@ -30,16 +30,21 @@ export class LoginFormComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.user.currentValue !== undefined) {
             this.user = changes.user.currentValue;
-            this.loginFormGroup.setValue({
-                'email': this.user.lastname,
-                'password': this.user.firstname
+            this.formGroup.setValue({
+                'email': changes.user.currentValue['$value'] !== null ? this.user.lastname : '',
+                'password': changes.user.currentValue['$value'] !== null ? this.user.firstname : ''
             });
         }
     }
 
     login() {
-        this.authService.emailLogin(this.loginFormGroup.get('email').value, this.loginFormGroup.get('password').value);
-        this.loginError = this.authService.loginError;
+        if (!this.formGroup.valid) {
+            console.log('invalid');
+            this.formGroup.get('description').markAsTouched();
+        } else {
+            this.authService.emailLogin(this.formGroup.get('email').value, this.formGroup.get('password').value);
+            this.loginError = this.authService.loginError;
+        }
     }
 
 }

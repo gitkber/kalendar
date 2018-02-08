@@ -1,12 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ViewsFacade } from '../views.facade';
-import { RouterService } from '../../core/service/router.service';
-import { AppService } from '../../app.service';
-import { ImageModalComponent } from '../modal/image-modal/image-modal.component';
-import { Navigation } from '../../kalendar/navigation';
-import { CarouselDays } from '../../core/carousel-days/carousel-days';
-import { Observable } from 'rxjs/Observable';
-import { Budget } from '../../core/budget/budget';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../core/user/user';
 
 @Component({
     selector: 'home-view',
@@ -15,48 +8,14 @@ import { Budget } from '../../core/budget/budget';
 })
 export class HomeViewComponent implements OnInit {
 
-    @ViewChild(ImageModalComponent) imageModal: ImageModalComponent;
+    public user: User;
 
-    public carouselDays: CarouselDays;
-    public budgetToBuy: Observable<Budget[]>;
+    constructor() { }
 
-    constructor(
-        public routerService: RouterService,
-        private viewsFacade: ViewsFacade,
-        private appService: AppService
-    ) { }
+    ngOnInit() { }
 
-    ngOnInit(): void {
-        this.carouselDays = new CarouselDays(this.appService.currentDate);
-        this.viewsFacade.populateDays(this.carouselDays.days);
-
-        this.budgetToBuy = this.viewsFacade.budgetService.findAllTagOperationToBuy();
+    setDemoLogin() {
+        this.user = new User(null, 'toto.test@gmail.com', 'bonjour');
+        // this.user = new User(null, 'kslyfe.demo@gmail.com', 'matouchka*');
     }
-
-    navigate(event: Navigation) {
-        if (event.isToday) {
-            this.viewsFacade.populateDays(this.carouselDays.goToday());
-        } else if (event.isNext) {
-            this.viewsFacade.populateDays(this.carouselDays.nextWeek());
-        } else if (event.isPrevious) {
-            this.viewsFacade.populateDays(this.carouselDays.previousWeek());
-        } else if (event.isMonth) {
-            this.routerService.navigateToKalMonth(event.toDate);
-        } else if (event.isYear) {
-            this.routerService.navigateToKalYear(event.toDate);
-        } else if (event.isDay) {
-            this.viewsFacade.populateDays(this.carouselDays.goToDate(event.toDate));
-        } else {
-            console.warn('ERROR in CarouselView - Navigation');
-        }
-    }
-
-    showImage(event: Date) {
-        this.imageModal.open(event);
-    }
-
-    log(id) {
-        console.log('id', id);
-    }
-
 }

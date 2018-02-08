@@ -1,21 +1,22 @@
 <div class="kal-app" [class.kal-app-header]="authService.authenticated">
-    <div class="kal-header" *ngIf="authService.authenticated">
-        <kal-logo></kal-logo>
-        <div class="kal-header-item">
-            <kal-button-menu [image]="'fa fa-home'"
-                             [selected]="routerService.isHomeViewSelected()"
-                             (click)="routerService.navigateToHome()"></kal-button-menu>
+    <div class="kal-header">
+        <kal-logo (click)="routerService.navigateToHome()"></kal-logo>
+        <div class="kal-header-item" [class.authenticated]="!authService.authenticated">
+            <kal-button-menu [image]="'fa fa-calendar'"
+                             [selected]="routerService.isDayViewSelected() || !authService.authenticated"
+                             (click)="routerService.navigateToDay()"></kal-button-menu>
             <kal-button-menu [image]="'fa fa-users'"
-                             [selected]="routerService.isContactsViewSelected()"
+                             [selected]="routerService.isContactsViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToContacts()"></kal-button-menu>
             <kal-button-menu [image]="'fa fa-binoculars'"
-                             [selected]="routerService.isObjectiveViewSelected()"
+                             [selected]="routerService.isObjectiveViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToObjectives()"></kal-button-menu>
             <kal-button-menu [image]="'fa fa-calculator'"
-                             [selected]="routerService.isBudgetViewSelected()"
+                             [selected]="routerService.isBudgetViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToBudget()"></kal-button-menu>
             <kal-button-menu [label]="(user | async)?.displayName"
                              [image]="'fa fa-sign-out'"
+                             [selected]="!authService.authenticated"
                              (click)="authService.signOut()"></kal-button-menu>
         </div>
     </div>

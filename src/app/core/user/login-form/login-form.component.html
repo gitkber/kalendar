@@ -1,10 +1,30 @@
-<kal-panel-form [title]="'Login'" [errorMessage]="loginError">
-    <form class="form-container" (ngSubmit)="login()" [formGroup]="loginFormGroup" #loginForm="ngForm">
-        <input class="input-form" placeholder="Email" formControlName="email"/>
-        <input class="input-form" type="password" placeholder="Password" formControlName="password"/>
+<div class="login-form-container">
+    <h1>Login</h1>
+    <form [formGroup]="formGroup" #loginForm="ngForm">
+        <div class="error-message" *ngIf="loginError">{{ loginError }}</div>
+
+        <div class="col-3 input-effect">
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('email').value"
+                   formControlName="email" name="email" id="inputEmail">
+            <label for="inputEmail">Email</label>
+            <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('email').touched && formGroup.get('email').hasError('required')"></i>
+        </div>
+        <div class="col-3 input-effect">
+            <input class="effect-16" type="password" placeholder="" [class.has-content]="formGroup.get('password').value"
+                   formControlName="password" name="password" id="inputPassword">
+            <label for="inputPassword">Password</label>
+            <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('password').touched && formGroup.get('password').hasError('required')"></i>
+        </div>
+
+        <!--<input class="input-form" placeholder="Email" formControlName="email"/>-->
+        <!--<input class="input-form" type="password" placeholder="Password" formControlName="password"/>-->
     </form>
-    <div class="panel-action">
-        <kal-action [image]="'fa-sign-in'" (click)="login()"></kal-action>
+    <div class="align-right-container">
+        <icon-action [image]="'fa-sign-in'" (click)="login()"></icon-action>
     </div>
-</kal-panel-form>
+</div>
 

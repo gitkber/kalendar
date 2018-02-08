@@ -63,7 +63,7 @@ export class AuthService {
             .then((user) => {
                 this.loginError = undefined;
                 this.authState = user;
-                this.routerService.navigateToHome();
+                this.routerService.navigateToDay();
                 // this.updateUserData()
             })
             .catch(error => {
@@ -90,7 +90,7 @@ export class AuthService {
         }).catch(error => {
             console.error('error', error);
         });
-        this.routerService.navigateToRoot();
+        this.routerService.navigateToHome();
     }
 
     //// Helpers ////

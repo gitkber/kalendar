@@ -47,3 +47,7 @@
     border: 10px solid black;
     */
 }
+
+.authenticated {
+    opacity: 0.5;
+}

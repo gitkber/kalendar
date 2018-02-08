@@ -12,12 +12,12 @@ export class RouterService {
         this.location.back();
     }
 
-    navigateToRoot() {
+    navigateToHome() {
         this.router.navigateByUrl('/');
     }
 
-    navigateToHome() {
-        this.router.navigateByUrl('/home');
+    navigateToDay() {
+        this.router.navigateByUrl('/day');
     }
 
     navigateToContacts() {
@@ -40,8 +40,8 @@ export class RouterService {
         this.router.navigate(['/kalmonth', this.dateUtilService.toString(date)]);
     }
 
-    isHomeViewSelected(): boolean {
-        return this.router.isActive('/home', true);
+    isDayViewSelected(): boolean {
+        return this.router.isActive('/day', true);
     }
 
     isContactsViewSelected(): boolean {
