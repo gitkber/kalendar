@@ -2,9 +2,12 @@
     <div class="kal-header">
         <kal-logo (click)="routerService.navigateToHome()"></kal-logo>
         <div class="kal-header-item" [class.authenticated]="!authService.authenticated">
-            <kal-button-menu [image]="'fa fa-calendar'"
-                             [selected]="routerService.isDayViewSelected() || !authService.authenticated"
-                             (click)="routerService.navigateToDay()"></kal-button-menu>
+            <!--<span data-tooltip="do you like my bottom?" data-side="bottom" tabindex="0">-->
+            <tooltip-content [label]="'Test on tooltip'" [side]="'bottom'">
+                <kal-button-menu [image]="'fa fa-calendar'"
+                                 [selected]="routerService.isDayViewSelected() || !authService.authenticated"
+                                 (click)="routerService.navigateToDay()"></kal-button-menu>
+            </tooltip-content>
             <kal-button-menu [image]="'fa fa-users'"
                              [selected]="routerService.isContactsViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToContacts()"></kal-button-menu>

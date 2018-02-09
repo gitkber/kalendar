@@ -16,16 +16,17 @@ import { LogoColorDirective } from './kal-logo/logo-color.directive';
 
 import { FileService } from './file-upload/file-service';
 import { DateUtilService } from './utils/date-util.service';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, ActionModule, FileUploadModule, HttpModule],
     declarations: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         LogoColorDirective,
-        FileUploadComponent, PostItComponent],
+        FileUploadComponent, PostItComponent, TooltipComponent],
     exports: [KalLogoComponent, KalPolaroidComponent, DateStringPipe,
         ActionModule, PanelModule,
         LogoColorDirective,
-        FileUploadComponent, PostItComponent],
+        FileUploadComponent, PostItComponent, TooltipComponent],
     providers: [FileService, DateUtilService]
 })
 export class CommonModule {

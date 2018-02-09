@@ -1,0 +1,74 @@
+[data-tooltip][tabindex="0"] {
+    display: inline-block;
+    position: relative;
+    cursor: text;
+}
+[data-tooltip][tabindex="0"]::after {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    padding: 3px 5px;
+    max-width: 200px;
+    transform: translateX(-50%);
+    border: 1px solid #c9e0ef;
+    border-radius: 3px;
+    color: #3f517e;
+    white-space: nowrap;
+    background-color: #fff;
+    pointer-events: none;
+    content: attr(data-tooltip);
+}
+[data-tooltip][tabindex="0"]::before {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border: solid #c9e0ef;
+    border-width: 0 1px 1px 0;
+    background-color: #fff;
+    content: '';
+}
+[data-tooltip][tabindex="0"]:focus, [data-tooltip][tabindex="0"]:hover {
+    text-decoration: underline;
+}
+[data-tooltip][tabindex="0"]:focus::after, [data-tooltip][tabindex="0"]:focus::before, [data-tooltip][tabindex="0"]:hover::after, [data-tooltip][tabindex="0"]:hover::before {
+    display: block;
+}
+[data-tooltip][tabindex="0"][data-side="right"]::after, [data-tooltip][tabindex="0"][data-side="right"]::before {
+    bottom: 50%;
+    left: 100%;
+    margin-left: 10px;
+}
+[data-tooltip][tabindex="0"][data-side="right"]::after {
+    transform: translate(0, 50%);
+}
+[data-tooltip][tabindex="0"][data-side="right"]::before {
+    transform: translate(-50%, 50%) rotate(135deg);
+}
+[data-tooltip][tabindex="0"][data-side="bottom"]::after, [data-tooltip][tabindex="0"][data-side="bottom"]::before {
+    bottom: auto;
+    top: 110%;
+}
+[data-tooltip][tabindex="0"][data-side="bottom"]::after {
+    transform: translate(-50%, 0);
+}
+[data-tooltip][tabindex="0"][data-side="bottom"]::before {
+    transform: translate(-50%, -50%) rotate(225deg);
+}
+[data-tooltip][tabindex="0"][data-side="left"]::after, [data-tooltip][tabindex="0"][data-side="left"]::before {
+    right: 100%;
+    bottom: 50%;
+    left: auto;
+    margin-right: 10px;
+}
+[data-tooltip][tabindex="0"][data-side="left"]::after {
+    transform: translate(0, 50%);
+}
+[data-tooltip][tabindex="0"][data-side="left"]::before {
+    transform: translate(50%, 50%) rotate(315deg);
+}
