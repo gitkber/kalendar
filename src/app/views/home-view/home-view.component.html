@@ -1,7 +1,47 @@
 <div class="view-container">
-    <sheet-of-paper class="sheet-of-paper-item" (setDemoLoginClick)="setDemoLogin()"></sheet-of-paper>
+    <div class="left-container">
+        <sheet-of-paper (setDemoLoginClick)="setDemoLogin()"></sheet-of-paper>
+        <!--<div>-->
+            <!--<h3><i class="fa fa-calendar"></i> Jour </h3>-->
+            <!--<p>Vue principale - Affiche par jour les différentes fonctionnalités. On peut y sélectionner une vue par-->
+                <!--mois ou par année</p>-->
+            <!--<h3><i class="fa fa-users"></i> Contacts </h3>-->
+            <!--<p>Liste des contacts</p>-->
+            <!--<h3><i class="fa fa-binoculars"></i> Objectif </h3>-->
+            <!--<p>- en cours de développement </p>-->
+            <!--<h3><i class="fa fa-calculator"></i> Budget </h3>-->
+            <!--<p>Vue mensuelle des dépenses</p>-->
+        <!--</div>-->
+    </div>
+    <div class="center-container">
+        <div class="func-card">
+            <h2><i class="fa fa-users"></i> Contacts</h2>
+            <p>Nom - Prénom</p>
+            <p><i class="fa fa-birthday-cake"></i> Anniversaire</p>
+        </div>
+        <div class="func-card">
+            <h2><i class="fa fa-newspaper-o"></i> Evénement</h2>
+            <p>Description</p>
+        </div>
+        <div class="func-card">
+            <h2><i class="fa fa-money"></i> Dépenses</h2>
+            <p>Description - Montant</p>
+            <p><i class="fa fa-home"></i> Maison | <i class="fa fa-car"></i> Voiture |
+                <i class="fa fa-briefcase"></i> Travail | <i class="fa fa-money"></i> Santé |
+                <i class="fa fa-glass"></i> Nourriture | <i class="fa fa-black-tie"></i> Vêtements</p>
+        </div>
+        <div class="func-card">
+            <h2><i class="fa fa-sun-o"></i> Jour de congé</h2>
+            <p>Description</p>
+        </div>
+        <div class="func-card">
+            <h2><i class="fa fa-flag"></i> Jour férié</h2>
+            <p>Description</p>
+        </div>
+    </div>
     <div class="right-container">
         <login-form class="login-panel-item" [user]="user"></login-form>
-        <kal-polaroid [label]="'Zen Attitude'" [image]="'../../../assets/images/photo/IMG_yoga.jpg'" class="polaroid-item"></kal-polaroid>
+        <kal-polaroid [label]="'Agenda'" [image]="'../../../assets/images/photo/IMG_agenda.jpg'"
+                      class="polaroid-item"></kal-polaroid>
     </div>
 </div>

@@ -1,6 +1,21 @@
-.sheet-of-paper-item {
-    width: 40%;
-    height: 90%;
+.left-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    /*border: 1px solid red;*/
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    /*border: 1px solid red;*/
 }
 
 .right-container {
@@ -8,15 +23,26 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 40%;
+    width: 20%;
     height: 100%;
+    /*border: 1px solid red;*/
 }
 
 .login-panel-item {
-    width: 80%;
+    width: 100%;
     align-items: center;
 }
 
 .polaroid-item {
     align-items: center;
 }
+
+.func-card {
+    margin: 0px;
+    border: 1px solid var(--color-blue-0);
+    border-radius: 5px;
+    width: 500px;
+    background: white;
+    text-align: center;
+}
+
