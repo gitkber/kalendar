@@ -50,7 +50,7 @@ export class KalYearViewComponent implements OnInit, OnDestroy {
     showDayDetail(event: Day) {
         this.appService.selectDate(event.date);
         this.selectedDay = this.year.selectDate(this.appService.currentDate);
-        this.routerService.navigateToHome();
+        this.routerService.navigateToDay();
     }
 
     navigate(event: Navigation) {

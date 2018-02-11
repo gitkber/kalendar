@@ -1,12 +1,17 @@
-<kal-panel-list [title]="'Contacts'">
+<div class="contact-card-container">
 
-    <div class="row-container" *ngFor="let contact of contacts | async">
-        <div class="description-item">{{ contact.firstname + ' ' + contact.lastname }}</div>
-        <div class="descriptionDate-item">{{ contact.birthdate | date}}</div>
-
-        <edit-action class="action"
-                     [tooltip]="'Modifier un contact'"
-                     (click)="showContact(contact)"></edit-action>
+    <contact-detail class="contact-card" [contact]="contactSelected | async" *ngIf="contactSelected"
+                    [fillYear]="true" (closeClick)="close()"></contact-detail>
+    <div class="contact-card" *ngFor="let contact of contacts | async">
+        <div>
+            <h3>{{ contact.firstname + ' ' + contact.lastname }}</h3>
+            <p>{{ contact.birthdate | date}}</p>
+        </div>
+        <p>
+            <edit-action class="action"
+                         [tooltip]="'Modifier un contact'"
+                         (click)="showContact(contact)"></edit-action>
+        </p>
     </div>
 
     <div class="align-right-container">
@@ -14,4 +19,4 @@
                      (click)="addContact()"></plus-action>
     </div>
 
-</kal-panel-list>
+</div>

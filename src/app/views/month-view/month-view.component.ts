@@ -53,7 +53,7 @@ export class MonthViewComponent implements OnInit, OnDestroy {
             this.selectedDay = this.month.selectDate(event.date);
         } else {
             this.selectedDay = this.month.selectDate(this.appService.currentDate);
-            this.routerService.navigateToHome();
+            this.routerService.navigateToDay();
         }
     }
 
