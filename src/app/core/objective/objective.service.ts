@@ -43,6 +43,16 @@ export class ObjectiveService {
         objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'natation'));
         objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'marche / course'));
         this.firebaseListObservable.push(objective);
+
+        objective = new Objective('Projet dévelopement', 'PROJECT / HEALTH');
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'ContactListView - add contact'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'Deploy prod'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Analyse Objectives'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Analyse Timeline'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Review Holiday - vac scolaire'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Help - with tooltip'));
+        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'More one css'));
+        this.firebaseListObservable.push(objective);
     }
 
     // insertOLDFixtures() {

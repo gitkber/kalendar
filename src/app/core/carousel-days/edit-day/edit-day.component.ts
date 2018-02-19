@@ -69,13 +69,13 @@ export class EditDayComponent {
             if (event.key !== null) {
                 this.contactHolidaySelected = this.viewsFacade.contactHolidayService.getContactHoliday(event.key);
             } else {
-                this.contactHolidaySelected = Observable.of(new ContactHoliday(null, null, null, event.date));
+                this.contactHolidaySelected = Observable.of(new ContactHoliday(null, null, event.date));
             }
         } else if (event.isPublicHoliday()) {
             if (event.key !== null) {
                 this.publicHolidaySelected = this.viewsFacade.publicHolidayService.getPublicHoliday(event.key);
             } else {
-                this.publicHolidaySelected = Observable.of(new PublicHoliday(null, null, event.date));
+                this.publicHolidaySelected = Observable.of(new PublicHoliday(null, event.date));
             }
         } else if (event.isBudget()) {
             if (event.key !== null) {
