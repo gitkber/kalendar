@@ -19,12 +19,13 @@ export class ContactListComponent {
 
     showContact(contact: Contact) {
         // this.showContactClick.emit(contact);
-        this.contactSelected = this.contactService.getContact(contact['$key']);
-        console.log(this.contactSelected);
+        // this.contactSelected = this.contactService.getContact(contact['$key']);
+        // console.log(this.contactSelected);
     }
 
     addContact() {
         // this.showContactClick.emit(new Contact(null, null, null));
+        // this.contactSelected = Observable.of(new Contact('', '', null));
         this.contactSelected = Observable.of(new Contact(null, null, null));
     }
 

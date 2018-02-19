@@ -22,21 +22,26 @@
             <i class="fa input-i-error"
                [class.fa-asterisk]="formGroup.get('lastname').touched && formGroup.get('lastname').hasError('required')"></i>
         </div>
-        <div class="col-3 input-effect">
+        <div class="col-3 input-effect" *ngIf="fillYear">
             <input class="effect-16 has-content" type="text" placeholder="" [class.has-content]="formGroup.get('year').value"
                    formControlName="year" name="year" id="inputYear">
             <label for="inputYear">Année de naissance</label>
-            <!--{{this.dateUtilService.stringToDayAndLongMonth(this.contact.birthdate)}}-->
             <span class="focus-border"></span>
             <i class="fa input-i-error"
                [class.fa-asterisk]="formGroup.get('year').touched && formGroup.get('year').hasError('required')"></i>
             <i class="fa input-i-error" title="yyyy"
                [class.fa-times]="formGroup.get('year').touched && formGroup.get('year').hasError('pattern')"></i>
         </div>
-        <!--<div *ngIf="!fillYear">-->
-        <!--<label class="labelFor" for="inputBirthdate">Birthdate</label>-->
-        <!--<input type="text" formControlName="birthdate" name="birthdate" id="inputBirthdate"/>-->
-        <!--</div>-->
+        <div class="col-3 input-effect" *ngIf="!fillYear">
+            <input class="effect-16 has-content" type="text" placeholder="" [class.has-content]="formGroup.get('birthdate').value"
+                   formControlName="birthdate" name="birthdate" id="inputBirthdate">
+            <label for="inputBirthdate">Date de naissance</label>
+            <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('birthdate').touched && formGroup.get('birthdate').hasError('required')"></i>
+            <!--<i class="fa input-i-error" title="dd/mm/yyyy"-->
+               <!--[class.fa-times]="formGroup.get('birthdate').touched && formGroup.get('birthdate').hasError('pattern')"></i>-->
+        </div>
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveContact()"></icon-action>

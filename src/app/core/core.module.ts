@@ -28,11 +28,12 @@ import { ContactHolidayDetailComponent } from './holiday/contact-holiday/contact
 import { WeekImageComponent } from './image/week-image/week-image.component';
 import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
 import { ObjectiveFormComponent } from './objective/objective-form/objective-form.component';
+import { ContactListRowComponent } from './contact/contact-list/contact-list-row/contact-list-row.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule],
     declarations: [LoginFormComponent,
-        ContactListComponent, BirthdayPostItComponent, ContactDetailComponent,
+        ContactListComponent, ContactListRowComponent, BirthdayPostItComponent, ContactDetailComponent,
         CarouselBudgetComponent, MonthInCarouselBudgetComponent,
         CarouselDaysComponent, DayInCarouselDaysComponent, EditDayComponent,
         ObjectiveListComponent, ObjectiveFormComponent,

@@ -45,9 +45,16 @@ export class ContactDetailComponent implements OnChanges {
     }
 
     saveContact() {
+        if (this.fillYear) {
+            this.formGroup.patchValue({'birthdate': '99/99/9999'});
+        } else {
+            this.formGroup.patchValue({'year': '9999'});
+        }
+
         if (!this.formGroup.valid) {
             this.formGroup.get('firstname').markAsTouched();
             this.formGroup.get('lastname').markAsTouched();
+            this.formGroup.get('birthdate').markAsTouched();
             this.formGroup.get('year').markAsTouched();
         } else {
             this.contact.firstname = this.formGroup.get('firstname').value;

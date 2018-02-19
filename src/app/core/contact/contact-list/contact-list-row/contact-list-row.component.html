@@ -1,0 +1,13 @@
+<contact-detail class="contact-card test" [contact]="contact" *ngIf="editMode"
+                [fillYear]="true" (closeClick)="close()"></contact-detail>
+<div class="contact-card" *ngIf="!editMode">
+    <div>
+        <h3>{{ contact.firstname + ' ' + contact.lastname }}</h3>
+        <p>{{ contact.birthdate | date}}</p>
+    </div>
+    <p>
+        <edit-action class="action"
+                     [tooltip]="'Modifier un contact'"
+                     (click)="showContact(contact)"></edit-action>
+    </p>
+</div>
