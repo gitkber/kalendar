@@ -23,6 +23,10 @@ export class DayItem {
         return this.type === Type.PUBLIC_HOLIDAY;
     }
 
+    isSchoolHoliday(): boolean {
+        return this.type === Type.SCHOOL_HOLIDAY;
+    }
+
     isContactHoliday() {
         return this.type === Type.CONTACT_HOLIDAY;
     }

@@ -65,12 +65,6 @@
                                               (click)="editDayItem(dayContactHolidayItem)"></edit-icon-action>
                         </div>
                     </div>
-                    <div class="day-item-detail" *ngIf="day.isSelected  && !editMode">
-                        <div></div>
-                        <plus-icon-action *ngIf="!day.dayPublicHolidayItem"
-                                          [tooltip]="'Ajouter un jour férié'"
-                                          [image]="'fa-flag'" (click)="addDayItemPublicHoliday()"></plus-icon-action>
-                    </div>
                     <div class="day-item-detail core-info public-holiday" *ngIf="day.dayPublicHolidayItem">
                         <div class="day-item-info">
                             {{ day.dayPublicHolidayItem.principalItem }}
@@ -79,6 +73,16 @@
                             <edit-icon-action [tooltip]="'Modifier un jour férié'"
                                               [image]="'fa-flag'"
                                               (click)="editDayItem(day.dayPublicHolidayItem)"></edit-icon-action>
+                        </div>
+                    </div>
+                    <div class="day-item-detail core-info public-holiday" *ngIf="day.daySchoolHolidayItem">
+                        <div class="day-item-info">
+                            {{ day.daySchoolHolidayItem.principalItem }}
+                        </div>
+                        <div *ngIf="day.isSelected  && !editMode">
+                            <edit-icon-action [tooltip]="'Modifier un jour scolaire'"
+                                              [image]="'fa-graduation-cap'"
+                                              (click)="editDayItem(day.daySchoolHolidayItem)"></edit-icon-action>
                         </div>
                     </div>
                     <div class="day-item-info core-info" *ngIf="day.isToday" [class.today]="day.isToday">

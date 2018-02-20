@@ -5,12 +5,10 @@
     </div>
     <h1>Dépense</h1>
     <form [formGroup]="formGroup" #addContactForm="ngForm">
-        <div class="switch-field">
+        <div class="switch-tag">
             <div *ngFor="let name of optionTypes">
                 <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name"><i [class]="getImage(name)"></i></label>
-                <!--<input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name">{{getImage(name)}} {{img}}</label>-->
             </div>
-
         </div>
         <div class="col-3 input-effect">
             <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"

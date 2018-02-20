@@ -62,23 +62,23 @@ export class EditDayComponent {
             } else {
                 this.eventSelected = Observable.of(new Event(null, event.date));
             }
-        } else if (event.isContactHoliday()) {
-            if (event.key !== null) {
-                this.holidaySelected = this.viewsFacade.holidayService.getHoliday(event.key);
-            } else {
-                this.holidaySelected = Observable.of(new Holiday(TagHolidayType.CONTACT, null, event.date));
-            }
-        } else if (event.isPublicHoliday()) {
-            if (event.key !== null) {
-                this.holidaySelected = this.viewsFacade.holidayService.getHoliday(event.key);
-            } else {
-                this.holidaySelected = Observable.of(new Holiday(TagHolidayType.PUBLIC, null, event.date));
-            }
         } else if (event.isBudget()) {
             if (event.key !== null) {
                 this.budgetSelected = this.viewsFacade.budgetService.getBudget(event.key);
             } else {
                 this.budgetSelected = Observable.of(new Budget(TagBudgetOperation.MIN, TagBudgetType.FOOD, null, event.date, null));
+            }
+        } else if (event.isContactHoliday() || event.isPublicHoliday() || event.isSchoolHoliday) {
+            if (event.key !== null) {
+                this.holidaySelected = this.viewsFacade.holidayService.getHoliday(event.key);
+            } else {
+                if (event.isContactHoliday()) {
+                    this.holidaySelected = Observable.of(new Holiday(TagHolidayType.CONTACT, null, event.date));
+                } else if (event.isPublicHoliday()) {
+                    this.holidaySelected = Observable.of(new Holiday(TagHolidayType.PUBLIC, null, event.date));
+                } else if (event.isSchoolHoliday()) {
+                    this.holidaySelected = Observable.of(new Holiday(TagHolidayType.SCHOOL, null, event.date));
+                }
             }
         }
     }

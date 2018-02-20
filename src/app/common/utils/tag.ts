@@ -48,6 +48,19 @@ export function getTagBudgetTypeImage(tag: string): string {
         case TagBudgetType.OTHER:
             return 'fa fa-circle';
         default:
-            return 'fa fa-adn';
+            return 'fa fa-question-circle-o';
+    }
+}
+
+export function getTagHolidayTypeImage(tag: string): string {
+    switch (tag) {
+        case TagHolidayType.PUBLIC:
+            return 'fa fa-flag';
+        case TagHolidayType.CONTACT:
+            return 'fa fa-sun-o';
+        case TagHolidayType.SCHOOL:
+            return 'fa fa-graduation-cap';
+        default:
+            return 'fa fa-question-circle-o';
     }
 }

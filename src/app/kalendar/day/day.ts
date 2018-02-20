@@ -6,6 +6,7 @@ export class Day {
     public dayItems: DayItem[] = [];
     public dayContactHolidayItems: DayItem[] = [];
     public dayPublicHolidayItem: DayItem;
+    public daySchoolHolidayItem: DayItem;
 
     public isDisabled: boolean;
     public isWeekend: boolean;

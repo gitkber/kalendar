@@ -4,7 +4,7 @@ import { Action } from '../../action';
 import { isUndefined } from 'util';
 import { Holiday, HolidayAction } from '../holiday';
 import { HolidayService } from '../holiday.service';
-import { TagHolidayType } from '../../../common/utils/tag';
+import { getTagHolidayTypeImage, TagHolidayType } from '../../../common/utils/tag';
 
 @Component({
     selector: 'holiday-detail',
@@ -31,7 +31,7 @@ export class HolidayDetailComponent implements OnChanges {
     }
 
     getImage(holidayType: string): string {
-        return 'fa fa-adn';
+        return getTagHolidayTypeImage(holidayType);
     }
 
     ngOnChanges(changes: SimpleChanges) {

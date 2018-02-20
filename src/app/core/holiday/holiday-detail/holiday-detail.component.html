@@ -4,13 +4,12 @@
         <i class="fa fa-window-close" (click)="close()"></i>
     </div>
     <h1>Vacance</h1>
-    <!--<div>-->
-        <!--<div *ngFor="let name of holidayTypes">-->
-            <!--<input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name"><i [class]="getImage(name)"></i></label>-->
-        <!--</div>-->
-
-    <!--</div>-->
     <form [formGroup]="formGroup" #addContactForm="ngForm">
+        <div class="switch-tag">
+            <div *ngFor="let name of holidayTypes">
+                <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name"><i [class]="getImage(name)"></i></label>
+            </div>
+        </div>
         <div class="col-3 input-effect">
             <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">

@@ -1,14 +1,15 @@
 <div class="day-in-month-container" [class.day-selected]="day.isSelected"
      [class.day-disabled]="day.isDisabled">
     <div class="day-item-title" [class.weekend]="day.isWeekend" [class.today]="day.isToday" (click)="showDay()">
+        <div>
+            <i *ngIf="day.dayPublicHolidayItem !== undefined" class="fa fa-flag fa-border public-holiday"
+               [title]="day.dayPublicHolidayItem.principalItem"></i>
+            <i *ngIf="day.daySchoolHolidayItem !== undefined" class="fa fa-graduation-cap fa-border public-holiday"
+               [title]="day.daySchoolHolidayItem.principalItem"></i>
+        </div>
         <div>{{ day.date | date:'d MMM' }}</div>
     </div>
     <div class="day-item-info-list">
-        <div class="day-item-info-detail" *ngIf="day.dayPublicHolidayItem"
-             [class.public-holiday]="!day.isDisabled && day.dayPublicHolidayItem !== undefined"
-             (click)="showDayItem(day.dayPublicHolidayItem)">
-            <span>{{day.dayPublicHolidayItem.principalItem}}</span>
-        </div>
         <div class="day-item-info-detail" *ngFor="let dayInfoItem of day.dayContactHolidayItems"
              [class.contact-holiday]="!day.isDisabled && day.dayContactHolidayItems.length > 0"
              (click)="showDayItem(dayInfoItem)">

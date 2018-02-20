@@ -144,7 +144,7 @@ export class ViewsFacade {
                     } else if (entity.tagType === TagHolidayType.CONTACT) {
                         d.dayContactHolidayItems.push(new DayItem(Type.CONTACT_HOLIDAY, data.key, entity.date, entity.description));
                     } else if (entity.tagType === TagHolidayType.SCHOOL) {
-                        // TODO
+                        d.daySchoolHolidayItem = new DayItem(Type.SCHOOL_HOLIDAY, data.key, entity.date, entity.description);
                     }
                 }
             })
@@ -167,7 +167,7 @@ export class ViewsFacade {
                             }
                         })
                     } else if (entity.tagType === TagHolidayType.SCHOOL) {
-                        // TODO
+                        d.daySchoolHolidayItem.principalItem = entity.description;
                     }
                 }
             })
@@ -190,7 +190,7 @@ export class ViewsFacade {
                             }
                         })
                     } else if (entity.tagType === TagHolidayType.SCHOOL) {
-                        // TODO
+                        d.daySchoolHolidayItem = null;
                     }
                 }
             })

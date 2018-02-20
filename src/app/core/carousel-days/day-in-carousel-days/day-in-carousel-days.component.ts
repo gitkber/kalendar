@@ -76,8 +76,4 @@ export class DayInCarouselDaysComponent {
         this.editDayComponent.open(new DayItem(Type.CONTACT_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
     }
 
-    addDayItemPublicHoliday() {
-        this.editMode = true;
-        this.editDayComponent.open(new DayItem(Type.PUBLIC_HOLIDAY, null, this.dateUtilService.toString(this.day.date), null));
-    }
 }
