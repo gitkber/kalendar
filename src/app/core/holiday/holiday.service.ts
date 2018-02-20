@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { QueryReference } from 'angularfire2/interfaces';
-import { AuthService } from '../../service/auth.service';
-import { Action } from '../../action';
-import { PublicHoliday, PublicHolidayAction } from './public-holiday';
+import { AuthService } from '../service/auth.service';
+import { Action } from '../action';
+import { Holiday, HolidayAction } from './holiday';
+import { TagHolidayType } from '../../common/utils/tag';
 
 @Injectable()
-export class PublicHolidayService {
+export class HolidayService {
 
     private path: string;
-    private firebaseListObservable: FirebaseListObservable<PublicHoliday[]>;
+    private firebaseListObservable: FirebaseListObservable<Holiday[]>;
 
     // private publicHolidaysObservable: Observable<PublicHoliday[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
-        this.path = '/publicHolidays/' + this.authService.currentUserId + '/';
+        this.path = '/holidays/' + this.authService.currentUserId + '/';
         this.firebaseListObservable = this.db.list(this.path);
         // this.publicHolidaysObservable = this.firebaseListObservable.map((itemKeys) => {
         //     return itemKeys.map(key => {
@@ -25,21 +27,25 @@ export class PublicHolidayService {
         // });
     }
 
+    findPublicHolidays(): Observable<Holiday[]> {
+        return this.firebaseListObservable.map(items => items.filter(item => item.tagType === TagHolidayType.PUBLIC));
+    }
+
     getRef(): QueryReference {
         return this.firebaseListObservable.$ref;
     }
 
-    getPublicHoliday(key: string): FirebaseObjectObservable<PublicHoliday> {
+    getHoliday(key: string): FirebaseObjectObservable<Holiday> {
         return this.db.object(this.path + key);
     }
 
-    doActionOnPublicHoliday(event: PublicHolidayAction) {
+    doActionOnHoliday(event: HolidayAction) {
         if (event.action === Action.INSERT) {
             this.firebaseListObservable.push(event.holiday);
         } else if (event.action === Action.UPDATE) {
-            this.firebaseListObservable.update(event.holidayKey, event.holiday);
+            this.firebaseListObservable.update(event.key, event.holiday);
         } else if (event.action === Action.DELETE) {
-            this.firebaseListObservable.remove(event.holidayKey);
+            this.firebaseListObservable.remove(event.key);
         }
     }
 

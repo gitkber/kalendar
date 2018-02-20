@@ -4,12 +4,11 @@ import { Navigation } from '../../../kalendar/navigation';
 import { DayItem } from '../../../kalendar/day-item';
 import { AppService } from '../../../app.service';
 import { Contact } from '../../contact/contact';
-import { ContactHoliday } from '../../holiday/contact-holiday/contact-holiday';
-import { PublicHoliday } from '../../holiday/public-holiday/public-holiday';
 import { Budget } from '../../budget/budget';
 import { Event } from '../../event/event';
-import { TagBudgetOperation, TagBudgetType } from '../../../common/utils/tag';
+import { TagBudgetOperation, TagBudgetType, TagHolidayType } from '../../../common/utils/tag';
 import { ViewsFacade } from '../../../views/views.facade';
+import { Holiday } from '../../holiday/holiday';
 
 @Component({
     selector: 'edit-day',
@@ -22,8 +21,7 @@ export class EditDayComponent {
 
     public eventSelected: Observable<Event>;
     public contactSelected: Observable<Contact>;
-    public contactHolidaySelected: Observable<ContactHoliday>;
-    public publicHolidaySelected: Observable<PublicHoliday>;
+    public holidaySelected: Observable<Holiday>;
     public budgetSelected: Observable<Budget>;
     public fillOnlyYear: boolean;
 
@@ -49,8 +47,7 @@ export class EditDayComponent {
     showDayItem(event: DayItem) {
         this.contactSelected = undefined;
         this.eventSelected = undefined;
-        this.contactHolidaySelected = undefined;
-        this.publicHolidaySelected = undefined;
+        this.holidaySelected = undefined;
         this.budgetSelected = undefined;
         if (event.isContact()) {
             this.fillOnlyYear = true;
@@ -67,15 +64,15 @@ export class EditDayComponent {
             }
         } else if (event.isContactHoliday()) {
             if (event.key !== null) {
-                this.contactHolidaySelected = this.viewsFacade.contactHolidayService.getContactHoliday(event.key);
+                this.holidaySelected = this.viewsFacade.holidayService.getHoliday(event.key);
             } else {
-                this.contactHolidaySelected = Observable.of(new ContactHoliday(null, null, event.date));
+                this.holidaySelected = Observable.of(new Holiday(TagHolidayType.CONTACT, null, event.date));
             }
         } else if (event.isPublicHoliday()) {
             if (event.key !== null) {
-                this.publicHolidaySelected = this.viewsFacade.publicHolidayService.getPublicHoliday(event.key);
+                this.holidaySelected = this.viewsFacade.holidayService.getHoliday(event.key);
             } else {
-                this.publicHolidaySelected = Observable.of(new PublicHoliday(null, event.date));
+                this.holidaySelected = Observable.of(new Holiday(TagHolidayType.PUBLIC, null, event.date));
             }
         } else if (event.isBudget()) {
             if (event.key !== null) {

@@ -4,12 +4,9 @@
 <event-detail *ngIf="eventSelected"
               [event]="eventSelected | async"
               (closeClick)="close()"></event-detail>
-<contact-holiday-detail *ngIf="contactHolidaySelected"
-                        [contactHoliday]="contactHolidaySelected | async"
-                        (closeClick)="close()"></contact-holiday-detail>
-<public-holiday-detail *ngIf="publicHolidaySelected"
-                       [publicHoliday]="publicHolidaySelected | async"
-                       (closeClick)="close()"></public-holiday-detail>
+<holiday-detail *ngIf="holidaySelected"
+                [holiday]="holidaySelected | async"
+                (closeClick)="close()"></holiday-detail>
 <budget-detail *ngIf="budgetSelected"
                [budget]="budgetSelected | async"
                (closeClick)="close()"></budget-detail>

@@ -1,3 +1,10 @@
+/** Holiday */
+export enum TagHolidayType {
+    PUBLIC = 'PUBLIC', // Jour férié
+    SCHOOL = 'SCHOOL',
+    CONTACT = 'CONTACT',
+}
+
 /** Budget */
 export enum TagBudgetOperation {
     MIN = 'MIN',

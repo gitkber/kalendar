@@ -1,10 +1,16 @@
 <div class="form-container">
     <div class="form-title">
-        <div> {{ publicHoliday.date | date: 'EEEE d MMMM yyyy' }}</div>
+        <div> {{ holiday.date | date: 'EEEE d MMMM yyyy' }}</div>
         <i class="fa fa-window-close" (click)="close()"></i>
     </div>
-    <h1>Jour férié</h1>
-    <form [formGroup]="formGroup" #addHolidayForm="ngForm">
+    <h1>Vacance</h1>
+    <!--<div>-->
+        <!--<div *ngFor="let name of holidayTypes">-->
+            <!--<input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name"><i [class]="getImage(name)"></i></label>-->
+        <!--</div>-->
+
+    <!--</div>-->
+    <form [formGroup]="formGroup" #addContactForm="ngForm">
         <div class="col-3 input-effect">
             <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">
@@ -16,6 +22,6 @@
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveHoliday()"></icon-action>
-        <icon-action [image]="'fa-trash-o'" (click)="deleteHoliday()" *ngIf="publicHolidayKey"></icon-action>
+        <icon-action [image]="'fa-trash-o'" (click)="deleteHoliday()" *ngIf="holidayKey"></icon-action>
     </div>
 </div>
