@@ -24,11 +24,11 @@ export enum TagBudgetType {
 }
 
 /** Objective */
-export enum TagObjectiveType {
-    OBJ_BY_DAY = 'OBJ_BY_DAY',
-    OBJ_ONE_DAY = 'OBJ_ONE_DAY',
-    OBJ_BY_WEEK = 'OBJ_BY_WEEK',
-    OBJ_BY_MONTH = 'OBJ_BY_MONTH',
+export enum TagObjectiveItemType {
+    ONCE = 'ONCE',
+    DAILY = 'DAILY',
+    WEEKLY = 'WEEKLY',
+    MONTHLY = 'MONTHLY',
 }
 
 export function getTagBudgetTypeImage(tag: string): string {

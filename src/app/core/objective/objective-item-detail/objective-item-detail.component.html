@@ -1,0 +1,21 @@
+<div class="form-container">
+    <div class="form-title">
+        <h1>Objective Item</h1>
+        <i class="fa fa-window-close" (click)="close()"></i>
+    </div>
+
+    <form [formGroup]="formGroup" #addContactForm="ngForm">
+        <div class="col-3 input-effect">
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
+                   formControlName="description" name="description" id="inputDescription">
+            <label for="inputDescription">Description</label>
+            <span class="focus-border"></span>
+            <i class="fa input-i-error"
+               [class.fa-asterisk]="formGroup.get('description').touched && formGroup.get('description').hasError('required')"></i>
+        </div>
+    </form>
+    <div class="align-right-container">
+        <icon-action [image]="'fa-save'" (click)="saveObjective()"></icon-action>
+        <icon-action [image]="'fa-trash-o'" (click)="deleteObjective()" *ngIf="objectiveItemKey"></icon-action>
+    </div>
+</div>

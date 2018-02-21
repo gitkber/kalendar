@@ -1,28 +1,38 @@
-<div class="objective-list-container paper-style" *ngFor="let item of items | async">
-    <div class="row-container">
-        <div class="description-item">{{ item.description }}</div>
-        <div class="descriptionDate-item">{{ item.tags }}</div>
-        <edit-action class="action"
-                     [tooltip]="'Modifier un objectif'"
-                     (click)="showItem(item)"></edit-action>
-    </div>
-    <div>
-        <div class="row-container" *ngFor="let todo of item.details">
-            <div class="description-item">{{ todo.description }} - {{ todo.todoType }}</div>
-            <edit-action class="action"
-                         [tooltip]="'Modifier un objectif'"
-                         (click)="showItem(item)"></edit-action>
-        </div>
-        <plus-action class="action"
-                     [tooltip]="'Ajouter un todo'"
-                     (click)="addItem()"></plus-action>
-    </div>
-</div>
-<div class="objective-container">
-    <div class="align-right-container">
-        <plus-action class="action"
-                     [tooltip]="'Ajouter un objectif'"
-                     (click)="addItem()"></plus-action>
-    </div>
-</div>
+<div class="objective-card-container">
 
+    <objective-item-detail [objectiveItem]="objectiveItemSelected" [objectiveKey]="objectiveKeySelected"
+                           *ngIf="objectiveItemSelected" (closeClick)="close()"></objective-item-detail>
+    <objective-detail [objective]="objectiveSelected" *ngIf="objectiveSelected"
+                      (closeClick)="close()"></objective-detail>
+    <div class="objective-card" *ngFor="let objective of objectives | async">
+        <div class="row-container">
+            <div class="description-item">{{ objective.description }}</div>
+            <edit-action class="action"
+                         [tooltip]="'Modifier le titre'"
+                         (click)="showObjective(objective)"></edit-action>
+        </div>
+        <ul>
+            <li *ngFor="let item of objective.items">
+                <div class="row-container">
+                    <div class="description-item">{{ item.description }} - {{ item.tagType }}</div>
+                    <edit-action class="action"
+                                 [tooltip]="'Modifier'"
+                                 (click)="showObjectiveItem(objective, item)"></edit-action>
+                </div>
+            </li>
+            <li>
+                <plus-action class="action"
+                             [tooltip]="'Ajouter un élément'"
+                             (click)="addObjectiveItem(objective)"></plus-action>
+            </li>
+        </ul>
+    </div>
+    <div class="objective-container">
+        <div class="align-right-container">
+            <plus-action class="action"
+                         [tooltip]="'Ajouter un objectif'"
+                         (click)="addObjective()"></plus-action>
+        </div>
+    </div>
+
+</div>

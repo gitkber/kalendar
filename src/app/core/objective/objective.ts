@@ -1,18 +1,19 @@
 import { Action } from '../action';
-import { TagObjectiveType } from '../../common/utils/tag';
+import { TagObjectiveItemType } from '../../common/utils/tag';
+import { Observable } from 'rxjs/Observable';
 
 export class Objective {
-    public details: ObjectiveDetail[] = [];
+    // public items: Observable<ObjectiveItem[]>;
+    public items: ObjectiveItem[] = [];
 
     constructor(
-        public description: string,
-        public tags: string
+        public description: string
     ) { }
 }
 
-export class ObjectiveDetail {
+export class ObjectiveItem {
     constructor(
-        public tagType: TagObjectiveType,
+        public tagType: TagObjectiveItemType,
         public description: string
     ) { }
 }
@@ -23,5 +24,15 @@ export class ObjectiveAction {
     constructor(
         public action: Action,
         public objective?: Objective
+    ) { }
+}
+
+export class ObjectiveItemAction {
+    public key: string;
+
+    constructor(
+        public action: Action,
+        public objectiveKey: string,
+        public objectiveItem?: ObjectiveItem
     ) { }
 }

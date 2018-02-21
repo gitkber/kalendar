@@ -17,7 +17,6 @@ import { ObjectiveViewComponent } from './objective-view/objective-view.componen
 
 import { SheetOfPaperComponent } from './home-view/sheet-of-paper/sheet-of-paper.component';
 import { ImageModalComponent } from './modal/image-modal/image-modal.component';
-import { ObjectiveModalComponent } from './modal/objective-modal/objective-modal.component';
 
 @NgModule({
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
@@ -25,7 +24,7 @@ import { ObjectiveModalComponent } from './modal/objective-modal/objective-modal
         ContactsViewComponent,
         BudgetViewComponent, ObjectiveViewComponent,
         SheetOfPaperComponent,
-        ImageModalComponent, ObjectiveModalComponent],
+        ImageModalComponent],
     exports: [],
     providers: [ViewsFacade]
 })

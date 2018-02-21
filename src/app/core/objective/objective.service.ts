@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/catch';
 import { AuthService } from '../service/auth.service';
-import { Objective, ObjectiveDetail } from './objective';
-import { TagObjectiveType } from '../../common/utils/tag';
+import { Objective, ObjectiveAction, ObjectiveItem, ObjectiveItemAction } from './objective';
+import { TagObjectiveItemType } from '../../common/utils/tag';
+import { Action } from '../action';
 
 @Injectable()
 export class ObjectiveService {
@@ -18,40 +19,59 @@ export class ObjectiveService {
 
     getList(): FirebaseListObservable<Objective[]> { return this.firebaseListObservable; }
 
-    insertObjective(objective: Objective) {
-        this.firebaseListObservable.push(objective);
+    doActionOnObjective(event: ObjectiveAction) {
+        if (event.action === Action.INSERT) {
+            this.firebaseListObservable.push(event.objective);
+        } else if (event.action === Action.UPDATE) {
+            this.firebaseListObservable.update(event.key, event.objective);
+        } else if (event.action === Action.DELETE) {
+            this.firebaseListObservable.remove(event.key);
+        }
     }
 
-    insertTodo(objective: Objective, todo: ObjectiveDetail) {
-        this.db.list(this.path + objective['$key'] + 'todos').push(todo);
+    doActionOnObjectiveItem(event: ObjectiveItemAction) {
+        const pathIem: string = this.path  + event.objectiveKey  + '/items';
+        console.log('pathitem', pathIem);
+        if (event.action === Action.INSERT) {
+            event.objectiveItem.tagType = TagObjectiveItemType.DAILY;
+            this.db.list(pathIem).push(event.objectiveItem);
+        } else if (event.action === Action.UPDATE) {
+
+        } else if (event.action === Action.DELETE) {
+            this.db.list(pathIem).remove(event.key);
+        }
+    }
+
+    insertTodo(objective: Objective, todo: ObjectiveItem) {
+        this.db.list(this.path + objective['$key'] + '/items').push(todo);
     }
 
     insertFixtures() {
-        let objective: Objective = new Objective('Rangement', 'WELL_TO_BE / HOME');
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_DAY, 'rangement en surface 10 min par jour'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trier jouets'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trier/ranger dans les armoires'));
+        let objective: Objective = new Objective('Rangement');
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'rangement en surface 10 min par jour'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier jouets'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier/ranger dans les armoires'));
         this.firebaseListObservable.push(objective);
 
-        objective = new Objective('Papiers', 'WELL_TO_BE / HOME / ADMINISTRATION');
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_DAY, 'trier papiers 15 min par jour'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_WEEK, 'relever courriers'));
+        objective = new Objective('Administration');
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'trier papiers 15 min par jour'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.WEEKLY, 'relever courriers'));
         this.firebaseListObservable.push(objective);
 
-        objective = new Objective('Faire du sport', 'WELL_TO_BE / HEALTH');
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'trouver un sport'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'natation'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'marche / course'));
+        objective = new Objective('Sportif');
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trouver un sport'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'natation'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'marche / course'));
         this.firebaseListObservable.push(objective);
 
-        objective = new Objective('Projet dévelopement', 'PROJECT / HEALTH');
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'ContactListView - add contact'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_BY_MONTH, 'Deploy prod'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Analyse Objectives'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Analyse Timeline'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Review Holiday - vac scolaire'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'Help - with tooltip'));
-        objective.details.push(new ObjectiveDetail(TagObjectiveType.OBJ_ONE_DAY, 'More one css'));
+        objective = new Objective('Projet dévelopement');
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'ContactListView - add contact'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'Deploy prod'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Objectives'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Timeline'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Review Holiday - vac scolaire'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Help - with tooltip'));
+        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'More one css'));
         this.firebaseListObservable.push(objective);
     }
 

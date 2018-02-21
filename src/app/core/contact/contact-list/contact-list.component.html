@@ -1,25 +1,10 @@
 <div class="contact-card-container">
-    <contact-detail class="contact-card test" [contact]="contactSelected | async" *ngIf="contactSelected"
+    <contact-detail class="contact-card edit-mode" [contact]="contactSelected | async" *ngIf="contactSelected"
                     [fillYear]="false" (closeClick)="close()"></contact-detail>
     <contact-list-row [contact]="contact" *ngFor="let contact of contacts | async"
-    (showContactClick)="showContact($event)"></contact-list-row>
-    <!--<contact-detail class="contact-card" [contact]="contactSelected | async" *ngIf="contactSelected"-->
-                    <!--[fillYear]="true" (closeClick)="close()"></contact-detail>-->
-    <!--<div class="contact-card" *ngFor="let contact of contacts | async">-->
-        <!--<div>-->
-            <!--<h3>{{ contact.firstname + ' ' + contact.lastname }}</h3>-->
-            <!--<p>{{ contact.birthdate | date}}</p>-->
-        <!--</div>-->
-        <!--<p>-->
-            <!--<edit-action class="action"-->
-                         <!--[tooltip]="'Modifier un contact'"-->
-                         <!--(click)="showContact(contact)"></edit-action>-->
-        <!--</p>-->
-    <!--</div>-->
-
+                      (showContactClick)="showContact($event)"></contact-list-row>
     <div class="align-right-container">
         <plus-action [tooltip]="'Ajouter un contact'"
                      (click)="addContact()"></plus-action>
     </div>
-
 </div>

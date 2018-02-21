@@ -1,0 +1,14 @@
+.objective-list-item {
+    height: 100%;
+    width: 56%;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* item */
+    height: 100%;
+    width: 35%;
+}

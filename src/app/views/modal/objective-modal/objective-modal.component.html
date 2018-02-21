@@ -1,9 +1,0 @@
-<div class="modal-container" [class.closed]="!isOpen">
-    <div class="modal-overlay" (click)="close(true)"></div>
-
-    <div class="modal">
-        <objective-form [objective]="objective"
-                        (actionClick)="doActionOnCatchAll($event)"></objective-form>
-    </div>
-
-</div>
