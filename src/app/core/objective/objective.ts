@@ -3,12 +3,9 @@ import { TagObjectiveItemType } from '../../common/utils/tag';
 import { Observable } from 'rxjs/Observable';
 
 export class Objective {
-    // public items: Observable<ObjectiveItem[]>;
-    public items: ObjectiveItem[] = [];
+    public items: Observable<ObjectiveItem[]>;
 
-    constructor(
-        public description: string
-    ) { }
+    constructor(public description: string) { }
 }
 
 export class ObjectiveItem {

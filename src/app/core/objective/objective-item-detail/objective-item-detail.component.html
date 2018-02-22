@@ -5,6 +5,11 @@
     </div>
 
     <form [formGroup]="formGroup" #addContactForm="ngForm">
+        <div class="switch-tag">
+            <div *ngFor="let name of optionTypes">
+                <input [id]="name" type="radio" [value]="name" formControlName="tagType"><label [for]="name">{{ name }}</label>
+            </div>
+        </div>
         <div class="col-3 input-effect">
             <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('description').value"
                    formControlName="description" name="description" id="inputDescription">

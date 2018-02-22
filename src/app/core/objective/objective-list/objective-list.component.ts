@@ -1,31 +1,20 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Objective, ObjectiveItem } from '../objective';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'objective-list',
     templateUrl: './objective-list.component.html',
     styleUrls: ['./objective-list.component.css']
 })
-export class ObjectiveListComponent implements OnChanges {
+export class ObjectiveListComponent {
 
-    @Input() objectives: FirebaseListObservable<Objective[]>;
+    @Input() objectives: Observable<Objective[]>;
     @Output() showItemClick: EventEmitter<Objective> = new EventEmitter();
 
     public objectiveSelected: Objective;
     public objectiveItemSelected: ObjectiveItem;
     public objectiveKeySelected: string;
-
-    constructor() {
-        //
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.objectives.currentValue) {
-           console.log('log', this.objectives.forEach(t => t.forEach(i => console.log(i))));
-        }
-    }
-
 
     showObjective(objective: Objective) {
         // this.showItemClick.emit(contact);

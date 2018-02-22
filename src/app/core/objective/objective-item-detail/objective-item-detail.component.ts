@@ -4,6 +4,7 @@ import { Action } from '../../action';
 import { isUndefined } from 'util';
 import { ObjectiveItem, ObjectiveItemAction } from '../objective';
 import { ObjectiveService } from '../objective.service';
+import { TagObjectiveItemType } from '../../../common/utils/tag';
 
 @Component({
     selector: 'objective-item-detail',
@@ -19,8 +20,13 @@ export class ObjectiveItemDetailComponent implements OnChanges {
     public formGroup: FormGroup;
     public objectiveItemKey: string;
 
+    public optionTypes: string[] = [];
+
     constructor(private objectiveService: ObjectiveService) {
+        this.optionTypes = Object.keys(TagObjectiveItemType);
+
         this.formGroup = new FormGroup({
+            tagType: new FormControl('', Validators.required),
             description: new FormControl('', Validators.required)
         });
     }
@@ -29,6 +35,7 @@ export class ObjectiveItemDetailComponent implements OnChanges {
         if (changes.objectiveItem && changes.objectiveItem.currentValue) {
             this.objectiveItemKey = changes.objectiveItem.currentValue['$key'];
             this.formGroup.setValue({
+                'tagType': changes.objectiveItem.currentValue['$value'] !== null ? this.objectiveItem.tagType : '',
                 'description': changes.objectiveItem.currentValue['$value'] !== null ? this.objectiveItem.description : ''
             });
         }
@@ -38,6 +45,7 @@ export class ObjectiveItemDetailComponent implements OnChanges {
         if (!this.formGroup.valid) {
             this.formGroup.get('description').markAsTouched();
         } else {
+            this.objectiveItem.tagType = this.formGroup.get('tagType').value;
             this.objectiveItem.description = this.formGroup.get('description').value;
 
             let objectiveItemAction: ObjectiveItemAction;

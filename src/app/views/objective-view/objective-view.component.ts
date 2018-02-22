@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { ObjectiveService } from '../../core/objective/objective.service';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { Objective } from '../../core/objective/objective';
 
 @Component({
@@ -10,13 +10,12 @@ import { Objective } from '../../core/objective/objective';
 })
 export class ObjectiveViewComponent implements OnInit {
 
-    public objectives: FirebaseListObservable<Objective[]>;
+    public objectives: Observable<Objective[]>;
 
     constructor(private objectiveService: ObjectiveService) { }
 
     ngOnInit(): void {
-        // this.objectiveService.insertFixtures();
-        this.objectives = this.objectiveService.getList();
+        this.objectives = this.objectiveService.getObservable();
     }
 
 }

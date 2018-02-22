@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { AuthService } from '../service/auth.service';
 import { Objective, ObjectiveAction, ObjectiveItem, ObjectiveItemAction } from './objective';
-import { TagObjectiveItemType } from '../../common/utils/tag';
 import { Action } from '../action';
 
 @Injectable()
@@ -11,13 +11,28 @@ export class ObjectiveService {
 
     private path: string;
     private firebaseListObservable: FirebaseListObservable<Objective[]>;
+    private observable: Observable<Objective[]>;
 
     constructor(public db: AngularFireDatabase, public authService: AuthService) {
         this.path = '/objectives/' + this.authService.currentUserId + '/';
         this.firebaseListObservable = this.db.list(this.path);
+        this.observable = this.db.list(this.path).map(value => {
+            value.forEach(v => {
+                if (v.items) {
+                    v.items = Object.keys(v.items).map(key => {
+                        v.items[key]['$key'] = key;
+                        return v.items[key];
+                    });
+                }
+                return v;
+            });
+            return value;
+        });
     }
 
-    getList(): FirebaseListObservable<Objective[]> { return this.firebaseListObservable; }
+    getObservable(): Observable<Objective[]> {
+        return this.observable;
+    }
 
     doActionOnObjective(event: ObjectiveAction) {
         if (event.action === Action.INSERT) {
@@ -30,49 +45,44 @@ export class ObjectiveService {
     }
 
     doActionOnObjectiveItem(event: ObjectiveItemAction) {
-        const pathIem: string = this.path  + event.objectiveKey  + '/items';
-        console.log('pathitem', pathIem);
+        const pathIem: string = this.path + event.objectiveKey + '/items/';
         if (event.action === Action.INSERT) {
-            event.objectiveItem.tagType = TagObjectiveItemType.DAILY;
             this.db.list(pathIem).push(event.objectiveItem);
         } else if (event.action === Action.UPDATE) {
-
+            console.log('event.key', event.key);
+            this.db.list(pathIem).update(event.key, new ObjectiveItem(event.objectiveItem.tagType, event.objectiveItem.description));
         } else if (event.action === Action.DELETE) {
             this.db.list(pathIem).remove(event.key);
         }
     }
 
-    insertTodo(objective: Objective, todo: ObjectiveItem) {
-        this.db.list(this.path + objective['$key'] + '/items').push(todo);
-    }
-
     insertFixtures() {
-        let objective: Objective = new Objective('Rangement');
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'rangement en surface 10 min par jour'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier jouets'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier/ranger dans les armoires'));
-        this.firebaseListObservable.push(objective);
-
-        objective = new Objective('Administration');
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'trier papiers 15 min par jour'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.WEEKLY, 'relever courriers'));
-        this.firebaseListObservable.push(objective);
-
-        objective = new Objective('Sportif');
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trouver un sport'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'natation'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'marche / course'));
-        this.firebaseListObservable.push(objective);
-
-        objective = new Objective('Projet dévelopement');
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'ContactListView - add contact'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'Deploy prod'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Objectives'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Timeline'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Review Holiday - vac scolaire'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Help - with tooltip'));
-        objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'More one css'));
-        this.firebaseListObservable.push(objective);
+        // let objective: Objective = new Objective('Rangement');
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'rangement en surface 10 min par jour'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier jouets'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trier/ranger dans les armoires'));
+        // this.firebaseListObservable.push(objective);
+        //
+        // objective = new Objective('Administration');
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.DAILY, 'trier papiers 15 min par jour'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.WEEKLY, 'relever courriers'));
+        // this.firebaseListObservable.push(objective);
+        //
+        // objective = new Objective('Sportif');
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'trouver un sport'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'natation'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'marche / course'));
+        // this.firebaseListObservable.push(objective);
+        //
+        // objective = new Objective('Projet dévelopement');
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'ContactListView - add contact'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.MONTHLY, 'Deploy prod'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Objectives'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Analyse Timeline'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Review Holiday - vac scolaire'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'Help - with tooltip'));
+        // objective.items.push(new ObjectiveItem(TagObjectiveItemType.ONCE, 'More one css'));
+        // this.firebaseListObservable.push(objective);
     }
 
     // insertOLDFixtures() {
