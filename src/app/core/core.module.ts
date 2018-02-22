@@ -24,6 +24,7 @@ import { LoginFormComponent } from './user/login-form/login-form.component';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
 import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
+import { ObjectiveListRowComponent } from './objective/objective-list/objective-list-row/objective-list-row.component';
 import { ObjectiveDetailComponent } from './objective/objective-detail/objective-detail.component';
 import { ObjectiveItemDetailComponent } from './objective/objective-item-detail/objective-item-detail.component';
 import { ContactListRowComponent } from './contact/contact-list/contact-list-row/contact-list-row.component';
@@ -35,7 +36,7 @@ import { HolidayDetailComponent } from './holiday/holiday-detail/holiday-detail.
         ContactListComponent, ContactListRowComponent, BirthdayPostItComponent, ContactDetailComponent,
         CarouselBudgetComponent, MonthInCarouselBudgetComponent,
         CarouselDaysComponent, DayInCarouselDaysComponent, EditDayComponent,
-        ObjectiveListComponent, ObjectiveDetailComponent, ObjectiveItemDetailComponent,
+        ObjectiveListComponent, ObjectiveListRowComponent, ObjectiveDetailComponent, ObjectiveItemDetailComponent,
         ToBuyListComponent, BudgetDetailComponent,
         EventDetailComponent,
         HolidayDetailComponent,

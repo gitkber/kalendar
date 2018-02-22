@@ -1,0 +1,27 @@
+<objective-detail class="contact-card edit-mode" [objective]="objective" *ngIf="editMode"
+                (closeClick)="close()"></objective-detail>
+<div class="contact-card" *ngIf="!editMode">
+    <div>
+        <h3>{{ objective.description }}</h3>
+        <ul>
+            <li *ngFor="let item of objective.items">
+                <div class="row-container">
+                    <div class="description-item">{{ item.description }} - {{ item.tagType }}</div>
+                    <edit-action class="action"
+                                 [tooltip]="'Modifier'"
+                                 (click)="showObjectiveItem(objective, item)"></edit-action>
+                </div>
+            </li>
+            <li>
+                <plus-action class="action"
+                             [tooltip]="'Ajouter un élément'"
+                             (click)="addObjectiveItem(objective)"></plus-action>
+            </li>
+        </ul>
+    </div>
+    <p>
+        <edit-action class="action"
+                     [tooltip]="'Modifier un contact'"
+                     (click)="showContact(contact)"></edit-action>
+    </p>
+</div>

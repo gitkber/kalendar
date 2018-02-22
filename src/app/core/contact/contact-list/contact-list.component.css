@@ -1,6 +1,8 @@
 .contact-card-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
     background-color: #fff;
     background-image:
@@ -17,7 +19,7 @@
 .contact-card {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-end;
     margin: 0.2em;
     border: 1px solid var(--color-blue-0);

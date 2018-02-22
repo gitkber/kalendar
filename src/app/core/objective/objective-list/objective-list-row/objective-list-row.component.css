@@ -1,0 +1,18 @@
+.contact-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0.2em;
+    border: 1px solid var(--color-blue-0);
+    border-radius: 5px;
+    width: 250px;
+    background: #F5F5F5;
+    padding-right: 1em;
+    padding-left: 1em;
+    /*text-align: center;*/
+}
+
+.edit-mode {
+    background: var(--color-green-1);
+}
