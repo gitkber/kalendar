@@ -1,4 +1,5 @@
-<div class="objective-card-container">
+<div>
+
     <objective-detail class="contact-card edit-mode" [objective]="objectiveSelected" *ngIf="objectiveSelected"
                       (closeClick)="close()"></objective-detail>
     <objective-list-row [objective]="objective" *ngFor="let objective of objectives | async"
