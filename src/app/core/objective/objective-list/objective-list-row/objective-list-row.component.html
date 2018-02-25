@@ -12,20 +12,10 @@
                          (click)="showObjective()"></edit-action>
         </p>
     </div>
-    <ul>
-        <li *ngFor="let item of objective.items">
-            <div class="row-container">
-                <div class="description-item">{{ item.description }} - {{ item.tagType }}</div>
-                <edit-action class="action"
-                             [tooltip]="'Modifier'"
-                             (click)="showObjectiveItem(item)"></edit-action>
-            </div>
-            <timeline></timeline>
-        </li>
-        <li>
-            <plus-action class="action"
-                         [tooltip]="'Ajouter un élément'"
-                         (click)="addObjectiveItem()"></plus-action>
-        </li>
-    </ul>
+
+    <timeline *ngFor="let item of objective.items" [objective]="item.description" [tag]="item.tagType"
+              (showObjectiveClick)="showObjectiveItem(item)"></timeline>
+    <plus-action class="action"
+                 [tooltip]="'Ajouter un élément'"
+                 (click)="addObjectiveItem()"></plus-action>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ObjectiveItem } from '../objective';
 
 @Component({
     selector: 'timeline',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TimelineComponent {
 
+    @Input() objective: string;
+    @Input() tag: string;
+
+    @Output() showObjectiveClick: EventEmitter<any> = new EventEmitter();
+
     constructor() { }
 
+    showObjective() {
+        this.showObjectiveClick.emit();
+    }
 }
