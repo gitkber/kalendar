@@ -27,7 +27,7 @@
     content: '';
     position: absolute;
     /*left: 50%;*/
-    right: auto;
+    /*right: auto;*/
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -96,14 +96,15 @@
 
 .timeline ol li div {
     position: absolute;
-    bottom: -18px;
+    bottom: 9px;
     z-index: 5;
-    left: -15px;
+    left: -8px;
     text-align: center;
     /*!*font-size: 1.3rem;*!*/
     font-size: x-small;
-    width: 30px;
-    padding-bottom: 15px;
+    height: 16px;
+    width: 16px;
+    /*padding-bottom: 15px;*/
     cursor: pointer;
     /*color: #383838;*/
     /*!* fix bug on Safari - text flickering while timeline translates *!*/
@@ -112,12 +113,14 @@
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+    /*border: 1px solid green;*/
 }
 
 .timeline ol .spot-month div {
     transform: rotate(270deg);
-    bottom: -5px;
+    bottom: -10px;
     left: -7px;
+    font-size: small;
 }
 
 

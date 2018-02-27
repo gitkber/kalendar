@@ -13,7 +13,7 @@
         </p>
     </div>
 
-    <timeline *ngFor="let item of objective.items" [objective]="item.description" [tag]="item.tagType"
+    <timeline *ngFor="let item of objective.items" [objective]="item.description" [tag]="item.tagType" [oiKey]="item['$key']"
               (showObjectiveClick)="showObjectiveItem(item)"></timeline>
     <plus-action class="action"
                  [tooltip]="'Ajouter un élément'"

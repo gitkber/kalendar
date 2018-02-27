@@ -7,6 +7,7 @@ import { HolidayService } from './holiday/holiday.service';
 import { EventService } from './event/event.service';
 import { ImageService } from './image/image.service';
 import { ObjectiveService } from './objective/objective.service';
+import { TimelineService } from './objective/timeline.service';
 import { BudgetService } from './budget/budget.service';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
@@ -50,7 +51,7 @@ import { HolidayDetailComponent } from './holiday/holiday-detail/holiday-detail.
         ToBuyListComponent,
         WeekImageComponent],
     providers: [ContactService, EventService, HolidayService, ImageService,
-        ObjectiveService, BudgetService,
+        ObjectiveService, BudgetService, TimelineService,
         AuthService, RouterService]
 })
 export class CoreModule {

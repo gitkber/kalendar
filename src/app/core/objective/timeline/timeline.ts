@@ -1,19 +1,21 @@
+import { Action } from '../../action';
+
 export class Timeline {
     public spots: Spot[] = [];
 
     constructor(date: Date) {
-        this.spots.push(new Spot(0, false, date));
+        this.spots.push(new Spot(date, false, true));
         let currentMonth: number = date.getMonth();
         for (let index = 0; index <= 30; index++) {
             const dayDate: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - index, 12, 0, 0);
             if (dayDate.getMonth() !== currentMonth) {
-                this.spots.push(new Spot(0, false, dayDate));
+                this.spots.push(new Spot(dayDate, false, true));
                 currentMonth = dayDate.getMonth();
             }
             if (dayDate.getDate() === 5) {
-                this.spots.push(new Spot(dayDate.getDate(), true));
+                this.spots.push(new Spot(dayDate, true));
             } else {
-                this.spots.push(new Spot(dayDate.getDate(), false));
+                this.spots.push(new Spot(dayDate, false));
             }
 
         }
@@ -21,5 +23,11 @@ export class Timeline {
 }
 
 export class Spot {
-    constructor(public day: number, public isDone: boolean, public month?: Date) {}
+    constructor(public date: Date, public isDone: boolean, public isMonth?: boolean) {}
+}
+
+export class SpotAction {
+    public objectiveItemKey: string;
+
+    constructor(public action: Action, public spot?: Spot) {}
 }

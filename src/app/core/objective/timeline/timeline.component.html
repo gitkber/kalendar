@@ -1,9 +1,13 @@
 <div class="timeline">
-    <div class="obj" (click)="showObjective()">{{ objective }}<div>{{ tag }}</div></div>
+    <div class="obj" (click)="showObjective()">{{ objective }}
+        <div>{{ tag }}</div>
+    </div>
     <ol>
-        <li [class.spot]="s.day > 0" [class.spot-month]="s.day === 0" [class.spot-selected]="s.isDone" *ngFor="let s of spots">
-            <div *ngIf="s.day > 0">{{ s.day }}</div>
-            <div *ngIf="s.day === 0">{{ s.month | date: 'MMMM' }}</div>
+        <li [class.spot]="!s.isMonth" [class.spot-month]="s.isMonth" [class.spot-selected]="s.isDone"
+            *ngFor="let s of spots"
+            (click)="saveStatusSpot(s)">
+            <div *ngIf="!s.isMonth">{{ s.date | date: 'd' }}</div>
+            <div *ngIf="s.isMonth">{{ s.date | date: 'MMMM' }}</div>
         </li>
     </ol>
 </div>
