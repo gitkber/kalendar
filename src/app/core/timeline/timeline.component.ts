@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Spot, SpotAction, Timeline } from './timeline';
-import { TimelineService } from '../timeline.service';
-import { Action } from '../../action';
+import { Spot, SpotAction } from './timeline';
+import { TimelineService } from './timeline.service';
+import { Action } from '../action';
 
 @Component({
     selector: 'timeline',
@@ -24,10 +24,7 @@ export class TimelineComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.oiKey.currentValue) {
-            console.log('change oiKey');
-
-            this.spots = new Timeline(new Date()).spots;
-            // TODO service.getTimeline
+            this.spots = this.timelineService.getSpotObservable(this.oiKey);
         }
     }
 

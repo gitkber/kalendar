@@ -7,7 +7,7 @@ import { HolidayService } from './holiday/holiday.service';
 import { EventService } from './event/event.service';
 import { ImageService } from './image/image.service';
 import { ObjectiveService } from './objective/objective.service';
-import { TimelineService } from './objective/timeline.service';
+import { TimelineService } from './timeline/timeline.service';
 import { BudgetService } from './budget/budget.service';
 import { RouterService } from './service/router.service';
 import { AuthService } from './service/auth.service';
@@ -28,7 +28,7 @@ import { ObjectiveListComponent } from './objective/objective-list/objective-lis
 import { ObjectiveListRowComponent } from './objective/objective-list/objective-list-row/objective-list-row.component';
 import { ObjectiveDetailComponent } from './objective/objective-detail/objective-detail.component';
 import { ObjectiveItemDetailComponent } from './objective/objective-item-detail/objective-item-detail.component';
-import { TimelineComponent } from './objective/timeline/timeline.component';
+import { TimelineComponent } from './timeline/timeline.component';
 import { ContactListRowComponent } from './contact/contact-list/contact-list-row/contact-list-row.component';
 import { HolidayDetailComponent } from './holiday/holiday-detail/holiday-detail.component';
 

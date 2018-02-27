@@ -1,4 +1,4 @@
-import { Action } from '../../action';
+import { Action } from '../action';
 
 export class Timeline {
     public spots: Spot[] = [];
@@ -13,9 +13,9 @@ export class Timeline {
                 currentMonth = dayDate.getMonth();
             }
             if (dayDate.getDate() === 5) {
-                this.spots.push(new Spot(dayDate, true));
+                this.spots.push(new Spot(dayDate, true, false));
             } else {
-                this.spots.push(new Spot(dayDate, false));
+                this.spots.push(new Spot(dayDate, false, false));
             }
 
         }
