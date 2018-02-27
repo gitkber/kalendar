@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ObjectiveItem } from '../objective';
+import { Spot, Timeline } from './timeline';
 
 @Component({
     selector: 'timeline',
@@ -13,7 +14,11 @@ export class TimelineComponent {
 
     @Output() showObjectiveClick: EventEmitter<any> = new EventEmitter();
 
-    constructor() { }
+    public spots: Spot[] = [];
+
+    constructor() {
+        this.spots = new Timeline(new Date()).spots;
+    }
 
     showObjective() {
         this.showObjectiveClick.emit();
