@@ -1,27 +1,21 @@
-<objective-detail class="contact-card edit-mode" [objective]="objective" *ngIf="editMode"
-                (closeClick)="close()"></objective-detail>
+<objective-detail class="contact-card edit-mode" [objective]="objective" *ngIf="editMode && !objectiveItemSelected"
+                  (closeClick)="close()"></objective-detail>
+<objective-item-detail class="contact-card edit-mode" [objectiveItem]="objectiveItemSelected"
+                       [objectiveKey]="objectiveKeySelected"
+                       *ngIf="editMode && objectiveItemSelected" (closeClick)="close()"></objective-item-detail>
 <div class="contact-card" *ngIf="!editMode">
-    <div>
+    <div class="row-container">
         <h3>{{ objective.description }}</h3>
-        <ul>
-            <li *ngFor="let item of objective.items">
-                <div class="row-container">
-                    <div class="description-item">{{ item.description }} - {{ item.tagType }}</div>
-                    <edit-action class="action"
-                                 [tooltip]="'Modifier'"
-                                 (click)="showObjectiveItem(objective, item)"></edit-action>
-                </div>
-            </li>
-            <li>
-                <plus-action class="action"
-                             [tooltip]="'Ajouter un élément'"
-                             (click)="addObjectiveItem(objective)"></plus-action>
-            </li>
-        </ul>
+        <p>
+            <edit-action class="action"
+                         [tooltip]="'Modifier un objectif'"
+                         (click)="showObjective()"></edit-action>
+        </p>
     </div>
-    <p>
-        <edit-action class="action"
-                     [tooltip]="'Modifier un contact'"
-                     (click)="showContact(contact)"></edit-action>
-    </p>
+
+    <timeline *ngFor="let item of objective.items" [objective]="item.description" [tag]="item.tagType"
+              (showObjectiveClick)="showObjectiveItem(item)"></timeline>
+    <plus-action class="action"
+                 [tooltip]="'Ajouter un élément'"
+                 (click)="addObjectiveItem()"></plus-action>
 </div>

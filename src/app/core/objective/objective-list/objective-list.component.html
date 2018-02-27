@@ -1,38 +1,12 @@
-<div class="objective-card-container">
+<div>
 
-    <objective-item-detail [objectiveItem]="objectiveItemSelected" [objectiveKey]="objectiveKeySelected"
-                           *ngIf="objectiveItemSelected" (closeClick)="close()"></objective-item-detail>
-    <objective-detail [objective]="objectiveSelected" *ngIf="objectiveSelected"
+    <objective-detail class="contact-card edit-mode" [objective]="objectiveSelected" *ngIf="objectiveSelected"
                       (closeClick)="close()"></objective-detail>
-    <div class="objective-card" *ngFor="let objective of objectives | async">
-        <div class="row-container">
-            <div class="description-item">{{ objective.description }}</div>
-            <edit-action class="action"
-                         [tooltip]="'Modifier le titre'"
-                         (click)="showObjective(objective)"></edit-action>
-        </div>
-        <ul>
-            <li *ngFor="let item of objective.items">
-                <div class="row-container">
-                    <div class="description-item">{{ item.description }} - {{ item.tagType }}</div>
-                    <edit-action class="action"
-                                 [tooltip]="'Modifier'"
-                                 (click)="showObjectiveItem(objective, item)"></edit-action>
-                </div>
-            </li>
-            <li>
-                <plus-action class="action"
-                             [tooltip]="'Ajouter un élément'"
-                             (click)="addObjectiveItem(objective)"></plus-action>
-            </li>
-        </ul>
+    <objective-list-row [objective]="objective" *ngFor="let objective of objectives | async"
+                        (showObjectiveClick)="showObjective($event)"></objective-list-row>
+    <div class="align-right-container">
+        <plus-action class="action"
+                     [tooltip]="'Ajouter un objectif'"
+                     (click)="addObjective()"></plus-action>
     </div>
-    <div class="objective-container">
-        <div class="align-right-container">
-            <plus-action class="action"
-                         [tooltip]="'Ajouter un objectif'"
-                         (click)="addObjective()"></plus-action>
-        </div>
-    </div>
-
 </div>

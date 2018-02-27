@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Objective } from '../../objective';
+import { Objective, ObjectiveItem } from '../../objective';
 
 @Component({
     selector: 'objective-list-row',
@@ -10,12 +10,28 @@ export class ObjectiveListRowComponent {
 
     @Input() objective: Objective;
     public editMode: boolean;
-    @Output() showContactClick: EventEmitter<Objective> = new EventEmitter();
+    @Output() showObjectiveClick: EventEmitter<Objective> = new EventEmitter();
+
+    public objectiveItemSelected: ObjectiveItem;
+    public objectiveKeySelected: string;
 
     constructor() { }
 
-    showContact() {
+    showObjective() {
         this.editMode = true;
+    }
+
+    showObjectiveItem(objectiveItem: ObjectiveItem) {
+        this.editMode = true;
+        this.objectiveItemSelected = objectiveItem;
+        this.objectiveKeySelected = this.objective['$key'];
+
+    }
+
+    addObjectiveItem() {
+        this.editMode = true;
+        this.objectiveItemSelected = new ObjectiveItem(null, null);
+        this.objectiveKeySelected = this.objective['$key'];
     }
 
     close() {
