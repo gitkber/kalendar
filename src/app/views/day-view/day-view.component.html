@@ -1,31 +1,33 @@
-<div class="view-container">
-    <div class="principal-container">
-        <div class="carousel-week-item">
-            <carousel-days [carouselDays]="carouselDays"
-                           [navigation]="'day'"
-                           (navigateClick)="navigate($event)"></carousel-days>
-        </div>
-        <div class="post-it-container">
-            <post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">
-                <div>
-                    <i class="fa fa-birthday-cake"></i>
-                    21 juillet
+<div class="view-container flex-direction-column">
+    <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
+                [date]="carouselDays.dateSelected"
+                (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
 
-                </div>
-                <div class="post-it-item">X jours</div>
-                <div class="post-it-item">Karine Berth</div>
-            </post-it>
-            <post-it [reference]="'A acheter'">
-                <div *ngFor="let itemToBuy of budgetToBuy | async">
-                    <i class="fa fa-money"></i>{{itemToBuy.description}}
-                </div>
-            </post-it>
-        </div>
+    <div class="principal-container">
+        <carousel-days [carouselDays]="carouselDays"
+                       [navigation]="'day'"
+                       (navigateClick)="navigate($event)"></carousel-days>
+
+        <!--<div class="post-it-container">-->
+        <!--<post-it [reference]="'CONTACT'" (click)="routerService.navigateToContacts()">-->
+        <!--<div>-->
+        <!--<i class="fa fa-birthday-cake"></i>-->
+        <!--21 juillet-->
+        <!--</div>-->
+        <!--<div class="post-it-item">X jours</div>-->
+        <!--<div class="post-it-item">Karine Berth</div>-->
+        <!--</post-it>-->
+        <!--<post-it [reference]="'A acheter'">-->
+        <!--<div *ngFor="let itemToBuy of budgetToBuy | async">-->
+        <!--<i class="fa fa-money"></i>{{itemToBuy.description}}-->
+        <!--</div>-->
+        <!--</post-it>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="other-container">-->
     </div>
     <div class="other-container">
-        <week-image class="polaroid-container" *ngIf="carouselDays.dateSelected"
-                    [date]="carouselDays.dateSelected"
-                    (showImageClick)="showImage(carouselDays.dateSelected)"></week-image>
+
     </div>
 </div>
 <image-modal [blocking]=false></image-modal>
