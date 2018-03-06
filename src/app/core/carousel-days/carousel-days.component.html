@@ -4,4 +4,12 @@
                           (navigateClick)="navigate($event)">
     </day-in-carousel-days>
 
+    <div class="actions">
+        <icon-action [image]="'fa-angle-double-left'" (click)="navigatePreviousWeek()"></icon-action>
+        <icon-action [image]="'fa-angle-left'" (click)="navigatePreviousDay()"></icon-action>
+        <icon-action [image]="'fa-circle'" (click)="navigateToday()"></icon-action>
+        <icon-action [image]="'fa-angle-right'" (click)="navigateNextDay()"></icon-action>
+        <icon-action [image]="'fa-angle-double-right'" (click)="navigateNextWeek()"></icon-action>
+    </div>
+
 </div>

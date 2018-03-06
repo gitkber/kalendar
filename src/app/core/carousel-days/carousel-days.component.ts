@@ -20,4 +20,36 @@ export class CarouselDaysComponent {
         this.navigateClick.emit(event);
     }
 
+    navigateToday() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isDay = true;
+        navigation.toDate = new Date();
+        this.navigate(navigation);
+    }
+
+    navigateNextDay() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isDay = true;
+        navigation.toDate = new Date(this.carouselDays.dateSelected.getFullYear(), this.carouselDays.dateSelected.getMonth(), this.carouselDays.dateSelected.getDate() + 1, 12, 0, 0);
+        this.navigate(navigation);
+    }
+
+    navigateNextWeek() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isNext = true;
+        this.navigate(navigation);
+    }
+
+    navigatePreviousDay() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isDay = true;
+        navigation.toDate = new Date(this.carouselDays.dateSelected.getFullYear(), this.carouselDays.dateSelected.getMonth(), this.carouselDays.dateSelected.getDate() - 1, 12, 0, 0);
+        this.navigate(navigation);
+    }
+
+    navigatePreviousWeek() {
+        const navigation: Navigation = new Navigation('day');
+        navigation.isPrevious = true;
+        this.navigate(navigation);
+    }
 }
