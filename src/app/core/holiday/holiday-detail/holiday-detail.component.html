@@ -18,6 +18,28 @@
             <i class="fa input-i-error"
                [class.fa-asterisk]="formGroup.get('description').touched && formGroup.get('description').hasError('required')"></i>
         </div>
+        <div class="col-3 input-effect" *ngIf="!holidayKey">
+            <input class="effect-16" type="text" placeholder="" [class.has-content]="formGroup.get('duplication').value"
+                   formControlName="duplication" name="duplication" id="inputDuplication"
+                   (change)="changeDuplicationToKalendarDate($event)">
+            <label for="inputDuplication">Dupliquer</label>
+            <span class="focus-border"></span>
+            <i class="fa input-i-error" title="number one digit"
+               [class.fa-times]="formGroup.get('duplication').touched && formGroup.get('duplication').hasError('pattern')"></i>
+        </div>
+        <h5 *ngIf="!eventKey"> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
+        <div class="col-3 input-effect" *ngIf="!holidayKey">
+            <div class="effect-16 has-content switch switch-yellow">
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
+                       [value]="false" id="inputIncludeWeekend" checked (click)="changeSwitchToKalendarDate()">
+                <label for="inputIncludeWeekend" class="switch-label switch-label-off">NON</label>
+                <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
+                       [value]="true" id="month3" (click)="changeSwitchToKalendarDate()">
+                <label for="month3" class="switch-label switch-label-on">OUI</label>
+                <span class="switch-selection"></span>
+            </div>
+            <label for="inputIncludeWeekend">Week-end inclus</label>
+        </div>
     </form>
     <div class="align-right-container">
         <icon-action [image]="'fa-save'" (click)="saveHoliday()"></icon-action>

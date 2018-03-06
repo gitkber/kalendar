@@ -10,6 +10,7 @@ export class Holiday {
 }
 
 export class HolidayAction {
+    public datesToAdd: Date[] = [];
     public key: string;
 
     constructor(

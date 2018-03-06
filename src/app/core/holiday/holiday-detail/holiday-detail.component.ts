@@ -19,6 +19,9 @@ export class HolidayDetailComponent implements OnChanges {
     public formGroup: FormGroup;
     public holidayKey: string;
 
+    public toKalendarDate: Date;
+    private datesToAdd: Date[] = [];
+
     public holidayTypes: string[] = [];
 
     constructor(private holidayService: HolidayService) {
@@ -26,7 +29,9 @@ export class HolidayDetailComponent implements OnChanges {
 
         this.formGroup = new FormGroup({
             tagType: new FormControl('', Validators.required),
-            description: new FormControl('', Validators.required)
+            description: new FormControl('', Validators.required),
+            duplication: new FormControl('', Validators.pattern('[0-9]')),
+            includeWeekend: new FormControl()
         });
     }
 
@@ -37,11 +42,25 @@ export class HolidayDetailComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.holiday && changes.holiday.currentValue) {
             this.holidayKey = changes.holiday.currentValue['$key'];
+
+            this.changeSwitchToKalendarDate();
             this.formGroup.setValue({
                 'tagType': changes.holiday.currentValue['$value'] !== null ? this.holiday.tagType : '',
-                'description': changes.holiday.currentValue['$value'] !== null ? this.holiday.description : ''
+                'description': changes.holiday.currentValue['$value'] !== null ? this.holiday.description : '',
+                'duplication': '',
+                'includeWeekend': false
             });
         }
+    }
+
+    changeSwitchToKalendarDate() {
+        this.changeToKalendarDate(parseInt(this.formGroup.get('duplication').value, 10),
+            !this.formGroup.get('includeWeekend').value);
+    }
+
+    changeDuplicationToKalendarDate(event) {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+        this.changeToKalendarDate(parseInt(event.target.value, 10), this.formGroup.get('includeWeekend').value);
     }
 
     saveHoliday() {
@@ -59,6 +78,7 @@ export class HolidayDetailComponent implements OnChanges {
                 holidayAction = new HolidayAction(Action.UPDATE, this.holiday);
                 holidayAction.key = this.holidayKey;
             }
+            holidayAction.datesToAdd = this.datesToAdd;
             this.actionClickEmitAndResetFormGroup(holidayAction);
         }
     }
@@ -74,6 +94,24 @@ export class HolidayDetailComponent implements OnChanges {
     close() {
         this.closeClick.emit();
         this.formGroup.reset();
+    }
+
+    private changeToKalendarDate(duplication: number, includeWeekend: boolean) {
+        const startDate: Date = new Date(this.holiday.date);
+        this.datesToAdd = [];
+        this.datesToAdd.push(new Date(startDate));
+        for (let i = 1; i <= duplication; i++) {
+            startDate.setDate(startDate.getDate() + 1);
+            if (!includeWeekend) {
+                if (startDate.getDay() === 6) {
+                    startDate.setDate(startDate.getDate() + 2);
+                } else if (startDate.getDay() === 0) {
+                    startDate.setDate(startDate.getDate() + 1);
+                }
+            }
+            this.datesToAdd.push(new Date(startDate));
+        }
+        this.toKalendarDate = startDate;
     }
 
     private actionClickEmitAndResetFormGroup(holidayAction: HolidayAction) {

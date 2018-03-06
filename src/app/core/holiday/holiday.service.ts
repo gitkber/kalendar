@@ -7,6 +7,7 @@ import { AuthService } from '../service/auth.service';
 import { Action } from '../action';
 import { Holiday, HolidayAction } from './holiday';
 import { TagHolidayType } from '../../common/utils/tag';
+import { DateUtilService } from '../../common/utils/date-util.service';
 
 @Injectable()
 export class HolidayService {
@@ -16,7 +17,7 @@ export class HolidayService {
 
     // private publicHolidaysObservable: Observable<PublicHoliday[]>;
 
-    constructor(public db: AngularFireDatabase, public authService: AuthService) {
+    constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) {
         this.path = '/holidays/' + this.authService.currentUserId + '/';
         this.firebaseListObservable = this.db.list(this.path);
         // this.publicHolidaysObservable = this.firebaseListObservable.map((itemKeys) => {
@@ -41,7 +42,10 @@ export class HolidayService {
 
     doActionOnHoliday(event: HolidayAction) {
         if (event.action === Action.INSERT) {
-            this.firebaseListObservable.push(event.holiday);
+            for (let i = 0; i < event.datesToAdd.length; i++) {
+                this.firebaseListObservable.push(new Holiday(event.holiday.tagType, event.holiday.description,
+                    this.dateUtilService.toString(event.datesToAdd[i])));
+            }
         } else if (event.action === Action.UPDATE) {
             this.firebaseListObservable.update(event.key, event.holiday);
         } else if (event.action === Action.DELETE) {
