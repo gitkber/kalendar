@@ -1,5 +1,6 @@
-<div class="align-right-container">
+<div class="thumbnail-list-container">
     <div *ngFor="let im of images | async">
-        <thumbnail-item [label]="im.label" [key]="im['$key']"></thumbnail-item>
+        <thumbnail-item [label]="im.label" [weekNumber]="im.weekNumber" [startDate]="im.startDate"
+                        [endDate]="im.endDate"></thumbnail-item>
     </div>
 </div>

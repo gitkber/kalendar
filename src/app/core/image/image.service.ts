@@ -17,7 +17,45 @@ export class ImageService {
         this.firebaseListObservable = this.db.list(this.path);
     }
 
-    getList(): FirebaseListObservable<any[]> { return this.firebaseListObservable }
+    getAlbum(): any {
+        const weeks = [];
+        const today = new Date();
+        const currentWeekDay = today.getDay();
+        const lessDays = currentWeekDay === 0 ? 6 : currentWeekDay - 1;
+
+        let weekStart = this.getStart(today, lessDays);
+        for (let i = 0; i < 15; i++) {
+            const weekEnd = this.getEnd(weekStart);
+            const weekNumber = this.getWeek(weekStart);
+            weeks.push({weekNumber: weekNumber, startDate: weekStart, endDate: weekEnd});
+            console.log(weekNumber, weekStart.toDateString() + ' ' + weekEnd.toDateString());
+            weekStart = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() - 7);
+        }
+
+        return this.firebaseListObservable.map(
+            items => items
+                .reduce((accumulator, currentValue) => {
+                    const index = accumulator.findIndex(v => v.weekNumber + '' === currentValue['$key']);
+                    if (index !== -1) {
+                        accumulator[index].label = currentValue.label;
+
+                    }
+                    return accumulator;
+                }, weeks));
+    }
+
+    private getStart(date: Date, startDay): Date {
+        return new Date(date.getTime() - 60 * 60 * 24 * startDay * 1000);
+    }
+
+    private getEnd(date: Date, startDay = 1): Date {
+        return new Date(date.getTime() + 60 * 60 * 24 * 6 * 1000);
+    }
+
+    private getWeek(date: Date): number {
+        const onejan = new Date(date.getFullYear(), 0, 1);
+        return Math.ceil((((date.getTime() - onejan.getTime()) / 86400000) + onejan.getDay()) / 7);
+    }
 
     loadImageFromStore(weekNumber?: number): firebase.Promise<any> {
         let fullPath: string = 'default.jpg'.toString();

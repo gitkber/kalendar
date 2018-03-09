@@ -9,18 +9,22 @@ import { ImageService } from '../../image.service';
 export class ThumbnailItemComponent implements OnInit {
 
     @Input() label: string;
-    @Input() key: string;
+    @Input() weekNumber: string;
+    @Input() startDate: Date;
+    @Input() endDate: Date;
     srcImage: string;
 
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
-        this.imageService.loadThumbnail(this.key).then(url => {
-            this.srcImage = url;
-        }).catch(error => {
-            console.error('storage thumb get error', error['code']);
-        });
+        if (this.label !== undefined) {
+            this.imageService.loadThumbnail(this.weekNumber).then(url => {
+                this.srcImage = url;
+            }).catch(error => {
+                console.error('storage thumb get error', error['code']);
+            });
 
+        }
     }
 
 }

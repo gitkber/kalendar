@@ -5,17 +5,6 @@
     padding: 1px 1px 1px 1px;
     background: white;
     margin: 5px;
+    min-height: 205px;
+    min-width: 205px;
 }
-
-.kal-polaroid-container img {
-    border: 1px solid #4D5874;
-    height: auto;
-    width: auto;
-    /*max-width: 100%;*/
-    /*max-height: 215px;*/
-
-}
-
-/*.kal-polaroid-container .label {*/
-    /*padding-top: 10px;*/
-/*}*/

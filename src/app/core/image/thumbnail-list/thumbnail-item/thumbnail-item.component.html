@@ -1,7 +1,7 @@
-<!--... {{ key }}-->
-<!--<img [src]="srcImage" />-->
-
 <div class="kal-polaroid-container">
-    <img [src]="srcImage"/>
-    <!--<span class="label">{{ label }}</span>-->
+    <tooltip-content [label]="weekNumber + ' ' + label">
+        <img [src]="srcImage" *ngIf="label"/>
+        <p class="label" *ngIf="!label">
+            {{ startDate | date: 'd MMM yyyy' }} - {{ endDate | date: 'd MMM yyyy' }}</p>
+    </tooltip-content>
 </div>

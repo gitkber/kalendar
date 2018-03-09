@@ -1,0 +1,10 @@
+.thumbnail-list-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    overflow: scroll;
+}

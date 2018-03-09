@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { ImageService } from '../image.service';
 
 @Component({
@@ -9,16 +8,11 @@ import { ImageService } from '../image.service';
 })
 export class ThumbnailListComponent implements OnInit {
 
-    public images: FirebaseListObservable<any[]>;
+    public images: any[] = [];
 
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
-        this.images = this.imageService.getList();
+        this.images = this.imageService.getAlbum()
     }
-
-    test(value) {
-        console.log('llll', value);
-    }
-
 }
