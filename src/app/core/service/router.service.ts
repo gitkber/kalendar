@@ -32,6 +32,10 @@ export class RouterService {
         this.router.navigateByUrl('/objective');
     }
 
+    navigateToAlbum() {
+        this.router.navigateByUrl('/album');
+    }
+
     navigateToKalYear(date: Date) {
         this.router.navigate(['/kalyear', this.dateUtilService.toString(date)]);
     }
@@ -50,6 +54,10 @@ export class RouterService {
 
     isObjectiveViewSelected(): boolean {
         return this.router.isActive('/objective', true);
+    }
+
+    isAlbumViewSelected(): boolean {
+        return this.router.isActive('/album', true);
     }
 
     isBudgetViewSelected(): boolean {

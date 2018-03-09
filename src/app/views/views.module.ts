@@ -9,6 +9,7 @@ import { ViewsFacade } from './views.facade';
 
 import { HomeViewComponent } from './home-view/home-view.component';
 import { DayViewComponent } from './day-view/day-view.component';
+import { AlbumViewComponent } from './album-view/album-view.component';
 import { ContactsViewComponent } from './contacts-view/contacts-view.component';
 import { KalYearViewComponent } from './year-view/year-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
@@ -22,7 +23,7 @@ import { ImageModalComponent } from './modal/image-modal/image-modal.component';
     imports: [BrowserModule, RouterModule, KalendarModule, CoreModule, CommonModule],
     declarations: [HomeViewComponent, DayViewComponent, KalYearViewComponent, MonthViewComponent,
         ContactsViewComponent,
-        BudgetViewComponent, ObjectiveViewComponent,
+        BudgetViewComponent, ObjectiveViewComponent, AlbumViewComponent,
         SheetOfPaperComponent,
         ImageModalComponent],
     exports: [],

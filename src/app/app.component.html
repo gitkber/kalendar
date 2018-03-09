@@ -11,6 +11,9 @@
             <kal-button-menu [image]="'fa fa-users'"
                              [selected]="routerService.isContactsViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToContacts()"></kal-button-menu>
+            <kal-button-menu [image]="'fa fa-picture-o'"
+                             [selected]="routerService.isAlbumViewSelected() || !authService.authenticated"
+                             (click)="routerService.navigateToAlbum()"></kal-button-menu>
             <kal-button-menu [image]="'fa fa-binoculars'"
                              [selected]="routerService.isObjectiveViewSelected() || !authService.authenticated"
                              (click)="routerService.navigateToObjectives()"></kal-button-menu>

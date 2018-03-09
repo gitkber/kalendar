@@ -1,0 +1,5 @@
+<div class="align-right-container">
+    <div *ngFor="let im of images | async">
+        <thumbnail-item [label]="im.label" [key]="im['$key']"></thumbnail-item>
+    </div>
+</div>

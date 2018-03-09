@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +9,15 @@ import { DateUtilService } from '../../common/utils/date-util.service';
 @Injectable()
 export class ImageService {
 
-    constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) { }
+    private path: string;
+    private firebaseListObservable: FirebaseListObservable<any[]>;
+
+    constructor(public db: AngularFireDatabase, public authService: AuthService, public dateUtilService: DateUtilService) {
+        this.path = '/images/' + this.authService.currentUserId + '/';
+        this.firebaseListObservable = this.db.list(this.path);
+    }
+
+    getList(): FirebaseListObservable<any[]> { return this.firebaseListObservable }
 
     loadImageFromStore(weekNumber?: number): firebase.Promise<any> {
         let fullPath: string = 'default.jpg'.toString();
@@ -19,8 +27,12 @@ export class ImageService {
         return firebase.storage().ref().child(fullPath).getDownloadURL();
     }
 
+    loadThumbnail(weekNumber: string): firebase.Promise<any> {
+        return firebase.storage().ref().child(this.authService.currentUserId + '/' + 'thumb_' + weekNumber + '.jpg').getDownloadURL();
+    }
+
     getImage(weekNumber: number): Observable<string> {
-        return this.db.object('images/' + this.authService.currentUserId + '/' + weekNumber);
+        return this.db.object(this.path + weekNumber);
     }
 
     getPathForStorage(weekNumber: number): string {
@@ -35,6 +47,6 @@ export class ImageService {
     }
 
     saveLabel(weekNumber: number, label: string) {
-        this.db.object('images/' + this.authService.currentUserId + '/' + weekNumber).$ref.set({label: label});
+        this.db.object(this.path + weekNumber).$ref.set({label: label});
     }
 }

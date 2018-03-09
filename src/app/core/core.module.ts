@@ -23,6 +23,8 @@ import { CarouselBudgetComponent } from './budget/carousel-budget/carousel-budge
 import { MonthInCarouselBudgetComponent } from './budget/carousel-budget/month-in-carousel-budget/month-in-carousel-budget.component';
 import { LoginFormComponent } from './user/login-form/login-form.component';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
+import { ThumbnailListComponent } from './image/thumbnail-list/thumbnail-list.component';
+import { ThumbnailItemComponent } from './image/thumbnail-list/thumbnail-item/thumbnail-item.component';
 import { WeekImageComponent } from './image/week-image/week-image.component';
 import { ObjectiveListComponent } from './objective/objective-list/objective-list.component';
 import { ObjectiveListRowComponent } from './objective/objective-list/objective-list-row/objective-list-row.component';
@@ -43,13 +45,13 @@ import { HolidayDetailComponent } from './holiday/holiday-detail/holiday-detail.
         ToBuyListComponent, BudgetDetailComponent,
         EventDetailComponent,
         HolidayDetailComponent,
-        WeekImageComponent],
+        ThumbnailListComponent, ThumbnailItemComponent, WeekImageComponent],
     exports: [LoginFormComponent,
         ContactListComponent, BirthdayPostItComponent,
         CarouselBudgetComponent, CarouselDaysComponent,
         ObjectiveListComponent,
         ToBuyListComponent,
-        WeekImageComponent],
+        ThumbnailListComponent, WeekImageComponent],
     providers: [ContactService, EventService, HolidayService, ImageService,
         ObjectiveService, BudgetService, TimelineService,
         AuthService, RouterService]
