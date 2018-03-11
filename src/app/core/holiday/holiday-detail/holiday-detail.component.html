@@ -27,7 +27,7 @@
             <i class="fa input-i-error" title="number one digit"
                [class.fa-times]="formGroup.get('duplication').touched && formGroup.get('duplication').hasError('pattern')"></i>
         </div>
-        <h5 *ngIf="!eventKey"> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
+        <h5 *ngIf="!holidayKey"> {{ toKalendarDate | date: 'EEEE dd MMMM yyyy' }}</h5>
         <div class="col-3 input-effect" *ngIf="!holidayKey">
             <div class="effect-16 has-content switch switch-yellow">
                 <input type="radio" class="switch-input" formControlName="includeWeekend" name="includeWeekend"
