@@ -12,7 +12,8 @@ export class WeekImageComponent implements OnInit, OnChanges {
     public label: string;
     @Input() date: Date;
     @Output() showImageClick: EventEmitter<Date> = new EventEmitter();
-    private weekNumber;
+    private weekNumber: number;
+    private year: number;
 
     // Upload
     @Output() uploadStatus = new EventEmitter();
@@ -25,14 +26,16 @@ export class WeekImageComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.weekNumber = this.getWeek(this.date);
+        this.year = this.date.getFullYear();
         this.loadImage();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.date.previousValue !== undefined) {
             if (this.getWeek(changes.date.previousValue) !== this.getWeek(changes.date.currentValue)) {
-                this.weekNumber = this.getWeek(changes.date.currentValue);
                 this.date = changes.date.currentValue;
+                this.weekNumber = this.getWeek(this.date);
+                this.year = this.date.getFullYear();
                 this.loadImage();
             }
         }
@@ -44,19 +47,19 @@ export class WeekImageComponent implements OnInit, OnChanges {
     };
 
     private loadImage() {
-        this.imageService.getImage(this.weekNumber).subscribe(success => {
+        this.imageService.getImage(this.weekNumber, this.year).subscribe(success => {
             if (success['$value'] === null) {
                 this.loadImageFromStore();
                 this.label = 'Parcourir';
             } else {
-                this.loadImageFromStore(this.weekNumber);
+                this.loadImageFromStore(this.weekNumber, this.year);
                 this.label = success['label'];
             }
         });
     }
 
-    private loadImageFromStore(weekNumber?: number) {
-        this.imageService.loadImageFromStore(weekNumber).then(url => {
+    private loadImageFromStore(weekNumber?: number, year?: number) {
+        this.imageService.loadImageFromStore(weekNumber, year).then(url => {
             document.getElementById('img-id').setAttribute('src', url);
             document.images['img-id'].onload = function () {
                 // console.log('dimension', document.images['img-id'].naturalWidth + ' ' + document.images['img-id'].naturalHeight)
@@ -90,7 +93,7 @@ export class WeekImageComponent implements OnInit, OnChanges {
             this.uploadStatus.emit(false);
         } else {
             if (files.length === 1) {
-                this.imageService.saveImage(this.weekNumber, files[0]).then(success => {
+                this.imageService.saveImage(this.weekNumber, this.year, files[0]).then(success => {
                     document.getElementById('img-id').setAttribute('src', success.downloadURL);
                 }).catch(error => {
                     console.error('storage put error', error);

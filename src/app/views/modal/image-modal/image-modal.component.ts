@@ -13,6 +13,7 @@ export class ImageModalComponent {
     public isOpen = false;
     public date: Date;
     private weekNumber: number;
+    private year: number;
     public label: string;
     public isModified: boolean;
 
@@ -29,16 +30,18 @@ export class ImageModalComponent {
     open(date: Date): void {
         this.date = date;
         this.weekNumber = this.getWeek(this.date);
+        this.year = this.date.getFullYear();
+
         this.isOpen = true;
-        this.imageService.getImage(this.weekNumber).subscribe(success => {
+        this.imageService.getImage(this.weekNumber, this.year).subscribe(success => {
             if (success['$value'] === null) {
-                this.label = 'Parcourir';
+                this.label = 'Télécharger';
                 this.isModified = true;
                 this.loadImageFromStore();
             } else {
                 this.label = success['label'];
                 this.isModified = false;
-                this.loadImageFromStore(this.weekNumber);
+                this.loadImageFromStore(this.weekNumber, this.year);
             }
         });
     }
@@ -48,8 +51,8 @@ export class ImageModalComponent {
         return Math.ceil((((date.getTime() - onejan.getTime()) / 86400000) + onejan.getDay()) / 7);
     };
 
-    private loadImageFromStore(weekNumber?: number) {
-        this.imageService.loadImageFromStore(weekNumber).then(url => {
+    private loadImageFromStore(weekNumber?: number, year?: number) {
+        this.imageService.loadImageFromStore(weekNumber, year).then(url => {
             document.getElementById('img-item-id').setAttribute('src', url);
         }).catch(error => {
             console.error('storage get error', error['code']);
@@ -68,7 +71,7 @@ export class ImageModalComponent {
     }
 
     modifyLabel() {
-        this.imageService.saveLabel(this.weekNumber, this.label);
+        this.imageService.saveLabel(this.weekNumber, this.year, this.label);
         this.isModified = true;
     }
 

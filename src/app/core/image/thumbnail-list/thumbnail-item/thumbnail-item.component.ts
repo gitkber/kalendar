@@ -10,6 +10,7 @@ export class ThumbnailItemComponent implements OnInit {
 
     @Input() label: string;
     @Input() weekNumber: string;
+    @Input() year: string;
     @Input() startDate: Date;
     @Input() endDate: Date;
     srcImage: string;
@@ -18,7 +19,8 @@ export class ThumbnailItemComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.label !== undefined) {
-            this.imageService.loadThumbnail(this.weekNumber).then(url => {
+            this.imageService.loadThumbnail(this.weekNumber, this.year).then(url => {
+                console.log('load' + this.year + '_' + this.weekNumber + '_' + this.label);
                 this.srcImage = url;
             }).catch(error => {
                 console.error('storage thumb get error', error['code']);

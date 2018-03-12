@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { ImageService } from '../image.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { ImageService } from '../image.service';
 })
 export class ThumbnailListComponent implements OnInit {
 
-    public images: any[] = [];
+    public images: Observable<any[]>;
 
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
         this.images = this.imageService.getAlbum()
+    }
+
+    navigateNext(): void {
+        this.images = this.imageService.getAlbum();
     }
 }
