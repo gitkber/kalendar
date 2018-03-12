@@ -13,11 +13,19 @@ export class ThumbnailItemComponent implements OnInit {
     @Input() year: string;
     @Input() startDate: Date;
     @Input() endDate: Date;
-    srcImage: string;
+
+    public srcImage: string;
+    public sameMonth: boolean;
+    public odd: boolean;
 
     constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
+        const startMonth = this.startDate.getMonth();
+        const endMonth = this.endDate.getMonth();
+        this.sameMonth = startMonth === endMonth;
+        this.odd = startMonth % 2 === 0;
+
         if (this.label !== undefined) {
             this.imageService.loadThumbnail(this.weekNumber, this.year).then(url => {
                 console.log('load' + this.year + '_' + this.weekNumber + '_' + this.label);

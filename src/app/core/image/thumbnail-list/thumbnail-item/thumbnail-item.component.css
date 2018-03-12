@@ -8,3 +8,15 @@
     /*min-height: 100px;*/
     min-width: 205px;
 }
+
+.both {
+    background-color: red;
+}
+
+.even {
+    background-color: grey;
+}
+
+.odd {
+    background-color: darkgray;
+}

@@ -42,8 +42,10 @@ export class WeekImageComponent implements OnInit, OnChanges {
     }
 
     private getWeek(date: Date): number {
-        const onejan = new Date(date.getFullYear(), 0, 1);
-        return Math.ceil((((date.getTime() - onejan.getTime()) / 86400000) + onejan.getDay()) / 7);
+        const d = new Date(+date);
+        d.setHours(0, 0, 0);
+        d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+        return Math.ceil((((d.getTime() - new Date(d.getFullYear(), 0, 1).getTime()) / 8.64e7) + 1) / 7);
     };
 
     private loadImage() {
