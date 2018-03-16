@@ -31,7 +31,7 @@ export class ImageService {
             const weekEnd = this.getEnd(this.weekStart);
             const weekNumber = this.getWeek(this.weekStart);
             const year = this.weekStart.getFullYear();
-            this.weeks.push({weekNumber: weekNumber, year: year, startDate: this.weekStart, endDate: weekEnd});
+            this.weeks.unshift({weekNumber: weekNumber, year: year, startDate: this.weekStart, endDate: weekEnd});
             console.log(weekNumber, this.weekStart.toDateString() + ' ' + weekEnd.toDateString());
             this.weekStart = new Date(this.weekStart.getFullYear(), this.weekStart.getMonth(), this.weekStart.getDate() - 7);
         }

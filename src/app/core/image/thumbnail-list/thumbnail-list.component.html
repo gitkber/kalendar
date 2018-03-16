@@ -1,9 +1,12 @@
-<div class="thumbnail-list-container">
-    <div *ngFor="let im of images | async">
-        <thumbnail-item [label]="im.label" [weekNumber]="im.weekNumber" [year]="im.year" [startDate]="im.startDate"
-                        [endDate]="im.endDate"></thumbnail-item>
-    </div>
-    <div class="actions">
-        <icon-action [image]="'fa-angle-right'" (click)="navigateNext()"></icon-action>
-    </div>
+<div class="actions">
+    <icon-action [image]="'fa-angle-left'" (click)="navigateNext()"></icon-action>
+</div>
+<div class="timeline">
+    <ol>
+        <li *ngFor="let im of images | async" [class.img]="im.label">
+        <!--<li *ngFor="let im of images | async" [class.img]="im.label">-->
+            <thumbnail-item [label]="im.label" [weekNumber]="im.weekNumber" [year]="im.year" [startDate]="im.startDate"
+                            [endDate]="im.endDate"></thumbnail-item>
+        </li>
+    </ol>
 </div>
