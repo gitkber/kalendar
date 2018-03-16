@@ -27,14 +27,20 @@ export class ImageService {
     }
 
     getAlbum(): any {
+        let temp = new Date(this.weekStart);
         for (let i = 0; i < 15; i++) {
             const weekEnd = this.getEnd(this.weekStart);
             const weekNumber = this.getWeek(this.weekStart);
             const year = this.weekStart.getFullYear();
-            this.weeks.unshift({weekNumber: weekNumber, year: year, startDate: this.weekStart, endDate: weekEnd});
+            if (this.weekStart.getMonth() !== temp.getMonth()) {
+                this.weeks.unshift({isImage: false, startDate: temp});
+            }
+            this.weeks.unshift({isImage: true, weekNumber: weekNumber, year: year, startDate: this.weekStart, endDate: weekEnd});
             console.log(weekNumber, this.weekStart.toDateString() + ' ' + weekEnd.toDateString());
+            temp = new Date(this.weekStart);
             this.weekStart = new Date(this.weekStart.getFullYear(), this.weekStart.getMonth(), this.weekStart.getDate() - 7);
         }
+        this.weeks.unshift({isImage: false, startDate: temp});
         return this.firebaseListObservable.map(
             items => items
                 .reduce((accumulator, currentValue) => {

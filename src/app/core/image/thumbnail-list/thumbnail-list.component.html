@@ -4,9 +4,9 @@
 <div class="timeline">
     <ol>
         <li *ngFor="let im of images | async" [class.img]="im.label">
-        <!--<li *ngFor="let im of images | async" [class.img]="im.label">-->
-            <thumbnail-item [label]="im.label" [weekNumber]="im.weekNumber" [year]="im.year" [startDate]="im.startDate"
-                            [endDate]="im.endDate"></thumbnail-item>
+            <div *ngIf="!im.isImage">{{ im.startDate | date: 'MMMM yyyy'}}</div>
+            <thumbnail-item *ngIf="im.isImage" [label]="im.label" [weekNumber]="im.weekNumber" [year]="im.year"
+                            [startDate]="im.startDate" [endDate]="im.endDate"></thumbnail-item>
         </li>
     </ol>
 </div>

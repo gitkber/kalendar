@@ -45,3 +45,23 @@
     transform: translateZ(0);
     /*border: 1px solid green;*/
 }
+
+.timeline ol li div {
+    position: absolute;
+    bottom: 9px;
+    z-index: 5;
+    left: -8px;
+    text-align: center;
+    /*!*font-size: 1.3rem;*!*/
+    height: 16px;
+    width: 100px;
+    /*padding-bottom: 15px;*/
+    /*color: #383838;*/
+    /*!* fix bug on Safari - text flickering while timeline translates *!*/
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    /*border: 1px solid green;*/
+}
